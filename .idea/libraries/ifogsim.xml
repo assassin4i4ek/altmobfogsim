@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ifogsim">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../iFogSim-master/out/ifogsim.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
