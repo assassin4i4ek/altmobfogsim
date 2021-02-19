@@ -1,13 +1,16 @@
-package api.network
+package api.accesspoint
 
+import api.accesspoint.entities.AccessPointImpl
+import api.dynamic.mobility.positioning.Coordinates
+import api.dynamic.mobility.positioning.RadialZone
 import api.network.entities.NetworkDeviceImpl
 import org.junit.jupiter.api.Test
 import utils.BaseFogDeviceTest
 import utils.createCharacteristicsAndAllocationPolicy
 
-class NetworkFogDeviceTest: BaseFogDeviceTest() {
+class AccessPointTest: BaseFogDeviceTest() {
     @Suppress("SameParameterValue")
-    private fun createNetworkDevice(
+    private fun createNetworkFogDevice(
         name: String, schedulingInterval: Double,
         uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double, ratePerMips: Double
     ): NetworkDeviceImpl {
@@ -22,16 +25,20 @@ class NetworkFogDeviceTest: BaseFogDeviceTest() {
     @Test
     fun test1() {
         init()
-        val dev = createNetworkDevice(
-            "Mob1", 10.0, 1000.0, 1000.0,
-            0.1, 0.01
-        )
-        fogDeviceList.add(dev)
+        val ap = Coordinates(0.0, 0.0).let {
+            AccessPointImpl("AccessPoint", it, RadialZone(it, 1.0),
+                1000.0, 1000.0, 0.1
+            )
+        }
+        val dev = createNetworkFogDevice("Mob1", 10.0, 1000.0, 1000.0,
+        0.1, 0.01)
+        fogDeviceList.addAll(listOf(ap, dev))
 
-        dev.parentId = cloud.id
+        ap.parentId = cloud.id
+        dev.parentId = ap.mId
         connectSensorsAndActuatorsToDevice(dev, 0)
 
-        mm.addModuleToDevice("AppModule1", "Mob1")
-        mm.addModuleToDevice("AppModule2", "cloud")
+        mm.addModuleToDevice("AppModule1", dev.name)
+        mm.addModuleToDevice("AppModule2", cloud.name)
     }
 }

@@ -1,6 +1,8 @@
 package api.original.entities
 
-import api.original.behavior.OriginalFogDeviceBehaviorImpl
+import api.common.entities.SimEntityBehaviorWrapper
+import api.original.behaviors.OriginalFogDeviceBehavior
+import api.original.behaviors.OriginalFogDeviceBehaviorImpl
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.SimEvent
@@ -13,22 +15,21 @@ class OriginalFogDeviceImpl(
     uplinkLatency: Double, ratePerMips: Double
 ): FogDevice(
     name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
-    uplinkLatency, ratePerMips), OriginalFogDevice {
-    /* OriginalFogDevice */
+    uplinkLatency, ratePerMips), OriginalFogDevice,
+    SimEntityBehaviorWrapper<OriginalFogDevice, OriginalFogDeviceBehavior> {
+    /* SimEntityInterface */
     override val mId: Int get() = id
     override val mName: String get() = name
     override fun mSendEvent(id: Int, delay: Double, tag: Int, data: Any?) = send(id, delay, tag, data)
-
-    private val behavior = OriginalFogDeviceBehaviorImpl()
-
     override fun startEntity() {
-        super.startEntity()
-        behavior.onStartEntity(this)
+        super<FogDevice>.startEntity()
+        super<SimEntityBehaviorWrapper>.startEntity()
     }
-
     override fun processOtherEvent(ev: SimEvent) {
-        if (behavior.onProcessEvent(ev)) {
-            super.processOtherEvent(ev)
+        if (super.onProcessEvent(ev)) {
+            super<FogDevice>.processOtherEvent(ev)
         }
     }
+
+    override val behavior: OriginalFogDeviceBehavior = OriginalFogDeviceBehaviorImpl(this)
 }

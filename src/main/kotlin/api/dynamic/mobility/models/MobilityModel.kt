@@ -1,7 +1,8 @@
 package api.dynamic.mobility.models
 
-import api.dynamic.mobility.positioning.PositionAndTimestamp
+import api.dynamic.mobility.positioning.Position
 
 interface MobilityModel {
-    fun nextMove(currentPositionAndTimestamp: PositionAndTimestamp): PositionAndTimestamp
+    var nextUpdateTime: Double
+    fun nextMove(currentPosition: Position): Position
 }

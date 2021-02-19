@@ -15,7 +15,6 @@ import org.fog.utils.FogEntityFactory
 import org.fog.utils.Logger
 import org.fog.utils.distribution.DeterministicDistribution
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
 import java.util.*
 
 abstract class BaseFogDeviceTest {

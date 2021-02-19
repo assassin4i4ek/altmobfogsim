@@ -6,7 +6,7 @@ import utils.BaseFogDeviceTest
 import utils.createCharacteristicsAndAllocationPolicy
 
 class OriginalFogDeviceTest: BaseFogDeviceTest() {
-
+    @Suppress("SameParameterValue")
     private fun createOriginalFogDevice(
         name: String, schedulingInterval: Double,
         uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double, ratePerMips: Double

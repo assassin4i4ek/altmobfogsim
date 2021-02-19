@@ -1,12 +1,8 @@
-package api.accesspoint.entities
+package api.dynamic.connection.entites
 
-import api.accesspoint.behaviors.AccessPointConnectedDeviceBehavior
-import api.accesspoint.behaviors.AccessPointConnectedDeviceBehaviorImpl
 import api.common.entities.SimEntityBehaviorWrapper
+import api.dynamic.connection.behaviors.DynamicGatewayConnectionDeviceBehavior
 import api.dynamic.connection.behaviors.DynamicGatewayConnectionDeviceBehaviorImpl
-import api.dynamic.mobility.behaviors.MobileDeviceBehaviorImpl
-import api.dynamic.mobility.models.MobilityModel
-import api.dynamic.mobility.positioning.Position
 import api.network.behaviors.NetworkDeviceBehaviorImpl
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.VmAllocationPolicy
@@ -16,17 +12,14 @@ import org.fog.entities.FogDeviceCharacteristics
 import org.fog.entities.Tuple
 import java.util.*
 
-class AccessPointConnectedDeviceImpl(
-    name: String,
-    override var position: Position,
-    override val mobilityModel: MobilityModel,
-    characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
+class DynamicGatewayConnectionDeviceImpl(
+    name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
     storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
-    uplinkLatency: Double, ratePerMips: Double,
+    uplinkLatency: Double, ratePerMips: Double
 ): FogDevice(
     name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
-    uplinkLatency, ratePerMips), AccessPointConnectedDevice,
-    SimEntityBehaviorWrapper<AccessPointConnectedDevice, AccessPointConnectedDeviceBehavior> {
+    uplinkLatency, ratePerMips), DynamicGatewayConnectionDevice,
+    SimEntityBehaviorWrapper<DynamicGatewayConnectionDevice, DynamicGatewayConnectionDeviceBehavior> {
     /* SimEntityInterface */
     override val mId: Int get() = id
     override val mName: String get() = name
@@ -48,10 +41,10 @@ class AccessPointConnectedDeviceImpl(
     override val mChildToLatencyMap: MutableMap<Int, Double> get() = childToLatencyMap
     override val mUplinkLatency: Double get() = uplinkLatency
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
-    override fun sendUp(tuple: Tuple) = super<AccessPointConnectedDevice>.sendUp(tuple)
+    override fun sendUp(tuple: Tuple) = super<DynamicGatewayConnectionDevice>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
     override fun sendDown(tuple: Tuple, childId: Int) =
-        super<AccessPointConnectedDevice>.sendDown(tuple, childId)
+        super<DynamicGatewayConnectionDevice>.sendDown(tuple, childId)
 
     /* DynamicConnectionDevice */
     override val mNorthLinkQueue: Queue<Tuple> get() = northTupleQueue
@@ -69,14 +62,6 @@ class AccessPointConnectedDeviceImpl(
             super.onSetParentId()
         }
 
-    /* AccessPoint*/
-    override var accessPoint: AccessPoint? = null
-
-    override val behavior: AccessPointConnectedDeviceBehavior =
-        AccessPointConnectedDeviceBehaviorImpl(this,
-            DynamicGatewayConnectionDeviceBehaviorImpl(this,
-                NetworkDeviceBehaviorImpl(this)
-            ),
-            MobileDeviceBehaviorImpl(this)
-        )
+    override val behavior: DynamicGatewayConnectionDeviceBehavior = DynamicGatewayConnectionDeviceBehaviorImpl(
+        this, NetworkDeviceBehaviorImpl(this))
 }

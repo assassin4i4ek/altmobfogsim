@@ -1,10 +1,10 @@
 package api.dynamic.mobility.entities
 
+import api.dynamic.mobility.positioning.Position
+import api.common.entities.SimEntity
 import api.dynamic.mobility.models.MobilityModel
-import api.dynamic.mobility.positioning.PositionAndTimestamp
-import api.original.entities.OriginalFogDevice
 
-interface MobileDevice: OriginalFogDevice {
-    var positionAndTimestamp: PositionAndTimestamp
+interface MobileDevice: SimEntity {
+    var position: Position
     val mobilityModel: MobilityModel
 }
