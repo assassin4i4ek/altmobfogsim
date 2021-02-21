@@ -9,8 +9,8 @@ data class Position(
 ) {
     override fun equals(other: Any?): Boolean {
         if (other is Position) {
-            return distance(coordinates, other.coordinates) <= 1e-7 &&
-                    abs(speed - other.speed) <= 1e-7 && abs(orientationDeg - other.orientationDeg) <= 1e-7
+            return coordinates == other.coordinates &&
+                    abs(speed - other.speed) < 1e-6 && abs(orientationDeg - other.orientationDeg) < 1e-6
         }
         return false
     }

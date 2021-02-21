@@ -5,10 +5,13 @@ import api.dynamic.mobility.models.MobilityModel
 import api.dynamic.mobility.models.SteadyMobilityModel
 import api.dynamic.mobility.positioning.Coordinates
 import api.dynamic.mobility.positioning.Position
+import org.fog.utils.TimeKeeper
 import org.junit.jupiter.api.Test
 import utils.BaseFogDeviceTest
 import utils.createCharacteristicsAndAllocationPolicy
+import kotlin.math.abs
 import kotlin.math.sqrt
+import kotlin.test.assertEquals
 
 class MobileDeviceTest: BaseFogDeviceTest() {
     @Suppress("SameParameterValue")
@@ -43,5 +46,12 @@ class MobileDeviceTest: BaseFogDeviceTest() {
 
         mm.addModuleToDevice("AppModule1", "Mob1")
         mm.addModuleToDevice("AppModule2", "cloud")
+
+        launchTest {
+            val loopId = app.loops[0].loopId
+            assertEquals(9, TimeKeeper.getInstance().loopIdToCurrentNum[loopId])
+            assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 0.8045) < 1e-6)
+            assertEquals(Coordinates(10.0, 10.0), dev.position.coordinates)
+        }
     }
 }

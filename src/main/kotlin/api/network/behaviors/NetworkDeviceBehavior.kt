@@ -2,6 +2,7 @@ package api.network.behaviors
 
 import api.common.Events
 import api.common.behaviors.BaseBehavior
+import api.common.utils.TupleRecipientPair
 import api.network.entities.NetworkDevice
 import org.cloudbus.cloudsim.core.SimEvent
 import org.fog.entities.Tuple
@@ -20,7 +21,7 @@ interface NetworkDeviceBehavior
 
     @Suppress("UNCHECKED_CAST")
     private fun onAddressTuple(ev: SimEvent): Boolean {
-        val (tuple: Tuple, recipientId: Int) = ev.data as Pair<Tuple, Int>
+        val (tuple: Tuple, recipientId: Int) = ev.data as TupleRecipientPair
         if (recipientId > 0) {
             if (recipientId == device.mParentId) {
                 Logger.debug(device.mName, "Sending tuple ${tuple.cloudletId} up")
@@ -28,7 +29,7 @@ interface NetworkDeviceBehavior
                 return false
             }
             else if (device.mChildToLatencyMap.containsKey(recipientId)) {
-                Logger.debug(device.mName, "Sending tuple ${tuple.cloudletId} up")
+                Logger.debug(device.mName, "Sending tuple ${tuple.cloudletId} down")
                 device.sSendDown(tuple, recipientId)
                 return false
             }

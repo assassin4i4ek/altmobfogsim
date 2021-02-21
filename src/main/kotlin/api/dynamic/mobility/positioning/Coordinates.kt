@@ -7,4 +7,11 @@ data class Coordinates(
     override fun toString(): String {
         return "(x: %.2f; y: %.2f)".format(coordX, coordY)
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (other is Coordinates) {
+            return distance(this, other) < 1e-6
+        }
+        return super.equals(other)
+    }
 }

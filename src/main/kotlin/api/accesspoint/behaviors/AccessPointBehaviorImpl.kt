@@ -6,5 +6,5 @@ import api.network.behaviors.NetworkDeviceBehavior
 class AccessPointBehaviorImpl(
     override val device: AccessPoint,
     override val superNetworkDeviceBehavior: NetworkDeviceBehavior,
-) : AccessPointBehavior {
+) : AccessPointBehavior<NetworkDeviceBehavior> {
 }

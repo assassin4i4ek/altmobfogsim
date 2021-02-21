@@ -1,9 +1,12 @@
 package api.original
 
 import api.original.entities.OriginalFogDeviceImpl
+import org.fog.utils.TimeKeeper
 import org.junit.jupiter.api.Test
 import utils.BaseFogDeviceTest
 import utils.createCharacteristicsAndAllocationPolicy
+import kotlin.math.abs
+import kotlin.test.assertEquals
 
 class OriginalFogDeviceTest: BaseFogDeviceTest() {
     @Suppress("SameParameterValue")
@@ -33,6 +36,12 @@ class OriginalFogDeviceTest: BaseFogDeviceTest() {
 
         mm.addModuleToDevice("AppModule1", "Mob1")
         mm.addModuleToDevice("AppModule2", "cloud")
+
+        launchTest {
+            val loopId = app.loops[0].loopId
+            assertEquals(9, TimeKeeper.getInstance().loopIdToCurrentNum[loopId])
+            assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 0.8045) < 1e-6)
+        }
     }
 
     @Test
@@ -57,5 +66,11 @@ class OriginalFogDeviceTest: BaseFogDeviceTest() {
         mm.addModuleToDevice("AppModule1", "Mob1")
         mm.addModuleToDevice("AppModule1", "Mob2")
         mm.addModuleToDevice("AppModule2", "cloud")
+
+        launchTest {
+            val loopId = app.loops[0].loopId
+            assertEquals(18, TimeKeeper.getInstance().loopIdToCurrentNum[loopId])
+            assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 0.8065) < 1e-6)
+        }
     }
 }

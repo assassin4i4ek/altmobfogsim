@@ -3,7 +3,9 @@ package api.dynamic.connection.entites
 import api.common.entities.SimEntityBehaviorWrapper
 import api.dynamic.connection.behaviors.DynamicGatewayConnectionDeviceBehavior
 import api.dynamic.connection.behaviors.DynamicGatewayConnectionDeviceBehaviorImpl
+import api.network.behaviors.NetworkDeviceBehavior
 import api.network.behaviors.NetworkDeviceBehaviorImpl
+import api.original.behaviors.OriginalFogDeviceBehaviorImpl
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.SimEvent
@@ -19,7 +21,7 @@ class DynamicGatewayConnectionDeviceImpl(
 ): FogDevice(
     name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
     uplinkLatency, ratePerMips), DynamicGatewayConnectionDevice,
-    SimEntityBehaviorWrapper<DynamicGatewayConnectionDevice, DynamicGatewayConnectionDeviceBehavior> {
+    SimEntityBehaviorWrapper<DynamicGatewayConnectionDevice, DynamicGatewayConnectionDeviceBehavior<NetworkDeviceBehavior>> {
     /* SimEntityInterface */
     override val mId: Int get() = id
     override val mName: String get() = name
@@ -40,6 +42,8 @@ class DynamicGatewayConnectionDeviceImpl(
     override val mChildrenIds: MutableList<Int> get() = childrenIds
     override val mChildToLatencyMap: MutableMap<Int, Double> get() = childToLatencyMap
     override val mUplinkLatency: Double get() = uplinkLatency
+    override val mUplinkBandwidth: Double get() = uplinkBandwidth
+    override val mDownlinkBandwidth: Double get() = downlinkBandwidth
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
     override fun sendUp(tuple: Tuple) = super<DynamicGatewayConnectionDevice>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
@@ -62,6 +66,8 @@ class DynamicGatewayConnectionDeviceImpl(
             super.onSetParentId()
         }
 
-    override val behavior: DynamicGatewayConnectionDeviceBehavior = DynamicGatewayConnectionDeviceBehaviorImpl(
-        this, NetworkDeviceBehaviorImpl(this))
+    override val behavior: DynamicGatewayConnectionDeviceBehavior<NetworkDeviceBehavior> get() =
+        DynamicGatewayConnectionDeviceBehaviorImpl(this,
+                NetworkDeviceBehaviorImpl(this)
+        )
 }

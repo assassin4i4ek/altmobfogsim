@@ -12,7 +12,7 @@ import org.fog.entities.FogDeviceCharacteristics
 import org.fog.scheduler.StreamOperatorScheduler
 import org.fog.utils.FogUtils
 
-object AccessPointsMap {
+class AccessPointsMap {
     private val accessPoints: MutableList<AccessPoint> = mutableListOf()
 
     fun getClosestAccessPointsTo(deviceCoord: Coordinates): List<AccessPoint> {
@@ -21,6 +21,10 @@ object AccessPointsMap {
 
     fun registerAccessPoint(ap : AccessPoint) {
         accessPoints.add(ap)
+    }
+
+    fun clear() {
+        accessPoints.clear()
     }
 
     fun accessPointCharacteristics(): FogDeviceCharacteristics {

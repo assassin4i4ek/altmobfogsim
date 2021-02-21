@@ -18,7 +18,7 @@ import org.fog.scheduler.StreamOperatorScheduler
 import org.fog.utils.FogUtils
 
 
-fun createApp(userId: Int): Application {
+fun createTwoModulesApp(userId: Int): Application {
     val app = Application.createApplication("App1", userId)
     app.addAppModule("AppModule1", 100)
     app.addAppModule("AppModule2", 100)
@@ -37,6 +37,35 @@ fun createApp(userId: Int): Application {
         "ACTUATOR", Tuple.DOWN, AppEdge.ACTUATOR)
 
     app.loops.add(AppLoop(listOf("SENSOR", "AppModule1", "AppModule2", "AppModule1", "ACTUATOR")))
+    return app
+}
+
+fun createThreeModulesApp(userId: Int): Application {
+    val app = Application.createApplication("App1", userId)
+    app.addAppModule("AppModule1", 100)
+    app.addAppModule("AppModule2", 100)
+    app.addAppModule("AppModule3", 100)
+
+    app.addTupleMapping("AppModule1", "SENSOR", "MODULE2_INPUT", FractionalSelectivity(1.0))
+    app.addTupleMapping("AppModule2", "MODULE2_INPUT", "MODULE3_INPUT", FractionalSelectivity(1.0))
+    app.addTupleMapping("AppModule3", "MODULE3_INPUT", "MODULE3_OUTPUT", FractionalSelectivity(1.0))
+    app.addTupleMapping("AppModule2", "MODULE3_OUTPUT", "MODULE2_OUTPUT", FractionalSelectivity(1.0))
+    app.addTupleMapping("AppModule1", "MODULE2_OUTPUT", "ACTUATOR", FractionalSelectivity(1.0))
+
+    app.addAppEdge("SENSOR", "AppModule1", 0.1, 0.2,
+            "SENSOR", Tuple.UP, AppEdge.SENSOR)
+    app.addAppEdge("AppModule1", "AppModule2", 0.1, 0.2,
+            "MODULE2_INPUT", Tuple.UP, AppEdge.MODULE)
+    app.addAppEdge("AppModule2", "AppModule3", 0.1, 0.2,
+            "MODULE3_INPUT", Tuple.UP, AppEdge.MODULE)
+    app.addAppEdge("AppModule3", "AppModule2", 0.1, 0.2,
+            "MODULE3_OUTPUT", Tuple.DOWN, AppEdge.MODULE)
+    app.addAppEdge("AppModule2", "AppModule1", 0.1, 0.2,
+            "MODULE2_OUTPUT", Tuple.DOWN, AppEdge.MODULE)
+    app.addAppEdge("AppModule1", "ACTUATOR", 0.1, 0.2,
+            "ACTUATOR", Tuple.DOWN, AppEdge.ACTUATOR)
+
+    app.loops.add(AppLoop(listOf("SENSOR", "AppModule1", "AppModule2", "AppModule3", "AppModule2", "AppModule1", "ACTUATOR")))
     return app
 }
 
@@ -65,6 +94,8 @@ fun createCharacteristicsAndAllocationPolicy(mips: Double): Pair<FogDeviceCharac
         costPerStorage, costPerBw
     ), AppModuleAllocationPolicy(hostList))
 }
+
+
 
 //fun createMobileFogDevice(name: String, position: Position, mobilityModel: MobilityModel,
 //                          mips: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,

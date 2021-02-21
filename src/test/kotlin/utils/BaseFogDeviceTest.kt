@@ -3,10 +3,7 @@ package utils
 import org.cloudbus.cloudsim.Log
 import org.cloudbus.cloudsim.core.CloudSim
 import org.fog.application.Application
-import org.fog.entities.Actuator
-import org.fog.entities.FogBroker
-import org.fog.entities.FogDevice
-import org.fog.entities.Sensor
+import org.fog.entities.*
 import org.fog.placement.Controller
 import org.fog.placement.ModuleMapping
 import org.fog.placement.ModulePlacementMapping
@@ -14,7 +11,6 @@ import org.fog.utils.Config
 import org.fog.utils.FogEntityFactory
 import org.fog.utils.Logger
 import org.fog.utils.distribution.DeterministicDistribution
-import org.junit.jupiter.api.AfterEach
 import java.util.*
 
 abstract class BaseFogDeviceTest {
@@ -30,7 +26,7 @@ abstract class BaseFogDeviceTest {
     protected lateinit var controller: Controller
     protected lateinit var mm: ModuleMapping
 
-    open fun init(sensorActuatorCount: Int = 1) {
+    open fun init(sensorActuatorCount: Int = 1, createApp: (userId: Int) -> Application = ::createTwoModulesApp) {
         Log.disable()
         Logger.ENABLED = true
         CloudSim.init(1, Calendar.getInstance(), false)
@@ -51,12 +47,10 @@ abstract class BaseFogDeviceTest {
         mm = ModuleMapping.createModuleMapping()
     }
 
-    @AfterEach
-    open fun launchTest() {
-        controller = Controller("Controller", fogDeviceList, sensorList, actuatorList)
+    open fun launchTest(onStopSimulation: () -> Unit) {
+        controller = TestController("Controller", fogDeviceList, sensorList, actuatorList, onStopSimulation)
         controller.submitApplication(app, 0, ModulePlacementMapping(fogDeviceList, app, mm))
         CloudSim.startSimulation()
-        CloudSim.stopSimulation()
     }
 
     fun connectSensorsAndActuatorsToDevice(device: FogDevice, pairIndex: Int) {

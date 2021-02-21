@@ -4,15 +4,16 @@ import api.accesspoint.entities.AccessPointsMap
 import api.accesspoint.entities.AccessPointConnectedDevice
 import api.common.Events
 import api.common.behaviors.BaseBehavior
-import api.dynamic.connection.behaviors.DynamicGatewayConnectionDeviceBehavior
-import api.dynamic.connection.entites.DynamicConnections
-import api.dynamic.mobility.behaviors.MobileDeviceBehavior
+import api.common.utils.ConnectionUtils
+import api.dynamic.connection.entites.DynamicGatewayConnectionDevice
+import api.dynamic.mobility.entities.MobileDevice
 import org.cloudbus.cloudsim.core.SimEvent
 import org.fog.utils.Logger
 
-interface AccessPointConnectedDeviceBehavior: BaseBehavior<AccessPointConnectedDeviceBehavior, AccessPointConnectedDevice> {
-    val superDynamicGatewayConnectionDeviceBehavior: DynamicGatewayConnectionDeviceBehavior
-    val superMobilityDeviceBehavior: MobileDeviceBehavior
+interface AccessPointConnectedDeviceBehavior<T1: BaseBehavior<T1, out DynamicGatewayConnectionDevice>, T2: BaseBehavior<T2, MobileDevice>>
+    : BaseBehavior<AccessPointConnectedDeviceBehavior<T1, T2>, AccessPointConnectedDevice> {
+    val superDynamicGatewayConnectionDeviceBehavior: T1//DynamicGatewayConnectionDeviceBehavior
+    val superMobilityDeviceBehavior: T2//MobileDeviceBehavior
 
     override fun onStart() {
         superDynamicGatewayConnectionDeviceBehavior.onStart()
@@ -39,7 +40,7 @@ interface AccessPointConnectedDeviceBehavior: BaseBehavior<AccessPointConnectedD
                 //no need to reconnect
             } else {
                 // disconnect from current access point
-                DynamicConnections.disconnectChildFromParent(device.accessPoint!!, device)
+                ConnectionUtils.disconnectChildFromParent(device.accessPoint!!, device)
                 Logger.debug(device.accessPoint!!.mName, "Interrupted connection with ${device.mName}")
                 device.accessPoint = null
             }
@@ -47,10 +48,10 @@ interface AccessPointConnectedDeviceBehavior: BaseBehavior<AccessPointConnectedD
 
         if (device.accessPoint == null) {
             // if previous actions resulted disconnection from access point or it wasn't connected at all
-            for (ap in AccessPointsMap.getClosestAccessPointsTo(device.position.coordinates)) {
+            for (ap in device.accessPointsMap.getClosestAccessPointsTo(device.position.coordinates)) {
                 if (ap.connectionZone.isInZone(device.position)) {
                     // if ap can connect device
-                    DynamicConnections.connectChildToParent(ap, device)
+                    ConnectionUtils.connectChildToParent(ap, device)
                     Logger.debug(ap.mName, "Established connection with ${device.mName}")
                     device.accessPoint = ap
                     break

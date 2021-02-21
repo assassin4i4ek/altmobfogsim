@@ -1,13 +1,17 @@
 package api.dynamic.connection
 
-import api.dynamic.connection.entites.DynamicConnections
+import api.common.utils.ConnectionUtils
 import api.dynamic.connection.entites.DynamicGatewayConnectionDeviceImpl
 import api.network.entities.NetworkDeviceImpl
 import org.cloudbus.cloudsim.core.SimEntity
 import org.cloudbus.cloudsim.core.SimEvent
+import org.fog.utils.TimeKeeper
 import org.junit.jupiter.api.Test
 import utils.BaseFogDeviceTest
 import utils.createCharacteristicsAndAllocationPolicy
+import kotlin.math.abs
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
 
 class DynamicGatewayConnectionDeviceTest: BaseFogDeviceTest() {
     @Suppress("SameParameterValue")
@@ -50,6 +54,12 @@ class DynamicGatewayConnectionDeviceTest: BaseFogDeviceTest() {
 
         mm.addModuleToDevice("AppModule1", "Mob1")
         mm.addModuleToDevice("AppModule2", "cloud")
+
+        launchTest {
+            val loopId = app.loops[0].loopId
+            assertEquals(9, TimeKeeper.getInstance().loopIdToCurrentNum[loopId])
+            assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 0.8045) < 1e-6)
+        }
     }
 
     @Test
@@ -66,6 +76,12 @@ class DynamicGatewayConnectionDeviceTest: BaseFogDeviceTest() {
 
         mm.addModuleToDevice("AppModule1", "Mob1")
         mm.addModuleToDevice("AppModule2", "cloud")
+
+        launchTest {
+            val loopId = app.loops[0].loopId
+            assertNull(TimeKeeper.getInstance().loopIdToCurrentNum[loopId])
+            assertNull(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId])
+        }
     }
 
     @Test
@@ -94,10 +110,16 @@ class DynamicGatewayConnectionDeviceTest: BaseFogDeviceTest() {
             }
 
             override fun processEvent(p0: SimEvent) {
-                DynamicConnections.connectChildToParent(gateway, dev)
+                ConnectionUtils.connectChildToParent(gateway, dev)
             }
 
             override fun shutdownEntity() {}
+        }
+
+        launchTest {
+            val loopId = app.loops[0].loopId
+            assertEquals(8, TimeKeeper.getInstance().loopIdToCurrentNum[loopId])
+            assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 2.0811875) < 1e-6)
         }
     }
 
@@ -134,16 +156,22 @@ class DynamicGatewayConnectionDeviceTest: BaseFogDeviceTest() {
             override fun processEvent(ev: SimEvent) {
                 when (ev.tag) {
                     1 -> {
-                        DynamicConnections.disconnectChildFromParent(gateway1, dev)
+                        ConnectionUtils.disconnectChildFromParent(gateway1, dev)
                         send(id, 3.0, 2, null)
                     }
                     2 -> {
-                        DynamicConnections.connectChildToParent(gateway2, dev)
+                        ConnectionUtils.connectChildToParent(gateway2, dev)
                     }
                 }
             }
 
             override fun shutdownEntity() {}
+        }
+
+        launchTest {
+            val loopId = app.loops[0].loopId
+            assertEquals(8, TimeKeeper.getInstance().loopIdToCurrentNum[loopId])
+            assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 1.632) < 1e-6)
         }
     }
 }

@@ -1,12 +1,16 @@
 package api.accesspoint
 
 import api.accesspoint.entities.AccessPointImpl
+import api.accesspoint.entities.AccessPointsMap
 import api.dynamic.mobility.positioning.Coordinates
 import api.dynamic.mobility.positioning.RadialZone
 import api.network.entities.NetworkDeviceImpl
+import org.fog.utils.TimeKeeper
 import org.junit.jupiter.api.Test
 import utils.BaseFogDeviceTest
 import utils.createCharacteristicsAndAllocationPolicy
+import kotlin.math.abs
+import kotlin.test.assertEquals
 
 class AccessPointTest: BaseFogDeviceTest() {
     @Suppress("SameParameterValue")
@@ -25,9 +29,10 @@ class AccessPointTest: BaseFogDeviceTest() {
     @Test
     fun test1() {
         init()
+        val apm = AccessPointsMap()
         val ap = Coordinates(0.0, 0.0).let {
             AccessPointImpl("AccessPoint", it, RadialZone(it, 1.0),
-                1000.0, 1000.0, 0.1
+                apm,1000.0, 1000.0, 0.1
             )
         }
         val dev = createNetworkFogDevice("Mob1", 10.0, 1000.0, 1000.0,
@@ -40,5 +45,12 @@ class AccessPointTest: BaseFogDeviceTest() {
 
         mm.addModuleToDevice("AppModule1", dev.name)
         mm.addModuleToDevice("AppModule2", cloud.name)
+
+        launchTest {
+            val loopId = app.loops[0].loopId
+            assertEquals(1, apm.getClosestAccessPointsTo(Coordinates(0.0, 0.0)).size)
+            assertEquals(8, TimeKeeper.getInstance().loopIdToCurrentNum[loopId])
+            assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 1.0065) < 1e-6)
+        }
     }
 }

@@ -2,16 +2,18 @@ package api.dynamic.connection.behaviors
 
 import api.common.Events
 import api.common.behaviors.BaseBehavior
+import api.common.utils.TupleRecipientPair
 import api.dynamic.connection.entites.DynamicGatewayConnectionDevice
 import api.network.behaviors.NetworkDeviceBehavior
+import api.network.entities.NetworkDevice
 import org.cloudbus.cloudsim.core.SimEvent
 import org.fog.entities.Tuple
 import org.fog.utils.FogEvents
 import org.fog.utils.Logger
 
-interface DynamicGatewayConnectionDeviceBehavior
-    : BaseBehavior<DynamicGatewayConnectionDeviceBehavior, DynamicGatewayConnectionDevice> {
-    val superNetworkDeviceBehavior: NetworkDeviceBehavior
+interface DynamicGatewayConnectionDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
+    : BaseBehavior<DynamicGatewayConnectionDeviceBehavior<T>, DynamicGatewayConnectionDevice> {
+    val superNetworkDeviceBehavior: T
 
     override fun onStart() {
         superNetworkDeviceBehavior.onStart()
@@ -57,7 +59,7 @@ interface DynamicGatewayConnectionDeviceBehavior
 
     @Suppress("UNCHECKED_CAST")
     private fun onAddressTuple(ev: SimEvent): Boolean {
-        val (tuple, recipientId) = ev.data as Pair<Tuple, Int>
+        val (tuple, recipientId) = ev.data as TupleRecipientPair
         return if (recipientId == device.mParentId && device.mParentId <= 0) {
             device.mNorthLinkQueue.add(tuple)
             Logger.debug(device.mName, "Queued tuple with tupleId = ${tuple.cloudletId}, waiting for connection")
