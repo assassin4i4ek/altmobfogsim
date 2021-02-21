@@ -14,4 +14,10 @@ data class Coordinates(
         }
         return super.equals(other)
     }
+
+    override fun hashCode(): Int {
+        var result = coordX.hashCode()
+        result = 31 * result + coordY.hashCode()
+        return result
+    }
 }
