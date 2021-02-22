@@ -1,19 +1,18 @@
 package api.accesspoint
 
-import api.accesspoint.entities.AccessPointConnectedDeviceImpl
-import api.accesspoint.entities.AccessPointImpl
-import api.accesspoint.entities.AccessPointsMap
-import api.dynamic.mobility.models.MobilityModel
-import api.dynamic.mobility.models.SteadyMobilityModel
-import api.dynamic.mobility.positioning.Coordinates
-import api.dynamic.mobility.positioning.Position
-import api.dynamic.mobility.positioning.RadialZone
+import api.accesspoint.original.entities.AccessPointConnectedDeviceImpl
+import api.accesspoint.original.entities.AccessPointImpl
+import api.accesspoint.original.entities.AccessPointsMap
+import api.mobility.models.MobilityModel
+import api.mobility.models.SteadyMobilityModel
+import api.mobility.positioning.Coordinates
+import api.mobility.positioning.Position
+import api.mobility.positioning.RadialZone
 import org.fog.utils.TimeKeeper
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 import utils.BaseFogDeviceTest
 import utils.createCharacteristicsAndAllocationPolicy
-import java.sql.Time
 import kotlin.math.abs
 import kotlin.math.sqrt
 import kotlin.test.assertEquals

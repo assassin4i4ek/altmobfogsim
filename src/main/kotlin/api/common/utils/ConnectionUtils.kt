@@ -1,8 +1,8 @@
 package api.common.utils
 
-import api.addressing.entities.AddressingDevice
-import api.dynamic.connection.entites.DynamicGatewayConnectionDevice
-import api.network.entities.NetworkDevice
+import api.addressing.fixed.entities.AddressingDevice
+import api.network.dynamic.entites.DynamicGatewayConnectionDevice
+import api.network.fixed.entities.NetworkDevice
 import org.fog.utils.Logger
 
 object ConnectionUtils {

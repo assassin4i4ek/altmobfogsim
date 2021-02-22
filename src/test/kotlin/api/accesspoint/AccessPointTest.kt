@@ -1,10 +1,10 @@
 package api.accesspoint
 
-import api.accesspoint.entities.AccessPointImpl
-import api.accesspoint.entities.AccessPointsMap
-import api.dynamic.mobility.positioning.Coordinates
-import api.dynamic.mobility.positioning.RadialZone
-import api.network.entities.NetworkDeviceImpl
+import api.accesspoint.original.entities.AccessPointImpl
+import api.accesspoint.original.entities.AccessPointsMap
+import api.mobility.positioning.Coordinates
+import api.mobility.positioning.RadialZone
+import api.network.fixed.entities.NetworkDeviceImpl
 import org.fog.utils.TimeKeeper
 import org.junit.jupiter.api.Test
 import utils.BaseFogDeviceTest
