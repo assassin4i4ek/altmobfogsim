@@ -14,6 +14,7 @@ import kotlin.math.abs
 import kotlin.test.assertEquals
 
 class AddressingDeviceTest: BaseFogDeviceTest() {
+    @Suppress("SameParameterValue")
     private fun createAddressingDevice(
             name: String, schedulingInterval: Double,
             uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double, ratePerMips: Double

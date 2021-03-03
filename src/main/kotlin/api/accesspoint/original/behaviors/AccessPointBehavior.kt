@@ -5,7 +5,7 @@ import api.common.behaviors.BaseBehavior
 import api.network.fixed.entities.NetworkDevice
 import org.cloudbus.cloudsim.core.SimEvent
 
-interface AccessPointBehavior<T: BaseBehavior<T, NetworkDevice>>: BaseBehavior<AccessPointBehavior<T>, AccessPoint> {
+interface AccessPointBehavior<T: BaseBehavior<T, out NetworkDevice>>: BaseBehavior<AccessPointBehavior<T>, AccessPoint> {
     val superNetworkDeviceBehavior: T
 
     override fun onStart() {

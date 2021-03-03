@@ -81,7 +81,7 @@ class AccessPointConnectedDeviceImpl(
             super.onSetParentId()
         }
 
-    /* AccessPoint*/
+    /* AccessPointConnectedDevice */
     override var accessPoint: AccessPoint? = null
 
     override val behavior: AccessPointConnectedDeviceBehavior<

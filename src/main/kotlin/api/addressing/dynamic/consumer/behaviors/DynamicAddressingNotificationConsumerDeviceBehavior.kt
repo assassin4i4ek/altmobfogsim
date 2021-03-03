@@ -10,10 +10,10 @@ import api.common.utils.TupleRecipientsPair
 import api.notification.consumer.entities.NotificationConsumerDevice
 import org.cloudbus.cloudsim.core.SimEvent
 
-interface DynamicAddressingConsumerDeviceBehavior<
+interface DynamicAddressingNotificationConsumerDeviceBehavior<
         T1 : BaseBehavior<T1, out AddressingDevice>,
         T2: BaseBehavior<T2, out NotificationConsumerDevice>>
-    : BaseBehavior<DynamicAddressingConsumerDeviceBehavior<T1, T2>, DynamicAddressingNotificationConsumerDevice> {
+    : BaseBehavior<DynamicAddressingNotificationConsumerDeviceBehavior<T1, T2>, DynamicAddressingNotificationConsumerDevice> {
     val superAddressingDeviceBehavior: T1
     val superNotificationConsumerDeviceBehavior: T2
 

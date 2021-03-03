@@ -16,6 +16,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNull
 
 class DynamicAddressingDeviceTest: BaseFogDeviceTest() {
+    @Suppress("SameParameterValue")
     private fun createServer(
             name: String, schedulingInterval: Double,
             uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double, ratePerMips: Double

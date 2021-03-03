@@ -1,5 +1,10 @@
-package api.addressing.dynamic.producer.entities
+package api.accesspoint.addressing.entities
 
+import api.accesspoint.addressing.behaviors.AddressingAccessPointConnectedDeviceBehaviorImpl
+import api.accesspoint.original.behaviors.AccessPointConnectedDeviceBehavior
+import api.accesspoint.original.entities.AccessPoint
+import api.accesspoint.original.entities.AccessPointConnectedDevice
+import api.accesspoint.original.entities.AccessPointsMap
 import api.addressing.dynamic.producer.behaviors.DynamicAddressingNotificationProducerDeviceBehaviorImpl
 import api.addressing.dynamic.producer.behaviors.DynamicGatewayConnectionAddressingDeviceBehaviorImpl
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
@@ -8,11 +13,15 @@ import api.addressing.models.AddressingModel
 import api.addressing.models.BreadthFirstSearchAddressingModel
 import api.common.entities.SimEntityBehaviorWrapper
 import api.common.utils.Notification
+import api.mobility.behaviors.MobileDeviceBehavior
+import api.mobility.behaviors.MobileDeviceBehaviorImpl
+import api.mobility.models.MobilityModel
+import api.mobility.positioning.Position
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehavior
+import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehaviorImpl
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
 import api.notification.producer.behaviors.NotificationProducerDeviceBehavior
-import api.notification.producer.entities.NotificationProducerDevice
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.CloudSim
@@ -23,19 +32,24 @@ import org.fog.entities.Tuple
 import org.fog.placement.Controller
 import java.util.*
 
-class DynamicAddressingNotificationProducerDeviceImpl(
-        name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
+class AddressingAccessPointConnectedDeviceImpl(
+        name: String,
+        override var position: Position,
+        override val mobilityModel: MobilityModel,
+        override val accessPointsMap: AccessPointsMap,
+        characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
         storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
         uplinkLatency: Double, ratePerMips: Double
 ): FogDevice(
         name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
-        uplinkLatency, ratePerMips),
-        DynamicAddressingNotificationProducerDevice,
-        SimEntityBehaviorWrapper<NotificationProducerDevice,
-                NotificationProducerDeviceBehavior<
-                        DynamicGatewayConnectionDeviceBehavior<
-                                AddressingDeviceBehavior<
-                                        NetworkDeviceBehavior>>>> {
+        uplinkLatency, ratePerMips), AddressingAccessPointConnectedDevice,
+        SimEntityBehaviorWrapper<AccessPointConnectedDevice,
+                AccessPointConnectedDeviceBehavior<
+                        NotificationProducerDeviceBehavior<
+                                DynamicGatewayConnectionDeviceBehavior<
+                                        AddressingDeviceBehavior<
+                                                NetworkDeviceBehavior>>>,
+                        MobileDeviceBehavior>> {
     /* SimEntityInterface */
     override val mId: Int get() = id
     override val mName: String get() = name
@@ -59,13 +73,10 @@ class DynamicAddressingNotificationProducerDeviceImpl(
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
-    override fun sendUp(tuple: Tuple) = super<DynamicAddressingNotificationProducerDevice>.sendUp(tuple)
+    override fun sendUp(tuple: Tuple) = super<AddressingAccessPointConnectedDevice>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) = super<DynamicAddressingNotificationProducerDevice>.sendDown(tuple, childId)
-
-    /* AddressingDevice */
-    override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
-    override val addressingModel: AddressingModel = BreadthFirstSearchAddressingModel()
+    override fun sendDown(tuple: Tuple, childId: Int) =
+            super<AddressingAccessPointConnectedDevice>.sendDown(tuple, childId)
 
     /* DynamicConnectionDevice */
     override val mNorthLinkQueue: Queue<Tuple> get() = northTupleQueue
@@ -83,15 +94,26 @@ class DynamicAddressingNotificationProducerDeviceImpl(
             super.onSetParentId()
         }
 
+    /* AccessPointConnectedDevice */
+    override var accessPoint: AccessPoint? = null
+
+    /* AddressingDevice */
+    override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
+    override val addressingModel: AddressingModel = BreadthFirstSearchAddressingModel()
+
     /* NotificationProducer */
     override val producerNotifications: MutableList<Notification<*>> = mutableListOf()
 
-    override val behavior =
+    override val behavior:
+            AccessPointConnectedDeviceBehavior<
+                    NotificationProducerDeviceBehavior<
+                            DynamicGatewayConnectionDeviceBehavior<
+                                    AddressingDeviceBehavior<
+                                            NetworkDeviceBehavior>>>,
+                    MobileDeviceBehavior>
+    = AddressingAccessPointConnectedDeviceBehaviorImpl(this,
             DynamicAddressingNotificationProducerDeviceBehaviorImpl(this,
                     DynamicGatewayConnectionAddressingDeviceBehaviorImpl(this,
-                             AddressingDeviceBehaviorImpl(this,
-                                     NetworkDeviceBehaviorImpl(this)
-                             )
-                    )
-            )
+                            AddressingDeviceBehaviorImpl(this, NetworkDeviceBehaviorImpl(this)))),
+            MobileDeviceBehaviorImpl(this))
 }

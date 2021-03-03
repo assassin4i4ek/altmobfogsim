@@ -1,5 +1,9 @@
-package api.addressing.dynamic.consumer.entities
+package api.accesspoint.addressing.entities
 
+import api.accesspoint.addressing.behaviors.AddressingAccessPointBehaviorImpl
+import api.accesspoint.original.behaviors.AccessPointBehavior
+import api.accesspoint.original.entities.AccessPoint
+import api.accesspoint.original.entities.AccessPointsMap
 import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationConsumerDeviceBehavior
 import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationConsumerDeviceBehaviorImpl
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
@@ -8,6 +12,8 @@ import api.addressing.models.AddressingModel
 import api.addressing.models.BreadthFirstSearchAddressingModel
 import api.common.entities.SimEntityBehaviorWrapper
 import api.common.utils.Notification
+import api.mobility.positioning.Coordinates
+import api.mobility.positioning.Zone
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
 import api.notification.consumer.behaviors.NotificationConsumerDeviceBehavior
@@ -20,20 +26,23 @@ import org.fog.entities.FogDevice
 import org.fog.entities.FogDeviceCharacteristics
 import org.fog.entities.Tuple
 import org.fog.placement.Controller
+import org.fog.policy.AppModuleAllocationPolicy
 
-class DynamicAddressingNotificationConsumerDeviceImpl(
-        name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
-        storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
-        uplinkLatency: Double, ratePerMips: Double
+class AddressingAccessPointImpl(
+        name: String, override val coordinates: Coordinates, override val connectionZone: Zone,
+        override val accessPointsMap: AccessPointsMap, uplinkBandwidth: Double, downlinkBandwidth: Double,
+        uplinkLatency: Double,
 ): FogDevice(
-        name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
-        uplinkLatency, ratePerMips), DynamicAddressingNotificationConsumerDevice,
-        SimEntityBehaviorWrapper<
-                DynamicAddressingNotificationConsumerDevice,
-                DynamicAddressingNotificationConsumerDeviceBehavior<
-                        AddressingDeviceBehavior<NetworkDeviceBehavior>,
-                        NotificationConsumerDeviceBehavior<NetworkDeviceBehavior>
-                        >> {
+        name, accessPointsMap.accessPointCharacteristics(), AppModuleAllocationPolicy(emptyList()), emptyList(),
+        0.0, uplinkBandwidth, downlinkBandwidth,
+        uplinkLatency, 0.0), AddressingAccessPoint,
+        SimEntityBehaviorWrapper<AccessPoint,
+                        AccessPointBehavior<
+                                DynamicAddressingNotificationConsumerDeviceBehavior<
+                                        AddressingDeviceBehavior<
+                                                NetworkDeviceBehavior>,
+                                        NotificationConsumerDeviceBehavior<
+                                                NetworkDeviceBehavior>>>> {
     /* SimEntityInterface */
     override val mId: Int get() = id
     override val mName: String get() = name
@@ -42,7 +51,6 @@ class DynamicAddressingNotificationConsumerDeviceImpl(
         super<FogDevice>.startEntity()
         super<SimEntityBehaviorWrapper>.startEntity()
     }
-
     override fun processOtherEvent(ev: SimEvent) {
         if (super.onProcessEvent(ev)) {
             super<FogDevice>.processOtherEvent(ev)
@@ -57,9 +65,9 @@ class DynamicAddressingNotificationConsumerDeviceImpl(
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
-    override fun sendUp(tuple: Tuple) = super<DynamicAddressingNotificationConsumerDevice>.sendUp(tuple)
+    override fun sendUp(tuple: Tuple) = super<AddressingAccessPoint>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) =  super<DynamicAddressingNotificationConsumerDevice>.sendDown(tuple, childId)
+    override fun sendDown(tuple: Tuple, childId: Int) =  super<AddressingAccessPoint>.sendDown(tuple, childId)
 
     /* AddressingDevice */
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
@@ -67,19 +75,18 @@ class DynamicAddressingNotificationConsumerDeviceImpl(
 
     /* DynamicAddressingTuple */
     override val consumerNotifications: MutableList<Notification<*>> = mutableListOf()
-
-    override val behavior: DynamicAddressingNotificationConsumerDeviceBehavior<
-            AddressingDeviceBehavior<NetworkDeviceBehavior>,
-            NotificationConsumerDeviceBehavior<NetworkDeviceBehavior>>
-    = NetworkDeviceBehaviorImpl(this).let { networkDeviceBehavior ->
-        DynamicAddressingNotificationConsumerDeviceBehaviorImpl(this,
-                AddressingDeviceBehaviorImpl(this,
-                        networkDeviceBehavior
-                ),
-                NotificationConsumerDeviceBehaviorImpl(this,
-                        networkDeviceBehavior
-                )
-        )
+    override val behavior: AccessPointBehavior<
+            DynamicAddressingNotificationConsumerDeviceBehavior<
+                    AddressingDeviceBehavior<
+                            NetworkDeviceBehavior>,
+                    NotificationConsumerDeviceBehavior<
+                            NetworkDeviceBehavior>>>
+        = NetworkDeviceBehaviorImpl(this).let { networkDeviceBehavior ->
+        AddressingAccessPointBehaviorImpl(this,
+                DynamicAddressingNotificationConsumerDeviceBehaviorImpl(this,
+                        AddressingDeviceBehaviorImpl(this,
+                                networkDeviceBehavior),
+                        NotificationConsumerDeviceBehaviorImpl(this,
+                                networkDeviceBehavior)))
     }
-
 }

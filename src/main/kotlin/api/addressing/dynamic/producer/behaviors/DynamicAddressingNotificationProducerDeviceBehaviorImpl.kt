@@ -8,10 +8,9 @@ import api.notification.producer.behaviors.NotificationProducerDeviceBehavior
 import api.notification.producer.entities.NotificationProducerDevice
 
 class DynamicAddressingNotificationProducerDeviceBehaviorImpl(
-        override val device: DynamicAddressingNotificationProducerDevice,
-        override val superNotificationProducerBehavior: NotificationProducerDeviceBehavior<
-                DynamicGatewayConnectionDeviceBehavior<
-                        AddressingDeviceBehavior<
-                                NetworkDeviceBehavior>
-                        >
-                > ) : DynamicAddressingNotificationProducerDeviceBehavior
+        override val device: NotificationProducerDevice,
+        override val superDynamicGatewayConnectionDeviceBehavior: DynamicGatewayConnectionDeviceBehavior<AddressingDeviceBehavior<NetworkDeviceBehavior>>
+) : NotificationProducerDeviceBehavior<
+        DynamicGatewayConnectionDeviceBehavior<
+                AddressingDeviceBehavior<
+                        NetworkDeviceBehavior>>>

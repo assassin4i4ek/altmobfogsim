@@ -1,4 +1,4 @@
-package api.accesspoint
+package api.accesspoint.original
 
 import api.accesspoint.original.entities.AccessPointConnectedDeviceImpl
 import api.accesspoint.original.entities.AccessPointImpl

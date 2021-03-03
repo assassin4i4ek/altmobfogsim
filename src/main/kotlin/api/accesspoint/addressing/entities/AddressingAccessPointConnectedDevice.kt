@@ -1,0 +1,6 @@
+package api.accesspoint.addressing.entities
+
+import api.accesspoint.original.entities.AccessPointConnectedDevice
+import api.addressing.dynamic.producer.entities.DynamicAddressingNotificationProducerDevice
+
+interface AddressingAccessPointConnectedDevice: DynamicAddressingNotificationProducerDevice, AccessPointConnectedDevice
