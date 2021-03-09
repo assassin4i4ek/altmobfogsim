@@ -19,6 +19,7 @@ interface AccessPointConnectedDeviceBehavior<
     override fun onStart() {
         superDynamicGatewayConnectionDeviceBehavior.onStart()
         superMobilityDeviceBehavior.onStart()
+        device.mSendEvent(device.mId, 0.0, Events.ACCESS_POINT_CONNECTED_DEVICE_UPDATE_CONNECTION.tag, null)
     }
 
     override fun processEvent(ev: SimEvent): Boolean {

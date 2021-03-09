@@ -13,6 +13,7 @@ import api.mobility.positioning.RadialZone
 import org.cloudbus.cloudsim.core.SimEntity
 import org.cloudbus.cloudsim.core.SimEvent
 import org.fog.utils.Config
+import org.fog.utils.FogLinearPowerModel
 import org.fog.utils.TimeKeeper
 import org.fog.utils.distribution.DeterministicDistribution
 import org.junit.jupiter.api.Test
@@ -33,7 +34,7 @@ class AddressingAccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         return createCharacteristicsAndAllocationPolicy(1000.0).let {
             AddressingAccessPointImpl(
                     name, coordinates, RadialZone(coordinates, radius), accessPointsMap,
-                    uplinkBandwidth, downlinkBandwidth, uplinkLatency
+                    uplinkBandwidth, downlinkBandwidth, uplinkLatency, FogLinearPowerModel(100.0, 40.0)
             )
         }
     }

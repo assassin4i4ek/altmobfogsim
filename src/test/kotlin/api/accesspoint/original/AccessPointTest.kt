@@ -5,6 +5,7 @@ import api.accesspoint.original.entities.AccessPointsMap
 import api.mobility.positioning.Coordinates
 import api.mobility.positioning.RadialZone
 import api.network.fixed.entities.NetworkDeviceImpl
+import org.fog.utils.FogLinearPowerModel
 import org.fog.utils.TimeKeeper
 import org.junit.jupiter.api.Test
 import utils.BaseFogDeviceTest
@@ -32,7 +33,7 @@ class AccessPointTest: BaseFogDeviceTest() {
         val apm = AccessPointsMap()
         val ap = Coordinates(0.0, 0.0).let {
             AccessPointImpl("AccessPoint", it, RadialZone(it, 1.0),
-                apm,1000.0, 1000.0, 0.1
+                apm,1000.0, 1000.0, 0.1, FogLinearPowerModel(100.0, 40.0)
             )
         }
         val dev = createNetworkFogDevice("Mob1", 10.0, 1000.0, 1000.0,

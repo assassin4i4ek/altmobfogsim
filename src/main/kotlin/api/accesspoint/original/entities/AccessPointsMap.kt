@@ -4,6 +4,7 @@ import api.mobility.positioning.Coordinates
 import api.mobility.positioning.distance
 import org.cloudbus.cloudsim.Pe
 import org.cloudbus.cloudsim.power.PowerHost
+import org.cloudbus.cloudsim.power.models.PowerModel
 import org.cloudbus.cloudsim.power.models.PowerModelLinear
 import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple
 import org.cloudbus.cloudsim.sdn.overbooking.BwProvisionerOverbooking
@@ -27,7 +28,7 @@ class AccessPointsMap {
         accessPoints.clear()
     }
 
-    fun accessPointCharacteristics(): FogDeviceCharacteristics {
+    fun accessPointCharacteristics(powerModel: PowerModel): FogDeviceCharacteristics {
         val peList = listOf(Pe(0, PeProvisionerOverbooking(0.0))) // need to store Pe id and MIPS Rating
         val hostId = FogUtils.generateEntityId()
 //        val ram = 2048 // host memory (MB)
@@ -35,7 +36,7 @@ class AccessPointsMap {
 //        val bw = 10000
         val host = PowerHost(hostId, RamProvisionerSimple(0),
             BwProvisionerOverbooking(0), 0,
-            peList, StreamOperatorScheduler(peList), PowerModelLinear(100.0, 40.0)
+            peList, StreamOperatorScheduler(peList), powerModel
         )
 //        val hostList = listOf(host)
 

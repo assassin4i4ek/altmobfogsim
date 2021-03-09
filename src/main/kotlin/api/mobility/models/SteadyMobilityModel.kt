@@ -5,7 +5,7 @@ import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
-class SteadyMobilityModel(
+open class SteadyMobilityModel(
     override var nextUpdateTime: Double
 ): MobilityModel {
     override fun nextMove(currentPosition: Position): Position {

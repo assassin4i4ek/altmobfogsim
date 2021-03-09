@@ -8,6 +8,7 @@ import api.mobility.models.SteadyMobilityModel
 import api.mobility.positioning.Coordinates
 import api.mobility.positioning.Position
 import api.mobility.positioning.RadialZone
+import org.fog.utils.FogLinearPowerModel
 import org.fog.utils.TimeKeeper
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
@@ -26,7 +27,7 @@ class AccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         return createCharacteristicsAndAllocationPolicy(1000.0).let {
             AccessPointImpl(
                 name, coordinates, RadialZone(coordinates, radius), accessPointsMap,
-                uplinkBandwidth, downlinkBandwidth, uplinkLatency
+                uplinkBandwidth, downlinkBandwidth, uplinkLatency, FogLinearPowerModel(100.0, 40.0)
             )
         }
     }
@@ -39,8 +40,8 @@ class AccessPointConnectedDeviceTest: BaseFogDeviceTest() {
     ): AccessPointConnectedDeviceImpl {
         return createCharacteristicsAndAllocationPolicy(1000.0).let {
             AccessPointConnectedDeviceImpl(
-                name, position, mobilityModel, accessPointsMap, it.first, it.second, emptyList(), schedulingInterval,
-                uplinkBandwidth, downlinkBandwidth, uplinkLatency, ratePerMips
+                name, it.first, it.second, emptyList(), schedulingInterval, uplinkBandwidth, downlinkBandwidth,
+                    uplinkLatency, ratePerMips, position, mobilityModel, accessPointsMap,
             )
         }
     }

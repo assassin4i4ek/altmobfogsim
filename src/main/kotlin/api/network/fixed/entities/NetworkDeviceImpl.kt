@@ -39,10 +39,10 @@ class NetworkDeviceImpl(
     override val mUplinkLatency: Double get() = uplinkLatency
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
-    override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
-    override fun sendUp(tuple: Tuple) = super<NetworkDevice>.sendUp(tuple)
-    override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) =  super<NetworkDevice>.sendDown(tuple, childId)
+    override fun sSendUpFreeLink(tuple: Tuple) = super<FogDevice>.sendUpFreeLink(tuple)
+    override fun sendUpFreeLink(tuple: Tuple) = super<NetworkDevice>.sendUpFreeLink(tuple)
+    override fun sSendDownFreeLink(tuple: Tuple, childId: Int) = super<FogDevice>.sendDownFreeLink(tuple, childId)
+    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<NetworkDevice>.sendDownFreeLink(tuple, childId)
 
     override val behavior: NetworkDeviceBehaviorImpl = NetworkDeviceBehaviorImpl(this)
 }

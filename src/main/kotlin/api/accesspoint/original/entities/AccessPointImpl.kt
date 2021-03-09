@@ -7,7 +7,9 @@ import api.mobility.positioning.Coordinates
 import api.mobility.positioning.Zone
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
+import api.network.fixed.entities.NetworkDevice
 import org.cloudbus.cloudsim.core.SimEvent
+import org.cloudbus.cloudsim.power.models.PowerModel
 import org.fog.entities.FogDevice
 import org.fog.entities.Tuple
 import org.fog.policy.AppModuleAllocationPolicy
@@ -15,9 +17,9 @@ import org.fog.policy.AppModuleAllocationPolicy
 class AccessPointImpl(
         name: String, override val coordinates: Coordinates, override val connectionZone: Zone,
         override val accessPointsMap: AccessPointsMap, uplinkBandwidth: Double, downlinkBandwidth: Double,
-        uplinkLatency: Double,
+        uplinkLatency: Double, powerModel: PowerModel
 ): FogDevice(
-    name, accessPointsMap.accessPointCharacteristics(), AppModuleAllocationPolicy(emptyList()), emptyList(),
+    name, accessPointsMap.accessPointCharacteristics(powerModel), AppModuleAllocationPolicy(emptyList()), emptyList(),
     0.0, uplinkBandwidth, downlinkBandwidth,
     uplinkLatency, 0.0),
         AccessPoint,
@@ -44,10 +46,10 @@ class AccessPointImpl(
     override val mUplinkLatency: Double get() = uplinkLatency
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
-    override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
-    override fun sendUp(tuple: Tuple) = super<AccessPoint>.sendUp(tuple)
-    override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) =  super<AccessPoint>.sendDown(tuple, childId)
+    override fun sSendUpFreeLink(tuple: Tuple) = super<FogDevice>.sendUpFreeLink(tuple)
+    override fun sendUpFreeLink(tuple: Tuple) = super<AccessPoint>.sendUpFreeLink(tuple)
+    override fun sSendDownFreeLink(tuple: Tuple, childId: Int) = super<FogDevice>.sendDownFreeLink(tuple, childId)
+    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<AccessPoint>.sendDownFreeLink(tuple, childId)
 
     override val behavior: AccessPointBehavior<NetworkDeviceBehavior> =
             AccessPointBehaviorImpl(this,

@@ -16,24 +16,27 @@ import api.mobility.positioning.Coordinates
 import api.mobility.positioning.Zone
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
+import api.network.fixed.entities.NetworkDevice
 import api.notification.consumer.behaviors.NotificationConsumerDeviceBehavior
 import api.notification.consumer.behaviors.NotificationConsumerDeviceBehaviorImpl
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.SimEvent
+import org.cloudbus.cloudsim.power.models.PowerModel
 import org.fog.entities.FogDevice
 import org.fog.entities.FogDeviceCharacteristics
 import org.fog.entities.Tuple
 import org.fog.placement.Controller
 import org.fog.policy.AppModuleAllocationPolicy
+import org.fog.utils.FogLinearPowerModel
 
 class AddressingAccessPointImpl(
         name: String, override val coordinates: Coordinates, override val connectionZone: Zone,
         override val accessPointsMap: AccessPointsMap, uplinkBandwidth: Double, downlinkBandwidth: Double,
-        uplinkLatency: Double,
+        uplinkLatency: Double, powerModel: PowerModel
 ): FogDevice(
-        name, accessPointsMap.accessPointCharacteristics(), AppModuleAllocationPolicy(emptyList()), emptyList(),
+        name, accessPointsMap.accessPointCharacteristics(powerModel), AppModuleAllocationPolicy(emptyList()), emptyList(),
         0.0, uplinkBandwidth, downlinkBandwidth,
         uplinkLatency, 0.0), AddressingAccessPoint,
         SimEntityBehaviorWrapper<AccessPoint,
@@ -64,10 +67,10 @@ class AddressingAccessPointImpl(
     override val mUplinkLatency: Double get() = uplinkLatency
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
-    override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
-    override fun sendUp(tuple: Tuple) = super<AddressingAccessPoint>.sendUp(tuple)
-    override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) =  super<AddressingAccessPoint>.sendDown(tuple, childId)
+    override fun sSendUpFreeLink(tuple: Tuple) = super<FogDevice>.sendUpFreeLink(tuple)
+    override fun sendUpFreeLink(tuple: Tuple) = super<AddressingAccessPoint>.sendUpFreeLink(tuple)
+    override fun sSendDownFreeLink(tuple: Tuple, childId: Int) = super<FogDevice>.sendDownFreeLink(tuple, childId)
+    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<AddressingAccessPoint>.sendDownFreeLink(tuple, childId)
 
     /* AddressingDevice */
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller

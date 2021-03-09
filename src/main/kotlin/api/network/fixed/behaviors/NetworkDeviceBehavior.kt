@@ -25,12 +25,12 @@ interface NetworkDeviceBehavior
         if (recipientId > 0) {
             if (recipientId == device.mParentId) {
                 Logger.debug(device.mName, "Sending tuple ${tuple.cloudletId} up")
-                device.sSendUp(tuple)
+                device.sSendUpFreeLink(tuple)
                 return false
             }
             else if (device.mChildToLatencyMap.containsKey(recipientId)) {
                 Logger.debug(device.mName, "Sending tuple ${tuple.cloudletId} down")
-                device.sSendDown(tuple, recipientId)
+                device.sSendDownFreeLink(tuple, recipientId)
                 return false
             }
         }
