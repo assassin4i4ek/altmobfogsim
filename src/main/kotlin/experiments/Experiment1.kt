@@ -12,8 +12,10 @@ import org.fog.scheduler.StreamOperatorScheduler
 import org.fog.utils.*
 import org.fog.utils.distribution.DeterministicDistribution
 
-class Experiment1(resultsPath: String?, isWarmup: Boolean, seed: Long, eegTransRates: DoubleArray, totalGatewaysCount: IntArray, numMobilesPerGateway: Int, isCloudCount: BooleanArray)
-    : Experiment(resultsPath, isWarmup, seed, eegTransRates, totalGatewaysCount, numMobilesPerGateway, isCloudCount) {
+class Experiment1(
+        resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed: Long, eegTransRates: DoubleArray,
+        totalGatewaysCount: IntArray, numMobilesPerGateway: Int, isCloudCount: BooleanArray)
+    : Experiment(resultsPath, isWarmup, isLog, seed, eegTransRates, totalGatewaysCount, numMobilesPerGateway, isCloudCount, ) {
     override fun createAllDevices(numGateways: Int, numMobilesPerGateway: Int, brokerId: Int, appId: String, eegTransRate: Double):
             Triple<List<FogDevice>, List<Sensor>, List<Actuator>> {
         val fogDevices = mutableListOf<FogDevice>()

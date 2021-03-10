@@ -2,12 +2,15 @@ package experiments
 
 import org.cloudbus.cloudsim.Log
 import org.cloudbus.cloudsim.core.CloudSim
+import org.cloudbus.cloudsim.core.SimEntity
+import org.cloudbus.cloudsim.core.SimEvent
 import org.fog.application.AppEdge
 import org.fog.application.AppLoop
 import org.fog.application.Application
 import org.fog.application.selectivity.FractionalSelectivity
 import org.fog.entities.*
 import org.fog.placement.ModuleMapping
+import org.fog.placement.ModulePlacement
 import org.fog.placement.ModulePlacementEdgewards
 import org.fog.placement.ModulePlacementMapping
 import org.fog.utils.Config
@@ -21,6 +24,7 @@ import java.util.*
 abstract class Experiment(
         private val resultsPath: String?,
         private val isWarmup: Boolean,
+        protected val isLog: Boolean,
         protected val seed: Long,
         protected val eegTransRates: DoubleArray,
         protected val totalGatewaysCount: IntArray,
@@ -67,7 +71,7 @@ abstract class Experiment(
                     it.println(entry.value.joinToString("\t") { it.toString().replace('.', ',') })
                 }
                 it.println()
-                it.close()
+                it.flush()
             }
 
             table.clear()
@@ -90,25 +94,37 @@ abstract class Experiment(
         val randObj = randField.get(null) as Random
         randObj.setSeed(seed)
         Log.disable()
-        Logger.ENABLED = true
+        Logger.ENABLED = isLog
+//        Config.MAX_SIMULATION_TIME = 400
 
         val broker = FogBroker("Broker")
         val app = createApplication(broker.id, eegTransRate)
 
         val (fogDevices, sensors, actuators) = createAllDevices(totalGateways, numMobilesPerGateway, broker.id, app.appId, eegTransRate)
 
-        val moduleMapping = mapModules(isCloud, fogDevices)
-
-        val controller = TestController("controller", fogDevices, sensors, actuators, summarize)
-        controller.submitApplication(app, 0,
-                if (isCloud) ModulePlacementMapping(fogDevices, app, moduleMapping)
-                else ModulePlacementEdgewards(fogDevices, sensors, actuators, app, moduleMapping)
-        )
+        val controller = TestController(
+                "controller-$totalGateways-$numMobilesPerGateway-$eegTransRate-${if (isCloud) "cloud" else "fog"}",
+                fogDevices, sensors, actuators, summarize)
+        val modulePlacement = placeModules(isCloud, fogDevices, app, sensors, actuators)
+        controller.submitApplication(app, modulePlacement)
 
         TimeKeeper.getInstance().simulationStartTime = Calendar.getInstance().timeInMillis
-        CloudSim.startSimulation()
 
+        CloudSim.startSimulation()
         CloudSim.stopSimulation()
+    }
+
+    protected open fun placeModules(isCloud: Boolean, fogDevices: List<FogDevice>, app: Application, sensors: List<Sensor>, actuators: List<Actuator>): ModulePlacement {
+        val moduleMapping = ModuleMapping.createModuleMapping()
+        return if (isCloud) {
+            moduleMapping.addModuleToDevice("connector", "cloud")
+            moduleMapping.addModuleToDevice("concentration_calculator", "cloud")
+            fogDevices.filter { it.name.startsWith("m-") }.forEach { moduleMapping.addModuleToDevice("client", it.name) }
+            ModulePlacementMapping(fogDevices, app, moduleMapping)
+        } else {
+            moduleMapping.addModuleToDevice("connector", "cloud")
+            ModulePlacementEdgewards(fogDevices, sensors, actuators, app, moduleMapping)
+        }
     }
 
     protected fun createApplication(brokerId: Int, eegTransRate: Double): Application {
@@ -138,54 +154,21 @@ abstract class Experiment(
 
         app.loops = listOf(AppLoop(listOf("EEG", "client", "concentration_calculator", "client", "DISPLAY")))
         return app
-    //        val app = Application.createApplication("vr_game", brokerId)
-//        app.addAppModule("client", 10)
-//        app.addAppModule("concentration_calculator", 10)
-//        app.addAppModule("connector", 10)
-//        if (eegTransRate ==10.0) {
-//            app.addAppEdge("EEG", "client", 2000.0, 500.0,
-//                    "EEG", Tuple.UP, AppEdge.SENSOR)
-//        }
-//        else {
-//            app.addAppEdge("EEG", "client", 2500.0, 500.0,
-//                    "EEG", Tuple.UP, AppEdge.SENSOR)
-//        }
-//        app.addAppEdge("client", "concentration_calculator", 3500.0, 500.0,
-//                "_SENSOR", Tuple.UP, AppEdge.MODULE)
-//        app.addAppEdge("concentration_calculator", "connector", 100.0, 1000.0, 1000.0,
-//                "PLAYER_GAME_STATE", Tuple.UP, AppEdge.SENSOR)
-//        app.addAppEdge("concentration_calculator", "client", 14.0, 500.0,
-//                "CONCENTRATION", Tuple.DOWN, AppEdge.MODULE)
-//        app.addAppEdge("connector", "client", 100.0, 1000.0, 1000.0,
-//                "GLOBAL_GAME_STATE", Tuple.DOWN, AppEdge.MODULE)
-//        app.addAppEdge("client", "DISPLAY", 1000.0, 500.0,
-//                "SELF_STATE_UPDATE", Tuple.DOWN, AppEdge.ACTUATOR)
-//        app.addAppEdge("client", "DISPLAY", 1000.0, 500.0,
-//                "GLOBAL_STATE_UPDATE", Tuple.DOWN, AppEdge.ACTUATOR)
-//
-//        app.addTupleMapping("client", "EEG", "_SENSOR", FractionalSelectivity(0.9))
-//        app.addTupleMapping("client", "CONCENTRATION", "SELF_STATE_UPDATE", FractionalSelectivity(1.0))
-//        app.addTupleMapping("concentration_calculator", "_SENSOR", "CONCENTRATION", FractionalSelectivity(1.0))
-//        app.addTupleMapping("client", "GLOBAL_GAME_STATE", "GLOBAL_STATE_UPDATE", FractionalSelectivity(1.0))
-//
-//        app.loops = listOf(AppLoop(listOf("EEG", "client", "concentration_calculator", "client", "DISPLAY")))
-//
-//        return app
     }
 
     abstract fun createAllDevices(numGateways: Int, numMobilesPerGateway: Int, brokerId: Int, appId: String, eegTransRate: Double):
             Triple<List<FogDevice>, List<Sensor>, List<Actuator>>
 
-    protected open fun mapModules(isCloud: Boolean, fogDevices: List<FogDevice>): ModuleMapping {
-        val moduleMapping = ModuleMapping.createModuleMapping()
-        if (isCloud) {
-            moduleMapping.addModuleToDevice("connector", "cloud")
-            moduleMapping.addModuleToDevice("concentration_calculator", "cloud")
-            fogDevices.filter { it.name.startsWith("m-") }.forEach { moduleMapping.addModuleToDevice("client", it.name)}
-        }
-        else {
-            moduleMapping.addModuleToDevice("connector", "cloud")
-        }
-        return moduleMapping
-    }
+//    protected open fun mapModules(isCloud: Boolean, fogDevices: List<FogDevice>): ModuleMapping {
+//        val moduleMapping = ModuleMapping.createModuleMapping()
+//        if (isCloud) {
+//            moduleMapping.addModuleToDevice("connector", "cloud")
+//            moduleMapping.addModuleToDevice("concentration_calculator", "cloud")
+//            fogDevices.filter { it.name.startsWith("m-") }.forEach { moduleMapping.addModuleToDevice("client", it.name)}
+//        }
+//        else {
+//            moduleMapping.addModuleToDevice("connector", "cloud")
+//        }
+//        return moduleMapping
+//    }
 }
