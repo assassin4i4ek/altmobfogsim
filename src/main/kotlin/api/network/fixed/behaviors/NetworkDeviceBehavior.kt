@@ -15,22 +15,35 @@ interface NetworkDeviceBehavior
     override fun processEvent(ev: SimEvent): Boolean {
         return when (ev.tag) {
             Events.NETWORK_DEVICE_ADDRESS_TUPLE.tag -> onAddressTuple(ev)
+            Events.NETWORK_DEVICE_ADDRESS_TUPLE_FREE_LINK.tag -> onAddressTupleFreeLink(ev)
             else -> true
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
     private fun onAddressTuple(ev: SimEvent): Boolean {
         val (tuple: Tuple, recipientId: Int) = ev.data as TupleRecipientPair
         if (recipientId > 0) {
             if (recipientId == device.mParentId) {
-                Logger.debug(device.mName, "Sending tuple ${tuple.cloudletId} up")
                 device.sSendUp(tuple)
+            }
+            else {
+                device.sSendDown(tuple, recipientId)
+            }
+        }
+        return false
+    }
+
+    private fun onAddressTupleFreeLink(ev: SimEvent): Boolean {
+        val (tuple: Tuple, recipientId: Int) = ev.data as TupleRecipientPair
+        if (recipientId > 0) {
+            if (recipientId == device.mParentId) {
+                Logger.debug(device.mName, "Sending tuple ${tuple.cloudletId} up")
+                device.sSendUpFreeLink(tuple)
                 return false
             }
             else if (device.mChildToLatencyMap.containsKey(recipientId)) {
                 Logger.debug(device.mName, "Sending tuple ${tuple.cloudletId} down")
-                device.sSendDown(tuple, recipientId)
+                device.sSendDownFreeLink(tuple, recipientId)
                 return false
             }
         }

@@ -1,6 +1,8 @@
 package api.network.dynamic.entites
 
+import api.common.Events
 import api.common.entities.SimEntityBehaviorWrapper
+import api.common.utils.TupleRecipientPair
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehavior
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehaviorImpl
 import api.network.fixed.behaviors.NetworkDeviceBehavior
@@ -44,12 +46,16 @@ class DynamicGatewayConnectionDeviceImpl(
     override val mUplinkLatency: Double get() = uplinkLatency
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
+    override fun sSendUpFreeLink(tuple: Tuple) = super<FogDevice>.sendUpFreeLink(tuple)
+    override fun sendUpFreeLink(tuple: Tuple) = super<DynamicGatewayConnectionDevice>.sendUpFreeLink(tuple)
+    override fun sSendDownFreeLink(tuple: Tuple, childId: Int) = super<FogDevice>.sendDownFreeLink(tuple, childId)
+    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<DynamicGatewayConnectionDevice>.sendDownFreeLink(tuple, childId)
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
     override fun sendUp(tuple: Tuple) = super<DynamicGatewayConnectionDevice>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) =  super<DynamicGatewayConnectionDevice>.sendDown(tuple, childId)
+    override fun sendDown(tuple: Tuple, childId: Int) = super<DynamicGatewayConnectionDevice>.sendDown(tuple, childId)
 
-    /* DynamicConnectionDevice */
+    /* DynamicGatewayConnectionDevice */
     override val mNorthLinkQueue: Queue<Tuple> get() = northTupleQueue
 
     override var mNorthLinkBusy: Boolean

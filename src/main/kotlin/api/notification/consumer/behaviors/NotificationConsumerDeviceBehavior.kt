@@ -51,7 +51,7 @@ interface NotificationConsumerDeviceBehavior<T: BaseBehavior<T, out NetworkDevic
             (CloudSim.getEntity(ev.source) as NotificationProducerDevice).mName
         }")
         if (device.consumerNotifications.remove(notification)) {
-            device.mSendEvent(device.mId, 0.0, Events.NETWORK_DEVICE_ADDRESS_TUPLE.tag, notification.data)
+            device.mSendEvent(device.mId, 0.0, Events.NETWORK_DEVICE_ADDRESS_TUPLE_FREE_LINK.tag, notification.data)
         }
         return false
     }

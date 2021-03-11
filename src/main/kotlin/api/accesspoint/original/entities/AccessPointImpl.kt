@@ -5,6 +5,7 @@ import api.accesspoint.original.behaviors.AccessPointBehaviorImpl
 import api.common.entities.SimEntityBehaviorWrapper
 import api.mobility.positioning.Coordinates
 import api.mobility.positioning.Zone
+import api.network.dynamic.entites.DynamicGatewayConnectionDevice
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
 import api.network.fixed.entities.NetworkDevice
@@ -46,10 +47,14 @@ class AccessPointImpl(
     override val mUplinkLatency: Double get() = uplinkLatency
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
+    override fun sSendUpFreeLink(tuple: Tuple) = super<FogDevice>.sendUpFreeLink(tuple)
+    override fun sendUpFreeLink(tuple: Tuple) = super<AccessPoint>.sendUpFreeLink(tuple)
+    override fun sSendDownFreeLink(tuple: Tuple, childId: Int) = super<FogDevice>.sendDownFreeLink(tuple, childId)
+    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<AccessPoint>.sendDownFreeLink(tuple, childId)
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
     override fun sendUp(tuple: Tuple) = super<AccessPoint>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) =  super<AccessPoint>.sendDown(tuple, childId)
+    override fun sendDown(tuple: Tuple, childId: Int) = super<AccessPoint>.sendDown(tuple, childId)
 
     override val behavior: AccessPointBehavior<NetworkDeviceBehavior> =
             AccessPointBehaviorImpl(this,

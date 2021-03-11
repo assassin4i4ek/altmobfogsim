@@ -1,5 +1,6 @@
 package api.addressing.dynamic.consumer.entities
 
+import api.accesspoint.original.entities.AccessPoint
 import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationConsumerDeviceBehavior
 import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationConsumerDeviceBehaviorImpl
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
@@ -8,9 +9,9 @@ import api.addressing.models.AddressingModel
 import api.addressing.models.BreadthFirstSearchAddressingModel
 import api.common.entities.SimEntityBehaviorWrapper
 import api.common.utils.Notification
+import api.network.dynamic.entites.DynamicGatewayConnectionDevice
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
-import api.network.fixed.entities.NetworkDevice
 import api.notification.consumer.behaviors.NotificationConsumerDeviceBehavior
 import api.notification.consumer.behaviors.NotificationConsumerDeviceBehaviorImpl
 import org.cloudbus.cloudsim.Storage
@@ -57,10 +58,14 @@ class DynamicAddressingNotificationConsumerDeviceImpl(
     override val mUplinkLatency: Double get() = uplinkLatency
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
+    override fun sSendUpFreeLink(tuple: Tuple) = super<FogDevice>.sendUpFreeLink(tuple)
+    override fun sendUpFreeLink(tuple: Tuple) = super<DynamicAddressingNotificationConsumerDevice>.sendUpFreeLink(tuple)
+    override fun sSendDownFreeLink(tuple: Tuple, childId: Int) = super<FogDevice>.sendDownFreeLink(tuple, childId)
+    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<DynamicAddressingNotificationConsumerDevice>.sendDownFreeLink(tuple, childId)
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
     override fun sendUp(tuple: Tuple) = super<DynamicAddressingNotificationConsumerDevice>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) =  super<DynamicAddressingNotificationConsumerDevice>.sendDown(tuple, childId)
+    override fun sendDown(tuple: Tuple, childId: Int) = super<DynamicAddressingNotificationConsumerDevice>.sendDown(tuple, childId)
 
     /* AddressingDevice */
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller

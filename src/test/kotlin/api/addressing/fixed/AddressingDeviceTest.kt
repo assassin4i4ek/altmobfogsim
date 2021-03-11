@@ -2,6 +2,7 @@ package api.addressing.fixed
 
 import api.addressing.fixed.entities.AddressingDeviceImpl
 import api.common.utils.ConnectionUtils
+import org.fog.utils.Config
 import org.fog.utils.TimeKeeper
 import org.fog.utils.distribution.DeterministicDistribution
 import org.junit.jupiter.api.Test

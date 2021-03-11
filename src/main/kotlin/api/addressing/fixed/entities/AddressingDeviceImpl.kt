@@ -1,5 +1,6 @@
 package api.addressing.fixed.entities
 
+import api.accesspoint.original.entities.AccessPoint
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
 import api.addressing.fixed.behaviors.AddressingDeviceBehaviorImpl
 import api.addressing.models.AddressingModel
@@ -48,10 +49,14 @@ class AddressingDeviceImpl(
     override val mUplinkLatency: Double get() = uplinkLatency
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
+    override fun sSendUpFreeLink(tuple: Tuple) = super<FogDevice>.sendUpFreeLink(tuple)
+    override fun sendUpFreeLink(tuple: Tuple) = super<AddressingDevice>.sendUpFreeLink(tuple)
+    override fun sSendDownFreeLink(tuple: Tuple, childId: Int) = super<FogDevice>.sendDownFreeLink(tuple, childId)
+    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<AddressingDevice>.sendDownFreeLink(tuple, childId)
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
     override fun sendUp(tuple: Tuple) = super<AddressingDevice>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) =  super<AddressingDevice>.sendDown(tuple, childId)
+    override fun sendDown(tuple: Tuple, childId: Int) = super<AddressingDevice>.sendDown(tuple, childId)
 
     /* AddressingDevice */
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller

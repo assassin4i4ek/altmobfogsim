@@ -22,13 +22,25 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
     override fun processEvent(ev: SimEvent): Boolean {
         return when (ev.tag) {
             Events.NETWORK_DEVICE_ADDRESS_TUPLE.tag -> onAddressTuple(ev)
+            Events.NETWORK_DEVICE_ADDRESS_TUPLE_FREE_LINK.tag -> onAddressTupleFreeLink(ev)
             Events.ADDRESSING_DEVICE_ADDRESS_TUPLE_TO_TARGET_DEVICES.tag -> onAddressTupleToTargetDevices(ev)
             else -> superNetworkDeviceBehavior.processEvent(ev)
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
     private fun onAddressTuple(ev: SimEvent): Boolean {
+        val tupleRecipientPair = (ev.data as TupleRecipientPair)
+        if (tupleRecipientPair.recipientId == device.mParentId && device.mParentId <= 0) {
+            tupleRecipientPair.recipientId = device.mId
+        }
+        if (tupleRecipientPair.recipientId == device.mId || tupleRecipientPair.recipientId == device.mParentId) {
+            return superNetworkDeviceBehavior.processEvent(ev)
+        }
+        return false
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    private fun onAddressTupleFreeLink(ev: SimEvent): Boolean {
         val (tuple: Tuple, recipientId: Int) = ev.data as TupleRecipientPair
         if (recipientId == device.mId || recipientId == device.mParentId) {
             val targetDeviceIds = getTargetDevicesForTuple(tuple)

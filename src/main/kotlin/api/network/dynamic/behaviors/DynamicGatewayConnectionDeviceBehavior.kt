@@ -4,7 +4,6 @@ import api.common.Events
 import api.common.behaviors.BaseBehavior
 import api.common.utils.TupleRecipientPair
 import api.network.dynamic.entites.DynamicGatewayConnectionDevice
-import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.entities.NetworkDevice
 import org.cloudbus.cloudsim.core.SimEvent
 import org.fog.utils.FogEvents
@@ -15,6 +14,7 @@ interface DynamicGatewayConnectionDeviceBehavior<T: BaseBehavior<T, out NetworkD
     val superNetworkDeviceBehavior: T
 
     override fun onStart() {
+        device.mSendEvent(device.mId, 0.0, Events.DYNAMIC_GATEWAY_CONNECTION_DEVICE_NEW_PARENT_ID.tag, null)
         superNetworkDeviceBehavior.onStart()
     }
 
@@ -56,15 +56,16 @@ interface DynamicGatewayConnectionDeviceBehavior<T: BaseBehavior<T, out NetworkD
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
-    private fun onAddressTuple(ev: SimEvent): Boolean {
+    fun onAddressTuple(ev: SimEvent): Boolean {
         val (tuple, recipientId) = ev.data as TupleRecipientPair
-        return if (recipientId == device.mParentId && device.mParentId <= 0) {
+        if (recipientId == device.mParentId && device.mParentId <= 0) {
             device.mNorthLinkQueue.add(tuple)
             Logger.debug(device.mName, "Queued tuple with tupleId = ${tuple.cloudletId}, waiting for connection")
-            false
-        } else {
-            superNetworkDeviceBehavior.processEvent(ev)
         }
+        else {
+            device.sSendUp(tuple)
+        }
+        return true
     }
+
 }

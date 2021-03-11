@@ -9,9 +9,9 @@ import api.addressing.models.BreadthFirstSearchAddressingModel
 import api.common.entities.SimEntityBehaviorWrapper
 import api.common.utils.Notification
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehavior
+import api.network.dynamic.entites.DynamicGatewayConnectionDevice
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
-import api.network.fixed.entities.NetworkDevice
 import api.notification.producer.behaviors.NotificationProducerDeviceBehavior
 import api.notification.producer.entities.NotificationProducerDevice
 import org.cloudbus.cloudsim.Storage
@@ -59,16 +59,20 @@ class DynamicAddressingNotificationProducerDeviceImpl(
     override val mUplinkLatency: Double get() = uplinkLatency
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
+    override fun sSendUpFreeLink(tuple: Tuple) = super<FogDevice>.sendUpFreeLink(tuple)
+    override fun sendUpFreeLink(tuple: Tuple) = super<DynamicAddressingNotificationProducerDevice>.sendUpFreeLink(tuple)
+    override fun sSendDownFreeLink(tuple: Tuple, childId: Int) = super<FogDevice>.sendDownFreeLink(tuple, childId)
+    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<DynamicAddressingNotificationProducerDevice>.sendDownFreeLink(tuple, childId)
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
     override fun sendUp(tuple: Tuple) = super<DynamicAddressingNotificationProducerDevice>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) =  super<DynamicAddressingNotificationProducerDevice>.sendDown(tuple, childId)
+    override fun sendDown(tuple: Tuple, childId: Int) = super<DynamicAddressingNotificationProducerDevice>.sendDown(tuple, childId)
 
     /* AddressingDevice */
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
     override val addressingModel: AddressingModel = BreadthFirstSearchAddressingModel()
 
-    /* DynamicConnectionDevice */
+    /* DynamicGatewayConnectionDevice */
     override val mNorthLinkQueue: Queue<Tuple> get() = northTupleQueue
 
     override var mNorthLinkBusy: Boolean

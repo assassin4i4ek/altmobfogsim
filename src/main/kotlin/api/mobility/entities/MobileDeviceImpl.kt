@@ -11,7 +11,8 @@ import org.cloudbus.cloudsim.core.SimEvent
 import org.fog.entities.FogDevice
 import org.fog.entities.FogDeviceCharacteristics
 
-class MobileDeviceImpl(
+class
+MobileDeviceImpl(
     name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
     storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
     uplinkLatency: Double, ratePerMips: Double,

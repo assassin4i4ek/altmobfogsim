@@ -1,6 +1,7 @@
 package api.network.dynamic.entites
 
 import api.common.Events
+import api.common.utils.TupleRecipientPair
 import api.network.fixed.entities.NetworkDevice
 import org.fog.entities.Tuple
 import java.util.*
