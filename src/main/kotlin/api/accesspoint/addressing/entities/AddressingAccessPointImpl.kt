@@ -21,6 +21,7 @@ import api.notification.consumer.behaviors.NotificationConsumerDeviceBehavior
 import api.notification.consumer.behaviors.NotificationConsumerDeviceBehaviorImpl
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.SimEvent
+import org.cloudbus.cloudsim.core.predicates.Predicate
 import org.cloudbus.cloudsim.power.models.PowerModel
 import org.fog.entities.FogDevice
 import org.fog.entities.Tuple
@@ -46,6 +47,7 @@ class AddressingAccessPointImpl(
     override val mId: Int get() = id
     override val mName: String get() = name
     override fun mSendEvent(id: Int, delay: Double, tag: Int, data: Any?) = send(id, delay, tag, data)
+    override fun mWaitForEvent(p: Predicate) = waitForEvent(p)
     override fun startEntity() {
         super<FogDevice>.startEntity()
         super<SimEntityBehaviorWrapper>.startEntity()

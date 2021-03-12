@@ -11,6 +11,7 @@ import api.notification.consumer.entities.NotificationConsumerDevice
 import api.notification.producer.entities.NotificationProducerDevice
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.SimEvent
+import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.fog.utils.Logger
 
 interface NotificationConsumerDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
@@ -51,7 +52,8 @@ interface NotificationConsumerDeviceBehavior<T: BaseBehavior<T, out NetworkDevic
             (CloudSim.getEntity(ev.source) as NotificationProducerDevice).mName
         }")
         if (device.consumerNotifications.remove(notification)) {
-            device.mSendEvent(device.mId, 0.0, Events.NETWORK_DEVICE_ADDRESS_TUPLE_FREE_LINK.tag, notification.data)
+            device.mSendEvent(device.mId, 0.0, Events.NETWORK_DEVICE_ADDRESS_TUPLE.tag, notification.data)
+            device.mWaitForEvent(PredicateType(Events.NETWORK_DEVICE_ADDRESS_TUPLE.tag))
         }
         return false
     }

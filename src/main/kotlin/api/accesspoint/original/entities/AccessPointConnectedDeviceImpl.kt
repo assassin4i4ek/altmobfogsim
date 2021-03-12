@@ -15,6 +15,8 @@ import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.SimEvent
+import org.cloudbus.cloudsim.core.predicates.Predicate
+import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.fog.entities.FogDevice
 import org.fog.entities.FogDeviceCharacteristics
 import org.fog.entities.Tuple
@@ -42,6 +44,7 @@ class AccessPointConnectedDeviceImpl(
     override val mId: Int get() = id
     override val mName: String get() = name
     override fun mSendEvent(id: Int, delay: Double, tag: Int, data: Any?) = send(id, delay, tag, data)
+    override fun mWaitForEvent(p: Predicate) = waitForEvent(p)
     override fun startEntity() {
         super<FogDevice>.startEntity()
         super<SimEntityBehaviorWrapper>.startEntity()

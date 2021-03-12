@@ -7,6 +7,7 @@ import api.common.utils.ConnectionUtils
 import api.mobility.entities.MobileDevice
 import api.network.dynamic.entites.DynamicGatewayConnectionDevice
 import org.cloudbus.cloudsim.core.SimEvent
+import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.fog.utils.Logger
 
 interface AccessPointConnectedDeviceBehavior<
@@ -20,6 +21,7 @@ interface AccessPointConnectedDeviceBehavior<
         superDynamicGatewayConnectionDeviceBehavior.onStart()
         superMobilityDeviceBehavior.onStart()
         device.mSendEvent(device.mId, 0.0, Events.ACCESS_POINT_CONNECTED_DEVICE_UPDATE_CONNECTION.tag, null)
+        device.mWaitForEvent(PredicateType(Events.ACCESS_POINT_CONNECTED_DEVICE_UPDATE_CONNECTION.tag))
     }
 
     override fun processEvent(ev: SimEvent): Boolean {
@@ -33,6 +35,7 @@ interface AccessPointConnectedDeviceBehavior<
 
     private fun onNextMove(ev: SimEvent): Boolean {
         device.mSendEvent(device.mId, 0.0, Events.ACCESS_POINT_CONNECTED_DEVICE_UPDATE_CONNECTION.tag, null)
+        device.mWaitForEvent(PredicateType(Events.ACCESS_POINT_CONNECTED_DEVICE_UPDATE_CONNECTION.tag))
         return superMobilityDeviceBehavior.processEvent(ev)
     }
 

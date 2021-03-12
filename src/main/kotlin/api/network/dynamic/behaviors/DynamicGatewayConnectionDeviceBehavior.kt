@@ -6,6 +6,7 @@ import api.common.utils.TupleRecipientPair
 import api.network.dynamic.entites.DynamicGatewayConnectionDevice
 import api.network.fixed.entities.NetworkDevice
 import org.cloudbus.cloudsim.core.SimEvent
+import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.fog.utils.FogEvents
 import org.fog.utils.Logger
 
@@ -15,6 +16,7 @@ interface DynamicGatewayConnectionDeviceBehavior<T: BaseBehavior<T, out NetworkD
 
     override fun onStart() {
         device.mSendEvent(device.mId, 0.0, Events.DYNAMIC_GATEWAY_CONNECTION_DEVICE_NEW_PARENT_ID.tag, null)
+        device.mWaitForEvent(PredicateType(Events.DYNAMIC_GATEWAY_CONNECTION_DEVICE_NEW_PARENT_ID.tag))
         superNetworkDeviceBehavior.onStart()
     }
 
@@ -38,6 +40,7 @@ interface DynamicGatewayConnectionDeviceBehavior<T: BaseBehavior<T, out NetworkD
         } else {
             // if device was connected to new gateway
             device.mSendEvent(device.mId, 0.0, FogEvents.UPDATE_NORTH_TUPLE_QUEUE, null)
+//            device.mWaitForEvent(PredicateType(FogEvents.UPDATE_NORTH_TUPLE_QUEUE))
             // send event to refresh north queue
         }
         return false

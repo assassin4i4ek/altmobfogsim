@@ -1,8 +1,8 @@
 package api.network.dynamic.entites
 
 import api.common.Events
-import api.common.utils.TupleRecipientPair
 import api.network.fixed.entities.NetworkDevice
+import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.fog.entities.Tuple
 import java.util.*
 
@@ -13,5 +13,6 @@ interface DynamicGatewayConnectionDevice : NetworkDevice {
     override val mParentId: Int get() = mDynamicParentId
     fun onSetParentId() {
         mSendEvent(mId, 0.0, Events.DYNAMIC_GATEWAY_CONNECTION_DEVICE_NEW_PARENT_ID.tag, null)
+        mWaitForEvent(PredicateType(Events.DYNAMIC_GATEWAY_CONNECTION_DEVICE_NEW_PARENT_ID.tag))
     }
 }

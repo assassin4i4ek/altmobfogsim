@@ -24,9 +24,11 @@ interface NetworkDeviceBehavior
         val (tuple: Tuple, recipientId: Int) = ev.data as TupleRecipientPair
         if (recipientId > 0) {
             if (recipientId == device.mParentId) {
+                Logger.debug(device.mName, "Trying to send tuple ${tuple.cloudletId} up")
                 device.sSendUp(tuple)
             }
             else {
+                Logger.debug(device.mName, "Trying to send tuple ${tuple.cloudletId} down")
                 device.sSendDown(tuple, recipientId)
             }
         }

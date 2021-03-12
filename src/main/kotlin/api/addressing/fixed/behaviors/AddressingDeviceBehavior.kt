@@ -8,6 +8,7 @@ import api.common.utils.TupleNextHopTargetsContainer
 import api.common.utils.TupleRecipientPair
 import api.network.fixed.entities.NetworkDevice
 import org.cloudbus.cloudsim.core.SimEvent
+import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.fog.entities.Tuple
 
 interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
@@ -49,6 +50,7 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
                     Events.ADDRESSING_DEVICE_ADDRESS_TUPLE_TO_TARGET_DEVICES.tag,
                     BaseEventWrapper(ev, TupleNextHopTargetsContainer(tuple, nextHopId, targetDeviceIds))
             )
+            device.mWaitForEvent(PredicateType(Events.ADDRESSING_DEVICE_ADDRESS_TUPLE_TO_TARGET_DEVICES.tag))
         }
         return false
     }

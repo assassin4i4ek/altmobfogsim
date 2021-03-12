@@ -9,6 +9,7 @@ import api.common.utils.TupleNextHopTargetsContainer
 import api.common.utils.TupleRecipientsPair
 import api.notification.consumer.entities.NotificationConsumerDevice
 import org.cloudbus.cloudsim.core.SimEvent
+import org.cloudbus.cloudsim.core.predicates.PredicateType
 
 interface DynamicAddressingNotificationConsumerDeviceBehavior<
         T1 : BaseBehavior<T1, out AddressingDevice>,
@@ -39,6 +40,7 @@ interface DynamicAddressingNotificationConsumerDeviceBehavior<
         else {
             device.mSendEvent(device.mId, 0.0, Events.NOTIFICATION_CONSUMER_WAIT_PRODUCERS.tag,
                     BaseEventWrapper(baseEvent, TupleRecipientsPair(tuple, targetDeviceIds)))
+            device.mWaitForEvent(PredicateType(Events.NOTIFICATION_CONSUMER_WAIT_PRODUCERS.tag))
             false
         }
     }

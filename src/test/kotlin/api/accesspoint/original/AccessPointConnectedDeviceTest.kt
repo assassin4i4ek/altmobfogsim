@@ -8,6 +8,9 @@ import api.mobility.models.SteadyMobilityModel
 import api.mobility.positioning.Coordinates
 import api.mobility.positioning.Position
 import api.mobility.positioning.RadialZone
+import org.cloudbus.cloudsim.core.CloudSim
+import org.cloudbus.cloudsim.core.SimEntity
+import org.cloudbus.cloudsim.core.SimEvent
 import org.fog.utils.FogLinearPowerModel
 import org.fog.utils.TimeKeeper
 import org.junit.jupiter.api.Assertions.assertNull
@@ -146,6 +149,16 @@ class AccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         mm.addModuleToDevice("AppModule1", "Mob1")
         mm.addModuleToDevice("AppModule1", "Mob2")
         mm.addModuleToDevice("AppModule2", "cloud")
+
+        object : SimEntity("tester") {
+            override fun startEntity() {
+                println()
+            }
+
+            override fun processEvent(p0: SimEvent?) {}
+
+            override fun shutdownEntity() {}
+        }
 
         launchTest {
             val loopId = app.loops[0].loopId
