@@ -10,6 +10,7 @@ import api.mobility.positioning.Coordinates
 import api.mobility.positioning.Position
 import api.mobility.positioning.RadialZone
 import api.mobility.positioning.Zone
+import api.network.fixed.entities.NetworkDeviceImpl
 import org.cloudbus.cloudsim.Pe
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.core.CloudSim
@@ -31,7 +32,6 @@ import org.fog.utils.FogUtils
 import org.fog.utils.Logger
 import org.fog.utils.distribution.DeterministicDistribution
 import kotlin.math.ceil
-import kotlin.math.pow
 import kotlin.math.sqrt
 
 class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed: Long, eegTransRates: DoubleArray, totalGatewaysCount: IntArray, numMobilesPerGateway: Int, isCloudCount: BooleanArray)
@@ -41,11 +41,11 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
         val fogDevices = mutableListOf<FogDevice>()
         val sensors = mutableListOf<Sensor>()
         val actuators = mutableListOf<Actuator>()
-        val cloud = createFogDevice("cloud", 16*2800.0, 16*4000, 100.0, 10000.0, 0.01,
+        val cloud = createNetworkFogDevice("cloud", 16*2800.0, 16*4000, 100.0, 10000.0, 0.01,
                 16*90.5, 16*83.25)
         cloud.parentId = -1
         fogDevices.add(cloud)
-        val proxy = createFogDevice("proxy-server", 2800.0, 4000, 10000.0, 10000.0, 0.0,
+        val proxy = createNetworkFogDevice("proxy-server", 2800.0, 4000, 10000.0, 10000.0, 0.0,
                 107.339, 83.4333)
         proxy.parentId = cloud.id
         proxy.uplinkLatency = 100.0
@@ -54,7 +54,7 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
         val apm = AccessPointsMap()
 
         for (i in 0 until numGateways) {
-            val gw = createFogDevice("d-$i", 2800.0, 4000, 10000.0, Double.POSITIVE_INFINITY, 0.0,
+            val gw = createNetworkFogDevice("d-$i", 2800.0, 4000, 10000.0, Double.POSITIVE_INFINITY, 0.0,
                     107.339, 83.4333)
             gw.parentId = proxy.id
             gw.uplinkLatency = 4.0
@@ -74,7 +74,7 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
                             apm, Double.POSITIVE_INFINITY, 10000.0, 0.0, FogLinearPowerModel(1.0, 1.0)
                     )
                     ap.parentId = gw.id
-                    ap.uplinkLatency = 0.5.pow(8)//0.5//1.0
+                    ap.uplinkLatency = 0.0
                     fogDevices.add(ap)
 //                    println("Created ${ap.name} with coordinates $apCoord and radius ${50.0 / sideLength}")
                 }
@@ -89,7 +89,7 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
                         0.0, 87.53, 82.44, initPosition, mobilityModel, apm)
                 mobilityModel.device = mob
                 mob.parentId = gw.id
-                mob.uplinkLatency = 2.0 - 0.5.pow(8)//1.5//1.0
+                mob.uplinkLatency = 2.0
                 fogDevices.add(mob)
                 val eegSensor = Sensor("s-$i-$j", "EEG", brokerId, appId, DeterministicDistribution(eegTransRate))
                 eegSensor.gatewayDeviceId = mob.id
@@ -116,8 +116,8 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
         }
     }
 
-    private fun createFogDevice(name: String, mips: Double, ram: Int, upBw: Double, downBw: Double, ratePerMips: Double,
-                                busyPower: Double, idlePower: Double): FogDevice {
+    private fun createNetworkFogDevice(name: String, mips: Double, ram: Int, upBw: Double, downBw: Double, ratePerMips: Double,
+                                       busyPower: Double, idlePower: Double): FogDevice {
         val peList = listOf(Pe(0, PeProvisionerOverbooking(mips)))
         val storage = 1000000L
         val bw = 10000L

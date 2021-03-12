@@ -248,7 +248,7 @@ class AddressingAccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         launchTest {
             val loopId = app.loops[0].loopId
             assertEquals(1, TimeKeeper.getInstance().loopIdToCurrentNum[loopId])
-            assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 6.009) < 1e-6)
+            assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 6.01) < 1e-6)
             assertEquals(Coordinates(11.0, 11.0), mob.position.coordinates)
             assertEquals(0, mob.producerNotifications.size)
             assertEquals(0, mob.northTupleQueue.size)

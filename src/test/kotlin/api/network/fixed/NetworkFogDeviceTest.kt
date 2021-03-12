@@ -43,4 +43,53 @@ class NetworkFogDeviceTest: BaseFogDeviceTest() {
             assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 0.8045) < 1e-6)
         }
     }
+
+    @Test
+    fun test2() {
+        init(4)
+        val dev1 = createNetworkDevice(
+                "Mob1", 10.0, 1000.0, 1000.0,
+                0.1, 0.01
+        )
+        val dev2 = createNetworkDevice(
+                "Mob2", 10.0, 1000.0, 1000.0,
+                0.1, 0.01
+        )
+        val dev3 = createNetworkDevice(
+                "Mob3", 10.0, 1000.0, 1000.0,
+                0.1, 0.01
+        )
+        val dev4 = createNetworkDevice(
+                "Mob4", 10.0, 1000.0, 1000.0,
+                0.1, 0.01
+        )
+        val gw = createNetworkDevice("GW1", 10.0, 1000.0, 1000.0,
+        0.1, 0.01)
+        val serv = createNetworkDevice("Server1", 10.0, 1000.0, 1000.0,
+                0.1, 0.01)
+
+        fogDeviceList.addAll(listOf(dev1, dev2, dev3, dev4, gw, serv))
+
+        dev1.parentId = gw.id
+        dev2.parentId = gw.id
+        dev3.parentId = gw.id
+        dev4.parentId = gw.id
+        gw.parentId = serv.id
+        connectSensorsAndActuatorsToDevice(dev1, 0)
+        connectSensorsAndActuatorsToDevice(dev2, 1)
+        connectSensorsAndActuatorsToDevice(dev3, 2)
+        connectSensorsAndActuatorsToDevice(dev4, 3)
+
+        mm.addModuleToDevice("AppModule1", "Mob1")
+        mm.addModuleToDevice("AppModule1", "Mob2")
+        mm.addModuleToDevice("AppModule1", "Mob3")
+        mm.addModuleToDevice("AppModule1", "Mob4")
+        mm.addModuleToDevice("AppModule2", "Server1")
+
+        launchTest {
+            val loopId = app.loops[0].loopId
+            assertEquals(35, TimeKeeper.getInstance().loopIdToCurrentNum[loopId])
+            assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 0.9344) < 1e-6)
+        }
+    }
 }
