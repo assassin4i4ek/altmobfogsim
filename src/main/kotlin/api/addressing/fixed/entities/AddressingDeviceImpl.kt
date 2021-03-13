@@ -63,6 +63,7 @@ class AddressingDeviceImpl(
     /* AddressingDevice */
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
     override val addressingModel: AddressingModel = BreadthFirstSearchAddressingModel()
+    override val addressingChildrenMapping: MutableMap<Tuple, MutableMap<Int, Boolean>> = mutableMapOf()
 
     override val behavior: AddressingDeviceBehavior<NetworkDeviceBehavior> =
             AddressingDeviceBehaviorImpl(this,

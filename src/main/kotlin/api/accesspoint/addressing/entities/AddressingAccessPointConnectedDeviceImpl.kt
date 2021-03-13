@@ -36,12 +36,12 @@ import java.util.*
 
 class AddressingAccessPointConnectedDeviceImpl(
         name: String,
-        override var position: Position,
-        override val mobilityModel: MobilityModel,
-        override val accessPointsMap: AccessPointsMap,
         characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
         storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
-        uplinkLatency: Double, ratePerMips: Double
+        uplinkLatency: Double, ratePerMips: Double,
+        override var position: Position,
+        override val mobilityModel: MobilityModel,
+        override val accessPointsMap: AccessPointsMap
 ): FogDevice(
         name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
         uplinkLatency, ratePerMips), AddressingAccessPointConnectedDevice,
@@ -106,6 +106,7 @@ class AddressingAccessPointConnectedDeviceImpl(
     /* AddressingDevice */
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
     override val addressingModel: AddressingModel = BreadthFirstSearchAddressingModel()
+    override val addressingChildrenMapping: MutableMap<Tuple, MutableMap<Int, Boolean>> = mutableMapOf()
 
     /* NotificationProducer */
     override val producerNotifications: MutableList<Notification<*>> = mutableListOf()

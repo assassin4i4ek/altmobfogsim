@@ -77,6 +77,7 @@ class AddressingAccessPointImpl(
     /* AddressingDevice */
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
     override val addressingModel: AddressingModel = BreadthFirstSearchAddressingModel()
+    override val addressingChildrenMapping: MutableMap<Tuple, MutableMap<Int, Boolean>> = mutableMapOf()
 
     /* DynamicAddressingTuple */
     override val consumerNotifications: MutableList<Notification<*>> = mutableListOf()

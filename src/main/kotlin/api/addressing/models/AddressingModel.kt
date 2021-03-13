@@ -3,7 +3,11 @@ package api.addressing.models
 import api.addressing.fixed.entities.AddressingDevice
 
 interface AddressingModel {
-    fun idOfNextHopTo(src: AddressingDevice, dst: List<Int>, fileSize: Long): Int
+    enum class Quantifier {
+        ANY, ALL
+    }
+
+    fun idsOfNextHopTo(src: AddressingDevice, targetDeviceIds: List<Int>, quantifier: Quantifier, fileSize: Long): Map<Int, Int>
 
     fun deliveryTimeTo(from: AddressingDevice, to: AddressingDevice, fileSize: Long): Double {
         if (from.mParentId == to.mId) {

@@ -39,8 +39,8 @@ abstract class Experiment(
             val t = Calendar.getInstance().timeInMillis
             table["Delay"]!!.add(TimeKeeper.getInstance().loopIdToCurrentAverage[app.loops[0].loopId]!!)
             table["DC Energy"]!!.add(fogDevices.find { it.name == "cloud" }!!.energyConsumption)
-            table["Mobile Energy"]!!.add(fogDevices.filter { it.name.startsWith("m-") }.map {it.energyConsumption}.sum())
-            table["Edge Energy"]!!.add(fogDevices.filter { it.name.startsWith("d-") }.map {it.energyConsumption}.sum())
+            table["Mobile Energy"]!!.add(fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
+            table["Edge Energy"]!!.add(fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
             table["Execution Time"]!!.add(t.toDouble() - TimeKeeper.getInstance().simulationStartTime)
             table["Network Usage"]!!.add((NetworkUsageMonitor.getNetworkUsage() - lastNetworkUsage) / (Config.MAX_SIMULATION_TIME))
         }
@@ -79,23 +79,22 @@ abstract class Experiment(
     }
 
     protected open fun warmup() {
-        experiment(true, 4, 4, 10.0, seed){ _, _ -> }
-        experiment(false, 4, 4, 10.0, seed){ _, _ -> }
-        experiment(true, 8, 4, 5.0, seed){ _, _ -> }
-        experiment(false, 8, 4, 5.0, seed){ _, _ -> }
+        experiment(true, 4, 4, 10.0, seed) { _, _ -> }
+        experiment(false, 4, 4, 10.0, seed) { _, _ -> }
+        experiment(true, 8, 4, 5.0, seed) { _, _ -> }
+        experiment(false, 8, 4, 5.0, seed) { _, _ -> }
     }
 
     protected fun experiment(isCloud: Boolean, totalGateways: Int, numMobilesPerGateway: Int, eegTransRate: Double, seed: Long,
                              summarize: (List<FogDevice>, Application) -> Unit) {
         CloudSim.init(1, Calendar.getInstance(), false)
-        val randField =  Math::class.java.declaredClasses.find { it.simpleName == "RandomNumberGeneratorHolder"}!!
+        val randField = Math::class.java.declaredClasses.find { it.simpleName == "RandomNumberGeneratorHolder" }!!
                 .getDeclaredField("randomNumberGenerator")
         randField.isAccessible = true
         val randObj = randField.get(null) as Random
         randObj.setSeed(seed)
         Log.disable()
         Logger.ENABLED = isLog
-//        Config.MAX_SIMULATION_TIME = 400
 
         val broker = FogBroker("Broker")
         val app = createApplication(broker.id, eegTransRate)
@@ -112,19 +111,6 @@ abstract class Experiment(
 
         CloudSim.startSimulation()
         CloudSim.stopSimulation()
-    }
-
-    protected open fun placeModules(isCloud: Boolean, fogDevices: List<FogDevice>, app: Application, sensors: List<Sensor>, actuators: List<Actuator>): ModulePlacement {
-        val moduleMapping = ModuleMapping.createModuleMapping()
-        return if (isCloud) {
-            moduleMapping.addModuleToDevice("connector", "cloud")
-            moduleMapping.addModuleToDevice("concentration_calculator", "cloud")
-            fogDevices.filter { it.name.startsWith("m-") }.forEach { moduleMapping.addModuleToDevice("client", it.name) }
-            ModulePlacementMapping(fogDevices, app, moduleMapping)
-        } else {
-            moduleMapping.addModuleToDevice("connector", "cloud")
-            ModulePlacementEdgewards(fogDevices, sensors, actuators, app, moduleMapping)
-        }
     }
 
     protected fun createApplication(brokerId: Int, eegTransRate: Double): Application {
@@ -159,16 +145,7 @@ abstract class Experiment(
     abstract fun createAllDevices(numGateways: Int, numMobilesPerGateway: Int, brokerId: Int, appId: String, eegTransRate: Double):
             Triple<List<FogDevice>, List<Sensor>, List<Actuator>>
 
-//    protected open fun mapModules(isCloud: Boolean, fogDevices: List<FogDevice>): ModuleMapping {
-//        val moduleMapping = ModuleMapping.createModuleMapping()
-//        if (isCloud) {
-//            moduleMapping.addModuleToDevice("connector", "cloud")
-//            moduleMapping.addModuleToDevice("concentration_calculator", "cloud")
-//            fogDevices.filter { it.name.startsWith("m-") }.forEach { moduleMapping.addModuleToDevice("client", it.name)}
-//        }
-//        else {
-//            moduleMapping.addModuleToDevice("connector", "cloud")
-//        }
-//        return moduleMapping
-//    }
+
+    abstract fun placeModules(isCloud: Boolean, fogDevices: List<FogDevice>, app: Application,
+                              sensors: List<Sensor>, actuators: List<Actuator>): ModulePlacement
 }

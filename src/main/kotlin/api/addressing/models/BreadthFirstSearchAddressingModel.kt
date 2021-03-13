@@ -3,7 +3,8 @@ package api.addressing.models
 import api.addressing.fixed.entities.AddressingDevice
 
 class BreadthFirstSearchAddressingModel(): AddressingModel {
-    override fun idOfNextHopTo(src: AddressingDevice, dst: List<Int>, fileSize: Long): Int {
+    override fun idsOfNextHopTo(src: AddressingDevice, targetDeviceIds: List<Int>,
+                                quantifier: AddressingModel.Quantifier, fileSize: Long): Map<Int, Int> {
         val devicePathsAndTimings = mutableMapOf<Int, Pair<Array<Int>, Double>>()
         devicePathsAndTimings[src.mId] = Pair(emptyArray(), 0.0)
         var devicesInGraph: MutableList<AddressingDevice>
@@ -42,11 +43,26 @@ class BreadthFirstSearchAddressingModel(): AddressingModel {
                 lastParentDeviceId = parentDevice.mId
             }
         }
+        val targetNextHopMap = mutableMapOf<Int, Int>()
 
-        val targetDeviceId = dst.minByOrNull { dstId -> devicePathsAndTimings[dstId]?.second ?: Double.POSITIVE_INFINITY }!!
-
-        return devicePathsAndTimings[targetDeviceId]?.run {
-            first.firstOrNull() ?: targetDeviceId
-        } ?: -1
+        if (quantifier == AddressingModel.Quantifier.ANY) {
+            val minLatencyTargetDeviceId = targetDeviceIds.minByOrNull { dstId ->
+                devicePathsAndTimings[dstId]?.second ?: Double.POSITIVE_INFINITY
+            }!!
+            val minLatencyTargetDeviceNextHopId = devicePathsAndTimings[minLatencyTargetDeviceId]?.run {
+                        first.firstOrNull() ?: minLatencyTargetDeviceId
+                    } ?: -1
+            targetNextHopMap[minLatencyTargetDeviceId] = minLatencyTargetDeviceNextHopId
+        }
+        else {
+//            targetDeviceIds.map { dstId -> devicePathsAndTimings[dstId]?.run {first.firstOrNull() ?: dstId} ?: -1}
+            targetDeviceIds.forEach { targetDeviceId ->
+                val targetDeviceNextHop = devicePathsAndTimings[targetDeviceId]?.run {
+                    first.firstOrNull() ?: targetDeviceId
+                } ?: -1
+                targetNextHopMap[targetDeviceId] = targetDeviceNextHop
+            }
+        }
+        return targetNextHopMap
     }
 }

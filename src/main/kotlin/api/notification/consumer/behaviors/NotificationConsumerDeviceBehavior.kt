@@ -12,6 +12,8 @@ import api.notification.producer.entities.NotificationProducerDevice
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.SimEvent
 import org.cloudbus.cloudsim.core.predicates.PredicateType
+import org.fog.entities.Tuple
+import org.fog.utils.FogEvents
 import org.fog.utils.Logger
 
 interface NotificationConsumerDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
@@ -32,14 +34,13 @@ interface NotificationConsumerDeviceBehavior<T: BaseBehavior<T, out NetworkDevic
 
     @Suppress("UNCHECKED_CAST")
     private fun onWaitProducer(ev: SimEvent): Boolean {
-        val (baseEvent, pair) = ev.data as BaseEventWrapper<TupleRecipientsPair>
-        val (_, producers) = pair
-        val notification = Notification(baseEvent.data as TupleRecipientPair, device.mId)
-        device.consumerNotifications.add(notification)
-        producers.forEach {
-            device.mSendEvent(it, 0.0, Events.NOTIFICATION_PRODUCER_WAIT_NOTIFICATION.tag, notification)
+        val (tuple, producerIds) = ev.data as TupleRecipientsPair
+        producerIds.forEach {producerId ->
+            val notification = Notification(tuple, device.mId)
+            device.consumerNotifications.add(notification)
+            device.mSendEvent(producerId, 0.0, Events.NOTIFICATION_PRODUCER_WAIT_NOTIFICATION.tag, notification)
         }
-        Logger.debug(device.mName, "Waiting for any of ${producers.map {
+        Logger.debug(device.mName, "Waiting for any of ${producerIds.map {
             (CloudSim.getEntity(it) as NotificationProducerDevice).mName 
         }} to connect")
         return false
@@ -47,13 +48,14 @@ interface NotificationConsumerDeviceBehavior<T: BaseBehavior<T, out NetworkDevic
 
     @Suppress("UNCHECKED_CAST")
     private fun onNotify(ev: SimEvent): Boolean {
-        val notification = ev.data as Notification<TupleRecipientPair>
+        val notification = ev.data as Notification<Tuple>
         Logger.debug(device.mName, "Received notification from ${
             (CloudSim.getEntity(ev.source) as NotificationProducerDevice).mName
         }")
         if (device.consumerNotifications.remove(notification)) {
-            device.mSendEvent(device.mId, 0.0, Events.NETWORK_DEVICE_ADDRESS_TUPLE.tag, notification.data)
-            device.mWaitForEvent(PredicateType(Events.NETWORK_DEVICE_ADDRESS_TUPLE.tag))
+            device.mSendEvent(device.mId, 0.0, FogEvents.TUPLE_ARRIVAL, notification.data)
+//            device.mSendEvent(device.mId, 0.0, Events.NETWORK_DEVICE_ADDRESS_TUPLE.tag, notification.data)
+//            device.mWaitForEvent(PredicateType(Events.NETWORK_DEVICE_ADDRESS_TUPLE.tag))
         }
         return false
     }

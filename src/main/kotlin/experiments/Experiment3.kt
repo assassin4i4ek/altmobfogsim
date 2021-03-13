@@ -1,14 +1,15 @@
 package experiments
 
+import api.accesspoint.addressing.entities.AddressingAccessPointConnectedDeviceImpl
+import api.accesspoint.addressing.entities.AddressingAccessPointImpl
 import api.accesspoint.original.entities.AccessPointConnectedDeviceImpl
-import api.accesspoint.original.entities.AccessPointImpl
 import api.accesspoint.original.entities.AccessPointsMap
+import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDeviceImpl
 import api.mobility.models.MobilityModel
 import api.mobility.positioning.Coordinates
 import api.mobility.positioning.Position
 import api.mobility.positioning.RadialZone
 import api.mobility.positioning.Zone
-import api.network.fixed.entities.NetworkDeviceImpl
 import org.cloudbus.cloudsim.Pe
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.core.CloudSim
@@ -34,18 +35,17 @@ import org.fog.utils.distribution.DeterministicDistribution
 import kotlin.math.ceil
 import kotlin.math.sqrt
 
-class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed: Long, eegTransRates: DoubleArray, totalGatewaysCount: IntArray, numMobilesPerGateway: Int, isCloudCount: BooleanArray)
-    : Experiment(resultsPath, isWarmup, isLog, seed, eegTransRates, totalGatewaysCount, numMobilesPerGateway, isCloudCount) {
-    override fun createAllDevices(numGateways: Int, numMobilesPerGateway: Int, brokerId: Int, appId: String, eegTransRate: Double):
-            Triple<List<FogDevice>, List<Sensor>, List<Actuator>> {
+class Experiment3(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed: Long, eegTransRates: DoubleArray, totalGatewaysCount: IntArray, numMobilesPerGateway: Int, isCloudCount: BooleanArray)
+    : Experiment(resultsPath, isWarmup, isLog, seed, eegTransRates, totalGatewaysCount, numMobilesPerGateway, isCloudCount, ) {
+    override fun createAllDevices(numGateways: Int, numMobilesPerGateway: Int, brokerId: Int, appId: String, eegTransRate: Double): Triple<List<FogDevice>, List<Sensor>, List<Actuator>> {
         val fogDevices = mutableListOf<FogDevice>()
         val sensors = mutableListOf<Sensor>()
         val actuators = mutableListOf<Actuator>()
-        val cloud = createNetworkFogDevice("cloud", 16*2800.0, 16*4000, 100.0, 10000.0, 0.01,
+        val cloud = createNetworkAddressingFogDevice("cloud", 16*2800.0, 16*4000, 100.0, 10000.0, 0.01,
                 16*90.5, 16*83.25)
         cloud.parentId = -1
         fogDevices.add(cloud)
-        val proxy = createNetworkFogDevice("proxy-server", 2800.0, 4000, 10000.0, 10000.0, 0.0,
+        val proxy = createNetworkAddressingFogDevice("proxy-server", 2800.0, 4000, 10000.0, 10000.0, 0.0,
                 107.339, 83.4333)
         proxy.parentId = cloud.id
         proxy.uplinkLatency = 100.0
@@ -54,7 +54,7 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
         val apm = AccessPointsMap()
 
         for (i in 0 until numGateways) {
-            val gw = createNetworkFogDevice("d-$i", 2800.0, 4000, 10000.0, Double.POSITIVE_INFINITY, 0.0,
+            val gw = createNetworkAddressingFogDevice("d-$i", 2800.0, 4000, 10000.0, Double.POSITIVE_INFINITY, 0.0,
                     107.339, 83.4333)
             gw.parentId = proxy.id
             gw.uplinkLatency = 4.0
@@ -68,7 +68,7 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
                     IntProgression.fromClosedRange(0, sideLength, sideLength - 1)
                 }) {
                     val apCoord = Coordinates(100.0 * (i + x.toDouble() / sideLength), 100.0 * y.toDouble() / sideLength)
-                    val ap = createAccessPoint("ap-$i-$x-$y",
+                    val ap = createAddressingAccessPoint("ap-$i-$x-$y",
                             apCoord,
                             RadialZone(apCoord, 50.0 / sideLength),
                             apm, Double.POSITIVE_INFINITY, 10000.0, 0.0, FogLinearPowerModel(1.0, 1.0)
@@ -85,7 +85,7 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
                 val initPosition = Position(initCoord, speed, 0.0)
 //                println("Created Mobile device with position $initPosition")
                 val mobilityModel = ConnectionAwareMobilityModel(2.0, i, sideLength)
-                val mob = createMobileFogDevice("m-$i-$j", 1000.0, 1000, 10000.0, 270.0,
+                val mob = createAddressingMobileFogDevice("m-$i-$j", 1000.0, 1000, 10000.0, 270.0,
                         0.0, 87.53, 82.44, initPosition, mobilityModel, apm)
                 mobilityModel.device = mob
                 mob.parentId = gw.id
@@ -105,6 +105,57 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
         return Triple(fogDevices, sensors, actuators)
     }
 
+    private fun createNetworkAddressingFogDevice(name: String, mips: Double, ram: Int, upBw: Double, downBw: Double, ratePerMips: Double,
+                                                 busyPower: Double, idlePower: Double): FogDevice {
+        val peList = listOf(Pe(0, PeProvisionerOverbooking(mips)))
+        val storage = 1000000L
+        val bw = 10000L
+        val host = PowerHost(FogUtils.generateEntityId(), RamProvisionerSimple(ram), BwProvisionerOverbooking(bw), storage,
+                peList, StreamOperatorScheduler(peList), FogLinearPowerModel(busyPower, idlePower))
+        val hostList = listOf(host)
+        val arch = "x86"
+        val os = "Linux"
+        val vmm = "Xen"
+        val timezone = 10.0
+        val cost = 3.0
+        val costPerMem = 0.05
+        val costPerStorage = 0.001
+        val costPerBw = 0.0
+        val storageList = emptyList<Storage>()
+        val characteristics = FogDeviceCharacteristics(arch, os, vmm, host, timezone, cost, costPerMem, costPerStorage, costPerBw)
+        return DynamicAddressingNotificationConsumerDeviceImpl(name, characteristics, AppModuleAllocationPolicy(hostList), storageList, 10.0, upBw, downBw, 0.0, ratePerMips)
+    }
+
+    @Suppress("SameParameterValue")
+    private fun createAddressingAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone,
+                                            accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double, powerModel: PowerModel): AddressingAccessPointImpl {
+        return AddressingAccessPointImpl(name, coordinates, connectionZone, accessPointsMap, upBw, downBw, uplinkLatency, powerModel)
+    }
+
+    @Suppress("SameParameterValue")
+    private fun createAddressingMobileFogDevice(name: String, mips: Double, ram: Int, upBw: Double, downBw: Double, ratePerMips: Double,
+                                                busyPower: Double, idlePower: Double, initPosition: Position, mobilityModel: MobilityModel,
+                                                accessPointsMap: AccessPointsMap): AddressingAccessPointConnectedDeviceImpl {
+        val peList = listOf(Pe(0, PeProvisionerOverbooking(mips)))
+        val storage = 1000000L
+        val bw = 10000L
+        val host = PowerHost(FogUtils.generateEntityId(), RamProvisionerSimple(ram), BwProvisionerOverbooking(bw), storage,
+                peList, StreamOperatorScheduler(peList), FogLinearPowerModel(busyPower, idlePower))
+        val hostList = listOf(host)
+        val arch = "x86"
+        val os = "Linux"
+        val vmm = "Xen"
+        val timezone = 10.0
+        val cost = 3.0
+        val costPerMem = 0.05
+        val costPerStorage = 0.001
+        val costPerBw = 0.0
+        val storageList = emptyList<Storage>()
+        val characteristics = FogDeviceCharacteristics(arch, os, vmm, host, timezone, cost, costPerMem, costPerStorage, costPerBw)
+        return AddressingAccessPointConnectedDeviceImpl(name, characteristics, AppModuleAllocationPolicy(hostList), storageList, 10.0,
+                upBw, downBw, 0.0, ratePerMips, initPosition, mobilityModel, accessPointsMap)
+    }
+
     override fun placeModules(isCloud: Boolean, fogDevices: List<FogDevice>, app: Application, sensors: List<Sensor>, actuators: List<Actuator>): ModulePlacement {
         val moduleMapping = ModuleMapping.createModuleMapping()
         return if (isCloud) {
@@ -122,57 +173,6 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
                 parent.childToLatencyMap.remove(it.id)
                 it.parentId = -1
             }
-         }
-    }
-
-    private fun createNetworkFogDevice(name: String, mips: Double, ram: Int, upBw: Double, downBw: Double, ratePerMips: Double,
-                                       busyPower: Double, idlePower: Double): FogDevice {
-        val peList = listOf(Pe(0, PeProvisionerOverbooking(mips)))
-        val storage = 1000000L
-        val bw = 10000L
-        val host = PowerHost(FogUtils.generateEntityId(), RamProvisionerSimple(ram), BwProvisionerOverbooking(bw), storage,
-                peList, StreamOperatorScheduler(peList), FogLinearPowerModel(busyPower, idlePower))
-        val hostList = listOf(host)
-        val arch = "x86"
-        val os = "Linux"
-        val vmm = "Xen"
-        val timezone = 10.0
-        val cost = 3.0
-        val costPerMem = 0.05
-        val costPerStorage = 0.001
-        val costPerBw = 0.0
-        val storageList = emptyList<Storage>()
-        val characteristics = FogDeviceCharacteristics(arch, os, vmm, host, timezone, cost, costPerMem, costPerStorage, costPerBw)
-        return NetworkDeviceImpl(name, characteristics, AppModuleAllocationPolicy(hostList), storageList, 10.0, upBw, downBw, 0.0, ratePerMips)
-    }
-
-    @Suppress("SameParameterValue")
-    private fun createAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone,
-                                  accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double, powerModel: PowerModel): AccessPointImpl {
-        return AccessPointImpl(name, coordinates, connectionZone, accessPointsMap, upBw, downBw, uplinkLatency, powerModel)
-    }
-
-    @Suppress("SameParameterValue")
-    private fun createMobileFogDevice(name: String, mips: Double, ram: Int, upBw: Double, downBw: Double, ratePerMips: Double,
-                                      busyPower: Double, idlePower: Double, initPosition: Position, mobilityModel: MobilityModel,
-                                      accessPointsMap: AccessPointsMap): AccessPointConnectedDeviceImpl {
-        val peList = listOf(Pe(0, PeProvisionerOverbooking(mips)))
-        val storage = 1000000L
-        val bw = 10000L
-        val host = PowerHost(FogUtils.generateEntityId(), RamProvisionerSimple(ram), BwProvisionerOverbooking(bw), storage,
-                peList, StreamOperatorScheduler(peList), FogLinearPowerModel(busyPower, idlePower))
-        val hostList = listOf(host)
-        val arch = "x86"
-        val os = "Linux"
-        val vmm = "Xen"
-        val timezone = 10.0
-        val cost = 3.0
-        val costPerMem = 0.05
-        val costPerStorage = 0.001
-        val costPerBw = 0.0
-        val storageList = emptyList<Storage>()
-        val characteristics = FogDeviceCharacteristics(arch, os, vmm, host, timezone, cost, costPerMem, costPerStorage, costPerBw)
-        return AccessPointConnectedDeviceImpl(name, characteristics, AppModuleAllocationPolicy(hostList), storageList, 10.0,
-                upBw, downBw, 0.0, ratePerMips, initPosition, mobilityModel, accessPointsMap)
+        }
     }
 }

@@ -6,7 +6,12 @@ import org.cloudbus.cloudsim.power.PowerHost
 import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple
 import org.cloudbus.cloudsim.sdn.overbooking.BwProvisionerOverbooking
 import org.cloudbus.cloudsim.sdn.overbooking.PeProvisionerOverbooking
+import org.fog.application.Application
 import org.fog.entities.*
+import org.fog.placement.ModuleMapping
+import org.fog.placement.ModulePlacement
+import org.fog.placement.ModulePlacementEdgewards
+import org.fog.placement.ModulePlacementMapping
 import org.fog.policy.AppModuleAllocationPolicy
 import org.fog.scheduler.StreamOperatorScheduler
 import org.fog.utils.*
@@ -76,6 +81,19 @@ class Experiment1(
         val storageList = emptyList<Storage>()
         val characteristics = FogDeviceCharacteristics(arch, os, vmm, host, timezone, cost, costPerMem, costPerStorage, costPerBw)
         return FogDevice(name, characteristics, AppModuleAllocationPolicy(hostList), storageList, 10.0, upBw, downBw, 0.0, ratePerMips)
+    }
+
+    override fun placeModules(isCloud: Boolean, fogDevices: List<FogDevice>, app: Application, sensors: List<Sensor>, actuators: List<Actuator>): ModulePlacement {
+        val moduleMapping = ModuleMapping.createModuleMapping()
+        return if (isCloud) {
+            moduleMapping.addModuleToDevice("connector", "cloud")
+            moduleMapping.addModuleToDevice("concentration_calculator", "cloud")
+            fogDevices.filter { it.name.startsWith("m-") }.forEach { moduleMapping.addModuleToDevice("client", it.name) }
+            ModulePlacementMapping(fogDevices, app, moduleMapping)
+        } else {
+            moduleMapping.addModuleToDevice("connector", "cloud")
+            ModulePlacementEdgewards(fogDevices, sensors, actuators, app, moduleMapping)
+        }
     }
 }
 

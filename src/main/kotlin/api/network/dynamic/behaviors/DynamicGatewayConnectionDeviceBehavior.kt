@@ -66,7 +66,8 @@ interface DynamicGatewayConnectionDeviceBehavior<T: BaseBehavior<T, out NetworkD
             Logger.debug(device.mName, "Queued tuple with tupleId = ${tuple.cloudletId}, waiting for connection")
         }
         else {
-            device.sSendUp(tuple)
+            superNetworkDeviceBehavior.processEvent(ev)
+//            device.sSendUp(tuple)
         }
         return true
     }

@@ -120,31 +120,31 @@ class AddressingDeviceTest: BaseFogDeviceTest() {
                 0.1, 0.01
         )
         val serv1 = createAddressingDevice("Cluster1.Server1",
-                10.0, 1000.0, 1000.0,100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01
         )
         val serv2 = createAddressingDevice("Cluster1.Server2",
-                10.0, 1000.0, 1000.0,100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01
         )
         val serv3 = createAddressingDevice("Cluster1.Server3",
-                10.0, 1000.0, 1000.0,100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01
         )
         val serv4 = createAddressingDevice("Cluster1.Server4",
-                10.0, 1000.0, 1000.0,100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01
         )
         val serv5 = createAddressingDevice("Cluster1.Server5",
-                10.0, 1000.0, 1000.0,0.1, 0.01
+                10.0, 1000.0, 1000.0, 0.1, 0.01
         )
         val serv6 = createAddressingDevice("Cluster2.Server6",
-                10.0, 1000.0, 1000.0,100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01
         )
         val serv7 = createAddressingDevice("Cluster2.Server7",
-                10.0, 1000.0, 1000.0,100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01
         )
         val serv8 = createAddressingDevice("Cluster2.Server8",
-                10.0, 1000.0, 1000.0,100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01
         )
         val serv9 = createAddressingDevice("Cluster2.Server9",
-                10.0, 1000.0, 1000.0,0.1, 0.01
+                10.0, 1000.0, 1000.0, 0.1, 0.01
         )
         fogDeviceList.addAll(listOf(dev, serv1, serv2, serv3, serv4, serv5, serv6, serv7, serv8, serv9))
 
@@ -174,10 +174,5 @@ class AddressingDeviceTest: BaseFogDeviceTest() {
             assertEquals(1, TimeKeeper.getInstance().loopIdToCurrentNum[loopId])
             assert(abs(TimeKeeper.getInstance().loopIdToCurrentAverage[loopId]!! - 2.823) < 1e-6)
         }
-    }
-
-    @Test
-    fun test5() {
-
     }
 }

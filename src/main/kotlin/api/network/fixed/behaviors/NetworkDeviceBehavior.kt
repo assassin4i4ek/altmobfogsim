@@ -31,8 +31,9 @@ interface NetworkDeviceBehavior
                 Logger.debug(device.mName, "Trying to send tuple ${tuple.cloudletId} down")
                 device.sSendDown(tuple, recipientId)
             }
+            return false
         }
-        return false
+        throw Exception("Error trying to send tuple to $recipientId")
     }
 
     private fun onAddressTupleFreeLink(ev: SimEvent): Boolean {
