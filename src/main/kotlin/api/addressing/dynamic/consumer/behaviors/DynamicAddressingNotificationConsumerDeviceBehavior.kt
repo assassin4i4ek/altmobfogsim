@@ -53,17 +53,4 @@ interface DynamicAddressingNotificationConsumerDeviceBehavior<
         (ev.data as BaseEventWrapper<TupleNextHopsTargetsContainer>).other = TupleNextHopsTargetsContainer(tuple, newTargetNextHopMap)
         return superAddressingDeviceBehavior.processEvent(ev)
     }
-//    private fun onAddressTupleToTargetDevices(ev: SimEvent): Boolean {
-//        val (baseEvent, container) = ev.data as BaseEventWrapper<TupleNextHopsTargetsContainer>
-//        val (tuple, nextHopId, targetDeviceIds) = container
-//        return if (nextHopId[0] > 0) {
-//            superAddressingDeviceBehavior.processEvent(ev)
-//        }
-//        else {
-//            device.mSendEvent(device.mId, 0.0, Events.NOTIFICATION_CONSUMER_WAIT_PRODUCERS.tag,
-//                    BaseEventWrapper(baseEvent, TupleRecipientsPair(tuple, targetDeviceIds)))
-//            device.mWaitForEvent(PredicateType(Events.NOTIFICATION_CONSUMER_WAIT_PRODUCERS.tag))
-//            false
-//        }
-//    }
 }

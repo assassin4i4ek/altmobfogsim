@@ -25,7 +25,6 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
     override fun processEvent(ev: SimEvent): Boolean {
         return when (ev.tag) {
             Events.NETWORK_DEVICE_ADDRESS_TUPLE.tag -> onNetworkAddressTuple(ev)
-//            Events.NETWORK_DEVICE_ADDRESS_TUPLE_FREE_LINK.tag -> onAddressTupleFreeLink(ev)
             Events.ADDRESSING_DEVICE_CREATE_CHILDREN_MAPPING.tag -> onCreateChildrenMapping(ev)
             Events.ADDRESSING_DEVICE_ADDRESS_TUPLE.tag -> onAddressTuple(ev)
             else -> superNetworkDeviceBehavior.processEvent(ev)
@@ -55,16 +54,17 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
     private fun onCreateChildrenMapping(ev: SimEvent): Boolean {
         val (originalEvent, container) = ev.data as BaseEventWrapper<TupleNextHopsTargetsContainer>
         val (tuple, targetNextHopMap) = container
+        val addressingChildrenMappingForTuple = device.addressingChildrenMapping[tuple]!!
         if (tuple.direction == Tuple.UP) {
             assert(targetNextHopMap.size == 1)
             assert((originalEvent.data as TupleRecipientPair).recipientId == device.mParentId)
-            device.addressingChildrenMapping[tuple]!![targetNextHopMap.values.first()] = true
+            addressingChildrenMappingForTuple[targetNextHopMap.values.first()] = true
         }
         else {
-            device.mChildrenIds.forEach { device.addressingChildrenMapping[tuple]!![it] = false }
-            device.addressingChildrenMapping[tuple]!![device.mParentId] = false
+            device.mChildrenIds.forEach { addressingChildrenMappingForTuple[it] = false }
+            addressingChildrenMappingForTuple[device.mParentId] = false
             targetNextHopMap.forEach { (_, nextHop) ->
-                device.addressingChildrenMapping[tuple]!![nextHop] = true
+                addressingChildrenMappingForTuple[nextHop] = true
             }
         }
         return false
@@ -75,37 +75,27 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
         val (tuple, recipientId) = originalEvent.data as TupleRecipientPair
         var res = true
         Logger.debug(device.mName, "Addressing tuple ${tuple.cloudletId}")
+        val addressingChildrenMappingForTuple = device.addressingChildrenMapping[tuple]!!
         if (tuple.direction == Tuple.UP) {
-            assert(device.addressingChildrenMapping.size == 1)
-            assert(device.addressingChildrenMapping[tuple]!!.values.first())
-            (originalEvent.data as TupleRecipientPair).recipientId = device.addressingChildrenMapping[tuple]!!.keys.first()
-            device.addressingChildrenMapping[tuple]!!.remove((originalEvent.data as TupleRecipientPair).recipientId)
+            assert(addressingChildrenMappingForTuple.size == 1)
+            assert(addressingChildrenMappingForTuple.values.first())
+            (originalEvent.data as TupleRecipientPair).recipientId = addressingChildrenMappingForTuple.keys.first()
+            addressingChildrenMappingForTuple.remove((originalEvent.data as TupleRecipientPair).recipientId)
             res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
         }
         else {
-            if (device.addressingChildrenMapping[tuple]!!.remove(recipientId)!!) {
+            if (addressingChildrenMappingForTuple.remove(recipientId)!!) {
                 res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
             }
-            if (device.addressingChildrenMapping[tuple]!!.size == 1 && device.addressingChildrenMapping[tuple]!!.remove(device.mParentId)!!) {
+            if (addressingChildrenMappingForTuple.size == 1 && addressingChildrenMappingForTuple.remove(device.mParentId)!!) {
                 (originalEvent.data as TupleRecipientPair).recipientId = device.mParentId
                 res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
             }
         }
-        if (device.addressingChildrenMapping[tuple]!!.isEmpty()) {
+        if (addressingChildrenMappingForTuple.isEmpty()) {
             device.addressingChildrenMapping.remove(tuple)
         }
         return res
-//        var res = true
-//
-//        if (recipientId == device.mParentId || device.addressingChildrenMapping.remove(recipientId)!!) {
-//            res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
-//        }
-//        if (device.addressingChildrenMapping.size == 1 && device.addressingChildrenMapping.containsKey(device.mParentId)) {
-//            device.addressingChildrenMapping.remove(device.mParentId)
-//            (originalEvent.data as TupleRecipientPair).recipientId = device.mParentId
-//            res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
-//        }
-//        return res
     }
 
     private fun getTargetDevicesForTuple(tuple: Tuple): List<Int> {
