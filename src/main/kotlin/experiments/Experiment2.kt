@@ -149,7 +149,7 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
     @Suppress("SameParameterValue")
     private fun createAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone,
                                   accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double, powerModel: PowerModel): AccessPointImpl {
-        return AccessPointImpl(name, coordinates, connectionZone, accessPointsMap, upBw, downBw, uplinkLatency, powerModel)
+        return AccessPointImpl(name, upBw, downBw, uplinkLatency, powerModel, coordinates, connectionZone, accessPointsMap)
     }
 
     @Suppress("SameParameterValue")

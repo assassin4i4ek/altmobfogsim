@@ -33,7 +33,7 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
 
     private fun onNetworkAddressTuple(ev: SimEvent): Boolean {
         val (tuple, _) = ev.data as TupleRecipientPair
-        Logger.debug(device.mName, "Trying to address tuple ${tuple.cloudletId}")
+//        Logger.debug(device.mName, "Trying to address tuple ${tuple.cloudletId}")
         if (device.addressingChildrenMapping[tuple] == null) {
             device.addressingChildrenMapping[tuple] = mutableMapOf()
             val targetDeviceIds = getTargetDevicesForTuple(tuple)
@@ -66,6 +66,9 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
             targetNextHopMap.forEach { (_, nextHop) ->
                 addressingChildrenMappingForTuple[nextHop] = true
             }
+            if (device.addressingType == AddressingDevice.AddressingType.HIERARCHICAL) {
+                assert(addressingChildrenMappingForTuple[device.mParentId] == false)
+            }
         }
         return false
     }
@@ -74,7 +77,7 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
         val originalEvent = ev.data as SimEvent
         val (tuple, recipientId) = originalEvent.data as TupleRecipientPair
         var res = true
-        Logger.debug(device.mName, "Addressing tuple ${tuple.cloudletId}")
+//        Logger.debug(device.mName, "Addressing tuple ${tuple.cloudletId}")
         val addressingChildrenMappingForTuple = device.addressingChildrenMapping[tuple]!!
         if (tuple.direction == Tuple.UP) {
             assert(addressingChildrenMappingForTuple.size == 1)
@@ -87,7 +90,10 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
             if (addressingChildrenMappingForTuple.remove(recipientId)!!) {
                 res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
             }
-            if (addressingChildrenMappingForTuple.size == 1 && addressingChildrenMappingForTuple.remove(device.mParentId)!!) {
+            if (
+                    addressingChildrenMappingForTuple.size == 1 &&
+                    addressingChildrenMappingForTuple.remove(device.mParentId)!! &&
+                    device.addressingType == AddressingDevice.AddressingType.PEER_TO_PEER) {
                 (originalEvent.data as TupleRecipientPair).recipientId = device.mParentId
                 res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
             }

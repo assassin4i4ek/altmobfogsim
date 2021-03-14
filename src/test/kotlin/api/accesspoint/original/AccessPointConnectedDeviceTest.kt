@@ -29,8 +29,8 @@ class AccessPointConnectedDeviceTest: BaseFogDeviceTest() {
     ): AccessPointImpl {
         return createCharacteristicsAndAllocationPolicy(1000.0).let {
             AccessPointImpl(
-                name, coordinates, RadialZone(coordinates, radius), accessPointsMap,
-                uplinkBandwidth, downlinkBandwidth, uplinkLatency, FogLinearPowerModel(100.0, 40.0)
+                name, uplinkBandwidth, downlinkBandwidth, uplinkLatency, FogLinearPowerModel(100.0, 40.0),
+                    coordinates, RadialZone(coordinates, radius), accessPointsMap,
             )
         }
     }

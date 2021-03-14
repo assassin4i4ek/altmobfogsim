@@ -1,5 +1,6 @@
 package api.addressing.fixed
 
+import api.addressing.fixed.entities.AddressingDevice
 import api.addressing.fixed.entities.AddressingDeviceImpl
 import api.common.utils.ConnectionUtils
 import org.fog.utils.Config
@@ -17,13 +18,13 @@ import kotlin.test.assertEquals
 class AddressingDeviceTest: BaseFogDeviceTest() {
     @Suppress("SameParameterValue")
     private fun createAddressingDevice(
-            name: String, schedulingInterval: Double,
-            uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double, ratePerMips: Double
+            name: String, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
+            uplinkLatency: Double, ratePerMips: Double, addressingType: AddressingDevice.AddressingType
     ): AddressingDeviceImpl {
         return createCharacteristicsAndAllocationPolicy(1000.0).let {
             AddressingDeviceImpl(
                     name, it.first, it.second, emptyList(), schedulingInterval,
-                    uplinkBandwidth, downlinkBandwidth, uplinkLatency, ratePerMips
+                    uplinkBandwidth, downlinkBandwidth, uplinkLatency, ratePerMips, addressingType
             )
         }
     }
@@ -32,10 +33,10 @@ class AddressingDeviceTest: BaseFogDeviceTest() {
     fun test1() {
         init()
         val dev = createAddressingDevice("Mob1", 10.0, 1000.0, 1000.0,
-                0.1, 0.01
+                0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL
         )
         val serv = createAddressingDevice("Server1", 10.0, 1000.0, 1000.0,
-                0.1, 0.01
+                0.1, 0.01, AddressingDevice.AddressingType.PEER_TO_PEER
         )
         fogDeviceList.addAll(listOf(dev, serv))
 
@@ -56,10 +57,10 @@ class AddressingDeviceTest: BaseFogDeviceTest() {
     fun test2() {
         init()
         val dev = createAddressingDevice("Mob1", 10.0, 1000.0, 1000.0,
-                0.1, 0.01
+                0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL
         )
         val serv = createAddressingDevice("Server1", 10.0, 1000.0, 1000.0,
-                0.1, 0.01
+                0.1, 0.01, AddressingDevice.AddressingType.PEER_TO_PEER
         )
         fogDeviceList.addAll(listOf(dev, serv))
 
@@ -78,19 +79,19 @@ class AddressingDeviceTest: BaseFogDeviceTest() {
     fun test3() {
         init()
         val dev = createAddressingDevice("Mob1", 10.0, 1000.0, 1000.0,
-                0.1, 0.01
+                0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL
         )
         val serv1 = createAddressingDevice("Server1", 10.0, 1000.0, 1000.0,
-                0.1, 0.01
+                0.1, 0.01, AddressingDevice.AddressingType.PEER_TO_PEER
         )
         val serv2 = createAddressingDevice("Server2", 10.0, 1000.0, 1000.0,
-                0.1, 0.01
+                0.1, 0.01, AddressingDevice.AddressingType.PEER_TO_PEER
         )
         val serv3 = createAddressingDevice("Server3", 10.0, 1000.0, 1000.0,
-                0.1, 0.01
+                0.1, 0.01, AddressingDevice.AddressingType.PEER_TO_PEER
         )
         val serv4 = createAddressingDevice("Server4", 10.0, 1000.0, 1000.0,
-                0.1, 0.01
+                0.1, 0.01, AddressingDevice.AddressingType.PEER_TO_PEER
         )
         fogDeviceList.addAll(listOf(dev, serv1, serv2, serv3, serv4))
 
@@ -117,34 +118,43 @@ class AddressingDeviceTest: BaseFogDeviceTest() {
     fun test4() {
         init(createApp = ::createThreeModulesApp)
         val dev = createAddressingDevice("Mob1", 10.0, 1000.0, 1000.0,
-                0.1, 0.01
+                0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL
         )
         val serv1 = createAddressingDevice("Cluster1.Server1",
-                10.0, 1000.0, 1000.0, 100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01,
+                AddressingDevice.AddressingType.PEER_TO_PEER
         )
         val serv2 = createAddressingDevice("Cluster1.Server2",
-                10.0, 1000.0, 1000.0, 100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01,
+                AddressingDevice.AddressingType.PEER_TO_PEER
         )
         val serv3 = createAddressingDevice("Cluster1.Server3",
-                10.0, 1000.0, 1000.0, 100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01,
+                AddressingDevice.AddressingType.PEER_TO_PEER
         )
         val serv4 = createAddressingDevice("Cluster1.Server4",
-                10.0, 1000.0, 1000.0, 100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01,
+                AddressingDevice.AddressingType.PEER_TO_PEER
         )
         val serv5 = createAddressingDevice("Cluster1.Server5",
-                10.0, 1000.0, 1000.0, 0.1, 0.01
+                10.0, 1000.0, 1000.0, 0.1, 0.01,
+                AddressingDevice.AddressingType.PEER_TO_PEER
         )
         val serv6 = createAddressingDevice("Cluster2.Server6",
-                10.0, 1000.0, 1000.0, 100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01,
+                AddressingDevice.AddressingType.PEER_TO_PEER
         )
         val serv7 = createAddressingDevice("Cluster2.Server7",
-                10.0, 1000.0, 1000.0, 100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01,
+                AddressingDevice.AddressingType.PEER_TO_PEER
         )
         val serv8 = createAddressingDevice("Cluster2.Server8",
-                10.0, 1000.0, 1000.0, 100.0, 0.01
+                10.0, 1000.0, 1000.0, 100.0, 0.01,
+                AddressingDevice.AddressingType.PEER_TO_PEER
         )
         val serv9 = createAddressingDevice("Cluster2.Server9",
-                10.0, 1000.0, 1000.0, 0.1, 0.01
+                10.0, 1000.0, 1000.0, 0.1, 0.01,
+                AddressingDevice.AddressingType.PEER_TO_PEER
         )
         fogDeviceList.addAll(listOf(dev, serv1, serv2, serv3, serv4, serv5, serv6, serv7, serv8, serv9))
 

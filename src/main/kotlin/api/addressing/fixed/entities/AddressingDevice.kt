@@ -7,8 +7,14 @@ import org.fog.entities.Tuple
 import org.fog.placement.Controller
 
 interface AddressingDevice: NetworkDevice {
+    enum class AddressingType {
+        HIERARCHICAL, // hierarchical as well as original don't send tuple with direction Tuple.DOWN up to parent device
+        PEER_TO_PEER // peer to peer are allowed to send tuple with direction Tuple.DOWN up to parent device
+    }
     val controller: Controller
     val addressingModel: AddressingModel
+
+    val addressingType: AddressingType
 
     val connectedDevices: List<AddressingDevice>
     get() = mutableListOf<Int>().also {

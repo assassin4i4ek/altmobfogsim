@@ -8,6 +8,7 @@ import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationCo
 import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationConsumerDeviceBehaviorImpl
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
 import api.addressing.fixed.behaviors.AddressingDeviceBehaviorImpl
+import api.addressing.fixed.entities.AddressingDevice
 import api.addressing.models.AddressingModel
 import api.addressing.models.BreadthFirstSearchAddressingModel
 import api.common.entities.SimEntityBehaviorWrapper
@@ -29,9 +30,9 @@ import org.fog.placement.Controller
 import org.fog.policy.AppModuleAllocationPolicy
 
 class AddressingAccessPointImpl(
-        name: String, override val coordinates: Coordinates, override val connectionZone: Zone,
-        override val accessPointsMap: AccessPointsMap, uplinkBandwidth: Double, downlinkBandwidth: Double,
-        uplinkLatency: Double, powerModel: PowerModel
+        name: String, uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double,
+        powerModel: PowerModel, override val coordinates: Coordinates, override val connectionZone: Zone,
+        override val accessPointsMap: AccessPointsMap,
 ): FogDevice(
         name, accessPointsMap.accessPointCharacteristics(powerModel), AppModuleAllocationPolicy(emptyList()), emptyList(),
         0.0, uplinkBandwidth, downlinkBandwidth,
@@ -77,6 +78,7 @@ class AddressingAccessPointImpl(
     /* AddressingDevice */
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
     override val addressingModel: AddressingModel = BreadthFirstSearchAddressingModel()
+    override val addressingType: AddressingDevice.AddressingType = AddressingDevice.AddressingType.HIERARCHICAL
     override val addressingChildrenMapping: MutableMap<Tuple, MutableMap<Int, Boolean>> = mutableMapOf()
 
     /* DynamicAddressingTuple */

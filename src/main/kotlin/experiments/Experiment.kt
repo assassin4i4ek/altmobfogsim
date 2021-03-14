@@ -37,7 +37,7 @@ abstract class Experiment(
 
         fun summarize(fogDevices: List<FogDevice>, app: Application) {
             val t = Calendar.getInstance().timeInMillis
-            table["Delay"]!!.add(TimeKeeper.getInstance().loopIdToCurrentAverage[app.loops[0].loopId]!!)
+            table["Delay"]!!.add(TimeKeeper.getInstance().loopIdToCurrentAverage[app.loops[0].loopId] ?: Double.POSITIVE_INFINITY)
             table["DC Energy"]!!.add(fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             table["Mobile Energy"]!!.add(fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             table["Edge Energy"]!!.add(fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
@@ -122,7 +122,8 @@ abstract class Experiment(
 
         /*
 		 * Connecting the application modules (vertices) in the application model (directed graph) with edges
-		 */if (eegTransRate == 10.0) app.addAppEdge("EEG", "client", 2000.0, 500.0, "EEG", Tuple.UP, AppEdge.SENSOR) // adding edge from EEG (sensor) to Client module carrying tuples of type EEG
+		 */
+        if (eegTransRate == 10.0) app.addAppEdge("EEG", "client", 2000.0, 500.0, "EEG", Tuple.UP, AppEdge.SENSOR) // adding edge from EEG (sensor) to Client module carrying tuples of type EEG
         else app.addAppEdge("EEG", "client", 2500.0, 500.0, "EEG", Tuple.UP, AppEdge.SENSOR)
         app.addAppEdge("client", "concentration_calculator", 3500.0, 500.0, "_SENSOR", Tuple.UP, AppEdge.MODULE) // adding edge from Client to Concentration Calculator module carrying tuples of type _SENSOR
         app.addAppEdge("concentration_calculator", "connector", 100.0, 1000.0, 1000.0, "PLAYER_GAME_STATE", Tuple.UP, AppEdge.MODULE) // adding periodic edge (period=1000ms) from Concentration Calculator to Connector module carrying tuples of type PLAYER_GAME_STATE
@@ -133,7 +134,8 @@ abstract class Experiment(
 
         /*
 		 * Defining the input-output relationships (represented by selectivity) of the application modules.
-		 */app.addTupleMapping("client", "EEG", "_SENSOR", FractionalSelectivity(0.9)) // 0.9 tuples of type _SENSOR are emitted by Client module per incoming tuple of type EEG
+		 */
+        app.addTupleMapping("client", "EEG", "_SENSOR", FractionalSelectivity(0.9)) // 0.9 tuples of type _SENSOR are emitted by Client module per incoming tuple of type EEG
         app.addTupleMapping("client", "CONCENTRATION", "SELF_STATE_UPDATE", FractionalSelectivity(1.0)) // 1.0 tuples of type SELF_STATE_UPDATE are emitted by Client module per incoming tuple of type CONCENTRATION
         app.addTupleMapping("concentration_calculator", "_SENSOR", "CONCENTRATION", FractionalSelectivity(1.0)) // 1.0 tuples of type CONCENTRATION are emitted by Concentration Calculator module per incoming tuple of type _SENSOR
         app.addTupleMapping("client", "GLOBAL_GAME_STATE", "GLOBAL_STATE_UPDATE", FractionalSelectivity(1.0)) // 1.0 tuples of type GLOBAL_STATE_UPDATE are emitted by Client module per incoming tuple of type GLOBAL_GAME_STATE

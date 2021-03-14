@@ -32,8 +32,8 @@ class AccessPointTest: BaseFogDeviceTest() {
         init()
         val apm = AccessPointsMap()
         val ap = Coordinates(0.0, 0.0).let {
-            AccessPointImpl("AccessPoint", it, RadialZone(it, 1.0),
-                apm,1000.0, 1000.0, 0.1, FogLinearPowerModel(100.0, 40.0)
+            AccessPointImpl("AccessPoint", 1000.0, 1000.0, 0.1,
+                    FogLinearPowerModel(100.0, 40.0), it, RadialZone(it, 1.0), apm
             )
         }
         val dev = createNetworkFogDevice("Mob1", 10.0, 1000.0, 1000.0,

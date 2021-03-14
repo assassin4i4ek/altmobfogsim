@@ -4,6 +4,7 @@ import api.addressing.dynamic.producer.behaviors.DynamicAddressingNotificationPr
 import api.addressing.dynamic.producer.behaviors.DynamicGatewayConnectionAddressingDeviceBehaviorImpl
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
 import api.addressing.fixed.behaviors.AddressingDeviceBehaviorImpl
+import api.addressing.fixed.entities.AddressingDevice
 import api.addressing.models.AddressingModel
 import api.addressing.models.BreadthFirstSearchAddressingModel
 import api.common.entities.SimEntityBehaviorWrapper
@@ -28,7 +29,7 @@ import java.util.*
 class DynamicAddressingNotificationProducerDeviceImpl(
         name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
         storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
-        uplinkLatency: Double, ratePerMips: Double
+        uplinkLatency: Double, ratePerMips: Double, override val addressingType: AddressingDevice.AddressingType
 ): FogDevice(
         name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
         uplinkLatency, ratePerMips),

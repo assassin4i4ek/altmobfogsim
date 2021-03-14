@@ -20,9 +20,9 @@ import org.fog.entities.Tuple
 import org.fog.placement.Controller
 
 class AddressingDeviceImpl(
-    name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
-    storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
-    uplinkLatency: Double, ratePerMips: Double
+        name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
+        storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
+        uplinkLatency: Double, ratePerMips: Double, override val addressingType: AddressingDevice.AddressingType
 ): FogDevice(
     name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
     uplinkLatency, ratePerMips),

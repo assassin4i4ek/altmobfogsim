@@ -18,9 +18,9 @@ import org.fog.entities.Tuple
 import org.fog.policy.AppModuleAllocationPolicy
 
 class AccessPointImpl(
-        name: String, override val coordinates: Coordinates, override val connectionZone: Zone,
-        override val accessPointsMap: AccessPointsMap, uplinkBandwidth: Double, downlinkBandwidth: Double,
-        uplinkLatency: Double, powerModel: PowerModel
+        name: String, uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double,
+        powerModel: PowerModel, override val coordinates: Coordinates, override val connectionZone: Zone,
+        override val accessPointsMap: AccessPointsMap,
 ): FogDevice(
     name, accessPointsMap.accessPointCharacteristics(powerModel), AppModuleAllocationPolicy(emptyList()), emptyList(),
     0.0, uplinkBandwidth, downlinkBandwidth,

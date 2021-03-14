@@ -5,6 +5,7 @@ import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationCo
 import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationConsumerDeviceBehaviorImpl
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
 import api.addressing.fixed.behaviors.AddressingDeviceBehaviorImpl
+import api.addressing.fixed.entities.AddressingDevice
 import api.addressing.models.AddressingModel
 import api.addressing.models.BreadthFirstSearchAddressingModel
 import api.common.entities.SimEntityBehaviorWrapper
@@ -27,7 +28,7 @@ import org.fog.placement.Controller
 class DynamicAddressingNotificationConsumerDeviceImpl(
         name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
         storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
-        uplinkLatency: Double, ratePerMips: Double
+        uplinkLatency: Double, ratePerMips: Double, override val addressingType: AddressingDevice.AddressingType
 ): FogDevice(
         name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
         uplinkLatency, ratePerMips), DynamicAddressingNotificationConsumerDevice,

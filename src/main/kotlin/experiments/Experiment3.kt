@@ -5,6 +5,7 @@ import api.accesspoint.addressing.entities.AddressingAccessPointImpl
 import api.accesspoint.original.entities.AccessPointConnectedDeviceImpl
 import api.accesspoint.original.entities.AccessPointsMap
 import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDeviceImpl
+import api.addressing.fixed.entities.AddressingDevice
 import api.mobility.models.MobilityModel
 import api.mobility.positioning.Coordinates
 import api.mobility.positioning.Position
@@ -42,11 +43,11 @@ class Experiment3(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
         val sensors = mutableListOf<Sensor>()
         val actuators = mutableListOf<Actuator>()
         val cloud = createNetworkAddressingFogDevice("cloud", 16*2800.0, 16*4000, 100.0, 10000.0, 0.01,
-                16*90.5, 16*83.25)
+                16*90.5, 16*83.25, AddressingDevice.AddressingType.HIERARCHICAL)
         cloud.parentId = -1
         fogDevices.add(cloud)
         val proxy = createNetworkAddressingFogDevice("proxy-server", 2800.0, 4000, 10000.0, 10000.0, 0.0,
-                107.339, 83.4333)
+                107.339, 83.4333, AddressingDevice.AddressingType.HIERARCHICAL)
         proxy.parentId = cloud.id
         proxy.uplinkLatency = 100.0
         fogDevices.add(proxy)
@@ -55,7 +56,7 @@ class Experiment3(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
 
         for (i in 0 until numGateways) {
             val gw = createNetworkAddressingFogDevice("d-$i", 2800.0, 4000, 10000.0, Double.POSITIVE_INFINITY, 0.0,
-                    107.339, 83.4333)
+                    107.339, 83.4333, AddressingDevice.AddressingType.HIERARCHICAL)
             gw.parentId = proxy.id
             gw.uplinkLatency = 4.0
             fogDevices.add(gw)
@@ -106,7 +107,7 @@ class Experiment3(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
     }
 
     private fun createNetworkAddressingFogDevice(name: String, mips: Double, ram: Int, upBw: Double, downBw: Double, ratePerMips: Double,
-                                                 busyPower: Double, idlePower: Double): FogDevice {
+                                                 busyPower: Double, idlePower: Double, addressingType: AddressingDevice.AddressingType): FogDevice {
         val peList = listOf(Pe(0, PeProvisionerOverbooking(mips)))
         val storage = 1000000L
         val bw = 10000L
@@ -123,13 +124,13 @@ class Experiment3(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
         val costPerBw = 0.0
         val storageList = emptyList<Storage>()
         val characteristics = FogDeviceCharacteristics(arch, os, vmm, host, timezone, cost, costPerMem, costPerStorage, costPerBw)
-        return DynamicAddressingNotificationConsumerDeviceImpl(name, characteristics, AppModuleAllocationPolicy(hostList), storageList, 10.0, upBw, downBw, 0.0, ratePerMips)
+        return DynamicAddressingNotificationConsumerDeviceImpl(name, characteristics, AppModuleAllocationPolicy(hostList), storageList, 10.0, upBw, downBw, 0.0, ratePerMips, addressingType)
     }
 
     @Suppress("SameParameterValue")
     private fun createAddressingAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone,
                                             accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double, powerModel: PowerModel): AddressingAccessPointImpl {
-        return AddressingAccessPointImpl(name, coordinates, connectionZone, accessPointsMap, upBw, downBw, uplinkLatency, powerModel)
+        return AddressingAccessPointImpl(name, upBw, downBw, uplinkLatency, powerModel, coordinates, connectionZone, accessPointsMap)
     }
 
     @Suppress("SameParameterValue")
