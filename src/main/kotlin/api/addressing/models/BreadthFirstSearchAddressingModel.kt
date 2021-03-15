@@ -1,6 +1,7 @@
 package api.addressing.models
 
 import api.addressing.fixed.entities.AddressingDevice
+import org.cloudbus.cloudsim.core.CloudSim
 
 class BreadthFirstSearchAddressingModel(): AddressingModel {
     override fun idsOfNextHopTo(src: AddressingDevice, targetDeviceIds: List<Int>,
@@ -45,24 +46,54 @@ class BreadthFirstSearchAddressingModel(): AddressingModel {
         }
         val targetNextHopMap = mutableMapOf<Int, Int>()
 
-        if (quantifier == AddressingModel.Quantifier.ANY) {
-            val minLatencyTargetDeviceId = targetDeviceIds.minByOrNull { dstId ->
-                devicePathsAndTimings[dstId]?.second ?: Double.POSITIVE_INFINITY
-            }!!
-            val minLatencyTargetDeviceNextHopId = devicePathsAndTimings[minLatencyTargetDeviceId]?.run {
-                        first.firstOrNull() ?: minLatencyTargetDeviceId
-                    } ?: -1
-            targetNextHopMap[minLatencyTargetDeviceId] = minLatencyTargetDeviceNextHopId
-        }
-        else {
-//            targetDeviceIds.map { dstId -> devicePathsAndTimings[dstId]?.run {first.firstOrNull() ?: dstId} ?: -1}
-            targetDeviceIds.forEach { targetDeviceId ->
-                val targetDeviceNextHop = devicePathsAndTimings[targetDeviceId]?.run {
-                    first.firstOrNull() ?: targetDeviceId
+        when (quantifier) {
+            AddressingModel.Quantifier.ANY -> {
+                val minLatencyTargetDeviceId = targetDeviceIds.minByOrNull { dstId ->
+                    devicePathsAndTimings[dstId]?.second ?: Double.POSITIVE_INFINITY
+                }!!
+                val minLatencyTargetDeviceNextHopId = devicePathsAndTimings[minLatencyTargetDeviceId]?.run {
+                    first.firstOrNull() ?: minLatencyTargetDeviceId
                 } ?: -1
-                targetNextHopMap[targetDeviceId] = targetDeviceNextHop
+                targetNextHopMap[minLatencyTargetDeviceId] = minLatencyTargetDeviceNextHopId
+            }
+            AddressingModel.Quantifier.ALL, AddressingModel.Quantifier.SINGLE -> {
+                    targetDeviceIds.forEach { targetDeviceId ->
+                    val targetDeviceNextHop = devicePathsAndTimings[targetDeviceId]?.run {
+                        first.firstOrNull() ?: targetDeviceId
+                    } ?: -1
+                    targetNextHopMap[targetDeviceId] = targetDeviceNextHop
+                }
             }
         }
+
         return targetNextHopMap
+    }
+
+    override fun filterInChildren(src: AddressingDevice, devices: List<Int>): List<Int> {
+        when (src.addressingType) {
+            AddressingDevice.AddressingType.HIERARCHICAL -> {
+                val filteredDevices = mutableListOf<Int>()
+                var devicesInTree: MutableList<Int>
+                var childrenToAppend = mutableListOf<Int>()
+                childrenToAppend.addAll(src.mChildrenIds)
+                childrenToAppend.remove(src.mId)
+                while (childrenToAppend.isNotEmpty()) {
+                    devicesInTree = childrenToAppend
+                    childrenToAppend = mutableListOf()
+
+                    for (childId in devicesInTree) {
+                        if (devices.contains(childId)) {
+                            filteredDevices.add(childId)
+                        }
+                        childrenToAppend.addAll((CloudSim.getEntity(childId) as AddressingDevice).mChildrenIds)
+                        childrenToAppend.remove(childId)
+                    }
+                }
+                return filteredDevices
+            }
+            AddressingDevice.AddressingType.PEER_TO_PEER -> {
+                TODO("Broadcasting down-tuples are not yet supported for peer-to-peer devices")
+            }
+        }
     }
 }

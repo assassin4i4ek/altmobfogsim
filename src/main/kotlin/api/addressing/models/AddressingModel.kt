@@ -4,8 +4,12 @@ import api.addressing.fixed.entities.AddressingDevice
 
 interface AddressingModel {
     enum class Quantifier {
-        ANY, ALL
+        SINGLE, //tuple.direction == Tuple.DOWN and tuple is addressed to specific module
+        ALL, //tuple.direction == Tuple.DOWN and tuple is addressed to all modules below
+        ANY //tuple.direction == Tuple.UP and tuple is addressed to closest module above
     }
+
+    fun filterInChildren(src: AddressingDevice, devices: List<Int>): List<Int>
 
     fun idsOfNextHopTo(src: AddressingDevice, targetDeviceIds: List<Int>, quantifier: Quantifier, fileSize: Long): Map<Int, Int>
 
@@ -18,4 +22,5 @@ interface AddressingModel {
         }
         throw Exception("Devices ${from.mName} and ${to.mName} are not connected")
     }
+
 }

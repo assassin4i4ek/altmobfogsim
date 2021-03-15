@@ -5,13 +5,13 @@ import api.addressing.models.AddressingModel
 import api.common.Events
 import api.common.behaviors.BaseBehavior
 import api.common.utils.BaseEventWrapper
-import api.common.utils.TupleNextHopsTargetsContainer
+import api.common.utils.TupleTargetNextHopMapQuantifierContainer
 import api.common.utils.TupleRecipientPair
 import api.network.fixed.entities.NetworkDevice
 import org.cloudbus.cloudsim.core.SimEvent
 import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.fog.entities.Tuple
-import org.fog.utils.Logger
+import java.lang.Exception
 
 interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
     : BaseBehavior<AddressingDeviceBehavior<T>, AddressingDevice> {
@@ -36,12 +36,10 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
 //        Logger.debug(device.mName, "Trying to address tuple ${tuple.cloudletId}")
         if (device.addressingChildrenMapping[tuple] == null) {
             device.addressingChildrenMapping[tuple] = mutableMapOf()
-            val targetDeviceIds = getTargetDevicesForTuple(tuple)
-            val quantifier =
-                    if (tuple.direction == Tuple.UP) AddressingModel.Quantifier.ANY else AddressingModel.Quantifier.ALL
+            val (targetDeviceIds, quantifier) = getTargetDevicesForTuple(tuple)
             val nextHopIds = device.addressingModel.idsOfNextHopTo(device, targetDeviceIds, quantifier, tuple.cloudletFileSize)
             device.mSendEvent(device.mId, 0.0, Events.ADDRESSING_DEVICE_CREATE_CHILDREN_MAPPING.tag,
-                    BaseEventWrapper(ev, TupleNextHopsTargetsContainer(tuple, nextHopIds))
+                    BaseEventWrapper(ev, TupleTargetNextHopMapQuantifierContainer(tuple, nextHopIds, quantifier))
             )
             device.mWaitForEvent(PredicateType(Events.ADDRESSING_DEVICE_CREATE_CHILDREN_MAPPING.tag))
         }
@@ -52,23 +50,28 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
 
     @Suppress("UNCHECKED_CAST")
     private fun onCreateChildrenMapping(ev: SimEvent): Boolean {
-        val (originalEvent, container) = ev.data as BaseEventWrapper<TupleNextHopsTargetsContainer>
-        val (tuple, targetNextHopMap) = container
+        val (originalEvent, container) = ev.data as BaseEventWrapper<TupleTargetNextHopMapQuantifierContainer>
+        val (tuple, targetNextHopMap, quantifier) = container
         val addressingChildrenMappingForTuple = device.addressingChildrenMapping[tuple]!!
-        if (tuple.direction == Tuple.UP) {
-            assert(targetNextHopMap.size == 1)
-            assert((originalEvent.data as TupleRecipientPair).recipientId == device.mParentId)
-            addressingChildrenMappingForTuple[targetNextHopMap.values.first()] = true
-        }
-        else {
-            device.mChildrenIds.forEach { addressingChildrenMappingForTuple[it] = false }
-            addressingChildrenMappingForTuple[device.mParentId] = false
-            targetNextHopMap.forEach { (_, nextHop) ->
-                addressingChildrenMappingForTuple[nextHop] = true
+        when (tuple.direction){
+            Tuple.UP -> {
+                assert(targetNextHopMap.size == 1)
+                assert(quantifier == AddressingModel.Quantifier.ANY || quantifier == AddressingModel.Quantifier.SINGLE)
+                assert((originalEvent.data as TupleRecipientPair).recipientId == device.mParentId)
+                addressingChildrenMappingForTuple[targetNextHopMap.values.first()] = true
             }
-            if (device.addressingType == AddressingDevice.AddressingType.HIERARCHICAL) {
-                assert(addressingChildrenMappingForTuple[device.mParentId] == false)
+            Tuple.DOWN -> {
+                device.mChildrenIds.forEach { addressingChildrenMappingForTuple[it] = false }
+                addressingChildrenMappingForTuple[device.mParentId] = false
+                targetNextHopMap.forEach { (_, nextHop) ->
+                    addressingChildrenMappingForTuple[nextHop] = true
+                }
+//            if (device.addressingType == AddressingDevice.AddressingType.HIERARCHICAL) {
+                if (quantifier == AddressingModel.Quantifier.ALL) {
+                    assert(addressingChildrenMappingForTuple[device.mParentId] == false)
+                }
             }
+            else -> throw Exception("Unknown tuple ${tuple.cloudletId} direction")
         }
         return false
     }
@@ -79,24 +82,27 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
         var res = true
 //        Logger.debug(device.mName, "Addressing tuple ${tuple.cloudletId}")
         val addressingChildrenMappingForTuple = device.addressingChildrenMapping[tuple]!!
-        if (tuple.direction == Tuple.UP) {
-            assert(addressingChildrenMappingForTuple.size == 1)
-            assert(addressingChildrenMappingForTuple.values.first())
-            (originalEvent.data as TupleRecipientPair).recipientId = addressingChildrenMappingForTuple.keys.first()
-            addressingChildrenMappingForTuple.remove((originalEvent.data as TupleRecipientPair).recipientId)
-            res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
-        }
-        else {
-            if (addressingChildrenMappingForTuple.remove(recipientId)!!) {
+        when (tuple.direction) {
+            Tuple.UP -> {
+                assert(addressingChildrenMappingForTuple.size == 1)
+                assert(addressingChildrenMappingForTuple.values.first())
+                (originalEvent.data as TupleRecipientPair).recipientId = addressingChildrenMappingForTuple.keys.first()
+                addressingChildrenMappingForTuple.remove((originalEvent.data as TupleRecipientPair).recipientId)
                 res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
             }
-            if (
-                    addressingChildrenMappingForTuple.size == 1 &&
-                    addressingChildrenMappingForTuple.remove(device.mParentId)!! &&
-                    device.addressingType == AddressingDevice.AddressingType.PEER_TO_PEER) {
-                (originalEvent.data as TupleRecipientPair).recipientId = device.mParentId
-                res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
+            Tuple.DOWN -> {
+                if (addressingChildrenMappingForTuple.remove(recipientId)!!) {
+                    res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
+                }
+                if (
+                        addressingChildrenMappingForTuple.size == 1 &&
+                        addressingChildrenMappingForTuple.remove(device.mParentId)!!/* &&
+                        device.addressingType == AddressingDevice.AddressingType.PEER_TO_PEER*/) {
+                    (originalEvent.data as TupleRecipientPair).recipientId = device.mParentId
+                    res = res && superNetworkDeviceBehavior.processEvent(originalEvent)
+                }
             }
+            else -> throw Exception("Unknown tuple ${tuple.cloudletId} direction")
         }
         if (addressingChildrenMappingForTuple.isEmpty()) {
             device.addressingChildrenMapping.remove(tuple)
@@ -104,7 +110,7 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
         return res
     }
 
-    private fun getTargetDevicesForTuple(tuple: Tuple): List<Int> {
+    private fun getTargetDevicesForTuple(tuple: Tuple): Pair<List<Int>, AddressingModel.Quantifier> {
         val modulePlacement = device.controller.appModulePlacementPolicy[tuple.appId]!!
         // get devices with necessary module
         val devicesWithModule: List<Int> = modulePlacement.moduleToDeviceMap[tuple.destModuleName]!!
@@ -116,9 +122,24 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
                     module.name == tuple.destModuleName
                 }!!.id == specificModuleId
             }!!
-            listOf(specificDeviceId)
+            Pair(listOf(specificDeviceId), AddressingModel.Quantifier.SINGLE)
         } else {
-            devicesWithModule
+            when (tuple.direction) {
+                Tuple.UP -> Pair(devicesWithModule, AddressingModel.Quantifier.ANY)
+                Tuple.DOWN -> {
+                    when (device.addressingType) {
+                        AddressingDevice.AddressingType.HIERARCHICAL -> {
+                            Pair(device.addressingModel.filterInChildren(device, devicesWithModule), AddressingModel.Quantifier.ALL)
+                        }
+                        AddressingDevice.AddressingType.PEER_TO_PEER -> {
+                            Pair(devicesWithModule, AddressingModel.Quantifier.ALL)
+                        }
+                    }
+                }
+                else -> throw Exception("Unknown tuple ${tuple.cloudletId} direction")
+            }
         }
     }
+
+
 }

@@ -5,11 +5,10 @@ import api.addressing.fixed.entities.AddressingDevice
 import api.common.Events
 import api.common.behaviors.BaseBehavior
 import api.common.utils.BaseEventWrapper
-import api.common.utils.TupleNextHopsTargetsContainer
+import api.common.utils.TupleTargetNextHopMapQuantifierContainer
 import api.common.utils.TupleRecipientsPair
 import api.notification.consumer.entities.NotificationConsumerDevice
 import org.cloudbus.cloudsim.core.SimEvent
-import org.cloudbus.cloudsim.core.predicates.PredicateType
 
 interface DynamicAddressingNotificationConsumerDeviceBehavior<
         T1 : BaseBehavior<T1, out AddressingDevice>,
@@ -32,8 +31,8 @@ interface DynamicAddressingNotificationConsumerDeviceBehavior<
 
     @Suppress("UNCHECKED_CAST")
     private fun onCreateChildrenMapping(ev: SimEvent): Boolean {
-        val (_, container) = ev.data as BaseEventWrapper<TupleNextHopsTargetsContainer>
-        val (tuple, targetNextHopMap) = container
+        val (_, container) = ev.data as BaseEventWrapper<TupleTargetNextHopMapQuantifierContainer>
+        val (tuple, targetNextHopMap, quantifier) = container
         val newTargetNextHopMap = mutableMapOf<Int, Int>()
         newTargetNextHopMap.putAll(targetNextHopMap)
         val missingTargetIds = mutableListOf<Int>()
@@ -50,7 +49,8 @@ interface DynamicAddressingNotificationConsumerDeviceBehavior<
                     TupleRecipientsPair(tuple, missingTargetIds))
         }
 
-        (ev.data as BaseEventWrapper<TupleNextHopsTargetsContainer>).other = TupleNextHopsTargetsContainer(tuple, newTargetNextHopMap)
+        (ev.data as BaseEventWrapper<TupleTargetNextHopMapQuantifierContainer>).other =
+                TupleTargetNextHopMapQuantifierContainer(tuple, newTargetNextHopMap, quantifier)
         return superAddressingDeviceBehavior.processEvent(ev)
     }
 }
