@@ -6,5 +6,4 @@ import api.network.fixed.behaviors.NetworkDeviceBehavior
 class DynamicGatewayConnectionDeviceBehaviorImpl(
     override val device: DynamicGatewayConnectionDevice,
     override val superNetworkDeviceBehavior: NetworkDeviceBehavior
-) : DynamicGatewayConnectionDeviceBehavior<NetworkDeviceBehavior> {
-}
+) : DynamicGatewayConnectionDeviceBehavior<NetworkDeviceBehavior>

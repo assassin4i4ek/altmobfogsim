@@ -3,7 +3,7 @@ package api.addressing.models
 import api.addressing.fixed.entities.AddressingDevice
 import org.cloudbus.cloudsim.core.CloudSim
 
-class BreadthFirstSearchAddressingModel(): AddressingModel {
+class BreadthFirstSearchAddressingModel : AddressingModel {
     override fun idsOfNextHopTo(src: AddressingDevice, targetDeviceIds: List<Int>,
                                 quantifier: AddressingModel.Quantifier, fileSize: Long): Map<Int, Int> {
         val devicePathsAndTimings = mutableMapOf<Int, Pair<Array<Int>, Double>>()

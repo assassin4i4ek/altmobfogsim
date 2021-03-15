@@ -17,5 +17,4 @@ class AddressingAccessPointConnectedDeviceBehaviorImpl(
                 DynamicGatewayConnectionDeviceBehavior<
                         AddressingDeviceBehavior<
                                 NetworkDeviceBehavior>>>,
-        MobileDeviceBehavior> {
-}
+        MobileDeviceBehavior>
