@@ -11,7 +11,7 @@ import api.notification.producer.behaviors.NotificationProducerDeviceBehavior
 class AddressingAccessPointConnectedDeviceBehaviorImpl(
         override val device: AccessPointConnectedDevice,
         override val superDynamicGatewayConnectionDeviceBehavior: NotificationProducerDeviceBehavior<DynamicGatewayConnectionDeviceBehavior<AddressingDeviceBehavior<NetworkDeviceBehavior>>>,
-        override val superMobilityDeviceBehavior: MobileDeviceBehavior)
+        override val superMobileDeviceBehavior: MobileDeviceBehavior)
     : AccessPointConnectedDeviceBehavior<
         NotificationProducerDeviceBehavior<
                 DynamicGatewayConnectionDeviceBehavior<

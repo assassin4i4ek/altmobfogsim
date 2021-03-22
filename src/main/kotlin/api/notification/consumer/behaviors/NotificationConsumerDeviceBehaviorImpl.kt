@@ -5,5 +5,5 @@ import api.notification.consumer.entities.NotificationConsumerDevice
 
 class NotificationConsumerDeviceBehaviorImpl(
         override val device: NotificationConsumerDevice,
-        override val superNetworkDeviceBehavior: NetworkDeviceBehavior
-        ) : NotificationConsumerDeviceBehavior<NetworkDeviceBehavior>
+//        override val superNetworkDeviceBehavior: NetworkDeviceBehavior
+        ) : NotificationConsumerDeviceBehavior//<NetworkDeviceBehavior>

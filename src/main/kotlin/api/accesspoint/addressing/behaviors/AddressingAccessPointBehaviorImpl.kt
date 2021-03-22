@@ -13,11 +13,11 @@ class AddressingAccessPointBehaviorImpl(
         : DynamicAddressingNotificationConsumerDeviceBehavior<
                 AddressingDeviceBehavior<
                         NetworkDeviceBehavior>,
-                NotificationConsumerDeviceBehavior<
-                        NetworkDeviceBehavior>>,
+                NotificationConsumerDeviceBehavior/*<
+                        NetworkDeviceBehavior>*/>,
         ) : AccessPointBehavior<
         DynamicAddressingNotificationConsumerDeviceBehavior<
                 AddressingDeviceBehavior<
                         NetworkDeviceBehavior>,
-                NotificationConsumerDeviceBehavior<
-                        NetworkDeviceBehavior>>>
+                NotificationConsumerDeviceBehavior/*<
+                        NetworkDeviceBehavior>*/>>

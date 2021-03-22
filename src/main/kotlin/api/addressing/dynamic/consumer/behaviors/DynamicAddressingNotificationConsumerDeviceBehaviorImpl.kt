@@ -8,8 +8,8 @@ import api.notification.consumer.behaviors.NotificationConsumerDeviceBehavior
 class DynamicAddressingNotificationConsumerDeviceBehaviorImpl(
         override val device: DynamicAddressingNotificationConsumerDevice,
         override val superAddressingDeviceBehavior:  AddressingDeviceBehavior<NetworkDeviceBehavior>,
-        override val superNotificationConsumerDeviceBehavior: NotificationConsumerDeviceBehavior<NetworkDeviceBehavior>
+        override val superNotificationConsumerDeviceBehavior: NotificationConsumerDeviceBehavior//<NetworkDeviceBehavior>
 ) : DynamicAddressingNotificationConsumerDeviceBehavior<
         AddressingDeviceBehavior<NetworkDeviceBehavior>,
-        NotificationConsumerDeviceBehavior<NetworkDeviceBehavior>
+        NotificationConsumerDeviceBehavior//<NetworkDeviceBehavior>
         >

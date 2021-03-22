@@ -8,5 +8,5 @@ import api.network.fixed.behaviors.NetworkDeviceBehavior
 class AccessPointConnectedDeviceBehaviorImpl(
     override val device: AccessPointConnectedDevice,
     override val superDynamicGatewayConnectionDeviceBehavior: DynamicGatewayConnectionDeviceBehavior<NetworkDeviceBehavior>,
-    override val superMobilityDeviceBehavior: MobileDeviceBehavior
+    override val superMobileDeviceBehavior: MobileDeviceBehavior
 ) : AccessPointConnectedDeviceBehavior<DynamicGatewayConnectionDeviceBehavior<NetworkDeviceBehavior>, MobileDeviceBehavior>

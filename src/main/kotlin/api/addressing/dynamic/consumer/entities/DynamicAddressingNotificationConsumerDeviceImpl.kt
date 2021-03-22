@@ -36,7 +36,7 @@ class DynamicAddressingNotificationConsumerDeviceImpl(
                 DynamicAddressingNotificationConsumerDevice,
                 DynamicAddressingNotificationConsumerDeviceBehavior<
                         AddressingDeviceBehavior<NetworkDeviceBehavior>,
-                        NotificationConsumerDeviceBehavior<NetworkDeviceBehavior>
+                        NotificationConsumerDeviceBehavior//<NetworkDeviceBehavior>
                         >> {
     /* SimEntityInterface */
     override val mId: Int get() = id
@@ -80,16 +80,14 @@ class DynamicAddressingNotificationConsumerDeviceImpl(
 
     override val behavior: DynamicAddressingNotificationConsumerDeviceBehavior<
             AddressingDeviceBehavior<NetworkDeviceBehavior>,
-            NotificationConsumerDeviceBehavior<NetworkDeviceBehavior>>
-    = NetworkDeviceBehaviorImpl(this).let { networkDeviceBehavior ->
-        DynamicAddressingNotificationConsumerDeviceBehaviorImpl(this,
-                AddressingDeviceBehaviorImpl(this,
-                        networkDeviceBehavior
-                ),
-                NotificationConsumerDeviceBehaviorImpl(this,
-                        networkDeviceBehavior
-                )
-        )
-    }
+            NotificationConsumerDeviceBehavior/*<NetworkDeviceBehavior>*/>
+    = DynamicAddressingNotificationConsumerDeviceBehaviorImpl(this,
+            AddressingDeviceBehaviorImpl(this,
+                    NetworkDeviceBehaviorImpl(this)
+            ),
+            NotificationConsumerDeviceBehaviorImpl(this,
+                    //networkDeviceBehavior
+            )
+    )
 
 }

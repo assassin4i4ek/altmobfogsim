@@ -22,14 +22,14 @@ interface DynamicGatewayConnectionDeviceBehavior<T: BaseBehavior<T, out NetworkD
 
     override fun processEvent(ev: SimEvent): Boolean {
         return when (ev.tag) {
-            Events.DYNAMIC_GATEWAY_CONNECTION_DEVICE_NEW_PARENT_ID.tag -> onConnectionUpdate()
+            Events.DYNAMIC_GATEWAY_CONNECTION_DEVICE_NEW_PARENT_ID.tag -> onNewParentId()
             FogEvents.UPDATE_NORTH_TUPLE_QUEUE -> onUpdateNorthTupleQueue()
             Events.NETWORK_DEVICE_ADDRESS_TUPLE.tag -> onAddressTuple(ev)
             else -> superNetworkDeviceBehavior.processEvent(ev)
         }
     }
 
-    private fun onConnectionUpdate(): Boolean {
+    private fun onNewParentId(): Boolean {
         if (device.mDynamicParentId <= 0) {
             // if device was disconnected
             if (!device.mNorthLinkBusy) {

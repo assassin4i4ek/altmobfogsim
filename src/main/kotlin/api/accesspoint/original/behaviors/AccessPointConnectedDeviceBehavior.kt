@@ -15,11 +15,11 @@ interface AccessPointConnectedDeviceBehavior<
         T2: BaseBehavior<T2, out MobileDevice>>
     : BaseBehavior<AccessPointConnectedDeviceBehavior<T1, T2>, AccessPointConnectedDevice> {
     val superDynamicGatewayConnectionDeviceBehavior: T1
-    val superMobilityDeviceBehavior: T2
+    val superMobileDeviceBehavior: T2
 
     override fun onStart() {
         superDynamicGatewayConnectionDeviceBehavior.onStart()
-        superMobilityDeviceBehavior.onStart()
+        superMobileDeviceBehavior.onStart()
         device.mSendEvent(device.mId, 0.0, Events.ACCESS_POINT_CONNECTED_DEVICE_UPDATE_CONNECTION.tag, null)
         device.mWaitForEvent(PredicateType(Events.ACCESS_POINT_CONNECTED_DEVICE_UPDATE_CONNECTION.tag))
     }
@@ -28,7 +28,7 @@ interface AccessPointConnectedDeviceBehavior<
         return when (ev.tag) {
             Events.MOBILE_DEVICE_NEXT_MOVE.tag -> onNextMove(ev)
             Events.ACCESS_POINT_CONNECTED_DEVICE_UPDATE_CONNECTION.tag -> onUpdateConnection()
-            else -> superMobilityDeviceBehavior.processEvent(ev) &&
+            else -> superMobileDeviceBehavior.processEvent(ev) &&
                     superDynamicGatewayConnectionDeviceBehavior.processEvent(ev)
         }
     }
@@ -36,7 +36,7 @@ interface AccessPointConnectedDeviceBehavior<
     private fun onNextMove(ev: SimEvent): Boolean {
         device.mSendEvent(device.mId, 0.0, Events.ACCESS_POINT_CONNECTED_DEVICE_UPDATE_CONNECTION.tag, null)
         device.mWaitForEvent(PredicateType(Events.ACCESS_POINT_CONNECTED_DEVICE_UPDATE_CONNECTION.tag))
-        return superMobilityDeviceBehavior.processEvent(ev)
+        return superMobileDeviceBehavior.processEvent(ev)
     }
 
     private fun onUpdateConnection(): Boolean {

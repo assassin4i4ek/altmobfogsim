@@ -43,6 +43,8 @@ abstract class Experiment(
             table["Edge Energy"]!!.add(fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
             table["Execution Time"]!!.add(t.toDouble() - TimeKeeper.getInstance().simulationStartTime)
             table["Network Usage"]!!.add((NetworkUsageMonitor.getNetworkUsage() - lastNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            println("Current Num: " + TimeKeeper.getInstance().tupleTypeToExecutedTupleCount)
+            println("Current Tuples Size: " + TimeKeeper.getInstance().loopIdToTupleIds.mapValues { it.value.size })
         }
 
         for (eegTransRate in eegTransRates) {

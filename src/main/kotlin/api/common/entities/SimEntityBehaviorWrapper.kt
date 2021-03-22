@@ -8,8 +8,6 @@ interface SimEntityBehaviorWrapper<Self: SimEntity, T: BaseBehavior<T, Self>> {
         behavior.onStart()
     }
 
-    fun processOtherEvent(ev: SimEvent) {}
-
     val behavior: T
 
     fun onProcessEvent(ev: SimEvent): Boolean {

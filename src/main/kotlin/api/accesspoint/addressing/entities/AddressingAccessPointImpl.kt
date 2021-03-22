@@ -42,8 +42,8 @@ class AddressingAccessPointImpl(
                                 DynamicAddressingNotificationConsumerDeviceBehavior<
                                         AddressingDeviceBehavior<
                                                 NetworkDeviceBehavior>,
-                                        NotificationConsumerDeviceBehavior<
-                                                NetworkDeviceBehavior>>>> {
+                                        NotificationConsumerDeviceBehavior/*<
+                                                NetworkDeviceBehavior>*/>>> {
     /* SimEntityInterface */
     override val mId: Int get() = id
     override val mName: String get() = name
@@ -87,14 +87,12 @@ class AddressingAccessPointImpl(
             DynamicAddressingNotificationConsumerDeviceBehavior<
                     AddressingDeviceBehavior<
                             NetworkDeviceBehavior>,
-                    NotificationConsumerDeviceBehavior<
-                            NetworkDeviceBehavior>>>
-        = NetworkDeviceBehaviorImpl(this).let { networkDeviceBehavior ->
-        AddressingAccessPointBehaviorImpl(this,
+                    NotificationConsumerDeviceBehavior/*<
+                            NetworkDeviceBehavior>*/>>
+        = AddressingAccessPointBehaviorImpl(this,
                 DynamicAddressingNotificationConsumerDeviceBehaviorImpl(this,
                         AddressingDeviceBehaviorImpl(this,
-                                networkDeviceBehavior),
+                                NetworkDeviceBehaviorImpl(this)),
                         NotificationConsumerDeviceBehaviorImpl(this,
-                                networkDeviceBehavior)))
-    }
+                                /*networkDeviceBehavior*/)))
 }
