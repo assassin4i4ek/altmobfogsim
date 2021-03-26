@@ -50,6 +50,6 @@ interface NetworkDeviceBehavior
                 return false
             }
         }
-        throw Exception("Error sending tuple to $recipientId")
+        throw Exception("Error sending tuple ${tuple.cloudletId} to $recipientId")
     }
 }

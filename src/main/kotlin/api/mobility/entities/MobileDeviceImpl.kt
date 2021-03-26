@@ -34,7 +34,7 @@ MobileDeviceImpl(
 
     override fun processOtherEvent(ev: SimEvent) {
         if (super.onProcessEvent(ev)) {
-            super<FogDevice>.processOtherEvent(ev)
+            super.processOtherEvent(ev)
         }
     }
 

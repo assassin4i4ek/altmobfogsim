@@ -33,6 +33,7 @@ import org.fog.utils.distribution.DeterministicDistribution
 import org.junit.jupiter.api.Test
 import utils.BaseExperimentTest
 import kotlin.math.ceil
+import kotlin.math.round
 import kotlin.math.sqrt
 import kotlin.test.assertEquals
 
@@ -49,7 +50,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.332456501428578E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(3491978.8541999697, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(834332.9999999987, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(5305.2, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(5305.2, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -65,7 +66,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.3641765771428782E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(3493054.154875022, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(834332.9999999987, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(38619.7, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(38619.7, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -81,7 +82,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.3327346114285903E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(6983645.945899969, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(1668665.9999999974, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(9620.4, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(9620.4, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -97,7 +98,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.4170686673214793E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(6986042.6977412775, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(1668665.9999999974, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(77209.65, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(77209.65, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -113,7 +114,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.3332908314286109E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(1.3970330122979943E7, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(3337331.999999995, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(18250.8, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(18250.8, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -129,7 +130,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.439589487321497E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(1.3967696238218775E7, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(3337331.999999995, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(152888.05, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(152888.05, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -145,7 +146,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.3344032714286517E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(2.7929430871199876E7, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(6674663.999999991, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(35511.6, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(35511.6, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -161,7 +162,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.442194160228698E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(2.7931936162474025E7, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(6674663.999999991, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(304698.85, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(304698.85, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -177,7 +178,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.3324315614285782E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(3489821.5544100422, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(1073242.8091900032, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(6671.9, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(6671.9, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -193,7 +194,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.3922717968214666E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(3494409.7300375323, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(834332.9999999987, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(76419.25, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(76419.25, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -209,7 +210,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.3332630535714664E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(6978393.508730082, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(2146257.3189450065, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(21116.0, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(21116.0, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -225,7 +226,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.4404360277715227E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(6989328.094231322, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(1668665.9999999974, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(152532.6, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(152532.6, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -241,7 +242,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.3365180757144557E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(1.3956824205000173E7, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(4292730.984475022, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(73023.0, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(73023.0,round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -257,7 +258,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.4411351135786392E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(1.3986969187915223E7, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(3337331.999999995, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(305186.4, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(305186.4, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -273,7 +274,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.348919511429255E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(2.7918653600420382E7, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(8585408.18112503, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(264211.25, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(264211.25, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 
@@ -289,7 +290,7 @@ class ExperimentTest3: BaseExperimentTest() {
             assertEquals(1.4452870021501692E7, fogDevices.find { it.name == "cloud" }!!.energyConsumption)
             assertEquals(2.7975115389339123E7, fogDevices.filter { it.name.startsWith("m-") }.map { it.energyConsumption }.sum())
             assertEquals(6674663.999999991, fogDevices.filter { it.name.startsWith("d-") }.map { it.energyConsumption }.sum())
-            assertEquals(609462.7, (NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME))
+            assertEquals(609462.7, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / (Config.MAX_SIMULATION_TIME) * 100) / 100)
         }
     }
 

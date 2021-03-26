@@ -1,30 +1,30 @@
-package api.network.dynamic.entites
+package api.migration.entites
 
-import api.common.Events
 import api.common.entities.SimEntityBehaviorWrapper
-import api.common.utils.TupleRecipientPair
+import api.migration.behaviors.DynamicGatewayConnectionMobileLaunchingDeviceBehavior
+import api.migration.behaviors.DynamicGatewayConnectionMobileLaunchingDeviceBehaviorImpl
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehavior
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehaviorImpl
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
-import api.network.fixed.entities.NetworkDevice
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.SimEvent
 import org.cloudbus.cloudsim.core.predicates.Predicate
+import org.fog.application.AppModule
 import org.fog.entities.FogDevice
 import org.fog.entities.FogDeviceCharacteristics
 import org.fog.entities.Tuple
 import java.util.*
 
-class DynamicGatewayConnectionDeviceImpl(
-    name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
-    storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
-    uplinkLatency: Double, ratePerMips: Double
-): FogDevice(
-    name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
-    uplinkLatency, ratePerMips), DynamicGatewayConnectionDevice,
-    SimEntityBehaviorWrapper<DynamicGatewayConnectionDevice, DynamicGatewayConnectionDeviceBehavior<NetworkDeviceBehavior>> {
+class DynamicGatewayConnectionMobileLaunchingDeviceImpl(
+        name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
+        storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
+        uplinkLatency: Double, ratePerMips: Double)
+    : FogDevice(name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
+        uplinkLatency, ratePerMips), DynamicGatewayConnectionMobileLaunchingDevice,
+        SimEntityBehaviorWrapper<DynamicGatewayConnectionMobileLaunchingDevice, DynamicGatewayConnectionMobileLaunchingDeviceBehavior<DynamicGatewayConnectionDeviceBehavior<NetworkDeviceBehavior>>>
+{
     /* SimEntityInterface */
     override val mId: Int get() = id
     override val mName: String get() = name
@@ -49,13 +49,13 @@ class DynamicGatewayConnectionDeviceImpl(
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
     override fun sSendUpFreeLink(tuple: Tuple) = super<FogDevice>.sendUpFreeLink(tuple)
-    override fun sendUpFreeLink(tuple: Tuple) = super<DynamicGatewayConnectionDevice>.sendUpFreeLink(tuple)
+    override fun sendUpFreeLink(tuple: Tuple) = super<DynamicGatewayConnectionMobileLaunchingDevice>.sendUpFreeLink(tuple)
     override fun sSendDownFreeLink(tuple: Tuple, childId: Int) = super<FogDevice>.sendDownFreeLink(tuple, childId)
-    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<DynamicGatewayConnectionDevice>.sendDownFreeLink(tuple, childId)
+    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<DynamicGatewayConnectionMobileLaunchingDevice>.sendDownFreeLink(tuple, childId)
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
-    override fun sendUp(tuple: Tuple) = super<DynamicGatewayConnectionDevice>.sendUp(tuple)
+    override fun sendUp(tuple: Tuple) = super<DynamicGatewayConnectionMobileLaunchingDevice>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) = super<DynamicGatewayConnectionDevice>.sendDown(tuple, childId)
+    override fun sendDown(tuple: Tuple, childId: Int) = super<DynamicGatewayConnectionMobileLaunchingDevice>.sendDown(tuple, childId)
 
     /* DynamicGatewayConnectionDevice */
     override val mNorthLinkQueue: Queue<Tuple> get() = northTupleQueue
@@ -73,8 +73,12 @@ class DynamicGatewayConnectionDeviceImpl(
             super.onSetParentId()
         }
 
-    override val behavior: DynamicGatewayConnectionDeviceBehavior<NetworkDeviceBehavior> =
-        DynamicGatewayConnectionDeviceBehaviorImpl(this,
-                NetworkDeviceBehaviorImpl(this)
-        )
+    /* ModuleLaunchingDevice */
+    override val mAppModuleList: List<AppModule> get() = getVmList()
+    override val mAppToModulesMap: Map<String, List<String>> get() = appToModulesMap
+
+    override val behavior: DynamicGatewayConnectionMobileLaunchingDeviceBehavior<DynamicGatewayConnectionDeviceBehavior<NetworkDeviceBehavior>> =
+            DynamicGatewayConnectionMobileLaunchingDeviceBehaviorImpl(this,
+                    DynamicGatewayConnectionDeviceBehaviorImpl(this,
+                            NetworkDeviceBehaviorImpl(this)))
 }
