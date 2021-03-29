@@ -1,10 +1,5 @@
-package api.accesspoint.addressing.entities
+package api.addressing.dynamic.producer.entities.addons
 
-import api.accesspoint.addressing.behaviors.AddressingAccessPointConnectedDeviceBehaviorImpl
-import api.accesspoint.original.behaviors.AccessPointConnectedDeviceBehavior
-import api.accesspoint.original.entities.AccessPoint
-import api.accesspoint.original.entities.AccessPointConnectedDevice
-import api.accesspoint.original.entities.AccessPointsMap
 import api.addressing.dynamic.producer.behaviors.addons.DynamicAddressingNotificationProducerDeviceBehaviorImpl
 import api.addressing.dynamic.producer.behaviors.addons.DynamicGatewayConnectionAddressingDeviceBehaviorImpl
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
@@ -14,14 +9,11 @@ import api.addressing.models.AddressingModel
 import api.addressing.models.BreadthFirstSearchAddressingModel
 import api.common.entities.SimEntityBehaviorWrapper
 import api.common.utils.Notification
-import api.mobility.behaviors.MobileDeviceBehavior
-import api.mobility.behaviors.MobileDeviceBehaviorImpl
-import api.mobility.models.MobilityModel
-import api.mobility.positioning.Position
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
 import api.notification.producer.behaviors.NotificationProducerDeviceBehavior
+import api.notification.producer.entities.NotificationProducerDevice
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.CloudSim
@@ -33,24 +25,19 @@ import org.fog.entities.Tuple
 import org.fog.placement.Controller
 import java.util.*
 
-class AddressingAccessPointConnectedDeviceImpl(
-        name: String,
-        characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
+class DynamicAddressingNotificationProducerDeviceImpl(
+        name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
         storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
-        uplinkLatency: Double, ratePerMips: Double,
-        override var position: Position,
-        override val mobilityModel: MobilityModel,
-        override val accessPointsMap: AccessPointsMap
+        uplinkLatency: Double, ratePerMips: Double, override val addressingType: AddressingDevice.AddressingType
 ): FogDevice(
         name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
-        uplinkLatency, ratePerMips), AddressingAccessPointConnectedDevice,
-        SimEntityBehaviorWrapper<AccessPointConnectedDevice,
-                AccessPointConnectedDeviceBehavior<
-                        NotificationProducerDeviceBehavior<
-                                DynamicGatewayConnectionDeviceBehavior<
-                                        AddressingDeviceBehavior<
-                                                NetworkDeviceBehavior>>>,
-                        MobileDeviceBehavior>> {
+        uplinkLatency, ratePerMips),
+        DynamicAddressingNotificationProducerDevice,
+        SimEntityBehaviorWrapper<NotificationProducerDevice,
+                NotificationProducerDeviceBehavior<
+                        DynamicGatewayConnectionDeviceBehavior<
+                                AddressingDeviceBehavior<
+                                        NetworkDeviceBehavior>>>> {
     /* SimEntityInterface */
     override val mId: Int get() = id
     override val mName: String get() = name
@@ -75,16 +62,21 @@ class AddressingAccessPointConnectedDeviceImpl(
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
     override fun sSendUpFreeLink(tuple: Tuple) = super<FogDevice>.sendUpFreeLink(tuple)
-    override fun sendUpFreeLink(tuple: Tuple) = super<AddressingAccessPointConnectedDevice>.sendUpFreeLink(tuple)
+    override fun sendUpFreeLink(tuple: Tuple) = super<DynamicAddressingNotificationProducerDevice>.sendUpFreeLink(tuple)
     override fun sSendDownFreeLink(tuple: Tuple, childId: Int) = super<FogDevice>.sendDownFreeLink(tuple, childId)
-    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<AddressingAccessPointConnectedDevice>.sendDownFreeLink(tuple, childId)
+    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<DynamicAddressingNotificationProducerDevice>.sendDownFreeLink(tuple, childId)
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
-    override fun sendUp(tuple: Tuple) = super<AddressingAccessPointConnectedDevice>.sendUp(tuple)
+    override fun sendUp(tuple: Tuple) = super<DynamicAddressingNotificationProducerDevice>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) = super<AddressingAccessPointConnectedDevice>.sendDown(tuple, childId)
+    override fun sendDown(tuple: Tuple, childId: Int) = super<DynamicAddressingNotificationProducerDevice>.sendDown(tuple, childId)
+
+    /* AddressingDevice */
+    override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
+    override val addressingModel: AddressingModel = BreadthFirstSearchAddressingModel()
+    override val addressingChildrenMapping: MutableMap<Tuple, MutableMap<Int, Boolean>> = mutableMapOf()
 
     /* DynamicGatewayConnectionDevice */
-   override val mNorthLinkQueue: Queue<Tuple> get() = northTupleQueue
+    override val mNorthLinkQueue: Queue<Tuple> get() = northTupleQueue
 
     override var mNorthLinkBusy: Boolean
         get() = isNorthLinkBusy
@@ -99,28 +91,15 @@ class AddressingAccessPointConnectedDeviceImpl(
             super.onSetParentId()
         }
 
-    /* AccessPointConnectedDevice */
-    override var accessPoint: AccessPoint? = null
-
-    /* AddressingDevice */
-    override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
-    override val addressingModel: AddressingModel = BreadthFirstSearchAddressingModel()
-    override val addressingType: AddressingDevice.AddressingType = AddressingDevice.AddressingType.HIERARCHICAL
-    override val addressingChildrenMapping: MutableMap<Tuple, MutableMap<Int, Boolean>> = mutableMapOf()
-
     /* NotificationProducer */
     override val producerNotifications: MutableList<Notification<*>> = mutableListOf()
 
-    override val behavior:
-            AccessPointConnectedDeviceBehavior<
-                    NotificationProducerDeviceBehavior<
-                            DynamicGatewayConnectionDeviceBehavior<
-                                    AddressingDeviceBehavior<
-                                            NetworkDeviceBehavior>>>,
-                    MobileDeviceBehavior>
-    = AddressingAccessPointConnectedDeviceBehaviorImpl(this,
+    override val behavior =
             DynamicAddressingNotificationProducerDeviceBehaviorImpl(this,
                     DynamicGatewayConnectionAddressingDeviceBehaviorImpl(this,
-                            AddressingDeviceBehaviorImpl(this, NetworkDeviceBehaviorImpl(this)))),
-            MobileDeviceBehaviorImpl(this))
+                             AddressingDeviceBehaviorImpl(this,
+                                     NetworkDeviceBehaviorImpl(this)
+                             )
+                    )
+            )
 }

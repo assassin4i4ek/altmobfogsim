@@ -1,0 +1,13 @@
+package api.migration.addressing.behaviors.addons
+
+import api.addressing.fixed.behaviors.AddressingDeviceBehavior
+import api.migration.addressing.entities.addons.DynamicGatewayConnectionModuleLaunchingAddressingDevice
+import api.migration.original.behaviors.addons.DynamicGatewayConnectionModuleLaunchingDeviceBehavior
+import api.migration.original.entites.addons.DynamicGatewayConnectionModuleLaunchingDevice
+import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehavior
+import api.network.fixed.behaviors.NetworkDeviceBehavior
+
+class DynamicGatewayConnectionModuleLaunchingAddressingDeviceBehaviorImpl(
+        override val device: DynamicGatewayConnectionModuleLaunchingAddressingDevice,
+        override val superDynamicGatewayConnectionDeviceBehavior: DynamicGatewayConnectionDeviceBehavior<AddressingDeviceBehavior<NetworkDeviceBehavior>>)
+    : DynamicGatewayConnectionModuleLaunchingAddressingDeviceBehavior<DynamicGatewayConnectionDeviceBehavior<AddressingDeviceBehavior<NetworkDeviceBehavior>>>

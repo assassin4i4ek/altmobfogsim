@@ -49,7 +49,8 @@ abstract class BaseFogDeviceTest {
 
     open fun launchTest(onStopSimulation: () -> Unit) {
         controller = TestController("Controller", fogDeviceList, sensorList, actuatorList, onStopSimulation)
-        controller.submitApplication(app, 0, ModulePlacementMapping(fogDeviceList, app, mm))
+        val modulePlacement = ModulePlacementMapping(fogDeviceList, app, mm)
+        controller.submitApplication(app, 0, modulePlacement)
         CloudSim.startSimulation()
     }
 

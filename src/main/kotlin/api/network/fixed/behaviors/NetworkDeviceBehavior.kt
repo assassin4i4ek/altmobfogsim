@@ -5,6 +5,8 @@ import api.common.behaviors.BaseBehavior
 import api.common.utils.TupleRecipientPair
 import api.network.fixed.entities.NetworkDevice
 import org.cloudbus.cloudsim.core.SimEvent
+import org.fog.application.AppModule
+import org.fog.entities.FogDevice
 import org.fog.entities.Tuple
 import org.fog.utils.Logger
 
