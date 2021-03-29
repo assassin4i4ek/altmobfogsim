@@ -1,7 +1,7 @@
 package api.accesspoint.original
 
 import api.accesspoint.original.entities.AccessPointImpl
-import api.accesspoint.original.entities.AccessPointsMap
+import api.accesspoint.original.utils.AccessPointsMap
 import api.mobility.positioning.Coordinates
 import api.mobility.positioning.RadialZone
 import api.network.fixed.entities.NetworkDeviceImpl

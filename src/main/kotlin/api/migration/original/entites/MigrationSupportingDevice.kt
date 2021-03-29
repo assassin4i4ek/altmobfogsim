@@ -1,6 +1,6 @@
 package api.migration.original.entites
 
-import api.migration.original.models.MigrationModel
+import api.migration.models.MigrationModel
 import org.fog.application.Application
 import org.fog.placement.Controller
 

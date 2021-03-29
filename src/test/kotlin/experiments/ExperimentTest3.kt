@@ -1,8 +1,8 @@
 package experiments
 
-import api.accesspoint.addressing.entities.AddressingAccessPointConnectedDeviceImpl
-import api.accesspoint.addressing.entities.AddressingAccessPointImpl
-import api.accesspoint.original.entities.AccessPointsMap
+import addons.accesspoint.addressing.entities.AddressingAccessPointConnectedDeviceImpl
+import addons.accesspoint.addressing.entities.AddressingAccessPointImpl
+import api.accesspoint.original.utils.AccessPointsMap
 import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDeviceImpl
 import api.addressing.fixed.entities.AddressingDevice
 import api.mobility.models.MobilityModel
@@ -34,7 +34,6 @@ import org.junit.jupiter.api.Test
 import utils.BaseExperimentTest
 import kotlin.math.ceil
 import kotlin.math.round
-import kotlin.math.sqrt
 import kotlin.test.assertEquals
 
 class ExperimentTest3: BaseExperimentTest() {

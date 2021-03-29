@@ -3,7 +3,7 @@ package api.migration.original.entites
 import api.common.entities.SimEntityBehaviorWrapper
 import api.migration.original.behaviors.MigrationSupportingDeviceBehavior
 import api.migration.original.behaviors.MigrationSupportingDeviceBehaviorImpl
-import api.migration.original.models.MigrationModel
+import api.migration.models.MigrationModel
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.CloudSim

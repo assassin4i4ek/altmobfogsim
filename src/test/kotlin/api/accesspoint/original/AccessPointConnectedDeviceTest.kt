@@ -2,13 +2,12 @@ package api.accesspoint.original
 
 import api.accesspoint.original.entities.AccessPointConnectedDeviceImpl
 import api.accesspoint.original.entities.AccessPointImpl
-import api.accesspoint.original.entities.AccessPointsMap
+import api.accesspoint.original.utils.AccessPointsMap
 import api.mobility.models.MobilityModel
 import api.mobility.models.SteadyMobilityModel
 import api.mobility.positioning.Coordinates
 import api.mobility.positioning.Position
 import api.mobility.positioning.RadialZone
-import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.SimEntity
 import org.cloudbus.cloudsim.core.SimEvent
 import org.fog.utils.FogLinearPowerModel
@@ -24,8 +23,8 @@ import kotlin.test.assertEquals
 class AccessPointConnectedDeviceTest: BaseFogDeviceTest() {
     @Suppress("SameParameterValue")
     private fun createAccessPoint(
-        name: String, coordinates: Coordinates, radius: Double, accessPointsMap: AccessPointsMap,
-        uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double,
+            name: String, coordinates: Coordinates, radius: Double, accessPointsMap: AccessPointsMap,
+            uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double,
     ): AccessPointImpl {
         return createCharacteristicsAndAllocationPolicy(1000.0).let {
             AccessPointImpl(
@@ -37,9 +36,9 @@ class AccessPointConnectedDeviceTest: BaseFogDeviceTest() {
 
     @Suppress("SameParameterValue")
     private fun createAccessPointConnectedDevice(
-        name: String, position: Position, mobilityModel: MobilityModel, accessPointsMap: AccessPointsMap,
-        schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double,
-        ratePerMips: Double,
+            name: String, position: Position, mobilityModel: MobilityModel, accessPointsMap: AccessPointsMap,
+            schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double,
+            ratePerMips: Double,
     ): AccessPointConnectedDeviceImpl {
         return createCharacteristicsAndAllocationPolicy(1000.0).let {
             AccessPointConnectedDeviceImpl(

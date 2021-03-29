@@ -2,16 +2,14 @@ package api.accesspoint.original.entities
 
 import api.accesspoint.original.behaviors.AccessPointBehavior
 import api.accesspoint.original.behaviors.AccessPointBehaviorImpl
+import api.accesspoint.original.utils.AccessPointsMap
 import api.common.entities.SimEntityBehaviorWrapper
 import api.mobility.positioning.Coordinates
 import api.mobility.positioning.Zone
-import api.network.dynamic.entites.DynamicGatewayConnectionDevice
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
-import api.network.fixed.entities.NetworkDevice
 import org.cloudbus.cloudsim.core.SimEvent
 import org.cloudbus.cloudsim.core.predicates.Predicate
-import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.cloudbus.cloudsim.power.models.PowerModel
 import org.fog.entities.FogDevice
 import org.fog.entities.Tuple

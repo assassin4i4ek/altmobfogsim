@@ -2,6 +2,7 @@ package api.accesspoint.original.entities
 
 import api.accesspoint.original.behaviors.AccessPointConnectedDeviceBehavior
 import api.accesspoint.original.behaviors.AccessPointConnectedDeviceBehaviorImpl
+import api.accesspoint.original.utils.AccessPointsMap
 import api.common.entities.SimEntityBehaviorWrapper
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehavior
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehaviorImpl
@@ -9,14 +10,12 @@ import api.mobility.behaviors.MobileDeviceBehavior
 import api.mobility.behaviors.MobileDeviceBehaviorImpl
 import api.mobility.models.MobilityModel
 import api.mobility.positioning.Position
-import api.network.dynamic.entites.DynamicGatewayConnectionDevice
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.SimEvent
 import org.cloudbus.cloudsim.core.predicates.Predicate
-import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.fog.entities.FogDevice
 import org.fog.entities.FogDeviceCharacteristics
 import org.fog.entities.Tuple

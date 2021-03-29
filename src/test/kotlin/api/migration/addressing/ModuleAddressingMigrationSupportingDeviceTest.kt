@@ -4,9 +4,9 @@ import api.addressing.fixed.entities.AddressingDevice
 import api.addressing.fixed.entities.AddressingDeviceImpl
 import api.common.utils.ConnectionUtils
 import api.migration.addressing.entities.ModuleAddressingMigrationSupportingDeviceImpl
-import api.migration.addressing.entities.addons.DynamicGatewayConnectionModuleLaunchingAddressingDeviceImpl
-import api.migration.original.models.MigrationModel
-import api.migration.original.models.MigrationModelImpl
+import addons.migration.addressing.entities.DynamicGatewayConnectionModuleLaunchingAddressingDeviceImpl
+import api.migration.models.MigrationModel
+import api.migration.models.MigrationModelImpl
 import org.cloudbus.cloudsim.Log
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.SimEntity

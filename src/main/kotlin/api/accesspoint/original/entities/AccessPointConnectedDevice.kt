@@ -1,5 +1,6 @@
 package api.accesspoint.original.entities
 
+import api.accesspoint.original.utils.AccessPointsMap
 import api.network.dynamic.entites.DynamicGatewayConnectionDevice
 import api.mobility.entities.MobileDevice
 

@@ -2,7 +2,7 @@ package experiments
 
 import api.accesspoint.original.entities.AccessPointConnectedDeviceImpl
 import api.accesspoint.original.entities.AccessPointImpl
-import api.accesspoint.original.entities.AccessPointsMap
+import api.accesspoint.original.utils.AccessPointsMap
 import api.mobility.models.MobilityModel
 import api.mobility.positioning.Coordinates
 import api.mobility.positioning.Position

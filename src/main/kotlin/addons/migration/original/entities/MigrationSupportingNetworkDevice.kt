@@ -1,0 +1,6 @@
+package addons.migration.original.entities
+
+import api.migration.original.entites.MigrationSupportingDevice
+import api.network.fixed.entities.NetworkDevice
+
+interface MigrationSupportingNetworkDevice: MigrationSupportingDevice, NetworkDevice

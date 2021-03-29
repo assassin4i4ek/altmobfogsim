@@ -1,0 +1,6 @@
+package addons.migration.addressing.entities
+
+import api.addressing.fixed.entities.AddressingDevice
+import addons.migration.original.entities.DynamicGatewayConnectionModuleLaunchingDevice
+
+interface DynamicGatewayConnectionModuleLaunchingAddressingDevice: DynamicGatewayConnectionModuleLaunchingDevice, AddressingDevice

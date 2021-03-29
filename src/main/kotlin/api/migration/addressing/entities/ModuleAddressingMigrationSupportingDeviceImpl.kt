@@ -11,7 +11,7 @@ import api.migration.addressing.behaviors.ModuleAddressingMigrationSupportingDev
 import api.migration.original.behaviors.MigrationSupportingDeviceBehavior
 import api.migration.original.behaviors.MigrationSupportingDeviceBehaviorImpl
 import api.migration.original.entites.ModuleLaunchingDevice
-import api.migration.original.models.MigrationModel
+import api.migration.models.MigrationModel
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
 import org.cloudbus.cloudsim.Storage

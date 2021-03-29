@@ -2,15 +2,13 @@ package api.migration.original.behaviors
 
 import api.common.Events
 import api.common.behaviors.BaseBehavior
-import api.migration.original.OldNewModulePair
+import api.migration.original.utils.OldNewModulePair
 import api.migration.original.entites.MigrationSupportingDevice
-import api.migration.original.models.MigrationRequest
+import api.migration.models.MigrationRequest
 import org.cloudbus.cloudsim.core.CloudSimTags
 import org.cloudbus.cloudsim.core.SimEvent
 import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.fog.application.AppModule
-import org.fog.entities.FogDevice
-import org.fog.entities.Tuple
 import org.fog.utils.FogEvents
 import org.fog.utils.Logger
 

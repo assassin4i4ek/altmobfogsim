@@ -1,10 +1,10 @@
 package api.migration.original
 
 import api.common.utils.ConnectionUtils
-import api.migration.original.entites.addons.DynamicGatewayConnectionModuleLaunchingDeviceImpl
-import api.migration.original.entites.addons.MigrationSupportingNetworkDeviceImpl
-import api.migration.original.models.MigrationModel
-import api.migration.original.models.MigrationModelImpl
+import addons.migration.original.entities.DynamicGatewayConnectionModuleLaunchingDeviceImpl
+import addons.migration.original.entities.MigrationSupportingNetworkDeviceImpl
+import api.migration.models.MigrationModel
+import api.migration.models.MigrationModelImpl
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.SimEntity
 import org.cloudbus.cloudsim.core.SimEvent

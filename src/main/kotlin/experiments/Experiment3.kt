@@ -1,9 +1,8 @@
 package experiments
 
-import api.accesspoint.addressing.entities.AddressingAccessPointConnectedDeviceImpl
-import api.accesspoint.addressing.entities.AddressingAccessPointImpl
-import api.accesspoint.original.entities.AccessPointConnectedDeviceImpl
-import api.accesspoint.original.entities.AccessPointsMap
+import addons.accesspoint.addressing.entities.AddressingAccessPointConnectedDeviceImpl
+import addons.accesspoint.addressing.entities.AddressingAccessPointImpl
+import api.accesspoint.original.utils.AccessPointsMap
 import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDeviceImpl
 import api.addressing.fixed.entities.AddressingDevice
 import api.mobility.models.MobilityModel
