@@ -7,8 +7,9 @@ import api.addressing.fixed.entities.AddressingDevice
 import api.addressing.models.AddressingModel
 import api.addressing.models.BreadthFirstSearchAddressingModel
 import api.common.entities.SimEntityBehaviorWrapper
-import addons.migration.addressing.behaviors.DynamicGatewayConnectionModuleLaunchingAddressingDeviceBehavior
 import addons.migration.addressing.behaviors.DynamicGatewayConnectionModuleLaunchingAddressingDeviceBehaviorImpl
+import addons.migration.original.behaviors.DynamicGatewayConnectionModuleLaunchingDeviceBehavior
+import addons.migration.original.entities.DynamicGatewayConnectionModuleLaunchingDevice
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
@@ -31,7 +32,7 @@ class DynamicGatewayConnectionModuleLaunchingAddressingDeviceImpl(
     : FogDevice(name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
         uplinkLatency, ratePerMips),
         DynamicGatewayConnectionModuleLaunchingAddressingDevice,
-        SimEntityBehaviorWrapper<DynamicGatewayConnectionModuleLaunchingAddressingDevice, DynamicGatewayConnectionModuleLaunchingAddressingDeviceBehavior<DynamicGatewayConnectionDeviceBehavior<AddressingDeviceBehavior<NetworkDeviceBehavior>>>>
+        SimEntityBehaviorWrapper<DynamicGatewayConnectionModuleLaunchingDevice, DynamicGatewayConnectionModuleLaunchingDeviceBehavior<DynamicGatewayConnectionDeviceBehavior<AddressingDeviceBehavior<NetworkDeviceBehavior>>>>
 {
     /* SimEntityInterface */
     override val mId: Int get() = id
@@ -90,7 +91,7 @@ class DynamicGatewayConnectionModuleLaunchingAddressingDeviceImpl(
     override val addressingModel: AddressingModel = BreadthFirstSearchAddressingModel()
     override val addressingChildrenMapping: MutableMap<Tuple, MutableMap<Int, Boolean>> = mutableMapOf()
 
-    override val behavior: DynamicGatewayConnectionModuleLaunchingAddressingDeviceBehavior<DynamicGatewayConnectionDeviceBehavior<AddressingDeviceBehavior<NetworkDeviceBehavior>>> =
+    override val behavior: DynamicGatewayConnectionModuleLaunchingDeviceBehavior<DynamicGatewayConnectionDeviceBehavior<AddressingDeviceBehavior<NetworkDeviceBehavior>>> =
             DynamicGatewayConnectionModuleLaunchingAddressingDeviceBehaviorImpl(this,
                     DynamicGatewayConnectionAddressingDeviceBehaviorImpl(this,
                             AddressingDeviceBehaviorImpl(this,
