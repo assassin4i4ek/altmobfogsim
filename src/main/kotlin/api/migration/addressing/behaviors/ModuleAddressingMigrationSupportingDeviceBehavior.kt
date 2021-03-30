@@ -8,7 +8,7 @@ import api.migration.addressing.utils.TupleWithAppModule
 import api.migration.addressing.entities.ModuleAddressingMigrationSupportingDevice
 import api.migration.addressing.utils.MigrationApplicationModulePlacement
 import api.migration.original.entites.MigrationSupportingDevice
-import api.migration.models.MigrationRequest
+import api.migration.utils.MigrationRequest
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.SimEvent
 import org.fog.application.AppModule

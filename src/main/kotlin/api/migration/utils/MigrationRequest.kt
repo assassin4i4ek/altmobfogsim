@@ -1,4 +1,4 @@
-package api.migration.models
+package api.migration.utils
 
 import api.migration.original.entites.MigrationSupportingDevice
 

@@ -1,6 +1,7 @@
 package api.migration.models
 
 import api.migration.original.entites.MigrationSupportingDevice
+import api.migration.utils.MigrationRequest
 
 interface MigrationModel {
     val nextUpdateTime: Double

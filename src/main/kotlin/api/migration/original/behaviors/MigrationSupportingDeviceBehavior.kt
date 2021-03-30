@@ -4,7 +4,7 @@ import api.common.Events
 import api.common.behaviors.BaseBehavior
 import api.migration.original.utils.OldNewModulePair
 import api.migration.original.entites.MigrationSupportingDevice
-import api.migration.models.MigrationRequest
+import api.migration.utils.MigrationRequest
 import org.cloudbus.cloudsim.core.CloudSimTags
 import org.cloudbus.cloudsim.core.SimEvent
 import org.cloudbus.cloudsim.core.predicates.PredicateType

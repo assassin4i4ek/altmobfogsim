@@ -2,6 +2,7 @@ package api.migration.models
 
 import api.migration.original.entites.MigrationSupportingDevice
 import api.migration.original.entites.ModuleLaunchingDevice
+import api.migration.utils.MigrationRequest
 import org.cloudbus.cloudsim.core.CloudSim
 
 class MigrationModelImpl(
