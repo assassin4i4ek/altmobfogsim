@@ -96,4 +96,8 @@ class BreadthFirstSearchAddressingModel : AddressingModel {
             }
         }
     }
+
+    override fun copy(): AddressingModel {
+        return BreadthFirstSearchAddressingModel()
+    }
 }

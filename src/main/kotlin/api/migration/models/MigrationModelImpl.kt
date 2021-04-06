@@ -59,8 +59,11 @@ class MigrationModelImpl(
                         appModulePlacement.moduleToDeviceMap[unhandledDownModuleName]!!.forEach { deviceWithModuleId ->
                             val deviceWithModule = CloudSim.getEntity(deviceWithModuleId) as ModuleLaunchingDevice
                             if (deviceWithModule.mAppModuleList.find {appModule -> appModule.id == unhandledDownModuleId} != null) {
-                                migrationRequests.add(MigrationRequest(appName, appModule,
-                                        device, CloudSim.getEntity(deviceWithModule.mParentId) as MigrationSupportingDevice))
+                                migrationRequests.add(MigrationRequest(
+                                        appName, appModule, device,
+                                        CloudSim.getEntity(deviceWithModule.mParentId) as MigrationSupportingDevice,
+                                        MigrationRequest.Type.REMOVE_SINGLE_INSTANCE
+                                ))
                             }
                         }
                     }

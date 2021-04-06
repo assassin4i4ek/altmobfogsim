@@ -29,5 +29,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="moea_framework" level="project" />
   </component>
 </module>

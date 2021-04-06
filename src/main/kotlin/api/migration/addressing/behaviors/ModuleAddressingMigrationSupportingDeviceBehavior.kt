@@ -56,13 +56,12 @@ interface ModuleAddressingMigrationSupportingDeviceBehavior<
     private fun onMigrationStart(ev: SimEvent): Boolean {
         val res = superMigrationSupportingDeviceBehavior.processEvent(ev)
         val migrationRequest = ev.data as MigrationRequest
-        if (device === migrationRequest.from) {
+        if (device === migrationRequest.from && migrationRequest.to != null) {
             if (!device.controller.appModulePlacementPolicy[migrationRequest.appId]!!
                             .moduleToDeviceMap[migrationRequest.appModuleName]!!.contains(migrationRequest.to.mId)) {
                 val module = device.mAppModuleList.find {
                     module -> module.appId == migrationRequest.appId && module.name == migrationRequest.appModuleName
                 }!!
-                (module.cloudletScheduler as TupleScheduler)
                 Logger.debug(device.mName, "Sending tuple with module ${module.name}")
                 // handle tuple by addressing behavior; direction UP is necessary for addressing functionality
                 device.sendUp(TupleWithAppModule(module, migrationRequest.to.mId))
@@ -81,25 +80,41 @@ interface ModuleAddressingMigrationSupportingDeviceBehavior<
     private fun onModuleSuppress(ev: SimEvent): Boolean {
         val module = ev.data as AppModule
         val moduleOnDevice = device.mAppModuleList.find { it.name == module.name && it.appId == module.appId }!!
-        if (moduleOnDevice.numInstances == 1) {
-            // add module to disabled
-            device.tuplesSuppressedWhileModuleMigration[moduleOnDevice.appId] = mutableMapOf()
-            device.tuplesSuppressedWhileModuleMigration[moduleOnDevice.appId]!![moduleOnDevice.name] = mutableListOf()
-            Logger.debug(device.mName, "Suppressing module ${moduleOnDevice.name} until it's fully received")
-        }
+        device.numberOfSuppressedModuleInstances
+                .getOrPut(moduleOnDevice.appId) { mutableMapOf() }
+                .apply {
+                    this[moduleOnDevice.name] = this.getOrDefault(moduleOnDevice.name, 0) + 1
+                }
+        device.tuplesSuppressedWhileModuleMigration
+                .getOrPut(moduleOnDevice.appId) { mutableMapOf() }
+                .getOrPut(moduleOnDevice.name) { mutableListOf() }
+        Logger.debug(device.mName, "Suppressing module ${moduleOnDevice.name} until it's fully received")
         return false
     }
 
     private fun onProcessTupleArrival(ev: SimEvent): Boolean {
         return if ((ev.data as? TupleWithAppModule)?.destId ?: -1 == device.mId) {
             val tupleWithAppModule = ev.data as TupleWithAppModule
+            val module = tupleWithAppModule.appModule
             Logger.debug(device.mName, "Received tuple with module ${tupleWithAppModule.appModule.name}")
-            val suppressedTupleEvents = device.tuplesSuppressedWhileModuleMigration[tupleWithAppModule.appModule.appId]!![tupleWithAppModule.appModule.name]!!
-            assert(device.tuplesSuppressedWhileModuleMigration[tupleWithAppModule.appModule.appId]!!.remove(tupleWithAppModule.appModule.name) != null)
-            assert(device.tuplesSuppressedWhileModuleMigration.remove(tupleWithAppModule.appModule.appId) != null)
-            suppressedTupleEvents.forEach {
-                Logger.debug(device.mName, "Releasing tuple ${(it.data as Tuple).cloudletId}")
-                CloudSim.send(it.source, it.destination, 0.0, it.tag, it.data)
+            device.numberOfSuppressedModuleInstances[module.appId]!!.apply {
+                this[module.name] = this[module.name]!! - 1
+            }
+            if (device.numberOfSuppressedModuleInstances[module.appId]!![module.name]!! == 0) {
+                device.numberOfSuppressedModuleInstances[module.appId]!!.remove(module.name)
+                val suppressedTupleEvents = device.tuplesSuppressedWhileModuleMigration[module.appId]!![module.name]!!
+                device.tuplesSuppressedWhileModuleMigration[module.appId]!!.remove(module.name)
+                suppressedTupleEvents.forEach {
+                    Logger.debug(device.mName, "Releasing tuple ${(it.data as Tuple).cloudletId}")
+                    CloudSim.send(it.source, it.destination, 0.0, it.tag, it.data)
+                }
+            }
+
+            if (device.numberOfSuppressedModuleInstances[module.appId]!!.isEmpty()) {
+                device.numberOfSuppressedModuleInstances.remove(module.appId)
+            }
+            if (device.tuplesSuppressedWhileModuleMigration[module.appId]!!.isEmpty()) {
+                device.tuplesSuppressedWhileModuleMigration.remove(module.appId)
             }
             false
         }

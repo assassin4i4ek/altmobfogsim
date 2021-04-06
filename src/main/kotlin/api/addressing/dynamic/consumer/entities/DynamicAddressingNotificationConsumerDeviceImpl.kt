@@ -50,9 +50,10 @@ class DynamicAddressingNotificationConsumerDeviceImpl(
 
     override fun processOtherEvent(ev: SimEvent) {
         if (super.onProcessEvent(ev)) {
-            super<FogDevice>.processOtherEvent(ev)
+            super.processOtherEvent(ev)
         }
     }
+    override fun toString(): String = asString()
 
     /* NetworkDevice */
     override val mParentId: Int get() = parentId

@@ -23,4 +23,5 @@ interface AddressingModel {
         throw Exception("Devices ${from.mName} and ${to.mName} are not connected")
     }
 
+    fun copy(): AddressingModel
 }

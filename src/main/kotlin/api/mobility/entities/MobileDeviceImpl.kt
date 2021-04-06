@@ -38,5 +38,7 @@ MobileDeviceImpl(
         }
     }
 
+    override fun toString(): String = asString()
+
     override val behavior: MobileDeviceBehavior = MobileDeviceBehaviorImpl(this)
 }

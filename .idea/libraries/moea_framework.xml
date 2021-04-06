@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="moea_framework">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../MOEAFramework/out/artifacts/moea_framework_jar/moea_framework.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -49,6 +49,8 @@ class ModuleAddressingMigrationSupportingDeviceImpl(
         }
     }
 
+    override fun toString(): String = asString()
+
     /* NetworkDevice */
     override val mParentId: Int get() = parentId
     override val mChildrenIds: MutableList<Int> get() = childrenIds
@@ -79,6 +81,7 @@ class ModuleAddressingMigrationSupportingDeviceImpl(
     override val mActiveMutableApplications: MutableList<String> get() = activeApplications
     override val mApplicationMutableMap: MutableMap<String, Application> get() = applicationMap
 
+    override val numberOfSuppressedModuleInstances: MutableMap<String, MutableMap<String, Int>> = mutableMapOf()
     override val tuplesSuppressedWhileModuleMigration: MutableMap<String, MutableMap<String, MutableList<SimEvent>>> = mutableMapOf()
 
     override val behavior: ModuleAddressingMigrationSupportingDeviceBehavior<MigrationSupportingDeviceBehavior, AddressingDeviceBehavior<NetworkDeviceBehavior>> =

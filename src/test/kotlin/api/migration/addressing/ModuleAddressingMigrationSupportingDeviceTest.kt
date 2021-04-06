@@ -5,8 +5,12 @@ import api.addressing.fixed.entities.AddressingDeviceImpl
 import api.common.utils.ConnectionUtils
 import api.migration.addressing.entities.ModuleAddressingMigrationSupportingDeviceImpl
 import addons.migration.addressing.entities.DynamicGatewayConnectionModuleLaunchingAddressingDeviceImpl
+import api.migration.models.CentralizedMapoModel
 import api.migration.models.MigrationModel
 import api.migration.models.MigrationModelImpl
+import api.migration.models.problem.normalizers.MinMaxNormalizer
+import api.migration.models.problem.objectives.MinCostObjective
+import api.migration.models.problem.objectives.MinProcessingTimeObjective
 import org.cloudbus.cloudsim.Log
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.SimEntity
@@ -23,6 +27,7 @@ import org.fog.utils.distribution.DeterministicDistribution
 import org.junit.jupiter.api.Test
 import utils.TestController
 import utils.createCharacteristicsAndAllocationPolicy
+import utils.createExperimentApp
 import java.util.*
 import kotlin.math.round
 import kotlin.test.assertEquals
@@ -277,6 +282,32 @@ class ModuleAddressingMigrationSupportingDeviceTest {
             assertEquals(1, serv2.mAppModuleList[0].numInstances)
             assertEquals(1, serv2.mAppModuleList[1].numInstances)
             assertEquals(6.73, round((NetworkUsageMonitor.getNetworkUsage() - startNetworkUsage) / Config.MAX_SIMULATION_TIME * 100) / 100)
+        }
+    }
+
+    @Test
+    fun test4() {
+        init(1)
+        val mob = createMobileAddressingDevice("Mob", 10.0, 1000.0, 1000.0, 0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)
+        val serv1 = createModuleAddressingMigrationSupportingDevice("Serv1", 10.0, 1000.0, 1000.0, 0.1, 0.01,
+                CentralizedMapoModel(1.0, true, listOf(MinCostObjective(), MinProcessingTimeObjective()),  MinMaxNormalizer(), 123).apply {
+                    allowMigrationForModule("concentration_calculator0")
+                },
+                AddressingDevice.AddressingType.HIERARCHICAL
+        )
+        val serv2 = createModuleAddressingMigrationSupportingDevice("Serv2", 10.0, 1000.0, 1000.0, 0.1, 0.01,
+                CentralizedMapoModel(1.0, false, listOf(MinCostObjective(), MinProcessingTimeObjective()), MinMaxNormalizer(), 123), AddressingDevice.AddressingType.HIERARCHICAL
+        )
+        fogDeviceList.addAll(listOf(mob, serv1, serv2))
+
+        mob.parentId = serv1.id
+        serv1.parentId = cloud.id
+        serv2.parentId = cloud.id
+        connectSensorActuatorPairToDevice(mob, 0)
+
+        val startNetworkUsage = NetworkUsageMonitor.getNetworkUsage()
+        launchTest {
+            val loop1Id = appList[0].loops[0].loopId
         }
     }
 }

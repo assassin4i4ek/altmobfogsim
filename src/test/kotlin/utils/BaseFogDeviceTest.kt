@@ -6,6 +6,7 @@ import org.fog.application.Application
 import org.fog.entities.*
 import org.fog.placement.Controller
 import org.fog.placement.ModuleMapping
+import org.fog.placement.ModulePlacementEdgewards
 import org.fog.placement.ModulePlacementMapping
 import org.fog.utils.Config
 import org.fog.utils.FogEntityFactory

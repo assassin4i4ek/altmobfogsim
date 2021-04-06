@@ -40,6 +40,7 @@ class DynamicGatewayConnectionModuleLaunchingDeviceImpl(
             super.processOtherEvent(ev)
         }
     }
+    override fun toString(): String = asString()
 
     /* NetworkDevice */
     override val mParentId: Int get() = parentId

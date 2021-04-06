@@ -36,10 +36,17 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
         val migrationRequests = device.migrationModel.decide()
         if (migrationRequests.isNotEmpty()) {
             migrationRequests.forEach { migrationRequest ->
-                if (migrationRequest.to.migrationModel.canMigrate(migrationRequest)) {
-                    Logger.debug(device.mName, "Decided to migrate instance of module ${migrationRequest.appModuleName} to ${migrationRequest.to.mName}")
+                if (migrationRequest.to != null) {
+                    if (migrationRequest.to.migrationModel.canMigrate(migrationRequest)) {
+                        Logger.debug(device.mName, "Decided to migrate instance of module ${migrationRequest.appModuleName} from ${migrationRequest.from?.mName} to ${migrationRequest.to.mName}")
+                        if (migrationRequest.from != null) {
+                            device.mSendEvent(migrationRequest.from.mId, 0.0, Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_PREPARE.tag, migrationRequest)
+                        }
+                        device.mSendEvent(migrationRequest.to.mId, 0.0, Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_PREPARE.tag, migrationRequest)
+                    }
+                }
+                else if (migrationRequest.from != null) {
                     device.mSendEvent(migrationRequest.from.mId, 0.0, Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_PREPARE.tag, migrationRequest)
-                    device.mSendEvent(migrationRequest.to.mId, 0.0, Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_PREPARE.tag, migrationRequest)
                 }
             }
         }
@@ -59,24 +66,37 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
     private fun onMigrationStart(ev: SimEvent): Boolean {
         val migrationRequest = ev.data as MigrationRequest
         if (device === migrationRequest.from) {
-            device.mSendEvent(device.mId, 0.0, Events.MIGRATION_SUPPORTING_DEVICE_MODULE_DEPARTED.tag,
-                    device.mAppModuleList.find { module ->
-                        module.appId == migrationRequest.appId && module.name == migrationRequest.appModuleName
-                    }!!)
+            val module = device.mAppModuleList.find { module ->
+                module.appId == migrationRequest.appId && module.name == migrationRequest.appModuleName
+            }!!
+            when (migrationRequest.type) {
+                MigrationRequest.Type.REMOVE_ALL_INSTANCES -> {
+                    // next step will decrement further values which will cause full removal of module
+                    module.numInstances = 0
+                    device.controller.appModulePlacementPolicy[module.appId]!!
+                            .moduleInstanceCountMap[device.mId]!![module.name] = 0
+                    device.mSendEvent(device.mId, 0.0, Events.MIGRATION_SUPPORTING_DEVICE_MODULE_DEPARTED.tag, module)
+                }
+                MigrationRequest.Type.REMOVE_SINGLE_INSTANCE -> {
+                    module.numInstances--
+                    device.controller.appModulePlacementPolicy[module.appId]!!
+                            .moduleInstanceCountMap[device.mId]!!
+                            .run { this[module.name] = this[module.name]!! - 1 }
+                    device.mSendEvent(device.mId, 0.0, Events.MIGRATION_SUPPORTING_DEVICE_MODULE_DEPARTED.tag, module)
+                }
+                MigrationRequest.Type.COPY -> {}
+            }
         }
         else if (device === migrationRequest.to) {
-            device.mSendEvent(device.mId, 0.0, Events.MIGRATION_SUPPORTING_DEVICE_MODULE_ARRIVED.tag,
-                    device.controller.applications[migrationRequest.appId]!!.getModuleByName(migrationRequest.appModuleName)
-            )
+            val module = device.controller.applications[migrationRequest.appId]!!.getModuleByName(migrationRequest.appModuleName)
+            device.mSendEvent(device.mId, 0.0, Events.MIGRATION_SUPPORTING_DEVICE_MODULE_ARRIVED.tag, module)
         }
         return false
     }
 
     private fun onModuleDeparted(ev: SimEvent): Boolean {
         val module = ev.data as AppModule
-        module.numInstances--
         val modulePlacement = device.controller.appModulePlacementPolicy[module.appId]!!
-        modulePlacement.moduleInstanceCountMap[device.mId]!!.run { this[module.name] = this[module.name]!! - 1 }
         if (modulePlacement.moduleInstanceCountMap[device.mId]!![module.name]!! <= 0) {
             // module should be removed
             device.mSendEvent(device.mId, 0.0, CloudSimTags.VM_DESTROY, module)

@@ -50,6 +50,8 @@ class DynamicGatewayConnectionModuleLaunchingAddressingDeviceImpl(
         }
     }
 
+    override fun toString(): String = asString()
+
     /* NetworkDevice */
     override val mParentId: Int get() = parentId
     override val mChildrenIds: MutableList<Int> get() = childrenIds

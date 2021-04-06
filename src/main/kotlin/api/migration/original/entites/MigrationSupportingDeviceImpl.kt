@@ -37,6 +37,8 @@ class MigrationSupportingDeviceImpl(
         }
     }
 
+    override fun toString(): String = asString()
+
     /* ModuleLaunchingDevice */
     override val mAppToModulesMutableMap: MutableMap<String, MutableList<String>> get() = appToModulesMap
     override val mAppModuleList: List<AppModule> get() = getVmList()
