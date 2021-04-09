@@ -1,4 +1,4 @@
-package api.mobility.positioning
+package api.common.positioning
 
 class RadialZone(
     val center: Coordinates,

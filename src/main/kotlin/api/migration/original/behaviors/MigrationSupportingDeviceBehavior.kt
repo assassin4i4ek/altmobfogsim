@@ -76,6 +76,7 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
                     device.controller.appModulePlacementPolicy[module.appId]!!
                             .moduleInstanceCountMap[device.mId]!![module.name] = 0
                     device.mSendEvent(device.mId, 0.0, Events.MIGRATION_SUPPORTING_DEVICE_MODULE_DEPARTED.tag, module)
+                    device.mWaitForEvent(PredicateType(Events.MIGRATION_SUPPORTING_DEVICE_MODULE_DEPARTED.tag))
                 }
                 MigrationRequest.Type.REMOVE_SINGLE_INSTANCE -> {
                     module.numInstances--
@@ -83,6 +84,7 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
                             .moduleInstanceCountMap[device.mId]!!
                             .run { this[module.name] = this[module.name]!! - 1 }
                     device.mSendEvent(device.mId, 0.0, Events.MIGRATION_SUPPORTING_DEVICE_MODULE_DEPARTED.tag, module)
+                    device.mWaitForEvent(PredicateType(Events.MIGRATION_SUPPORTING_DEVICE_MODULE_DEPARTED.tag))
                 }
                 MigrationRequest.Type.COPY -> {}
             }

@@ -1,17 +1,8 @@
 package api.accesspoint.original.utils
 
 import api.accesspoint.original.entities.AccessPoint
-import api.mobility.positioning.Coordinates
-import api.mobility.positioning.distance
-import org.cloudbus.cloudsim.Pe
-import org.cloudbus.cloudsim.power.PowerHost
-import org.cloudbus.cloudsim.power.models.PowerModel
-import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple
-import org.cloudbus.cloudsim.sdn.overbooking.BwProvisionerOverbooking
-import org.cloudbus.cloudsim.sdn.overbooking.PeProvisionerOverbooking
-import org.fog.entities.FogDeviceCharacteristics
-import org.fog.scheduler.StreamOperatorScheduler
-import org.fog.utils.FogUtils
+import api.common.positioning.Coordinates
+import api.common.positioning.distance
 
 class AccessPointsMap {
     private val accessPoints: MutableList<AccessPoint> = mutableListOf()
@@ -28,7 +19,7 @@ class AccessPointsMap {
         accessPoints.clear()
     }
 
-    fun accessPointCharacteristics(powerModel: PowerModel): FogDeviceCharacteristics {
+   /* fun accessPointCharacteristics(powerModel: PowerModel): FogDeviceCharacteristics {
         val peList = listOf(Pe(0, PeProvisionerOverbooking(0.0))) // need to store Pe id and MIPS Rating
         val hostId = FogUtils.generateEntityId()
 //        val ram = 2048 // host memory (MB)
@@ -53,5 +44,5 @@ class AccessPointsMap {
             arch, os, vmm, host, time_zone, cost, costPerMem,
             costPerStorage, costPerBw
         )
-    }
+    }*/
 }

@@ -9,7 +9,7 @@ import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehaviorImpl
 import api.mobility.behaviors.MobileDeviceBehavior
 import api.mobility.behaviors.MobileDeviceBehaviorImpl
 import api.mobility.models.MobilityModel
-import api.mobility.positioning.Position
+import api.common.positioning.Position
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
 import org.cloudbus.cloudsim.Storage
@@ -90,6 +90,16 @@ class AccessPointConnectedDeviceImpl(
 
     /* AccessPointConnectedDevice */
     override var accessPoint: AccessPoint? = null
+    override var mDynamicUplinkLatency: Double
+        get() = uplinkLatency
+        set(value) {
+            uplinkLatency = value
+        }
+    override var mDynamicUplinkBandwidth: Double
+        get() = uplinkBandwidth
+        set(value) {
+            uplinkBandwidth = value
+        }
 
     override val behavior: AccessPointConnectedDeviceBehavior<
             DynamicGatewayConnectionDeviceBehavior<

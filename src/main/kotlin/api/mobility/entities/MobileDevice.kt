@@ -1,6 +1,6 @@
 package api.mobility.entities
 
-import api.mobility.positioning.Position
+import api.common.positioning.Position
 import api.common.entities.SimEntity
 import api.mobility.models.MobilityModel
 

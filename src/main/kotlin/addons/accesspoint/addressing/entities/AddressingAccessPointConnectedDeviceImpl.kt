@@ -17,7 +17,7 @@ import api.common.utils.Notification
 import api.mobility.behaviors.MobileDeviceBehavior
 import api.mobility.behaviors.MobileDeviceBehaviorImpl
 import api.mobility.models.MobilityModel
-import api.mobility.positioning.Position
+import api.common.positioning.Position
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
@@ -103,6 +103,16 @@ class AddressingAccessPointConnectedDeviceImpl(
 
     /* AccessPointConnectedDevice */
     override var accessPoint: AccessPoint? = null
+    override var mDynamicUplinkLatency: Double
+        get() = uplinkLatency
+        set(value) {
+            uplinkLatency = value
+        }
+    override var mDynamicUplinkBandwidth: Double
+        get() = uplinkBandwidth
+        set(value) {
+            uplinkBandwidth = value
+        }
 
     /* AddressingDevice */
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller

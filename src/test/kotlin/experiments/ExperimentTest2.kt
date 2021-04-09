@@ -6,15 +6,14 @@ import api.accesspoint.original.utils.AccessPointsMap
 import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDeviceImpl
 import api.addressing.fixed.entities.AddressingDevice
 import api.mobility.models.MobilityModel
-import api.mobility.positioning.Coordinates
-import api.mobility.positioning.Position
-import api.mobility.positioning.RadialZone
-import api.mobility.positioning.Zone
+import api.common.positioning.Coordinates
+import api.common.positioning.Position
+import api.common.positioning.RadialZone
+import api.common.positioning.Zone
 import org.cloudbus.cloudsim.Pe
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.power.PowerHost
-import org.cloudbus.cloudsim.power.models.PowerModel
 import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple
 import org.cloudbus.cloudsim.sdn.overbooking.BwProvisionerOverbooking
 import org.cloudbus.cloudsim.sdn.overbooking.PeProvisionerOverbooking
@@ -32,6 +31,7 @@ import org.fog.utils.*
 import org.fog.utils.distribution.DeterministicDistribution
 import org.junit.jupiter.api.Test
 import utils.BaseExperimentTest
+import utils.createCharacteristicsAndAllocationPolicy
 import kotlin.math.ceil
 import kotlin.math.round
 import kotlin.math.sqrt
@@ -324,8 +324,8 @@ class ExperimentTest2: BaseExperimentTest() {
                     val apCoord = Coordinates(100.0 * (i + x.toDouble() / sideLength), 100.0 * y.toDouble() / sideLength)
                     val ap = createAddressingAccessPoint("ap-$i-$x-$y",
                             apCoord,
-                            RadialZone(apCoord, 50.0 / sideLength),
-                            apm, Double.POSITIVE_INFINITY, 10000.0, 0.0, FogLinearPowerModel(1.0, 1.0)
+                            RadialZone(apCoord, 50.0 / sideLength), 2.0,
+                            apm, Double.POSITIVE_INFINITY, 10000.0, 0.0
                     )
                     ap.parentId = gw.id
                     ap.uplinkLatency = 0.0
@@ -399,9 +399,14 @@ class ExperimentTest2: BaseExperimentTest() {
     }
 
     @Suppress("SameParameterValue")
-    private fun createAddressingAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone,
-                                            accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double, powerModel: PowerModel): AddressingAccessPointImpl {
-        return AddressingAccessPointImpl(name, upBw, downBw, uplinkLatency, powerModel, coordinates, connectionZone, accessPointsMap)
+    private fun createAddressingAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone, downlinkLatency: Double,
+                                            accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double): AddressingAccessPointImpl {
+        return createCharacteristicsAndAllocationPolicy(0.0).let {
+            AddressingAccessPointImpl(
+                    name, it.first, it.second, emptyList(), 10.0, upBw, downBw, uplinkLatency, 0.0,
+                    coordinates, connectionZone, downlinkLatency, accessPointsMap
+            )
+        }
     }
 
     @Suppress("SameParameterValue")

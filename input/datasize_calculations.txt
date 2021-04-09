@@ -1,0 +1,15 @@
+// raw
+128 1/sec * 64 bit * 2 sec = 16384 bit //ECG
+0.5 1/sec * 64 bit * 2 sec = 64 bit //SpO2
+0.5 1/sec * 64 bit * 2 sec = 64 bit //Pulse Rate
+0.5 1/sec * 64 bit * 2 sec = 64 bit //Blood Pressure
+0.5 1/sec * 5 * 64 bit * 2 sec = 320 bit //GPS
+Total: 16896 bit
+// json
+128 1/sec * 12 byte * 8 bit/byte * 2 sec = 24576 bit //ECG
+0.5 1/sec * 12 byte * 8 bit/byte * 2 sec = 96 bit //SpO2
+0.5 1/sec * 12 byte * 8 bit/byte * 2 sec = 96 bit //Pulse Rate
+0.5 1/sec * 12 byte * 8 bit/byte * 2 sec = 96 bit //Blood Pressure
+0.5 1/sec * 5 * 12 byte * 8 bit/byte * 2 sec = 480 bit //GPS
+135 bytes * 8 bit/byte = 1080 bit //json fields
+Total: 26424 bit

@@ -4,25 +4,27 @@ import api.accesspoint.original.behaviors.AccessPointBehavior
 import api.accesspoint.original.behaviors.AccessPointBehaviorImpl
 import api.accesspoint.original.utils.AccessPointsMap
 import api.common.entities.SimEntityBehaviorWrapper
-import api.mobility.positioning.Coordinates
-import api.mobility.positioning.Zone
+import api.common.positioning.Coordinates
+import api.common.positioning.Zone
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
+import org.cloudbus.cloudsim.Storage
+import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.SimEvent
 import org.cloudbus.cloudsim.core.predicates.Predicate
-import org.cloudbus.cloudsim.power.models.PowerModel
 import org.fog.entities.FogDevice
+import org.fog.entities.FogDeviceCharacteristics
 import org.fog.entities.Tuple
-import org.fog.policy.AppModuleAllocationPolicy
 
 class AccessPointImpl(
-        name: String, uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double,
-        powerModel: PowerModel, override val coordinates: Coordinates, override val connectionZone: Zone,
-        override val accessPointsMap: AccessPointsMap,
+        name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
+        storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
+        uplinkLatency: Double, ratePerMips: Double, override val coordinates: Coordinates, override val connectionZone: Zone,
+        override val downlinkLatency: Double, override val accessPointsMap: AccessPointsMap,
 ): FogDevice(
-    name, accessPointsMap.accessPointCharacteristics(powerModel), AppModuleAllocationPolicy(emptyList()), emptyList(),
-    0.0, uplinkBandwidth, downlinkBandwidth,
-    uplinkLatency, 0.0),
+    name, characteristics, vmAllocationPolicy, storageList,
+    schedulingInterval, uplinkBandwidth, downlinkBandwidth,
+    uplinkLatency, ratePerMips),
         AccessPoint,
         SimEntityBehaviorWrapper<AccessPoint, AccessPointBehavior<NetworkDeviceBehavior>> {
     /* SimEntityInterface */

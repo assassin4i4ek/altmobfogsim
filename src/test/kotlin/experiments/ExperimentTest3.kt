@@ -6,15 +6,14 @@ import api.accesspoint.original.utils.AccessPointsMap
 import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDeviceImpl
 import api.addressing.fixed.entities.AddressingDevice
 import api.mobility.models.MobilityModel
-import api.mobility.positioning.Coordinates
-import api.mobility.positioning.Position
-import api.mobility.positioning.RadialZone
-import api.mobility.positioning.Zone
+import api.common.positioning.Coordinates
+import api.common.positioning.Position
+import api.common.positioning.RadialZone
+import api.common.positioning.Zone
 import org.cloudbus.cloudsim.Pe
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.power.PowerHost
-import org.cloudbus.cloudsim.power.models.PowerModel
 import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple
 import org.cloudbus.cloudsim.sdn.overbooking.BwProvisionerOverbooking
 import org.cloudbus.cloudsim.sdn.overbooking.PeProvisionerOverbooking
@@ -32,6 +31,7 @@ import org.fog.utils.*
 import org.fog.utils.distribution.DeterministicDistribution
 import org.junit.jupiter.api.Test
 import utils.BaseExperimentTest
+import utils.createCharacteristicsAndAllocationPolicy
 import kotlin.math.ceil
 import kotlin.math.round
 import kotlin.test.assertEquals
@@ -342,8 +342,7 @@ class ExperimentTest3: BaseExperimentTest() {
             }
             val coordinates = Coordinates(x, y)
             val ap = createAddressingAccessPoint("ap-${gwIndex}-${apPerGwCounters[gwIndex]}",
-                    coordinates, RadialZone(coordinates, 50.0 / sideLength), apm, 20000.0, 10000.0, 0.0,
-                    FogLinearPowerModel(1.0, 1.0)
+                    coordinates, RadialZone(coordinates, 50.0 / sideLength), 1.0, apm, 20000.0, 10000.0, 0.0
             )
             fogDevices.add(ap)
             ap.parentId = gw.id
@@ -424,9 +423,14 @@ class ExperimentTest3: BaseExperimentTest() {
     }
 
     @Suppress("SameParameterValue")
-    private fun createAddressingAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone,
-                                            accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double, powerModel: PowerModel): AddressingAccessPointImpl {
-        return AddressingAccessPointImpl(name, upBw, downBw, uplinkLatency, powerModel, coordinates, connectionZone, accessPointsMap)
+    private fun createAddressingAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone, downlinkLatency: Double,
+                                            accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double): AddressingAccessPointImpl {
+        return createCharacteristicsAndAllocationPolicy(0.0).let {
+            AddressingAccessPointImpl(
+                    name, it.first, it.second, emptyList(), 10.0, upBw, downBw, uplinkLatency, 0.0,
+                    coordinates, connectionZone, downlinkLatency, accessPointsMap
+            )
+        }
     }
 
     @Suppress("SameParameterValue")

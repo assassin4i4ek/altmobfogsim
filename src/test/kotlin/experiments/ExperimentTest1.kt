@@ -4,22 +4,18 @@ import api.accesspoint.original.entities.AccessPointConnectedDeviceImpl
 import api.accesspoint.original.entities.AccessPointImpl
 import api.accesspoint.original.utils.AccessPointsMap
 import api.mobility.models.MobilityModel
-import api.mobility.positioning.Coordinates
-import api.mobility.positioning.Position
-import api.mobility.positioning.RadialZone
-import api.mobility.positioning.Zone
+import api.common.positioning.Coordinates
+import api.common.positioning.Position
+import api.common.positioning.RadialZone
+import api.common.positioning.Zone
 import api.network.fixed.entities.NetworkDeviceImpl
 import org.cloudbus.cloudsim.Pe
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.core.CloudSim
-import org.cloudbus.cloudsim.core.SimEntity
-import org.cloudbus.cloudsim.core.SimEvent
 import org.cloudbus.cloudsim.power.PowerHost
-import org.cloudbus.cloudsim.power.models.PowerModel
 import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple
 import org.cloudbus.cloudsim.sdn.overbooking.BwProvisionerOverbooking
 import org.cloudbus.cloudsim.sdn.overbooking.PeProvisionerOverbooking
-import org.fog.application.AppModule
 import org.fog.entities.Actuator
 import org.fog.entities.FogDevice
 import org.fog.entities.FogDeviceCharacteristics
@@ -34,6 +30,7 @@ import org.fog.utils.*
 import org.fog.utils.distribution.DeterministicDistribution
 import org.junit.jupiter.api.Test
 import utils.BaseExperimentTest
+import utils.createCharacteristicsAndAllocationPolicy
 import kotlin.math.ceil
 import kotlin.math.round
 import kotlin.math.sqrt
@@ -326,8 +323,8 @@ class ExperimentTest1: BaseExperimentTest() {
                     val apCoord = Coordinates(100.0 * (i + x.toDouble() / sideLength), 100.0 * y.toDouble() / sideLength)
                     val ap = createAccessPoint("ap-$i-$x-$y",
                             apCoord,
-                            RadialZone(apCoord, 50.0 / sideLength),
-                            apm, Double.POSITIVE_INFINITY, 10000.0, 0.0, FogLinearPowerModel(1.0, 1.0)
+                            RadialZone(apCoord, 50.0 / sideLength), 2.0,
+                            apm, Double.POSITIVE_INFINITY, 10000.0, 0.0
                     )
                     ap.parentId = gw.id
                     ap.uplinkLatency = 0.0
@@ -401,9 +398,14 @@ class ExperimentTest1: BaseExperimentTest() {
     }
 
     @Suppress("SameParameterValue")
-    private fun createAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone,
-                                  accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double, powerModel: PowerModel): AccessPointImpl {
-        return AccessPointImpl(name, upBw, downBw, uplinkLatency, powerModel, coordinates, connectionZone, accessPointsMap)
+    private fun createAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone, downlinkLatency: Double,
+                                  accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double): AccessPointImpl {
+        return createCharacteristicsAndAllocationPolicy(0.0).let {
+            AccessPointImpl(
+                    name, it.first, it.second, emptyList(), 10.0, upBw, downBw, uplinkLatency, 0.0,
+                    coordinates, connectionZone, downlinkLatency, accessPointsMap
+            )
+        }
     }
 
     @Suppress("SameParameterValue")

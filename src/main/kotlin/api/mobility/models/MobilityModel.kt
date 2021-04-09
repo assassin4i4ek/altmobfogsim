@@ -1,8 +1,9 @@
 package api.mobility.models
 
-import api.mobility.positioning.Position
+import api.common.positioning.Position
 
 interface MobilityModel {
-    var nextUpdateTime: Double
+    var modelTimeUnitsPerSec: Double
+    val nextUpdateTime: Double
     fun nextMove(currentPosition: Position): Position
 }

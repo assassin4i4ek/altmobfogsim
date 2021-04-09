@@ -5,12 +5,11 @@ import api.accesspoint.original.entities.AccessPointImpl
 import api.accesspoint.original.utils.AccessPointsMap
 import api.mobility.models.MobilityModel
 import api.mobility.models.SteadyMobilityModel
-import api.mobility.positioning.Coordinates
-import api.mobility.positioning.Position
-import api.mobility.positioning.RadialZone
+import api.common.positioning.Coordinates
+import api.common.positioning.Position
+import api.common.positioning.RadialZone
 import org.cloudbus.cloudsim.core.SimEntity
 import org.cloudbus.cloudsim.core.SimEvent
-import org.fog.utils.FogLinearPowerModel
 import org.fog.utils.TimeKeeper
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
@@ -23,13 +22,13 @@ import kotlin.test.assertEquals
 class AccessPointConnectedDeviceTest: BaseFogDeviceTest() {
     @Suppress("SameParameterValue")
     private fun createAccessPoint(
-            name: String, coordinates: Coordinates, radius: Double, accessPointsMap: AccessPointsMap,
+            name: String, coordinates: Coordinates, radius: Double, accessPointsMap: AccessPointsMap, downlinkLatency: Double,
             uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double,
     ): AccessPointImpl {
-        return createCharacteristicsAndAllocationPolicy(1000.0).let {
+        return createCharacteristicsAndAllocationPolicy(0.0).let {
             AccessPointImpl(
-                name, uplinkBandwidth, downlinkBandwidth, uplinkLatency, FogLinearPowerModel(100.0, 40.0),
-                    coordinates, RadialZone(coordinates, radius), accessPointsMap,
+                    name, it.first, it.second, emptyList(), 10.0, uplinkBandwidth, downlinkBandwidth, uplinkLatency, 0.0,
+                    coordinates, RadialZone(coordinates, radius), downlinkLatency, accessPointsMap
             )
         }
     }
@@ -55,7 +54,7 @@ class AccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         val apm = AccessPointsMap()
         val ap = createAccessPoint(
             "AccessPoint1", Coordinates(5.0, 5.0), 1.0,
-                apm, 1000.0, 1000.0, 0.1
+                apm, 0.1,1000.0, 1000.0, 0.1
         )
 
         val dev = createAccessPointConnectedDevice(
@@ -86,11 +85,11 @@ class AccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         val apm = AccessPointsMap()
         val ap1 = createAccessPoint(
             "AccessPoint1", Coordinates(3.0, 3.0), 1.0,
-            apm, 1000.0, 1000.0, 0.1,
+            apm, 0.1, 1000.0, 1000.0, 0.1,
         )
         val ap2 = createAccessPoint(
             "AccessPoint2", Coordinates(6.0, 6.0), 1.0,
-            apm, 1000.0, 1000.0, 0.1,
+            apm, 0.1,1000.0, 1000.0, 0.1,
         )
 
         val dev = createAccessPointConnectedDevice(
@@ -121,11 +120,11 @@ class AccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         val apm = AccessPointsMap()
         val ap1 = createAccessPoint(
             "AccessPoint1", Coordinates(3.0, 3.0), 1.0,
-                apm, 1000.0, 1000.0, 0.1,
+                apm,0.1, 1000.0, 1000.0, 0.1,
         )
         val ap2 = createAccessPoint(
             "AccessPoint2", Coordinates(6.0, 6.0), 1.0,
-                apm,1000.0, 1000.0, 0.1,
+                apm,0.1,1000.0, 1000.0, 0.1,
         )
 
         val dev1 = createAccessPointConnectedDevice(
@@ -173,7 +172,7 @@ class AccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         init()
         val apm = AccessPointsMap()
         val ap = createAccessPoint("AccessPoint1", Coordinates(5.0, 5.0), 1.0,
-                apm, 1000.0, 1000.0, 0.5)
+                apm, 0.1,1000.0, 1000.0, 0.5)
         val dev = createAccessPointConnectedDevice("Mob1",
                 Position(Coordinates(0.0, 0.0), sqrt(2.0), 45.0),
                 SteadyMobilityModel(1.0),

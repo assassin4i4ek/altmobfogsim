@@ -1,5 +1,6 @@
 package api.accesspoint.original.behaviors
 
+import api.accesspoint.original.entities.AccessPoint
 import api.accesspoint.original.entities.AccessPointConnectedDevice
 import api.common.Events
 import api.common.behaviors.BaseBehavior
@@ -41,7 +42,15 @@ interface AccessPointConnectedDeviceBehavior<
 
     private fun onUpdateConnection(): Boolean {
         if (device.accessPoint != null) {
-            if (device.accessPoint!!.connectionZone.isInZone(device.position)) {
+            val deviceIsInConnectionZone = device.accessPoint!!.connectionZone.isInZone(device.position)
+            var closestAp: AccessPoint? = null
+            device.accessPointsMap.getClosestAccessPointsTo(device.position.coordinates).forEach { ap ->
+                if (ap.connectionZone.isInZone(device.position)) {
+                    closestAp = ap
+                    return@forEach
+                }
+            }
+            if (deviceIsInConnectionZone && device.accessPoint === closestAp) {
                 //no need to reconnect
             } else {
                 // disconnect from current access point
@@ -56,6 +65,8 @@ interface AccessPointConnectedDeviceBehavior<
             for (ap in device.accessPointsMap.getClosestAccessPointsTo(device.position.coordinates)) {
                 if (ap.connectionZone.isInZone(device.position)) {
                     // if ap can connect device
+                    device.mDynamicUplinkLatency = ap.downlinkLatency
+                    device.mDynamicUplinkBandwidth = ap.mDownlinkBandwidth
                     ConnectionUtils.connectChildToParent(ap, device)
                     Logger.debug(ap.mName, "Established connection with ${device.mName}")
                     device.accessPoint = ap

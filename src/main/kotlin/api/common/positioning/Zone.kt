@@ -1,4 +1,4 @@
-package api.mobility.positioning
+package api.common.positioning
 
 interface Zone {
     fun isInZone(position: Position): Boolean

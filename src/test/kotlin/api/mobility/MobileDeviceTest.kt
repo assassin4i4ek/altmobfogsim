@@ -3,8 +3,8 @@ package api.mobility
 import api.mobility.entities.MobileDeviceImpl
 import api.mobility.models.MobilityModel
 import api.mobility.models.SteadyMobilityModel
-import api.mobility.positioning.Coordinates
-import api.mobility.positioning.Position
+import api.common.positioning.Coordinates
+import api.common.positioning.Position
 import org.fog.utils.TimeKeeper
 import org.junit.jupiter.api.Test
 import utils.BaseFogDeviceTest

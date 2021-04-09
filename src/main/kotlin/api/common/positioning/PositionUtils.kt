@@ -1,4 +1,4 @@
-package api.mobility.positioning
+package api.common.positioning
 
 import kotlin.math.pow
 import kotlin.math.sqrt

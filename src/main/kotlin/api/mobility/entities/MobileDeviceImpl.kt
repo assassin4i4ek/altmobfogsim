@@ -4,7 +4,7 @@ import api.common.entities.SimEntityBehaviorWrapper
 import api.mobility.behaviors.MobileDeviceBehavior
 import api.mobility.behaviors.MobileDeviceBehaviorImpl
 import api.mobility.models.MobilityModel
-import api.mobility.positioning.Position
+import api.common.positioning.Position
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.SimEvent

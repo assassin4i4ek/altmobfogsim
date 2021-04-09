@@ -1,5 +1,6 @@
 package utils
 
+import api.original.entities.OriginalFogDeviceImpl
 import org.cloudbus.cloudsim.Log
 import org.cloudbus.cloudsim.core.CloudSim
 import org.fog.application.Application
@@ -36,7 +37,10 @@ abstract class BaseFogDeviceTest {
         br = FogBroker("Broker")
         app = createApp(br.id)
 
-        cloud = FogEntityFactory.createFogDevice("cloud", 2000, 1000.0, 1000.0, 0.1, 0.01)
+        cloud = createCharacteristicsAndAllocationPolicy(2000.0).let {
+            OriginalFogDeviceImpl("cloud", it.first, it.second, emptyList(), 10.0, 1000.0, 1000.0, 0.1, 0.01)
+        }
+//        cloud = FogEntityFactory.createFogDevice("cloud", 2000, 1000.0, 1000.0, 0.1, 0.01)
         fogDeviceList = mutableListOf(cloud)
         sensorList = MutableList(sensorActuatorCount) {
             Sensor("Sensor$it", "SENSOR", br.id, "App1", DeterministicDistribution(1.0))

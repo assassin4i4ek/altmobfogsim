@@ -6,10 +6,10 @@ import api.accesspoint.original.utils.AccessPointsMap
 import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDeviceImpl
 import api.addressing.fixed.entities.AddressingDevice
 import api.mobility.models.MobilityModel
-import api.mobility.positioning.Coordinates
-import api.mobility.positioning.Position
-import api.mobility.positioning.RadialZone
-import api.mobility.positioning.Zone
+import api.common.positioning.Coordinates
+import api.common.positioning.Position
+import api.common.positioning.RadialZone
+import api.common.positioning.Zone
 import org.cloudbus.cloudsim.Pe
 import org.cloudbus.cloudsim.Storage
 import org.cloudbus.cloudsim.core.CloudSim
@@ -88,8 +88,8 @@ class Experiment4(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
                 else -> (4 * (sideLength - 1) - j) * 100.0 / sideLength
             }
             val coordinates = Coordinates(x, y)
-            val ap = createAddressingAccessPoint("ap-${gwIndex}-${apPerGwCounters[gwIndex]}",
-                    coordinates, RadialZone(coordinates, 50.0 / sideLength), apm, 20000.0, 10000.0, 0.0,
+            val ap = createAddressingAccessPoint("ap-${gwIndex}-${apPerGwCounters[gwIndex]}", coordinates,
+                    RadialZone(coordinates, 50.0 / sideLength), 1.0, apm, 20000.0, 10000.0, 0.0,
                     FogLinearPowerModel(1.0, 1.0)
             )
             fogDevices.add(ap)
@@ -173,9 +173,25 @@ class Experiment4(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
     }
 
     @Suppress("SameParameterValue")
-    private fun createAddressingAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone,
+    private fun createAddressingAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone, downlinkLatency: Double,
                                             accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double, powerModel: PowerModel): AddressingAccessPointImpl {
-        return AddressingAccessPointImpl(name, upBw, downBw, uplinkLatency, powerModel, coordinates, connectionZone, accessPointsMap)
+        val peList = listOf(Pe(0, PeProvisionerOverbooking(0.0)))
+        val storage = 1000000L
+        val bw = 10000L
+        val host = PowerHost(FogUtils.generateEntityId(), RamProvisionerSimple(0), BwProvisionerOverbooking(bw), storage,
+                peList, StreamOperatorScheduler(peList), powerModel)
+        val hostList = listOf(host)
+        val arch = "x86"
+        val os = "Linux"
+        val vmm = "Xen"
+        val timezone = 10.0
+        val cost = 3.0
+        val costPerMem = 0.05
+        val costPerStorage = 0.001
+        val costPerBw = 0.0
+        val storageList = emptyList<Storage>()
+        val characteristics = FogDeviceCharacteristics(arch, os, vmm, host, timezone, cost, costPerMem, costPerStorage, costPerBw)
+        return AddressingAccessPointImpl(name, characteristics, AppModuleAllocationPolicy(hostList), storageList, 10.0, upBw, downBw, uplinkLatency, 0.0, coordinates, connectionZone, downlinkLatency, accessPointsMap)
     }
 
     @Suppress("SameParameterValue")

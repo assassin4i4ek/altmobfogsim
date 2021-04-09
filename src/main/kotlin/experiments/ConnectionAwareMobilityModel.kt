@@ -2,7 +2,7 @@ package experiments
 
 import api.accesspoint.original.entities.AccessPointConnectedDevice
 import api.mobility.models.SteadyMobilityModel
-import api.mobility.positioning.Position
+import api.common.positioning.Position
 import org.fog.entities.FogDevice
 import org.fog.utils.Logger
 

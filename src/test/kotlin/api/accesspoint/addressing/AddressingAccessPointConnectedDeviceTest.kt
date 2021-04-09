@@ -8,11 +8,10 @@ import api.addressing.fixed.entities.AddressingDevice
 import api.common.utils.ConnectionUtils
 import api.mobility.models.MobilityModel
 import api.mobility.models.SteadyMobilityModel
-import api.mobility.positioning.Coordinates
-import api.mobility.positioning.Position
-import api.mobility.positioning.RadialZone
+import api.common.positioning.Coordinates
+import api.common.positioning.Position
+import api.common.positioning.RadialZone
 import org.fog.utils.Config
-import org.fog.utils.FogLinearPowerModel
 import org.fog.utils.TimeKeeper
 import org.fog.utils.distribution.DeterministicDistribution
 import org.junit.jupiter.api.Test
@@ -27,13 +26,13 @@ import kotlin.test.assertNull
 class AddressingAccessPointConnectedDeviceTest: BaseFogDeviceTest() {
     @Suppress("SameParameterValue")
     private fun createAddressingAccessPoint(
-            name: String, coordinates: Coordinates, radius: Double, accessPointsMap: AccessPointsMap,
+            name: String, coordinates: Coordinates, radius: Double, accessPointsMap: AccessPointsMap, downlinkLatency: Double,
             uplinkBandwidth: Double, downlinkBandwidth: Double, uplinkLatency: Double,
     ): AddressingAccessPointImpl {
-        return createCharacteristicsAndAllocationPolicy(1000.0).let {
+        return createCharacteristicsAndAllocationPolicy(0.0).let {
             AddressingAccessPointImpl(
-                    name, uplinkBandwidth, downlinkBandwidth, uplinkLatency, FogLinearPowerModel(100.0, 40.0),
-                    coordinates, RadialZone(coordinates, radius), accessPointsMap
+                    name, it.first, it.second, emptyList(), 10.0, uplinkBandwidth, downlinkBandwidth, uplinkLatency, 0.0,
+                    coordinates, RadialZone(coordinates, radius), downlinkLatency, accessPointsMap
             )
         }
     }
@@ -75,7 +74,7 @@ class AddressingAccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         )
         val ap = createAddressingAccessPoint(
                 "AccessPoint1", Coordinates(5.0, 5.0), 1.0,
-                apm, 1000.0, 1000.0, 0.1
+                apm, 0.1,1000.0, 1000.0, 0.1
         )
         val mob = createAddressingAccessPointConnectedDevice(
                 "Mob1", Position(Coordinates(0.0, 0.0), sqrt(2.0), 45.0),
@@ -110,7 +109,7 @@ class AddressingAccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         )
         val ap = createAddressingAccessPoint(
                 "AccessPoint1", Coordinates(5.0, 5.0), 1.0,
-                apm, 1000.0, 1000.0, 1.0
+                apm, 0.1, 1000.0, 1000.0, 1.0
         )
         val mob = createAddressingAccessPointConnectedDevice(
                 "Mob1", Position(Coordinates(0.0, 0.0), sqrt(2.0), 45.0),
@@ -147,7 +146,7 @@ class AddressingAccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         )
         val ap = createAddressingAccessPoint(
                 "AccessPoint1", Coordinates(5.0, 5.0), 1.0,
-                apm, 1000.0, 1000.0, 1.0
+                apm, 0.1, 1000.0, 1000.0, 1.0
         )
         val mob = createAddressingAccessPointConnectedDevice(
                 "Mob1", Position(Coordinates(0.0, 0.0), sqrt(2.0), 45.0),
@@ -184,11 +183,11 @@ class AddressingAccessPointConnectedDeviceTest: BaseFogDeviceTest() {
         )
         val ap1 = createAddressingAccessPoint(
                 "AccessPoint1", Coordinates(4.0, 4.0), 1.0,
-                apm, 1000.0, 1000.0, 0.1
+                apm, 0.1,1000.0, 1000.0, 0.1
         )
         val ap2 = createAddressingAccessPoint(
                 "AccessPoint2", Coordinates(9.0, 9.0), 1.0,
-                apm, 1000.0, 1000.0, 0.1
+                apm, 0.1,1000.0, 1000.0, 0.1
         )
         val serv1 = createServer("Cluster1.Server1",
                 10.0, 1000.0, 1000.0, 100.0, 0.01,

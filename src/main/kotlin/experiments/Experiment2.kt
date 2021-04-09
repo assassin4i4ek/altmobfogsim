@@ -4,10 +4,10 @@ import api.accesspoint.original.entities.AccessPointConnectedDeviceImpl
 import api.accesspoint.original.entities.AccessPointImpl
 import api.accesspoint.original.utils.AccessPointsMap
 import api.mobility.models.MobilityModel
-import api.mobility.positioning.Coordinates
-import api.mobility.positioning.Position
-import api.mobility.positioning.RadialZone
-import api.mobility.positioning.Zone
+import api.common.positioning.Coordinates
+import api.common.positioning.Position
+import api.common.positioning.RadialZone
+import api.common.positioning.Zone
 import api.network.fixed.entities.NetworkDeviceImpl
 import org.cloudbus.cloudsim.Pe
 import org.cloudbus.cloudsim.Storage
@@ -69,8 +69,7 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
                 }) {
                     val apCoord = Coordinates(100.0 * (i + x.toDouble() / sideLength), 100.0 * y.toDouble() / sideLength)
                     val ap = createAccessPoint("ap-$i-$x-$y",
-                            apCoord,
-                            RadialZone(apCoord, 50.0 / sideLength),
+                            apCoord, RadialZone(apCoord, 50.0 / sideLength), 2.0,
                             apm, Double.POSITIVE_INFINITY, 10000.0, 0.0, FogLinearPowerModel(1.0, 1.0)
                     )
                     ap.parentId = gw.id
@@ -147,9 +146,25 @@ class Experiment2(resultsPath: String?, isWarmup: Boolean, isLog: Boolean, seed:
     }
 
     @Suppress("SameParameterValue")
-    private fun createAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone,
+    private fun createAccessPoint(name: String, coordinates: Coordinates, connectionZone: Zone, downlinkLatency: Double,
                                   accessPointsMap: AccessPointsMap, upBw: Double, downBw: Double, uplinkLatency: Double, powerModel: PowerModel): AccessPointImpl {
-        return AccessPointImpl(name, upBw, downBw, uplinkLatency, powerModel, coordinates, connectionZone, accessPointsMap)
+        val peList = listOf(Pe(0, PeProvisionerOverbooking(0.0)))
+        val storage = 1000000L
+        val bw = 10000L
+        val host = PowerHost(FogUtils.generateEntityId(), RamProvisionerSimple(0), BwProvisionerOverbooking(bw), storage,
+                peList, StreamOperatorScheduler(peList), powerModel)
+        val hostList = listOf(host)
+        val arch = "x86"
+        val os = "Linux"
+        val vmm = "Xen"
+        val timezone = 10.0
+        val cost = 3.0
+        val costPerMem = 0.05
+        val costPerStorage = 0.001
+        val costPerBw = 0.0
+        val storageList = emptyList<Storage>()
+        val characteristics = FogDeviceCharacteristics(arch, os, vmm, host, timezone, cost, costPerMem, costPerStorage, costPerBw)
+        return AccessPointImpl(name, characteristics, AppModuleAllocationPolicy(hostList), storageList, 10.0, upBw, downBw, uplinkLatency, 0.0, coordinates, connectionZone, downlinkLatency, accessPointsMap)
     }
 
     @Suppress("SameParameterValue")
