@@ -1,10 +1,9 @@
-package api.migration.models.problem.environment
+package api.migration.models.mapo.environment
 
 import org.cloudbus.cloudsim.core.SimEntity
 import org.fog.entities.Actuator
 import org.fog.entities.FogDevice
 import org.fog.entities.Sensor
-import java.lang.Exception
 
 class DeviceSuperposition {
     private val fogDevice: FogDevice?

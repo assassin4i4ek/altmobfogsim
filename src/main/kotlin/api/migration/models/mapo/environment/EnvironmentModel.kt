@@ -1,6 +1,5 @@
-package api.migration.models.problem.environment
+package api.migration.models.mapo.environment
 
-import org.fog.application.AppModule
 import org.fog.entities.FogDevice
 
 interface EnvironmentModel {

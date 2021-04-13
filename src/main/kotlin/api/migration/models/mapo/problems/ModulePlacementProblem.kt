@@ -1,19 +1,106 @@
-package api.migration.models.problem
+package api.migration.models.mapo.problems
 
-import api.migration.models.problem.environment.EnvironmentModel
-import api.migration.models.problem.environment.EnvironmentModelImpl
-import api.migration.models.problem.environment.EnvironmentModelPath
-import api.migration.models.problem.environment.MutableEnvironmentModel
-import api.migration.models.problem.objectives.Objective
+import api.migration.models.mapo.environment.EnvironmentModel
+import api.migration.models.mapo.environment.EnvironmentModelImpl
+import api.migration.models.mapo.environment.MutableEnvironmentModel
+import api.migration.models.mapo.objectives.Objective
 import api.migration.original.entites.MigrationSupportingDevice
 import org.fog.application.AppModule
 import org.fog.placement.Controller
 import org.moeaframework.core.Solution
-import org.moeaframework.core.variable.BinaryVariable
-import org.moeaframework.core.variable.EncodingUtils
+import org.moeaframework.core.Variable
 import org.moeaframework.problem.AbstractProblem
 
-class ModulePlacementProblem(
+abstract class ModulePlacementProblem<T: Variable>(
+    numberOfVariables: Int,
+    protected val objectives: List<Objective>,
+    protected val controller: Controller
+): AbstractProblem(numberOfVariables, objectives.size) {
+    protected val currentEnvironmentModel: EnvironmentModel
+
+    init {
+        //initialize current environment model
+        currentEnvironmentModel = EnvironmentModelImpl(controller)
+        controller.fogDevices.forEach { fogDevice ->
+            currentEnvironmentModel.addFogDeviceWithModules(fogDevice.id, fogDevice.getVmList<AppModule>().map { deviceModule ->
+                controller.applications[deviceModule.appId]!!.getModuleByName(deviceModule.name)
+            })
+        }
+    }
+
+    override fun newSolution(): Solution {
+        val solution = Solution(getNumberOfVariables(), getNumberOfObjectives())
+        repeat(getNumberOfVariables()) {
+            solution.setVariable(it, newSolutionVariable())
+        }
+        return solution
+    }
+
+    protected abstract fun newSolutionVariable(): T
+
+    @Suppress("UNCHECKED_CAST")
+    fun areSolutionsEqual(solution1: Solution, solution2: Solution): Boolean {
+        if (solution1.numberOfVariables != solution2.numberOfVariables) {
+            return false
+        }
+        repeat(solution1.numberOfVariables) {
+            if (!areVariablesEqual(solution1.getVariable(it) as T, solution2.getVariable(it) as T)) {
+                return false
+            }
+        }
+        return true
+    }
+
+    abstract fun areVariablesEqual(var1: T, var2: T): Boolean
+
+    override fun evaluate(solution: Solution) {
+        val newEnvModel = EnvironmentModelImpl(controller)
+//        repeat(solution.numberOfVariables) {
+//            val variable = BinaryVariable(1)
+//            variable.set(0, it in arrayOf(0, 1, 2))
+//            solution.setVariable(it, variable)
+//        }
+        initEnvironmentModelForSolution(newEnvModel, solution)
+        if (validateSolution(solution) && validateEnvironmentModel(newEnvModel)) {
+            objectives.forEachIndexed { i, objective ->
+                solution.setObjective(i, objective.compute(currentEnvironmentModel, newEnvModel))
+            }
+        }
+        else {
+            repeat(numberOfObjectives) { i ->
+                solution.setObjective(i, Double.POSITIVE_INFINITY)
+            }
+        }
+    }
+
+    abstract fun initEnvironmentModelForSolution(envModel: MutableEnvironmentModel, solution: Solution)
+
+    abstract fun validateSolution(solution: Solution): Boolean
+
+    protected fun validateEnvironmentModel(environmentModel: EnvironmentModel): Boolean {
+        val modelPaths = environmentModel.getAllPaths()
+        val currentReducedPathLinks = currentEnvironmentModel.getAllPaths().flatMap { it.reduce().links }
+        val modelReducedPathLinks = modelPaths.flatMap { it.reduce().links }.toMutableList()
+        currentReducedPathLinks.forEach { srcLink ->
+            val accordingModelLink = modelReducedPathLinks.find { modelLink ->
+                modelLink.appEdge == srcLink.appEdge
+            }
+            if (accordingModelLink != null) {
+                modelReducedPathLinks.remove(accordingModelLink)
+            }
+            else {
+                return false
+            }
+        }
+        return modelReducedPathLinks.isEmpty()
+    }
+
+    abstract fun currentEnvironmentAsSolution(): Solution
+
+    abstract fun decode(solution: Solution): Map<MigrationSupportingDevice, List<Pair<AppModule, Boolean>>>
+}
+
+/*class ModulePlacementProblem(
         private val objectives: List<Objective>,
         private val devices: List<MigrationSupportingDevice>,
         private val modules: List<AppModule>,
@@ -154,4 +241,4 @@ class ModulePlacementProblem(
         }
         return true
     }
-}
+}*/

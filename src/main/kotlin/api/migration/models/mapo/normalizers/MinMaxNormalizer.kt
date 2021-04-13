@@ -1,4 +1,4 @@
-package api.migration.models.problem.normalizers
+package api.migration.models.mapo.normalizers
 
 class MinMaxNormalizer : Normalizer {
     override fun normalize(values: List<Double>): List<Double> {

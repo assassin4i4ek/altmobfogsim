@@ -1,8 +1,7 @@
-package api.migration.models.problem.environment
+package api.migration.models.mapo.environment
 
 import org.fog.application.AppEdge
 import org.fog.application.AppModule
-import org.fog.entities.FogDevice
 
 data class EnvironmentModelPathLink(
         val srcDevice: DeviceSuperposition,

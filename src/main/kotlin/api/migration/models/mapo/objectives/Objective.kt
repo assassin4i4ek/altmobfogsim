@@ -1,6 +1,6 @@
-package api.migration.models.problem.objectives
+package api.migration.models.mapo.objectives
 
-import api.migration.models.problem.environment.EnvironmentModel
+import api.migration.models.mapo.environment.EnvironmentModel
 
 interface Objective {
     fun compute(currentEnvironmentModel: EnvironmentModel, newEnvironmentModel: EnvironmentModel): Double

@@ -1,26 +1,31 @@
-package api.migration.models
+package api.migration.models.mapo
 
-import api.migration.models.problem.ModulePlacementProblem
-import api.migration.models.problem.normalizers.Normalizer
-import api.migration.models.problem.objectives.Objective
+import api.migration.models.MigrationModel
+import api.migration.models.mapo.problems.ModulePlacementProblemFactory
+import api.migration.models.mapo.normalizers.Normalizer
+import api.migration.models.mapo.objectives.Objective
+import api.migration.models.timeprogression.FixedTimeProgression
 import api.migration.original.entites.MigrationSupportingDevice
 import api.migration.utils.MigrationRequest
+import api.migration.models.timeprogression.TimeProgression
 import org.moeaframework.Executor
 import org.moeaframework.core.PRNG
 import kotlin.math.pow
 
 class CentralizedMapoModel(
-        override val nextUpdateTime: Double,
         private val isCentral: Boolean,
+        override val updateTimeProgression: TimeProgression = FixedTimeProgression(Double.MAX_VALUE),
         private val objectives: List<Objective> = emptyList(),
+        private val modulePlacementProblemFactory: ModulePlacementProblemFactory? = null,
         private val normalizer: Normalizer? = null,
-        private val seed: Long? = null
+        private val seed: Long? = null,
 ) : MigrationModel {
     override lateinit var device: MigrationSupportingDevice
     private val allowedMigrationModules: MutableSet<String> = mutableSetOf()
 
     override fun decide(): List<MigrationRequest> {
         if (isCentral) {
+            assert(modulePlacementProblemFactory != null)
             val migrationSupportingDevices = device.controller.fogDevices.filterIsInstance<MigrationSupportingDevice>()
             val modulesToMigrate = device.controller.applications
                     .flatMap { (_, app) -> app.modules }
@@ -36,7 +41,8 @@ class CentralizedMapoModel(
 //                    }
 
             if (migrationSupportingDevices.isNotEmpty() && modulesToMigrate.isNotEmpty() /*&& modulesToMigrate.map { it.numInstances }.sum() > 0*/) {
-                val problem = ModulePlacementProblem(objectives, migrationSupportingDevices, modulesToMigrate, device.controller)
+                val problem = modulePlacementProblemFactory!!.newProblem(objectives, migrationSupportingDevices, modulesToMigrate, device.controller)
+                        //ModulePlacementProblem(objectives, migrationSupportingDevices, modulesToMigrate, device.controller)
                 if (seed != null) {
                     PRNG.setSeed(seed)
                 }
@@ -64,7 +70,7 @@ class CentralizedMapoModel(
                         s.getObjective(i).pow(2)
                     }
                 }
-                if (newSolution != null && newSolution !== currentSolution && !problem.areVariablesEqual(newSolution, currentSolution)) {
+                if (newSolution != null && newSolution !== currentSolution && !problem.areSolutionsEqual(newSolution, currentSolution)) {
                     val currentDeviceToModulesMap = problem.decode(currentSolution)
                     val newDeviceToModulesMap = problem.decode(newSolution)
                     val migrationRequests = mutableListOf<MigrationRequest>()
@@ -114,7 +120,7 @@ class CentralizedMapoModel(
         return true
     }
 
-    fun allowMigrationForModule(moduleName: String) {
+    override fun allowMigrationForModule(moduleName: String) {
         allowedMigrationModules.add(moduleName)
     }
 }

@@ -3,10 +3,11 @@ package api.migration.models
 import api.migration.original.entites.MigrationSupportingDevice
 import api.migration.original.entites.ModuleLaunchingDevice
 import api.migration.utils.MigrationRequest
+import api.migration.models.timeprogression.TimeProgression
 import org.cloudbus.cloudsim.core.CloudSim
 
 class MigrationModelImpl(
-        override val nextUpdateTime: Double,
+        override val updateTimeProgression: TimeProgression
 ) : MigrationModel {
     override lateinit var device: MigrationSupportingDevice
 
@@ -76,6 +77,10 @@ class MigrationModelImpl(
 
     override fun canMigrate(request: MigrationRequest): Boolean {
         return true
+    }
+
+    override fun allowMigrationForModule(moduleName: String) {
+
     }
 
 //    override fun prepare(request: MigrationRequest) {

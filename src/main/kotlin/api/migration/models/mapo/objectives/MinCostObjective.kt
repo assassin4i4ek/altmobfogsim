@@ -1,10 +1,7 @@
-package api.migration.models.problem.objectives
+package api.migration.models.mapo.objectives
 
-import api.migration.models.problem.environment.EnvironmentModel
-import org.cloudbus.cloudsim.core.CloudSim
-import org.fog.application.AppModule
+import api.migration.models.mapo.environment.EnvironmentModel
 import org.fog.entities.FogDevice
-import org.fog.placement.Controller
 import kotlin.math.min
 
 class MinCostObjective: Objective {
@@ -18,7 +15,7 @@ class MinCostObjective: Objective {
                 val processingModule = link.destProcessingModule
                 if (processingDevice is FogDevice && processingModule != null) {
                     avgMipsAllocatedByDevice[processingDevice.id] = (avgMipsAllocatedByDevice[processingDevice.id] ?: 0.0) +
-                            link.appEdge.tupleCpuLength / link.timeInterval
+                            link.appEdge.tupleCpuLength * link.selectivity / link.timeInterval
                     deviceMap.putIfAbsent(processingDevice.id, processingDevice)
                 }
             }

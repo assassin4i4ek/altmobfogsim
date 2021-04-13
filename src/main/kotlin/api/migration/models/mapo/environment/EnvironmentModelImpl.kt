@@ -1,4 +1,4 @@
-package api.migration.models.problem.environment
+package api.migration.models.mapo.environment
 
 import api.addressing.fixed.entities.AddressingDevice
 import api.addressing.models.AddressingModel
@@ -157,7 +157,7 @@ class EnvironmentModelImpl(private val controller: Controller) : MutableEnvironm
                                                         nextEdge,
                                                         currentLink.appId,
                                                         currentLink.timeInterval,
-                                                        targetModule.selectivityMap[Pair(currentLink.appEdge.tupleType, nextEdge.tupleType)]!!.meanRate,
+                                                        currentLink.selectivity * targetModule.selectivityMap[Pair(currentLink.appEdge.tupleType, nextEdge.tupleType)]!!.meanRate,
                                                         nextEdgeModuleMap
                                                 ))
                                             }
@@ -173,7 +173,7 @@ class EnvironmentModelImpl(private val controller: Controller) : MutableEnvironm
                                                     nextEdge,
                                                     currentLink.appId,
                                                     currentLink.timeInterval,
-                                                    targetModule.selectivityMap[Pair(currentLink.appEdge.tupleType, nextEdge.tupleType)]!!.meanRate,
+                                                    currentLink.selectivity * targetModule.selectivityMap[Pair(currentLink.appEdge.tupleType, nextEdge.tupleType)]!!.meanRate,
                                                     HashMap(currentEdgeModuleMap)
                                             ))
                                         }
