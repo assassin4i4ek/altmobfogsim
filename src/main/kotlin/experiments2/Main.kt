@@ -1,20 +1,24 @@
 package experiments2
 
-import addons.accesspoint.addressing.entities.AddressingAccessPointConnectedDeviceImpl
-import addons.accesspoint.addressing.entities.AddressingAccessPointImpl
+import addons.accesspoint_addressingdynamic.entities.AddressingAccessPointConnectedDeviceImpl
+import addons.accesspoint_addressingdynamic_migrationoriginal.entities.MigrationSupportingAddressingAccessPointImpl
+import addons.addressingdynamic_migrationoriginal.entities.DynamicAddressingMigrationSupportingDeviceImpl
 import api.accesspoint.original.utils.AccessPointsMap
 import api.accesspoint.original.utils.AccessPointsMapUtils
 import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDeviceImpl
 import api.addressing.fixed.entities.AddressingDevice
-import api.addressing.fixed.entities.AddressingDeviceImpl
-import api.mobility.entities.MobileDeviceImpl
-import api.mobility.models.CsvInputMobilityModelFactory
-import api.mobility.models.MobilityModel
 import api.common.positioning.Coordinates
-import api.common.positioning.PolygonalZone
 import api.common.positioning.Position
 import api.common.positioning.RadialZone
-import api.common.utils.DeterministicDistributionWithRandomOffset
+import api.migration.models.mapo.CentralizedMapoModel
+import api.migration.models.mapo.normalizers.MinMaxNormalizer
+import api.migration.models.mapo.objectives.MinCostObjective
+import api.migration.models.mapo.objectives.MinProcessingTimeObjective
+import api.migration.models.mapo.problems.SingleInstanceModulePlacementProblem
+import api.migration.models.timeprogression.FixedWithOffsetTimeProgression
+import api.migration.utils.MigrationLogger
+import api.migration.utils.MigrationRequest
+import api.mobility.models.CsvInputMobilityModelFactory
 import org.cloudbus.cloudsim.Log
 import org.cloudbus.cloudsim.Pe
 import org.cloudbus.cloudsim.VmAllocationPolicy
@@ -29,54 +33,111 @@ import org.fog.application.AppEdge
 import org.fog.application.AppLoop
 import org.fog.application.Application
 import org.fog.application.selectivity.FractionalSelectivity
-import org.fog.application.selectivity.SelectivityModel
 import org.fog.entities.*
 import org.fog.placement.Controller
 import org.fog.placement.ModuleMapping
-import org.fog.placement.ModulePlacement
 import org.fog.placement.ModulePlacementMapping
 import org.fog.policy.AppModuleAllocationPolicy
 import org.fog.scheduler.StreamOperatorScheduler
 import org.fog.utils.*
 import org.fog.utils.distribution.DeterministicDistribution
-import java.lang.Exception
 import java.util.*
-import kotlin.math.ceil
+import kotlin.math.max
 
 fun main() {
-    val randSeed = 1234L
+    val randSeed = 12345L
     setMathRandSeed(randSeed)
     val modelTimeUnitsPerSec = 1000.0 // one CloudSim tick == 1 ms
     CloudSim.init(1, Calendar.getInstance(), false)
     Log.disable()
     Logger.ENABLED = true
 
-    val cloud = createCharacteristicsAndAllocationPolicy(100000.0).let {
-        DynamicAddressingNotificationConsumerDeviceImpl("cloud", it.first, it.second, emptyList(), 10.0,
-                1000.0, 1000.0, 0.0, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)
+    val mapoModelMaxEvaluations = 20000
+    val populationSize = 400
+    val cloudNumPes = 8 * 64
+    val numMobiles = 10
+    val cloudRatePerMips = 168050.0 /*USD per year */ / 15200 /* MIPS */ / (365 * 24 * 3600) /* sec */
+    val cloud = createCharacteristicsAndAllocationPolicy(
+            300000.0 /*Intel Core i7-5960x 3.5GHz 2014y*/ / 16 /*threads*/ / modelTimeUnitsPerSec, cloudNumPes,
+            189.0 /*Watts 100% load for Intel Core i7-5960x 8 cores 16 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec,
+            69.0 /*Watts idle for Intel Core i7-5960x 8 cores 16 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec
+    ).let {
+        /*val ratePerMips = 168050 /* USD/year per equivalent application in AWS */ /
+                35720e3 /* USD/year in mainframe */ *
+                (1.0 - (3678.0 - 2700.0) / (3 * 3678.0)) /* annual decrease in USD/MIPS ( calculated for 3 year period) */
+                        .pow(6) /* 2017, 2018, 2019, 2020, 2021, 2022 = 6 years */ /
+                (365 * 24 * 3600) /*days/hour/sec*/ *
+                100.0 /*USD to cents*/*/
+        DynamicAddressingMigrationSupportingDeviceImpl("cloud", it.first, it.second, emptyList(), 10.0,
+                2.5e9 /* 2.5 Gbps link*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
+                2.5e9 /* 2.5 Gbps link*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
+                0.0, cloudRatePerMips, AddressingDevice.AddressingType.HIERARCHICAL,
+                CentralizedMapoModel(
+                        true,  FixedWithOffsetTimeProgression(
+                        2.0 * modelTimeUnitsPerSec, 200.0 * modelTimeUnitsPerSec),
+                        listOf(
+//                                MinCostObjective(),
+                                MinProcessingTimeObjective()
+                        ),
+                        SingleInstanceModulePlacementProblem.Factory(), mapoModelMaxEvaluations, populationSize,
+                        MinMaxNormalizer(), randSeed
+                )
+        )
     }
 
     val apm = AccessPointsMap()
     val accessPoints = AccessPointsMapUtils.generateRadialZonesFromCsv("input/accesspoints.csv")
-            .mapIndexed { i: Int, connectionZoneWithType: Triple<String, RadialZone, Int> ->
-                val (apDownlinkLatency, apDownlinkBandwidth) = when (connectionZoneWithType.third) {
-                    3 -> 250.0 /*latency (sec)*/ * modelTimeUnitsPerSec to 2.5e6 /*Mbits per sec*/ / modelTimeUnitsPerSec
-                    4 -> 75.0 /*latency (sec)*/ * modelTimeUnitsPerSec to 25e6 /*Mbits per sec*/ / modelTimeUnitsPerSec
+            .map { connectionZoneWithType: Triple<String, RadialZone, Int> ->
+                val (apUplinkLatency, apDownlinkLatency, apUplinkBandwidth, apDownlinkBandwidth) = when (connectionZoneWithType.third) {
+                    3,4 -> BaseStationSpecification(
+                            /*total latency 200ms = 90 + 10 + 10 + 90*/
+                            10e-3 * modelTimeUnitsPerSec,
+                            90.0e-3  * modelTimeUnitsPerSec,
+                            34.368e6 /*E3 interface IMA technology Mbits per sec*/ * 0.85 /* 85% efficiency throughput*/ / modelTimeUnitsPerSec,
+                            2.5e6 /*Mbits per sec*/ / modelTimeUnitsPerSec,
+                    )
+//                    4 -> BaseStationSpecification(
+//                            /*total latency 100 ms = 45 + 5 + 5 + 45*/
+//                            5e-3 * modelTimeUnitsPerSec,
+//                            45.0e-3 * modelTimeUnitsPerSec,
+//                            2.5e9 /*2.5 Gbit Ethernet*/ * 0.85 /* 85% efficiency throughput*/ / modelTimeUnitsPerSec,
+//                            25e6 /*Mbits per sec*/ / modelTimeUnitsPerSec
+//                    )
                     else -> throw Exception("Unknown Base station type ${connectionZoneWithType.third}")
                 }
-                val ap = createCharacteristicsAndAllocationPolicy(1.0).let {
-                    AddressingAccessPointImpl(connectionZoneWithType.first, it.first, it.second, emptyList(), 10.0,
-                            1000.0, apDownlinkBandwidth, 0.0, 0.01,
-                            connectionZoneWithType.second.center.copy(), connectionZoneWithType.second, apDownlinkLatency, apm)
+                val apRatePerMips = cloudRatePerMips * 2
+                val apNumPes = max(cloudNumPes / 2, 1)
+                val ap = createCharacteristicsAndAllocationPolicy(
+                        300000.0 /*Intel Core i7-5960x 3.5GHz 2014y*/ / 16 /*threads*/ / modelTimeUnitsPerSec, apNumPes,
+                        189.0 /*Watts 100% load for Intel Core i7-5960x 8 cores 16 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec,
+                        69.0 /*Watts idle for Intel Core i7-5960x 8 cores 16 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec
+                ).let {
+                    MigrationSupportingAddressingAccessPointImpl(connectionZoneWithType.first, it.first, it.second, emptyList(), 10.0,
+                            apUplinkBandwidth, apDownlinkBandwidth, apUplinkLatency, apRatePerMips,
+                            connectionZoneWithType.second.center.copy(), connectionZoneWithType.second, apDownlinkLatency, apm,
+                            CentralizedMapoModel(false))
                 }
-                ap.parentId = cloud.id
-                ap.uplinkLatency = 0.1 * modelTimeUnitsPerSec
                 ap
             }
-    val mobiles = CsvInputMobilityModelFactory.fromDirectory("input/gps_data", modelTimeUnitsPerSec, 2).map { (name, mobilityModel) ->
-        createCharacteristicsAndAllocationPolicy(2.65 /*DMIPS per MHz*/ * 2000.0 /*MHz*/ / modelTimeUnitsPerSec).let {
+    val ispGateway = createCharacteristicsAndAllocationPolicy(0.0, 1, 0.0, 0.0).let {
+        DynamicAddressingNotificationConsumerDeviceImpl("ISP_Gateway", it.first, it.second, emptyList(), 10.0,
+                39.81e9 /*39.81 Gbps STM-256 bandwidth*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
+                accessPoints.map { ap -> ap.uplinkBandwidth }.sum(),
+                25e-3 /* 50 ms delay between AWS EC2 DC and ISP*/ * modelTimeUnitsPerSec,
+                0.0, AddressingDevice.AddressingType.HIERARCHICAL
+        )
+    }
+    ispGateway.parentId = cloud.id
+    accessPoints.forEach { ap ->
+        ap.parentId = ispGateway.id
+    }
+    val mobiles = CsvInputMobilityModelFactory.fromDirectory("input/gps_data"/*"E:\\monaco_sumo\\scenario\\gps_data_new"*/, modelTimeUnitsPerSec, numMobiles).map { (name, mobilityModel) ->
+        createCharacteristicsAndAllocationPolicy(
+                2.65 /*Cortex-A55 DMIPS per MHz*/ * 2000.0 /*MHz*/ / modelTimeUnitsPerSec, 1,
+                0.85 /* Watts in idle mode */ * 0.85 /* A55 vs A53 efficiency*/ / modelTimeUnitsPerSec,
+                0.02 /* Watts in idle mode */ * 0.9 /* A55 vs A53 efficiency*/ / modelTimeUnitsPerSec).let {
             AddressingAccessPointConnectedDeviceImpl(name, it.first, it.second, emptyList(), 10.0,
-                    1000.0, 1000.0, 10.0 * modelTimeUnitsPerSec, 0.0,
+                    1000.0, 0.0, 10.0 * modelTimeUnitsPerSec, 0.0,
                     Position(Coordinates(-1000.0, -1000.0), 0.0, 0.0),
                     mobilityModel, apm
             )
@@ -101,8 +162,12 @@ fun main() {
         actuator.latency = (app.edgeMap["PATIENT_ALARM$i"]!!.tupleNwLength / (6000.0 /*bytes per second*/ * 8 /*bits per byte*/)) * modelTimeUnitsPerSec
         moduleMapping.addModuleToDevice("client$i", mobile.mName)
         moduleMapping.addModuleToDevice("patient_state_analyzer$i", cloud.mName)
+//        moduleMapping.addModuleToDevice("patient_state_analyzer$i", "3gBaseStation_1_3")
         moduleMapping.addModuleToDevice("heart_attack_determiner$i", cloud.mName)
         moduleMapping.addModuleToDevice("patient_disease_history$i", cloud.mName)
+        cloud.migrationModel.allowMigrationForModule("patient_state_analyzer$i")
+        cloud.migrationModel.allowMigrationForModule("heart_attack_determiner$i")
+        cloud.migrationModel.allowMigrationForModule("patient_disease_history$i")
 
         brokers.add(broker)
         applications.add(app)
@@ -114,43 +179,47 @@ fun main() {
     val fogDevices = mutableListOf<FogDevice>()
 
     fogDevices.add(cloud)
+    fogDevices.add(ispGateway)
     fogDevices.addAll(accessPoints)
     fogDevices.addAll(mobiles)
 
     val controller = MyTestController("Controller", fogDevices, sensors, actuators) {
-        println(accessPoints.map { it.name to it.mChildrenIds.size }.toMap())
         println()
+        println("Base station: number of connected clients")
+        println(accessPoints.joinToString("") {
+            if (it.childrenIds.size > 1) {
+                "${it.name}: ${it.childrenIds.size - 1}\n"
+            }
+            else ""
+        })
+        println("Migrations")
+        println(MigrationLogger.migrations.groupBy { it.modelTime }.toList().joinToString("") { logEntriesOfModelTime ->
+            logEntriesOfModelTime.second.sortedBy { it.migrationRequest.appModuleName }.joinToString("") { logEntry ->
+                if (logEntry.migrationRequest.type != MigrationRequest.Type.REMOVE_ALL_INSTANCES) {
+                    "${logEntry.modelTime}: ${logEntry.migrationRequest.appModuleName} from ${logEntry.migrationRequest.from} to ${logEntry.migrationRequest.to}\n"
+                }
+                else ""
+            }
+        })
     }
     applications.forEach { app ->
         controller.submitApplication(app, ModulePlacementMapping(fogDevices, app, mappings[app.appId]))
     }
 
-    object: SimEntity("tester") {
-        override fun startEntity() {
-            send(id, 0.0, 0, null)
-        }
-
-        override fun processEvent(p0: SimEvent?) {
-            println(CloudSim.clock())
-            send(id, 1000.0 * modelTimeUnitsPerSec, 0, null)
-        }
-
-        override fun shutdownEntity() {}
-
-    }
-
-    Config.MAX_SIMULATION_TIME = (/*36000*/ 100 * modelTimeUnitsPerSec).toInt()
+    Config.RESOURCE_MGMT_INTERVAL = (0.1 * modelTimeUnitsPerSec)
+    Config.MAX_SIMULATION_TIME = (/*36000*/ 20 * modelTimeUnitsPerSec).toInt()
     CloudSim.startSimulation()
 }
 
-fun createCharacteristicsAndAllocationPolicy(mips: Double): Pair<FogDeviceCharacteristics, VmAllocationPolicy> {
-    val peList = listOf(Pe(0, PeProvisionerOverbooking(mips))) // need to store Pe id and MIPS Rating
+fun createCharacteristicsAndAllocationPolicy(mips: Double, numPes: Int, maxPowerPerCore: Double, idlePowerPerCore: Double): Pair<FogDeviceCharacteristics, VmAllocationPolicy> {
+    val peList = List(numPes) { i -> Pe(i, PeProvisionerOverbooking(mips)) }
     val hostId = FogUtils.generateEntityId()
-    val ram = 2048 // host memory (MB)
-    val storage: Long = 1000000 // host storage
-    val bw = 10000
-    val host = PowerHost(hostId, RamProvisionerSimple(ram), BwProvisionerOverbooking(bw.toLong()),storage,
-            peList, StreamOperatorScheduler(peList), FogLinearPowerModel(100.0, 40.0)
+    val ram: Int = Int.MAX_VALUE // host memory (MB)
+    val storage: Long = Long.MAX_VALUE // host storage
+    val bw: Long = Long.MAX_VALUE
+    val host = PowerHost(hostId, RamProvisionerSimple(ram), BwProvisionerOverbooking(bw),storage,
+            peList, StreamOperatorScheduler(peList),
+            FogLinearPowerModel(maxPowerPerCore * numPes, idlePowerPerCore * numPes)
     )
     val hostList = listOf(host)
 
@@ -205,10 +274,10 @@ private class MyTestController(
         val onStopSimulation: () -> Unit
 ) : Controller(name, fogDevices, sensors, actuators) {
     override fun processEvent(ev: SimEvent) {
+        super.processEvent(ev)
         if (ev.tag == FogEvents.STOP_SIMULATION) {
             onStopSimulation()
         }
-        super.processEvent(ev)
     }
 }
 
@@ -219,3 +288,10 @@ fun setMathRandSeed(seed: Long) {
     val randObj = randField.get(null) as Random
     randObj.setSeed(seed)
 }
+
+private data class BaseStationSpecification(
+        val uplinkLatency: Double,
+        val downlinkLatency: Double,
+        val uplinkBandwidth: Double,
+        val downlinkBandwidth: Double
+)

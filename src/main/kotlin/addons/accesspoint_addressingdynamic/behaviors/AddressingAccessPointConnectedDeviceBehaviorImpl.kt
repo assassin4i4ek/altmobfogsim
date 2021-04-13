@@ -1,4 +1,4 @@
-package addons.accesspoint.addressing.behaviors
+package addons.accesspoint_addressingdynamic.behaviors
 
 import api.accesspoint.original.behaviors.AccessPointConnectedDeviceBehavior
 import api.accesspoint.original.entities.AccessPointConnectedDevice

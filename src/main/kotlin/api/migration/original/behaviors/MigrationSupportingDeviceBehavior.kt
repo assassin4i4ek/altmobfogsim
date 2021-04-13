@@ -4,6 +4,7 @@ import api.common.Events
 import api.common.behaviors.BaseBehavior
 import api.migration.original.utils.OldNewModulePair
 import api.migration.original.entites.MigrationSupportingDevice
+import api.migration.utils.MigrationLogger
 import api.migration.utils.MigrationRequest
 import org.cloudbus.cloudsim.core.CloudSimTags
 import org.cloudbus.cloudsim.core.SimEvent
@@ -15,7 +16,7 @@ import org.fog.utils.Logger
 interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDeviceBehavior, MigrationSupportingDevice> {
     override fun onStart() {
         device.migrationModel.device = device
-        device.mSendEvent(device.mId, device.migrationModel.nextUpdateTime,
+        device.mSendEvent(device.mId, device.migrationModel.updateTimeProgression.nextTime(),
                 Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_DECISION.tag, null)
     }
 
@@ -36,6 +37,7 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
         val migrationRequests = device.migrationModel.decide()
         if (migrationRequests.isNotEmpty()) {
             migrationRequests.forEach { migrationRequest ->
+                MigrationLogger.logMigrationDecision(device.mName, migrationRequest)
                 if (migrationRequest.to != null) {
                     if (migrationRequest.to.migrationModel.canMigrate(migrationRequest)) {
                         Logger.debug(device.mName, "Decided to migrate instance of module ${migrationRequest.appModuleName} from ${migrationRequest.from?.mName} to ${migrationRequest.to.mName}")
@@ -50,7 +52,7 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
                 }
             }
         }
-        device.mSendEvent(device.mId, device.migrationModel.nextUpdateTime,
+        device.mSendEvent(device.mId, device.migrationModel.updateTimeProgression.nextTime(),
                 Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_DECISION.tag, null)
         return false
     }

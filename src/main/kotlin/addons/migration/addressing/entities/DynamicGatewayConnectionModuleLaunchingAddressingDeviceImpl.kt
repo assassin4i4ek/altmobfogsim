@@ -1,6 +1,6 @@
 package addons.migration.addressing.entities
 
-import addons.addressing.dynamic.producer.behaviors.DynamicGatewayConnectionAddressingDeviceBehaviorImpl
+import addons.addressing_dynamic.producer.behaviors.DynamicGatewayConnectionAddressingDeviceBehaviorImpl
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
 import api.addressing.fixed.behaviors.AddressingDeviceBehaviorImpl
 import api.addressing.fixed.entities.AddressingDevice

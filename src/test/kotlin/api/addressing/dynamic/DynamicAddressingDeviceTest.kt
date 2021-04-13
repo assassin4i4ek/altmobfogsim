@@ -1,7 +1,7 @@
 package api.addressing.dynamic
 
 import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDeviceImpl
-import addons.addressing.dynamic.producer.entities.DynamicAddressingNotificationProducerDeviceImpl
+import addons.addressing_dynamic.dynamic.producer.entities.DynamicAddressingNotificationProducerDeviceImpl
 import api.addressing.fixed.entities.AddressingDevice
 import api.common.utils.ConnectionUtils
 import org.cloudbus.cloudsim.core.SimEntity

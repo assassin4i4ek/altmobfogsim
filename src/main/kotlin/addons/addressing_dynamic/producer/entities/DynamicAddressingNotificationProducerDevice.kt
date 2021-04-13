@@ -1,4 +1,4 @@
-package addons.addressing.dynamic.producer.entities
+package addons.addressing_dynamic.producer.entities
 
 import api.addressing.fixed.entities.AddressingDevice
 import api.notification.producer.entities.NotificationProducerDevice

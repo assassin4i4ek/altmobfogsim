@@ -2,12 +2,12 @@ package api.common.utils
 
 import org.fog.utils.distribution.DeterministicDistribution
 
-class DeterministicDistributionWithRandomOffset(value: Double): DeterministicDistribution(value) {
+class DeterministicDistributionWithOffset(private val firstOffset: Double, period: Double): DeterministicDistribution(period) {
     var isFirst: Boolean = true
     override fun getNextValue(): Double {
         return if (isFirst) {
             isFirst = false
-            Math.random() * value
+            firstOffset
         }
         else {
             super.getNextValue()

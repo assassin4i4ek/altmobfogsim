@@ -8,6 +8,7 @@ import api.migration.original.entites.MigrationSupportingDevice
 import org.fog.application.AppModule
 import org.fog.placement.Controller
 import org.moeaframework.core.Solution
+import org.moeaframework.core.variable.BinaryIntegerVariable
 import org.moeaframework.core.variable.BinaryVariable
 import org.moeaframework.core.variable.EncodingUtils
 
@@ -16,42 +17,26 @@ class SingleInstanceModulePlacementProblem(
         private val devices: List<MigrationSupportingDevice>,
         private val modules: List<AppModule>,
         controller: Controller
-): ModulePlacementProblem<SingleBitSetBinaryVariable>(modules.size, objectives, controller) {
+): ModulePlacementProblem<BinaryIntegerVariable>(modules.size, objectives, controller) {
     class Factory: ModulePlacementProblemFactory {
         override fun newProblem(objectives: List<Objective>, devices: List<MigrationSupportingDevice>, modules: List<AppModule>, controller: Controller): ModulePlacementProblem<*> {
             return SingleInstanceModulePlacementProblem(objectives, devices, modules, controller)
         }
     }
 
-    override fun newSolutionVariable(): SingleBitSetBinaryVariable = SingleBitSetBinaryVariable(devices.size)
+    override fun newSolutionVariable(): BinaryIntegerVariable = EncodingUtils.newBinaryInt(0, devices.size)
 
-    override fun areVariablesEqual(var1: SingleBitSetBinaryVariable, var2: SingleBitSetBinaryVariable): Boolean {
-        if (var1.numberOfBits != var2.numberOfBits) {
+    override fun areVariablesEqual(var1: BinaryIntegerVariable, var2: BinaryIntegerVariable): Boolean {
+        if (var1.lowerBound != var2.lowerBound || var2.upperBound != var2.upperBound) {
             return false
         }
-        for (i in 0 until var1.numberOfBits) {
-            if (var1.get(i) != var2.get(i)) {
-                return false
-            }
-        }
-        return true
+        return var1.value == var2.value
     }
 
     override fun initEnvironmentModelForSolution(envModel: MutableEnvironmentModel, solution: Solution) {
         devices.forEachIndexed { i, device ->
-            val deviceNewModulesMask = IntRange(0, modules.size - 1).map { j ->
-                when (val variable = solution.getVariable(j)) {
-                    is SingleBitSetBinaryVariable -> {
-                        variable.get(i)
-                    }
-                    is BinaryVariable -> {
-                        val newVariable = SingleBitSetBinaryVariable(variable)
-                        solution.setVariable(j, newVariable)
-                        newVariable.get(i)
-                    }
-                    else -> throw Exception("Unknown variable type")
-                }
-//                (solution.getVariable(j) as SingleBitSetBinaryVariable).get(i)
+            val deviceNewModulesMask = EncodingUtils.getInt(solution).map { deviceIndex ->
+                i == deviceIndex
             }
             val deviceNewModules = deviceNewModulesMask.mapIndexedNotNull { j, isModule ->
                 if (isModule) {
@@ -78,8 +63,10 @@ class SingleInstanceModulePlacementProblem(
         val solution = newSolution()
         devices.forEachIndexed { i, device ->
             modules.forEachIndexed { j, module ->
-                (solution.getVariable(j) as SingleBitSetBinaryVariable)
-                        .set(i, device.mAppModuleList.find {it.appId == module.appId && it.name == module.name} != null)
+                if (device.mAppModuleList.find {it.appId == module.appId && it.name == module.name} != null) {
+                    // module is located on device
+                    EncodingUtils.setInt(solution.getVariable(j), i)
+                }
             }
         }
         objectives.forEachIndexed { i, objective ->
@@ -89,18 +76,6 @@ class SingleInstanceModulePlacementProblem(
     }
 
     override fun validateSolution(solution: Solution): Boolean {
-        for (j in modules.indices) {
-            val variable = solution.getVariable(j) as SingleBitSetBinaryVariable
-            var onesCount = 0
-            for (i in 0 until variable.numberOfBits) {
-                if (variable.get(i)) {
-                    onesCount++
-                }
-            }
-            if (onesCount != 1) {
-                return false
-            }
-        }
         return true
     }
 
@@ -109,7 +84,7 @@ class SingleInstanceModulePlacementProblem(
         devices.forEachIndexed { i, device ->
             result.putIfAbsent(device, mutableListOf())
             modules.forEachIndexed { j, module ->
-                result[device]!!.add(module to (solution.getVariable(j) as SingleBitSetBinaryVariable).get(i))
+                result[device]!!.add(module to (EncodingUtils.getInt(solution.getVariable(j)) == i))
             }
         }
         return result

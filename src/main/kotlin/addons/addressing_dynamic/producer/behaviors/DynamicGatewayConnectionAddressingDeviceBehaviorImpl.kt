@@ -1,4 +1,4 @@
-package addons.addressing.dynamic.producer.behaviors
+package addons.addressing_dynamic.producer.behaviors
 
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehavior

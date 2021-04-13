@@ -1,6 +1,6 @@
-package addons.accesspoint.addressing.behaviors
+package addons.accesspoint_addressingdynamic.behaviors
 
-import addons.accesspoint.addressing.entities.AddressingAccessPoint
+import addons.accesspoint_addressingdynamic.entities.AddressingAccessPoint
 import api.accesspoint.original.behaviors.AccessPointBehavior
 import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationConsumerDeviceBehavior
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior

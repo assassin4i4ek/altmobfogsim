@@ -1,0 +1,7 @@
+package addons.addressingdynamic_migrationoriginal.entities
+
+import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDevice
+import api.migration.original.entites.MigrationSupportingDevice
+
+interface DynamicAddressingMigrationSupportingDevice: DynamicAddressingNotificationConsumerDevice, MigrationSupportingDevice {
+}

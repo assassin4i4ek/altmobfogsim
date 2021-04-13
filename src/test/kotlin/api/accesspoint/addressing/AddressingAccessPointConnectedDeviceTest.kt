@@ -1,7 +1,7 @@
 package api.accesspoint.addressing
 
-import addons.accesspoint.addressing.entities.AddressingAccessPointConnectedDeviceImpl
-import addons.accesspoint.addressing.entities.AddressingAccessPointImpl
+import addons.accesspoint_addressingdynamic.entities.AddressingAccessPointConnectedDeviceImpl
+import addons.accesspoint_addressingdynamic.entities.AddressingAccessPointImpl
 import api.accesspoint.original.utils.AccessPointsMap
 import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDeviceImpl
 import api.addressing.fixed.entities.AddressingDevice

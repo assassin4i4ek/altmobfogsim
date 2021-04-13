@@ -8,6 +8,7 @@ import api.migration.models.timeprogression.FixedTimeProgression
 import api.migration.original.entites.MigrationSupportingDevice
 import api.migration.utils.MigrationRequest
 import api.migration.models.timeprogression.TimeProgression
+import org.fog.utils.Logger
 import org.moeaframework.Executor
 import org.moeaframework.core.PRNG
 import kotlin.math.pow
@@ -17,6 +18,8 @@ class CentralizedMapoModel(
         override val updateTimeProgression: TimeProgression = FixedTimeProgression(Double.MAX_VALUE),
         private val objectives: List<Objective> = emptyList(),
         private val modulePlacementProblemFactory: ModulePlacementProblemFactory? = null,
+        private val maxEvaluations: Int? = null,
+        private val populationSize: Int = 100,
         private val normalizer: Normalizer? = null,
         private val seed: Long? = null,
 ) : MigrationModel {
@@ -25,34 +28,31 @@ class CentralizedMapoModel(
 
     override fun decide(): List<MigrationRequest> {
         if (isCentral) {
+            if (seed != null) {
+                PRNG.setSeed(seed)
+            }
             assert(modulePlacementProblemFactory != null)
             val migrationSupportingDevices = device.controller.fogDevices.filterIsInstance<MigrationSupportingDevice>()
-            val modulesToMigrate = device.controller.applications
-                    .flatMap { (_, app) -> app.modules }
-                    .filter { sourceModule ->
-                        allowedMigrationModules.contains(sourceModule.name)
-                    }
-//                    .flatMap { sourceModule ->
-//                        device.controller.appModulePlacementPolicy[sourceModule.appId]!!.moduleToDeviceMap[sourceModule.name]!!.map { deviceId ->
-//                            device.controller.appModulePlacementPolicy[sourceModule.appId]!!.deviceToModuleMap[deviceId]!!.find {
-//                                it.name == sourceModule.name
-//                            }!!
-//                        }
-//                    }
+            val modulesToMigrate = allowedMigrationModules.flatMap { moduleName ->
+                device.controller.applications.mapNotNull { (_, app) -> app.getModuleByName(moduleName) }
+            }
 
             if (migrationSupportingDevices.isNotEmpty() && modulesToMigrate.isNotEmpty() /*&& modulesToMigrate.map { it.numInstances }.sum() > 0*/) {
                 val problem = modulePlacementProblemFactory!!.newProblem(objectives, migrationSupportingDevices, modulesToMigrate, device.controller)
                         //ModulePlacementProblem(objectives, migrationSupportingDevices, modulesToMigrate, device.controller)
-                if (seed != null) {
-                    PRNG.setSeed(seed)
-                }
+                Logger.debug(device.mName, "Starting Optimization process")
+                print("$0% (inf seconds left)")
                 val executor = Executor()
                         .withProblem(problem)
+                        .withProperty("populationSize", populationSize)
                         .withAlgorithm("NSGAII")
-                        .withMaxEvaluations(10000)
+                        .withMaxEvaluations(maxEvaluations!!)
+                        .withProgressListener {
+                            print("\r${"%.2f".format(it.percentComplete * 100)}% (${"%.0f".format(it.remainingTime)} seconds left)")
+                        }
 //                        .distributeOnAllCores()
                         .run()
-
+                print("\r")
                 val currentSolution = problem.currentEnvironmentAsSolution()
                 // extend population with current solution
                 executor.add(currentSolution)

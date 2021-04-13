@@ -3,16 +3,16 @@ package api.migration.addressing
 import addons.migration.addressing.entities.DynamicGatewayConnectionModuleLaunchingAddressingDeviceImpl
 import api.addressing.fixed.entities.AddressingDevice
 import api.addressing.fixed.entities.AddressingDeviceImpl
-import api.common.utils.ConnectionUtils
 import api.migration.addressing.entities.ModuleAddressingMigrationSupportingDeviceImpl
-import api.migration.models.CentralizedMapoModel
+import api.migration.models.mapo.CentralizedMapoModel
 import api.migration.models.MigrationModel
-import api.migration.models.problem.normalizers.MinMaxNormalizer
-import api.migration.models.problem.objectives.MinCostObjective
-import api.migration.models.problem.objectives.MinProcessingTimeObjective
+import api.migration.models.mapo.normalizers.MinMaxNormalizer
+import api.migration.models.mapo.objectives.MinCostObjective
+import api.migration.models.mapo.objectives.MinProcessingTimeObjective
+import api.migration.models.mapo.problems.MultiInstanceModulePlacementProblem
+import api.migration.models.timeprogression.FixedTimeProgression
 import org.cloudbus.cloudsim.Log
 import org.cloudbus.cloudsim.core.CloudSim
-import org.cloudbus.cloudsim.core.CloudSimTags
 import org.cloudbus.cloudsim.core.SimEntity
 import org.cloudbus.cloudsim.core.SimEvent
 import org.fog.application.AppEdge
@@ -23,7 +23,6 @@ import org.fog.entities.*
 import org.fog.placement.ModuleMapping
 import org.fog.placement.ModulePlacementEdgewards
 import org.fog.utils.Config
-import org.fog.utils.FogEvents
 import org.fog.utils.Logger
 import org.fog.utils.distribution.DeterministicDistribution
 import org.junit.jupiter.api.Test
@@ -127,7 +126,8 @@ class ModuleAddressingMigrationSupportingDeviceTest2 {
         init(numUsers)
         val cloud = createModuleAddressingMigrationSupportingDevice(
                 "cloud", 10.0, 1000.0, 1000.0, 0.1, 0.001,
-                CentralizedMapoModel(1.0, true, listOf(MinCostObjective(), MinProcessingTimeObjective()), MinMaxNormalizer(), 123).apply {
+                CentralizedMapoModel(true, FixedTimeProgression(1.0), listOf(MinCostObjective(), MinProcessingTimeObjective()),
+                        MultiInstanceModulePlacementProblem.Factory(), 10000, 100, MinMaxNormalizer(), 123).apply {
                     allowMigrationForModule("concentration_calculator0")
                 },
                 AddressingDevice.AddressingType.HIERARCHICAL)
@@ -146,7 +146,7 @@ class ModuleAddressingMigrationSupportingDeviceTest2 {
         val mob = createMobileAddressingDevice("Mob", 10.0, 1000.0, 1000.0, 0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)
 //        val mob2 = api.createMobileAddressingDevice("Mob2", 10.0, 1000.0, 1000.0, 0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)
         val serv1 = api.createModuleAddressingMigrationSupportingDevice("Serv1", 10.0, 1000.0, 1000.0, 0.1, 0.01,
-                CentralizedMapoModel(1.0, false, listOf(MinCostObjective(), MinProcessingTimeObjective()), MinMaxNormalizer(), 123), AddressingDevice.AddressingType.HIERARCHICAL
+                CentralizedMapoModel(false), AddressingDevice.AddressingType.HIERARCHICAL
         )
         val gw1 = createAddressingDevice("GW1", 10.0, 1000.0, 1000.0, 0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)
         val gw2 = createAddressingDevice("GW2", 10.0, 1000.0, 1000.0, 0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)
@@ -174,7 +174,8 @@ class ModuleAddressingMigrationSupportingDeviceTest2 {
         init(numUsers)
         val cloud = createModuleAddressingMigrationSupportingDevice(
                 "cloud", 10.0, 1000.0, 1000.0, 0.1, 0.01,
-                CentralizedMapoModel(1.0, true, listOf(MinCostObjective(), MinProcessingTimeObjective()), MinMaxNormalizer(), 123).apply {
+                CentralizedMapoModel(true, FixedTimeProgression(1.0), listOf(MinCostObjective(), MinProcessingTimeObjective()),
+                        MultiInstanceModulePlacementProblem.Factory(), 10000, 100, MinMaxNormalizer(), 123).apply {
                     allowMigrationForModule("concentration_calculator0")
                 },
                 AddressingDevice.AddressingType.HIERARCHICAL)
@@ -193,10 +194,10 @@ class ModuleAddressingMigrationSupportingDeviceTest2 {
         val mob1 = createMobileAddressingDevice("Mob1", 10.0, 1000.0, 1000.0, 0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)
         val mob2 = createMobileAddressingDevice("Mob2", 10.0, 1000.0, 1000.0, 0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)
         val serv1 = createModuleAddressingMigrationSupportingDevice("Serv1", 10.0, 1000.0, 1000.0, 0.1, 0.01,
-                CentralizedMapoModel(1.0, false, listOf(MinCostObjective(), MinProcessingTimeObjective()), MinMaxNormalizer(), 123), AddressingDevice.AddressingType.HIERARCHICAL
+                CentralizedMapoModel(false), AddressingDevice.AddressingType.HIERARCHICAL
         )
         val serv2 = createModuleAddressingMigrationSupportingDevice("Serv2", 10.0, 1000.0, 1000.0, 0.1, 0.01,
-                CentralizedMapoModel(1.0, false, listOf(MinCostObjective(), MinProcessingTimeObjective()), MinMaxNormalizer(), 123), AddressingDevice.AddressingType.HIERARCHICAL
+                CentralizedMapoModel(false), AddressingDevice.AddressingType.HIERARCHICAL
         )
         fogDeviceList.addAll(listOf(mob1, mob2, serv1, serv2, cloud))
 
@@ -232,7 +233,8 @@ class ModuleAddressingMigrationSupportingDeviceTest2 {
 
         val cloud = createModuleAddressingMigrationSupportingDevice(
                 "cloud", 1.0, 1000.0, 1000.0, 0.1, 0.001,
-                CentralizedMapoModel(1.0, true, listOf(/*MinCostObjective(),*/ MinProcessingTimeObjective()), MinMaxNormalizer(), 123).apply {
+                CentralizedMapoModel(true,FixedTimeProgression(1.0), listOf(/*MinCostObjective(),*/ MinProcessingTimeObjective()),
+                        MultiInstanceModulePlacementProblem.Factory(), 10000, 100, MinMaxNormalizer(), 123).apply {
                     allowMigrationForModule("concentration_calculator0")
                     allowMigrationForModule("connector0")
                 },
@@ -240,10 +242,10 @@ class ModuleAddressingMigrationSupportingDeviceTest2 {
         val mob1 = createMobileAddressingDevice("Mob1", 10.0, 1000.0, 1000.0, 0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)
         val mob2 = createMobileAddressingDevice("Mob2", 10.0, 1000.0, 1000.0, 0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)
         val serv1 = createModuleAddressingMigrationSupportingDevice("Serv1", 10.0, 1000.0, 1000.0, 0.1, 0.1,
-                CentralizedMapoModel(1.0, false), AddressingDevice.AddressingType.HIERARCHICAL
+                CentralizedMapoModel(false), AddressingDevice.AddressingType.HIERARCHICAL
         )
         val serv2 = createModuleAddressingMigrationSupportingDevice("Serv2", 10.0, 1000.0, 1000.0, 0.1, 0.1,
-                CentralizedMapoModel(1.0, false), AddressingDevice.AddressingType.HIERARCHICAL
+                CentralizedMapoModel(false), AddressingDevice.AddressingType.HIERARCHICAL
         )
         val gw1 = createAddressingDevice("GW1", 10.0, 1000.0, 1000.0, 0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)
         val gw2 = createAddressingDevice("GW2", 10.0, 1000.0, 1000.0, 0.1, 0.01, AddressingDevice.AddressingType.HIERARCHICAL)

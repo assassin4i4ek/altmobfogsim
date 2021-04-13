@@ -3,12 +3,9 @@ package api.migration.original
 import api.common.utils.ConnectionUtils
 import addons.migration.original.entities.DynamicGatewayConnectionModuleLaunchingDeviceImpl
 import addons.migration.original.entities.MigrationSupportingNetworkDeviceImpl
-import api.migration.models.CentralizedMapoModel
 import api.migration.models.MigrationModel
 import api.migration.models.MigrationModelImpl
-import api.migration.models.problem.normalizers.MinMaxNormalizer
-import api.migration.models.problem.objectives.MinCostObjective
-import api.migration.models.problem.objectives.MinProcessingTimeObjective
+import api.migration.models.timeprogression.FixedTimeProgression
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.SimEntity
 import org.cloudbus.cloudsim.core.SimEvent
@@ -53,10 +50,10 @@ class MigrationSupportingDeviceTest: BaseFogDeviceTest() {
         init(1, ::createExperimentApp)
         val mob = createMobileDevice("Mob", 10.0, 1000.0, 1000.0, 0.1, 0.01)
         val serv1 = createMigratingNetworkDevice("Serv1", 10.0, 1000.0, 1000.0, 0.1, 0.01,
-                MigrationModelImpl(1.0)
+                MigrationModelImpl(FixedTimeProgression(1.0))
         )
         val serv2 = createMigratingNetworkDevice("Serv2", 10.0, 1000.0, 1000.0, 0.1, 0.01,
-                MigrationModelImpl(1.0)
+                MigrationModelImpl(FixedTimeProgression(1.0))
         )
         fogDeviceList.addAll(listOf(mob, serv1, serv2))
 
@@ -98,10 +95,10 @@ class MigrationSupportingDeviceTest: BaseFogDeviceTest() {
         val mob1 = createMobileDevice("Mob1", 10.0, 1000.0, 1000.0, 0.1, 0.01)
         val mob2 = createMobileDevice("Mob2", 10.0, 1000.0, 1000.0, 0.1, 0.01)
         val serv1 = createMigratingNetworkDevice("Serv1", 10.0, 1000.0, 1000.0, 0.1, 0.01,
-            MigrationModelImpl(1.0)
+            MigrationModelImpl(FixedTimeProgression(1.0))
         )
         val serv2 = createMigratingNetworkDevice("Serv2", 10.0, 1000.0, 1000.0, 0.1, 0.01,
-                MigrationModelImpl(1.0)
+                MigrationModelImpl(FixedTimeProgression(1.0))
         )
         fogDeviceList.addAll(listOf(mob1, mob2, serv1, serv2))
 
@@ -143,10 +140,10 @@ class MigrationSupportingDeviceTest: BaseFogDeviceTest() {
         val mob1 = createMobileDevice("Mob1", 10.0, 1000.0, 1000.0, 0.1, 0.01)
         val mob2 = createMobileDevice("Mob2", 10.0, 1000.0, 1000.0, 0.1, 0.01)
         val serv1 = createMigratingNetworkDevice("Serv1", 10.0, 1000.0, 1000.0, 0.1, 0.01,
-                MigrationModelImpl(1.0)
+                MigrationModelImpl(FixedTimeProgression(1.0))
         )
         val serv2 = createMigratingNetworkDevice("Serv2", 10.0, 1000.0, 1000.0, 0.1, 0.01,
-                MigrationModelImpl(1.0)
+                MigrationModelImpl(FixedTimeProgression(1.0))
         )
         fogDeviceList.addAll(listOf(mob1, mob2, serv1, serv2))
 

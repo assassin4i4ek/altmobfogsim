@@ -1,11 +1,10 @@
-package addons.accesspoint.addressing.entities
+package addons.addressingdynamic_migrationoriginal.entities
 
-import addons.accesspoint.addressing.behaviors.AddressingAccessPointBehaviorImpl
-import api.accesspoint.original.behaviors.AccessPointBehavior
-import api.accesspoint.original.entities.AccessPoint
-import api.accesspoint.original.utils.AccessPointsMap
+import addons.addressingdynamic_migrationoriginal.behaviors.DynamicAddressingMigrationSupportingDeviceBehavior
+import addons.addressingdynamic_migrationoriginal.behaviors.DynamicAddressingMigrationSupportingDeviceBehaviorImpl
 import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationConsumerDeviceBehavior
 import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationConsumerDeviceBehaviorImpl
+import api.addressing.dynamic.consumer.entities.DynamicAddressingNotificationConsumerDevice
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
 import api.addressing.fixed.behaviors.AddressingDeviceBehaviorImpl
 import api.addressing.fixed.entities.AddressingDevice
@@ -13,8 +12,10 @@ import api.addressing.models.AddressingModel
 import api.addressing.models.BreadthFirstSearchAddressingModel
 import api.common.entities.SimEntityBehaviorWrapper
 import api.common.utils.Notification
-import api.common.positioning.Coordinates
-import api.common.positioning.Zone
+import api.migration.models.MigrationModel
+import api.migration.original.behaviors.MigrationSupportingDeviceBehavior
+import api.migration.original.behaviors.MigrationSupportingDeviceBehaviorImpl
+import api.migration.original.entites.ModuleLaunchingDevice
 import api.network.fixed.behaviors.NetworkDeviceBehavior
 import api.network.fixed.behaviors.NetworkDeviceBehaviorImpl
 import api.notification.consumer.behaviors.NotificationConsumerDeviceBehavior
@@ -24,27 +25,29 @@ import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.SimEvent
 import org.cloudbus.cloudsim.core.predicates.Predicate
+import org.fog.application.AppModule
+import org.fog.application.Application
 import org.fog.entities.FogDevice
 import org.fog.entities.FogDeviceCharacteristics
 import org.fog.entities.Tuple
 import org.fog.placement.Controller
 
-class AddressingAccessPointImpl(
+class DynamicAddressingMigrationSupportingDeviceImpl(
         name: String, characteristics: FogDeviceCharacteristics, vmAllocationPolicy: VmAllocationPolicy,
         storageList: List<Storage>, schedulingInterval: Double, uplinkBandwidth: Double, downlinkBandwidth: Double,
-        uplinkLatency: Double, ratePerMips: Double, override val coordinates: Coordinates, override val connectionZone: Zone,
-        override val downlinkLatency: Double, override val accessPointsMap: AccessPointsMap,
-): FogDevice(name, characteristics, vmAllocationPolicy, storageList,
-        schedulingInterval, uplinkBandwidth, downlinkBandwidth,
+        uplinkLatency: Double, ratePerMips: Double, override val addressingType: AddressingDevice.AddressingType,
+        override val migrationModel: MigrationModel
+): FogDevice(
+        name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
         uplinkLatency, ratePerMips),
-        AddressingAccessPoint,
-        SimEntityBehaviorWrapper<AccessPoint,
-                        AccessPointBehavior<
-                                DynamicAddressingNotificationConsumerDeviceBehavior<
-                                        AddressingDeviceBehavior<
-                                                NetworkDeviceBehavior>,
-                                        NotificationConsumerDeviceBehavior/*<
-                                                NetworkDeviceBehavior>*/>>> {
+        DynamicAddressingMigrationSupportingDevice,
+        SimEntityBehaviorWrapper<DynamicAddressingMigrationSupportingDevice,
+                DynamicAddressingMigrationSupportingDeviceBehavior<
+                        DynamicAddressingNotificationConsumerDeviceBehavior<
+                                AddressingDeviceBehavior<
+                                        NetworkDeviceBehavior>,
+                                NotificationConsumerDeviceBehavior>,
+                        MigrationSupportingDeviceBehavior>>{
     /* SimEntityInterface */
     override val mId: Int get() = id
     override val mName: String get() = name
@@ -54,12 +57,12 @@ class AddressingAccessPointImpl(
         super<FogDevice>.startEntity()
         super<SimEntityBehaviorWrapper>.startEntity()
     }
+
     override fun processOtherEvent(ev: SimEvent) {
         if (super.onProcessEvent(ev)) {
             super.processOtherEvent(ev)
         }
     }
-
     override fun toString(): String = asString()
 
     /* NetworkDevice */
@@ -70,32 +73,40 @@ class AddressingAccessPointImpl(
     override val mUplinkBandwidth: Double get() = uplinkBandwidth
     override val mDownlinkBandwidth: Double get() = downlinkBandwidth
     override fun sSendUpFreeLink(tuple: Tuple) = super<FogDevice>.sendUpFreeLink(tuple)
-    override fun sendUpFreeLink(tuple: Tuple) = super<AddressingAccessPoint>.sendUpFreeLink(tuple)
+    override fun sendUpFreeLink(tuple: Tuple) = super<DynamicAddressingMigrationSupportingDevice>.sendUpFreeLink(tuple)
     override fun sSendDownFreeLink(tuple: Tuple, childId: Int) = super<FogDevice>.sendDownFreeLink(tuple, childId)
-    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<AddressingAccessPoint>.sendDownFreeLink(tuple, childId)
+    override fun sendDownFreeLink(tuple: Tuple, childId: Int) =  super<DynamicAddressingMigrationSupportingDevice>.sendDownFreeLink(tuple, childId)
     override fun sSendUp(tuple: Tuple) = super<FogDevice>.sendUp(tuple)
-    override fun sendUp(tuple: Tuple) = super<AddressingAccessPoint>.sendUp(tuple)
+    override fun sendUp(tuple: Tuple) = super<DynamicAddressingMigrationSupportingDevice>.sendUp(tuple)
     override fun sSendDown(tuple: Tuple, childId: Int) = super<FogDevice>.sendDown(tuple, childId)
-    override fun sendDown(tuple: Tuple, childId: Int) = super<AddressingAccessPoint>.sendDown(tuple, childId)
+    override fun sendDown(tuple: Tuple, childId: Int) = super<DynamicAddressingMigrationSupportingDevice>.sendDown(tuple, childId)
 
     /* AddressingDevice */
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
     override val addressingModel: AddressingModel = BreadthFirstSearchAddressingModel()
-    override val addressingType: AddressingDevice.AddressingType = AddressingDevice.AddressingType.HIERARCHICAL
     override val addressingChildrenMapping: MutableMap<Tuple, MutableMap<Int, Boolean>> = mutableMapOf()
 
     /* DynamicAddressingTuple */
     override val consumerNotifications: MutableList<Notification<*>> = mutableListOf()
-    override val behavior: AccessPointBehavior<
+
+    /* ModuleLaunchingDevice */
+    override val mAppToModulesMutableMap: MutableMap<String, MutableList<String>> get() = appToModulesMap
+    override val mAppModuleList: MutableList<AppModule> get() = getVmList()
+    /* MigrationSupportingDevice */
+    override val mChildrenModuleLaunchingDevices: List<ModuleLaunchingDevice> get() = childrenIds.map { CloudSim.getEntity(it) as ModuleLaunchingDevice }
+    override val mActiveMutableApplications: MutableList<String> get() = activeApplications
+    override val mApplicationMutableMap: MutableMap<String, Application> get() = applicationMap
+
+    override val behavior: DynamicAddressingMigrationSupportingDeviceBehavior<
             DynamicAddressingNotificationConsumerDeviceBehavior<
                     AddressingDeviceBehavior<
                             NetworkDeviceBehavior>,
-                    NotificationConsumerDeviceBehavior/*<
-                            NetworkDeviceBehavior>*/>>
-        = AddressingAccessPointBehaviorImpl(this,
-                DynamicAddressingNotificationConsumerDeviceBehaviorImpl(this,
-                        AddressingDeviceBehaviorImpl(this,
-                                NetworkDeviceBehaviorImpl(this)),
-                        NotificationConsumerDeviceBehaviorImpl(this,
-                                /*networkDeviceBehavior*/)))
+                    NotificationConsumerDeviceBehavior>,
+            MigrationSupportingDeviceBehavior> =
+            DynamicAddressingMigrationSupportingDeviceBehaviorImpl(this,
+                    DynamicAddressingNotificationConsumerDeviceBehaviorImpl(this,
+                            AddressingDeviceBehaviorImpl(this,
+                                    NetworkDeviceBehaviorImpl(this)),
+                            NotificationConsumerDeviceBehaviorImpl(this)),
+                    MigrationSupportingDeviceBehaviorImpl(this))
 }

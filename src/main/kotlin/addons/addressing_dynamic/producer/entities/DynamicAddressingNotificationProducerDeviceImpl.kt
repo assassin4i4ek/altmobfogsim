@@ -1,7 +1,8 @@
-package addons.addressing.dynamic.producer.entities
+package addons.addressing_dynamic.dynamic.producer.entities
 
-import addons.addressing.dynamic.producer.behaviors.DynamicAddressingNotificationProducerDeviceBehaviorImpl
-import addons.addressing.dynamic.producer.behaviors.DynamicGatewayConnectionAddressingDeviceBehaviorImpl
+import addons.addressing_dynamic.producer.behaviors.DynamicAddressingNotificationProducerDeviceBehaviorImpl
+import addons.addressing_dynamic.producer.behaviors.DynamicGatewayConnectionAddressingDeviceBehaviorImpl
+import addons.addressing_dynamic.producer.entities.DynamicAddressingNotificationProducerDevice
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior
 import api.addressing.fixed.behaviors.AddressingDeviceBehaviorImpl
 import api.addressing.fixed.entities.AddressingDevice

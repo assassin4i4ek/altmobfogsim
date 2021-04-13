@@ -71,7 +71,6 @@ class MigrationSupportingNetworkDeviceImpl(
     override val controller: Controller get() = CloudSim.getEntity(controllerId) as Controller
     override val mActiveMutableApplications: MutableList<String> get() = activeApplications
     override val mApplicationMutableMap: MutableMap<String, Application> get() = applicationMap
-//    override val mVmAllocationPolicy: VmAllocationPolicy get() = vmAllocationPolicy
 
     override val behavior: MigrationSupportingNetworkDeviceBehavior<NetworkDeviceBehavior, MigrationSupportingDeviceBehavior> =
             MigrationSupportingNetworkDeviceBehaviorImpl(this, NetworkDeviceBehaviorImpl(this), MigrationSupportingDeviceBehaviorImpl(this))
