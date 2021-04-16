@@ -1,8 +1,6 @@
-import subprocess
-import sys
-import json
 import asyncio
-import multiprocessing
+import json
+import sys
 
 
 def find_empty_subprocess_slot(subprocess_futures):
@@ -35,10 +33,13 @@ async def main():
         subprocess_futures[slot_id] = None
 
     for num_mobiles in config['numMobiles']:
-        for mapo_model_max_evaluations in config['mapoModelMaxEvaluations']:
-            for population_size in config['populationSize']:
+        for mapo_model_max_evaluations_per_population in config['mapoModelMaxEvaluationsPerPopulation']:
+            for population_size_per_number in config['populationSizePerNumMobiles']:
                 for injected_solutions_fraction in config['injectedSolutionsFraction']:
                     is_param_processed = False
+                    population_size = population_size_per_number * num_mobiles
+                    mapo_model_max_evaluations = mapo_model_max_evaluations_per_population * population_size
+                    # print(num_mobiles, mapo_model_max_evaluations, population_size, injected_solutions_fraction)
                     while not is_param_processed:
                         if (slot_id := find_empty_subprocess_slot(subprocess_futures)) < 0:
                             print(f'Waiting to process params {num_mobiles, population_size}, '
