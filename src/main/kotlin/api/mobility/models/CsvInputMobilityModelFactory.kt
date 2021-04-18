@@ -10,10 +10,8 @@ object CsvInputMobilityModelFactory {
                 .filter { srcFile ->
                     srcFile.nameWithoutExtension.startsWith("pedestrian") && !srcFile.nameWithoutExtension.endsWith("_tr")
                 }
-                .run { if (limit != null) take(limit) else this }
-                .mapIndexed { i, srcFile ->
+                .run { if (limit != null) take(limit) else this }.associate { srcFile ->
                     srcFile.nameWithoutExtension to CsvInputMobilityModel(Paths.get(dirName, srcFile.name).toString(), modelTimeUnitsPerSec)
                 }
-                .toMap()
     }
 }

@@ -1,9 +1,7 @@
-package api.accesspoint.original.utils
+package api.accesspoint.utils
 
 import api.common.positioning.Coordinates
-import api.common.positioning.Position
 import api.common.positioning.RadialZone
-import api.common.positioning.Zone
 import java.io.File
 import kotlin.streams.toList
 

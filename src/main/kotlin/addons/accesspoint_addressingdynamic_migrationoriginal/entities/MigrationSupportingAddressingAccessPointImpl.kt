@@ -5,7 +5,7 @@ import addons.accesspoint_addressingdynamic_migrationoriginal.behaviors.Migratio
 import api.accesspoint.migration.behaviors.MigrationSupportingAccessPointBehavior
 import api.accesspoint.migration.entities.MigrationSupportingAccessPoint
 import api.accesspoint.original.behaviors.AccessPointBehavior
-import api.accesspoint.original.utils.AccessPointsMap
+import api.accesspoint.utils.AccessPointsMap
 import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationConsumerDeviceBehavior
 import api.addressing.dynamic.consumer.behaviors.DynamicAddressingNotificationConsumerDeviceBehaviorImpl
 import api.addressing.fixed.behaviors.AddressingDeviceBehavior

@@ -2,7 +2,7 @@ package api.accesspoint.original
 
 import api.accesspoint.original.entities.AccessPointConnectedDeviceImpl
 import api.accesspoint.original.entities.AccessPointImpl
-import api.accesspoint.original.utils.AccessPointsMap
+import api.accesspoint.utils.AccessPointsMap
 import api.mobility.models.MobilityModel
 import api.mobility.models.SteadyMobilityModel
 import api.common.positioning.Coordinates

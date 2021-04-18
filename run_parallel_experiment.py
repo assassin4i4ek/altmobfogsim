@@ -1,72 +1,64 @@
 import asyncio
 import json
 import sys
+from functools import reduce
 
 
-def find_empty_subprocess_slot(subprocess_futures):
-    for slot_id, slot in subprocess_futures.items():
-        if slot is None:
-            return slot_id
-
-    return -1
+async def cleanup(subprocess_services):
+    for subprocess in subprocess_services.values():
+        subprocess.stdin.close()
+        await subprocess.wait()
 
 
-def reset_finished_slots(subprocess_futures):
-    finished_slot_ids = []
-    for slot_id, slot in subprocess_futures.items():
-        if slot.done():
-            finished_slot_ids.append(slot_id)
-    for finished_slot_id in finished_slot_ids:
-        subprocess_futures[finished_slot_id] = None
-        print(f'Reset slot {finished_slot_id}')
-
-
-async def main():
+async def main(subprocess_services):
     num_processors, experiment_jar, config_path = sys.argv[1:]
     num_processors = int(num_processors)
     with open(config_path) as configFile:
         config = json.load(configFile)
 
-    # busy_processors = 0
-    subprocess_futures = {}
     for slot_id in range(0, num_processors):
-        subprocess_futures[slot_id] = None
+        subprocess_services[slot_id] = await asyncio.create_subprocess_exec(
+            'C:/Users/Admin/.jdks/adopt-openjdk-14.0.2/bin/java.exe', '-jar', experiment_jar,
+            f'results/nsgaii_results_{slot_id}.txt', f'results/nsgaii_results_{slot_id}.csv',
+            stdout=open(f'results/out_{slot_id}.log', 'a'),
+            stderr=sys.stdout,
+            stdin=asyncio.subprocess.PIPE
+        )
 
+    slot_id = 0
+    job_counts = {slot_id: 0 for slot_id in subprocess_services}
+    total_jobs_per_service = reduce(lambda prod, x: x * prod,
+                                    map(len, [config['numMobiles'],
+                                              config['mapoModelMaxEvaluationsPerVariablePerPopulationSize'],
+                                              config['populationSizePerNumVariables'],
+                                              config['injectedSolutionsFractionPerNumVariables']])
+                                    ) / len(subprocess_services)
     for num_mobiles in config['numMobiles']:
-        for mapo_model_max_evaluations_per_population in config['mapoModelMaxEvaluationsPerPopulation']:
-            for population_size_per_number in config['populationSizePerNumMobiles']:
-                for injected_solutions_fraction in config['injectedSolutionsFraction']:
-                    is_param_processed = False
-                    population_size = population_size_per_number * num_mobiles
-                    mapo_model_max_evaluations = mapo_model_max_evaluations_per_population * population_size
-                    # print(num_mobiles, mapo_model_max_evaluations, population_size, injected_solutions_fraction)
-                    while not is_param_processed:
-                        if (slot_id := find_empty_subprocess_slot(subprocess_futures)) < 0:
-                            print(f'Waiting to process params {num_mobiles, population_size}, '
-                                  f'{mapo_model_max_evaluations}, {injected_solutions_fraction}')
-                            await asyncio.wait(subprocess_futures.values(), return_when=asyncio.FIRST_COMPLETED)
-                            reset_finished_slots(subprocess_futures)
-                        else:
-                            params = list(map(str, (num_mobiles, population_size,
-                                                    mapo_model_max_evaluations, injected_solutions_fraction)
-                                              ))
+        for evals_per_var_per_pop_size in config['mapoModelMaxEvaluationsPerVariablePerPopulationSize']:
+            for pop_size_per_var in config['populationSizePerNumVariables']:
+                for inject_per_var in config['injectedSolutionsFractionPerNumVariables']:
+                    pop_size = int(round(pop_size_per_var * num_mobiles * 3))
+                    evals = int(round(evals_per_var_per_pop_size * pop_size * num_mobiles * 3))
+                    injects = inject_per_var
+                    params = list(map(str, (num_mobiles, pop_size, evals, injects)))
+                    print(f'Submitting task {params} to {slot_id}')
+                    params = (f'{"%.2f" % (100 * job_counts[slot_id] / total_jobs_per_service)}%',
+                              f'results/nsgaii_results_{slot_id}.txt',
+                              f'results/nsgaii_results_{slot_id}.csv',
+                              *params)
+                    # subprocess_services[slot_id].stdin.write(f'{" ".join(params)}\n'.encode())
+                    job_counts[slot_id] += 1
+                    slot_id = (slot_id + 1) % len(subprocess_services)
 
-                            new_process = await asyncio.create_subprocess_exec(
-                                'C:/Users/Admin/.jdks/adopt-openjdk-14.0.2/bin/java.exe', '-jar', experiment_jar,
-                                f'results/nsgaii_results_{slot_id}.txt', f'results/nsgaii_results_{slot_id}.csv',
-                                *params,
-                                stdout=open(f'results/out_{slot_id}.log', 'a'),
-                                stderr=open(f'results/out_{slot_id}.err', 'a', encoding='cp1252')
-                            )
-
-                            subprocess_futures[slot_id] = asyncio.create_task(new_process.wait())
-                            is_param_processed = True
-                            print(f'Spawned subprocess at slot {slot_id}')
-
-    await asyncio.wait(subprocess_futures.values())
+    print('finished submitting')
 
 
 if __name__ == '__main__':
     loop = asyncio.ProactorEventLoop()
     asyncio.set_event_loop(loop)
-    loop.run_until_complete(main())
+    new_subprocess_services = {}
+    try:
+        loop.run_until_complete(main(new_subprocess_services))
+    finally:
+        loop.run_until_complete(cleanup(new_subprocess_services))
+        loop.close()

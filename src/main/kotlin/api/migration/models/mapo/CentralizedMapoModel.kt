@@ -1,6 +1,7 @@
 package api.migration.models.mapo
 
 import api.migration.models.MigrationModel
+import api.migration.models.mapo.algorithms.ExtendedNSGAIIFactory
 import api.migration.models.mapo.problems.ModulePlacementProblemFactory
 import api.migration.models.mapo.normalizers.Normalizer
 import api.migration.models.mapo.objectives.Objective
@@ -11,6 +12,7 @@ import api.migration.models.timeprogression.TimeProgression
 import org.fog.utils.Logger
 import org.moeaframework.Executor
 import org.moeaframework.core.PRNG
+import kotlin.math.log
 import kotlin.math.pow
 
 class CentralizedMapoModel(
@@ -22,6 +24,7 @@ class CentralizedMapoModel(
         private val populationSize: Int = 100,
         private val normalizer: Normalizer? = null,
         private val seed: Long? = null,
+        private val logProgress: Boolean = false
 ) : MigrationModel {
     override lateinit var device: MigrationSupportingDevice
     private val allowedMigrationModules: MutableSet<String> = mutableSetOf()
@@ -45,12 +48,19 @@ class CentralizedMapoModel(
                 val executor = Executor()
                         .withProblem(problem)
                         .withProperty("populationSize", populationSize)
-                        .withAlgorithm("NSGAII")
+                        .withAlgorithm("")
+                        .usingAlgorithmFactory(ExtendedNSGAIIFactory(problem.injectedSolutions(populationSize)))
                         .withMaxEvaluations(maxEvaluations!!)
-                        .withProgressListener {
-                            print("\r${"%.2f".format(it.percentComplete * 100)}% (${"%.0f".format(it.remainingTime)} seconds left)")
+                        .run {
+                            if (logProgress) {
+                                withProgressListener {
+                                    print("\r${"%.2f".format(it.percentComplete * 100)}% (${"%.0f".format(it.remainingTime)} seconds left)")
+                                }
+                            }
+                            else {
+                                this
+                            }
                         }
-//                        .distributeOnAllCores()
                         .run()
                 print("\r")
                 val currentSolution = problem.currentEnvironmentAsSolution()

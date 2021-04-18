@@ -14,10 +14,13 @@ import api.common.positioning.RadialZone
 import api.migration.models.mapo.CentralizedMapoModel
 import api.migration.models.mapo.ideals.ClosestToEdgeEndEnvironmentBuilder
 import api.migration.models.mapo.ideals.ClosestToEdgeStartEnvironmentBuilder
+import api.migration.models.mapo.ideals.MinCostIdealEnvironmentBuilder
 import api.migration.models.mapo.normalizers.MinMaxNormalizer
 import api.migration.models.mapo.objectives.MinNetworkAndProcessingTimeObjective
+import api.migration.models.mapo.objectives.MinNetworkUsageObjective
 import api.migration.models.mapo.objectives.MinProcessingTimeObjective
 import api.migration.models.mapo.problems.SingleInstanceIdealInjectingModulePlacementProblem
+import api.migration.models.timeprogression.FixedTimeProgression
 import api.migration.models.timeprogression.FixedWithOffsetTimeProgression
 import api.migration.utils.MigrationLogger
 import api.migration.utils.MigrationRequest
@@ -25,159 +28,32 @@ import api.mobility.models.CsvInputMobilityModelFactory
 import org.apache.commons.math3.stat.descriptive.moment.Mean
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation
 import org.cloudbus.cloudsim.Log
-import org.cloudbus.cloudsim.Pe
-import org.cloudbus.cloudsim.VmAllocationPolicy
 import org.cloudbus.cloudsim.core.CloudSim
-import org.cloudbus.cloudsim.power.PowerHost
-import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple
-import org.cloudbus.cloudsim.sdn.overbooking.BwProvisionerOverbooking
-import org.cloudbus.cloudsim.sdn.overbooking.PeProvisionerOverbooking
-import org.fog.application.AppEdge
-import org.fog.application.AppLoop
 import org.fog.application.Application
-import org.fog.application.selectivity.FractionalSelectivity
-import org.fog.entities.*
+import org.fog.entities.Actuator
+import org.fog.entities.FogBroker
+import org.fog.entities.FogDevice
+import org.fog.entities.Sensor
 import org.fog.placement.ModuleMapping
 import org.fog.placement.ModulePlacementMapping
-import org.fog.policy.AppModuleAllocationPolicy
-import org.fog.scheduler.StreamOperatorScheduler
-import org.fog.utils.*
+import org.fog.utils.Config
+import org.fog.utils.Logger
+import org.fog.utils.NetworkUsageMonitor
+import org.fog.utils.TimeKeeper
 import org.fog.utils.distribution.DeterministicDistribution
-import org.json.simple.JSONArray
-import org.json.simple.JSONObject
-import org.json.simple.parser.JSONParser
-import java.io.File
-import java.io.FileWriter
-import java.io.PrintWriter
 import java.util.*
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.system.measureTimeMillis
 
-
-fun main(args: Array<String>) {
-//    experiment1(20, 30, 2000, 0.6)
-//    globalExperiment1(args)
-//    globalExperiment1Parallel(args)
-//    experiment1(30, 1500, 20000, 0.6)
-    globalExperiment1ParallelService(args)
+fun main() {
+    val numMobiles = 20
+    val populationSize = 132
+    val maxEvals = 15840
+    val inject = 0.54
+    experiment2(numMobiles, populationSize, maxEvals, inject)
 }
 
-fun globalExperiment1ParallelService(args: Array<String>) {
-    val commandScanner = Scanner(System.`in`)
-    while (commandScanner.hasNextLine()) {
-        val command = commandScanner.nextLine()
-        System.err.println(command)
-        System.err.flush()
-        globalExperiment1Parallel(command.split(" ").drop(1).toTypedArray())
-    }
-}
-
-fun globalExperiment1Parallel(args: Array<String>) {
-    val numMobiles = args[2].toInt()
-    val populationSize = args[3].toInt()
-    val mapoModelMaxEvaluations = args[4].toInt()
-    val injectedSolutionsFraction = args[5].toDouble()
-
-    val elapsedTime = measureTimeMillis {
-        experiment1(numMobiles, populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction)
-    }
-    val delays = TimeKeeper.getInstance().loopIdToCurrentAverage.values.toDoubleArray()
-    val (config, avgStd, elapsedSeconds) = Triple(
-            listOf(numMobiles, populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction),
-            Mean().evaluate(delays) to StandardDeviation().evaluate(delays),
-            elapsedTime.toDouble() / 1000
-    )
-    TimeKeeper.getInstance().apply {
-        emitTimes.clear()
-        endTimes.clear()
-        loopIdToTupleIds.clear()
-        tupleTypeToAverageCpuTime.clear()
-        tupleTypeToExecutedTupleCount.clear()
-        tupleIdToCpuStartTime.clear()
-        loopIdToCurrentAverage.clear()
-        loopIdToCurrentNum.clear()
-    }
-    println("Results so far")
-    println("numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)")
-    val resultAsString = "${config[0]}: ${config[1]}, ${config[2]}, ${"%.0f".format((config[3] as Double) * 100)}% = " +
-            "${"%.3f".format(avgStd.first)} +- ${"%.2f".format(avgStd.second)} " +
-            "(${"%.2f".format(100 * avgStd.second / avgStd.first)} %) " +
-            "(${"%.3f".format(elapsedSeconds)})"
-    println(resultAsString)
-    println()
-    val resultsTxtFile = PrintWriter(FileWriter(File(args[0]), true), true)
-//    resultsTxtFile.println("numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)")
-    resultsTxtFile.println(resultAsString)
-    resultsTxtFile.close()
-    val resultsCsvFile = PrintWriter(FileWriter(File(args[1]), true), true)
-//    resultsCsvFile.println("numMobiles\tpopulationSize\tmapoModelMaxEvaluations\tinjectedSolutionsFraction\tavg_delay\tstd_delay\tstd_delay_percent")
-    resultsCsvFile.println(
-            "${config[0]}\t${config[1]}\t${config[2]}\t${"%.0f".format((config[3] as Double) * 100)}\t" +
-                    "${"%.3f".format(avgStd.first)}\t${"%.2f".format(avgStd.second)}\t" +
-                    "${"%.2f".format(100 * avgStd.second / avgStd.first)}\t" +
-                    "%.3f".format(elapsedSeconds)
-    )
-    resultsCsvFile.close()
-}
-
-fun globalExperiment1(args: Array<String>) {
-    val configPath = args[0]
-    val config = JSONParser().parse(File(configPath/*"input/experiment_config.json"*/).readText()) as JSONObject
-    val results = mutableListOf<Triple<List<Any>, Pair<Double, Double>, Double>>()
-    for (numMobiles in (config["numMobiles"] as JSONArray).map { (it as Long).toInt() }) {
-        for (populationSize in (config["populationSize"] as JSONArray).map { (it as Long).toInt() }) {
-            for (mapoModelMaxEvaluations in (config["mapoModelMaxEvaluations"] as JSONArray).map { (it as Long).toInt() }) {
-                for (injectedSolutionsFraction in (config["injectedSolutionsFraction"] as JSONArray).map { (it as Double) }) {
-                    val elapsedTime = measureTimeMillis {
-                        experiment1(numMobiles, populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction)
-                    }
-                    val delays = TimeKeeper.getInstance().loopIdToCurrentAverage.values.toDoubleArray()
-                    results.add(Triple(
-                            listOf(numMobiles, populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction),
-                            Mean().evaluate(delays) to StandardDeviation().evaluate(delays),
-                            elapsedTime.toDouble() / 1000
-                    ))
-                    TimeKeeper.getInstance().apply {
-                        emitTimes.clear()
-                        endTimes.clear()
-                        loopIdToTupleIds.clear()
-                        tupleTypeToAverageCpuTime.clear()
-                        tupleTypeToExecutedTupleCount.clear()
-                        tupleIdToCpuStartTime.clear()
-                        loopIdToCurrentAverage.clear()
-                        loopIdToCurrentNum.clear()
-                    }
-                    println("Results so far")
-                    println("numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)")
-                    val resultAsString = results.joinToString("\n") { (config, avgStd, elapsedSeconds) ->
-                        "${config[0]}: ${config[1]}, ${config[2]}, ${"%.0f".format((config[3] as Double) * 100)}% = " +
-                                "${"%.3f".format(avgStd.first)} +- ${"%.2f".format(avgStd.second)} " +
-                                "(${"%.2f".format(100 * avgStd.second / avgStd.first)} %) " +
-                                "(${"%.3f".format(elapsedSeconds)})"
-                    }
-                    println(resultAsString)
-                    println()
-                    val resultsTxtFile = File(config["resultsTxtPath"] as String/*"results/nsgaii_results.txt"*/).printWriter()
-                    resultsTxtFile.println("numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)")
-                    resultsTxtFile.println(resultAsString)
-                    resultsTxtFile.close()
-                    val resultsCsvFile = File(config["resultsCsvPath"] as String/*"results/nsgaii_results.csv"*/).printWriter()
-                    resultsCsvFile.println("numMobiles\tpopulationSize\tmapoModelMaxEvaluations\tinjectedSolutionsFraction\tavg_delay\tstd_delay\tstd_delay_percent")
-                    resultsCsvFile.println(results.joinToString("\n") { (config, avgStd, elapsedSeconds) ->
-                        "${config[0]}\t${config[1]}\t${config[2]}\t${"%.0f".format((config[3] as Double) * 100)}\t" +
-                                "${"%.3f".format(avgStd.first)}\t${"%.2f".format(avgStd.second)}\t" +
-                                "${"%.2f".format(100 * avgStd.second / avgStd.first)}\t" +
-                                "%.3f".format(elapsedSeconds)
-                    })
-                    resultsCsvFile.close()
-                }
-            }
-        }
-    }
-}
-
-fun experiment1(numMobiles: Int, populationSize: Int, mapoModelMaxEvaluations: Int, injectedSolutionsFraction: Double) {
+fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxEvaluations: Int, injectedSolutionsFraction: Double) {
     val randSeed = 12345L
     setMathRandSeed(randSeed)
     val modelTimeUnitsPerSec = 1000.0 // one CloudSim tick == 1 ms
@@ -185,6 +61,8 @@ fun experiment1(numMobiles: Int, populationSize: Int, mapoModelMaxEvaluations: I
     Log.disable()
 //    Logger.ENABLED = true
     Logger.ENABLED = false
+    AccessPointEventsLogger.enabled = true
+    MigrationLogger.enabled = true
 
 //    val numMobiles = 10
 //    val populationSize = 50//1500
@@ -222,7 +100,7 @@ fun experiment1(numMobiles: Int, populationSize: Int, mapoModelMaxEvaluations: I
 //                                ClosestToEdgeEndEnvironmentBuilder(),
                         ), numOfInjectedSolutions),
                         mapoModelMaxEvaluations, populationSize,
-                        MinMaxNormalizer(), randSeed
+                        MinMaxNormalizer(), randSeed, true
                 )
         )
     }
@@ -368,7 +246,7 @@ fun experiment1(numMobiles: Int, populationSize: Int, mapoModelMaxEvaluations: I
     Config.RESOURCE_MGMT_INTERVAL = (0.1 * modelTimeUnitsPerSec)
     Config.MAX_SIMULATION_TIME = (
 //            36000
-                    50
+            50
                     * modelTimeUnitsPerSec).toInt()
     try {
         CloudSim.startSimulation()
@@ -377,70 +255,3 @@ fun experiment1(numMobiles: Int, populationSize: Int, mapoModelMaxEvaluations: I
         controller.onStopSimulation()
     }
 }
-
-fun createCharacteristicsAndAllocationPolicy(mips: Double, numPes: Int, maxPowerPerCore: Double, idlePowerPerCore: Double): Pair<FogDeviceCharacteristics, VmAllocationPolicy> {
-    val peList = List(numPes) { i -> Pe(i, PeProvisionerOverbooking(mips)) }
-    val hostId = FogUtils.generateEntityId()
-    val ram: Int = Int.MAX_VALUE // host memory (MB)
-    val storage: Long = Long.MAX_VALUE // host storage
-    val bw: Long = Long.MAX_VALUE
-    val host = PowerHost(hostId, RamProvisionerSimple(ram), BwProvisionerOverbooking(bw),storage,
-            peList, StreamOperatorScheduler(peList),
-            FogLinearPowerModel(maxPowerPerCore * numPes, idlePowerPerCore * numPes)
-    )
-    val hostList = listOf(host)
-
-    val arch = "x86" // system architecture
-    val os = "Linux" // operating system
-    val vmm = "Xen"
-    val timeZone = 10.0 // time zone this resource located
-    val cost = 3.0 // the cost of using processing in this resource
-    val costPerMem = 0.05 // the cost of using memory in this resource
-    val costPerStorage = 0.001 // the cost of using storage in this resource
-    val costPerBw = 0.0 // the cost of using bw in this resource
-
-    return Pair(FogDeviceCharacteristics(
-            arch, os, vmm, host, timeZone, cost, costPerMem,
-            costPerStorage, costPerBw
-    ), AppModuleAllocationPolicy(hostList))
-}
-
-fun createMedicalApplication1(i: Int, userId: Int): Application {
-    val app = Application.createApplication("HeartDiseaseMonitoringApplication$i", userId)
-
-    app.addAppModule("client$i", 30)
-    app.addAppModule("patient_state_analyzer$i", 50)
-    app.addAppModule("heart_attack_determiner$i", 30)
-    app.addAppModule("patient_disease_history$i", 100)
-    app.addAppModule("doctors_module$i", 70)
-    app.addAppModule("patients_treatment_plan$i", 50)
-    // all network length values are in bits
-    app.addAppEdge("PATIENT_SENSOR$i", "client$i", 500.0, 16896.0, "PATIENT_SENSOR$i", Tuple.UP, AppEdge.SENSOR)
-    app.addAppEdge("client$i", "patient_state_analyzer$i", 2000.0, 26424.0, "PATIENT_STATE$i", Tuple.UP, AppEdge.MODULE)
-    app.addAppEdge("patient_state_analyzer$i", "patient_disease_history$i", 5000.0, 8192.0, "PATIENT_HISTORY_RECORD_REQUEST$i", Tuple.UP, AppEdge.MODULE)
-    app.addAppEdge("patient_disease_history$i", "patient_state_analyzer$i", 1000.0, 819200.0, "PATIENT_HISTORY_RECORD_RESPONSE$i", Tuple.DOWN, AppEdge.MODULE)
-    app.addAppEdge("patient_state_analyzer$i", "heart_attack_determiner$i", 1000.0, 108344.0, "HEART_ATTACK_DETERMINATION$i", Tuple.UP, AppEdge.MODULE)
-    app.addAppEdge("heart_attack_determiner$i", "client$i", 250.0, 800.0, "HEART_ATTACK_PATIENT_ALARM$i", Tuple.DOWN, AppEdge.MODULE)
-    app.addAppEdge("client$i", "PATIENT_ALARM$i", 100.0, 80.0, "PATIENT_ALARM$i", Tuple.DOWN, AppEdge.ACTUATOR)
-
-    app.addTupleMapping("client$i", "PATIENT_SENSOR$i", "PATIENT_STATE$i", FractionalSelectivity(1.0))
-    app.addTupleMapping("client$i", "HEART_ATTACK_PATIENT_ALARM$i", "PATIENT_ALARM$i", FractionalSelectivity(1.0))
-    app.addTupleMapping("patient_state_analyzer$i", "PATIENT_STATE$i", "PATIENT_HISTORY_RECORD_REQUEST$i", FractionalSelectivity(1.0))
-    app.addTupleMapping("patient_state_analyzer$i", "PATIENT_STATE$i", "HEART_ATTACK_DETERMINATION$i", FractionalSelectivity(0.0))
-    app.addTupleMapping("patient_state_analyzer$i", "PATIENT_HISTORY_RECORD_RESPONSE$i", "HEART_ATTACK_DETERMINATION$i", FractionalSelectivity(1.0))
-    app.addTupleMapping("patient_disease_history$i", "PATIENT_HISTORY_RECORD_REQUEST$i", "PATIENT_HISTORY_RECORD_RESPONSE$i", FractionalSelectivity(1.0))
-    app.addTupleMapping("heart_attack_determiner$i", "HEART_ATTACK_DETERMINATION$i", "HEART_ATTACK_PATIENT_ALARM$i", FractionalSelectivity(1.0))
-
-    app.loops.add(AppLoop(listOf("client$i", "patient_state_analyzer$i", "heart_attack_determiner$i", "client$i")))
-
-    return app
-}
-
-fun setMathRandSeed(seed: Long) {
-    val randField = Math::class.java.declaredClasses.find { it.simpleName == "RandomNumberGeneratorHolder" }!!
-            .getDeclaredField("randomNumberGenerator")
-    randField.isAccessible = true
-    val randObj = randField.get(null) as Random
-    randObj.setSeed(seed)
-}
-

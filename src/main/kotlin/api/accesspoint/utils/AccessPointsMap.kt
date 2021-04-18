@@ -1,4 +1,4 @@
-package api.accesspoint.original.utils
+package api.accesspoint.utils
 
 import api.accesspoint.original.entities.AccessPoint
 import api.common.positioning.Coordinates

@@ -2,7 +2,7 @@ package api.accesspoint.original.entities
 
 import api.accesspoint.original.behaviors.AccessPointConnectedDeviceBehavior
 import api.accesspoint.original.behaviors.AccessPointConnectedDeviceBehaviorImpl
-import api.accesspoint.original.utils.AccessPointsMap
+import api.accesspoint.utils.AccessPointsMap
 import api.common.entities.SimEntityBehaviorWrapper
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehavior
 import api.network.dynamic.behaviors.DynamicGatewayConnectionDeviceBehaviorImpl

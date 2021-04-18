@@ -6,8 +6,10 @@ import api.migration.original.utils.OldNewModulePair
 import api.migration.original.entites.MigrationSupportingDevice
 import api.migration.utils.MigrationLogger
 import api.migration.utils.MigrationRequest
+import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.CloudSimTags
 import org.cloudbus.cloudsim.core.SimEvent
+import org.cloudbus.cloudsim.core.predicates.Predicate
 import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.fog.application.AppModule
 import org.fog.utils.FogEvents
@@ -34,6 +36,12 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
     }
 
     private fun onMigrationDecision(): Boolean {
+        while (true) {
+            val a = CloudSim.select(device.mId, PredicateType(Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_DECISION.tag))
+            if (a == null || a.destination != device.mId) {
+                break
+            }
+        }
         val migrationRequests = device.migrationModel.decide()
         if (migrationRequests.isNotEmpty()) {
             migrationRequests.forEach { migrationRequest ->

@@ -2,20 +2,17 @@ package api.migration.models.mapo.problems
 
 import api.migration.models.mapo.environment.MutableEnvironmentModel
 import api.migration.models.mapo.objectives.Objective
-import api.migration.models.mapo.problems.utils.BooleanVariable
-import api.migration.models.mapo.problems.utils.SingleBitSetBinaryVariable
 import api.migration.original.entites.MigrationSupportingDevice
 import org.fog.application.AppModule
 import org.fog.placement.Controller
 import org.moeaframework.core.Solution
 import org.moeaframework.core.variable.BinaryIntegerVariable
-import org.moeaframework.core.variable.BinaryVariable
 import org.moeaframework.core.variable.EncodingUtils
 
-class SingleInstanceModulePlacementProblem(
+open class SingleInstanceModulePlacementProblem(
         objectives: List<Objective>,
-        private val devices: List<MigrationSupportingDevice>,
-        private val modules: List<AppModule>,
+        protected val devices: List<MigrationSupportingDevice>,
+        protected val modules: List<AppModule>,
         controller: Controller
 ): ModulePlacementProblem<BinaryIntegerVariable>(modules.size, objectives, controller) {
     class Factory: ModulePlacementProblemFactory {
@@ -24,7 +21,7 @@ class SingleInstanceModulePlacementProblem(
         }
     }
 
-    override fun newSolutionVariable(): BinaryIntegerVariable = EncodingUtils.newBinaryInt(0, devices.size)
+    override fun newSolutionVariable(): BinaryIntegerVariable = EncodingUtils.newBinaryInt(0, devices.size - 1)
 
     override fun areVariablesEqual(var1: BinaryIntegerVariable, var2: BinaryIntegerVariable): Boolean {
         if (var1.lowerBound != var2.lowerBound || var2.upperBound != var2.upperBound) {

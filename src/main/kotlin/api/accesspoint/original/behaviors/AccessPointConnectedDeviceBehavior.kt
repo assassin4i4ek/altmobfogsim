@@ -2,6 +2,7 @@ package api.accesspoint.original.behaviors
 
 import api.accesspoint.original.entities.AccessPoint
 import api.accesspoint.original.entities.AccessPointConnectedDevice
+import api.accesspoint.utils.AccessPointEventsLogger
 import api.common.Events
 import api.common.behaviors.BaseBehavior
 import api.common.utils.ConnectionUtils
@@ -41,6 +42,7 @@ interface AccessPointConnectedDeviceBehavior<
     }
 
     private fun onUpdateConnection(): Boolean {
+        val prevAccessPoint = device.accessPoint
         if (device.accessPoint != null) {
             val deviceIsInConnectionZone = device.accessPoint!!.connectionZone.isInZone(device.position)
             var closestAp: AccessPoint? = null
@@ -59,7 +61,6 @@ interface AccessPointConnectedDeviceBehavior<
                 device.accessPoint = null
             }
         }
-
         if (device.accessPoint == null) {
             // if previous actions resulted disconnection from access point or it wasn't connected at all
             for (ap in device.accessPointsMap.getClosestAccessPointsTo(device.position.coordinates)) {
@@ -74,7 +75,10 @@ interface AccessPointConnectedDeviceBehavior<
                 }
             }
         }
-
+        val nextAccessPoint = device.accessPoint
+        if (nextAccessPoint != prevAccessPoint) {
+            AccessPointEventsLogger.logAccessPointEvent(device, prevAccessPoint, nextAccessPoint)
+        }
         return true
     }
 }

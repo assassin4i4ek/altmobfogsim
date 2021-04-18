@@ -49,6 +49,10 @@ class EnvironmentModelImpl(private val controller: Controller) : MutableEnvironm
         CloudSim.getEntity(it) as FogDevice
     }
 
+    override fun getFogDeviceById(id: Int): FogDevice {
+        return CloudSim.getEntity(id) as FogDevice
+    }
+
     override fun getAllPaths(): List<EnvironmentModelPath> {
         if (stateChanged) {
             val paths = mutableListOf<EnvironmentModelPath>()

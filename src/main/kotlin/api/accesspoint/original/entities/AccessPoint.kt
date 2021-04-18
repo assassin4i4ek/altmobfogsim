@@ -1,6 +1,6 @@
 package api.accesspoint.original.entities
 
-import api.accesspoint.original.utils.AccessPointsMap
+import api.accesspoint.utils.AccessPointsMap
 import api.common.positioning.Coordinates
 import api.common.positioning.Zone
 import api.network.fixed.entities.NetworkDevice

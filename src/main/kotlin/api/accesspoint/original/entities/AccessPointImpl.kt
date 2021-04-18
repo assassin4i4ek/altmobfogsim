@@ -2,7 +2,7 @@ package api.accesspoint.original.entities
 
 import api.accesspoint.original.behaviors.AccessPointBehavior
 import api.accesspoint.original.behaviors.AccessPointBehaviorImpl
-import api.accesspoint.original.utils.AccessPointsMap
+import api.accesspoint.utils.AccessPointsMap
 import api.common.entities.SimEntityBehaviorWrapper
 import api.common.positioning.Coordinates
 import api.common.positioning.Zone

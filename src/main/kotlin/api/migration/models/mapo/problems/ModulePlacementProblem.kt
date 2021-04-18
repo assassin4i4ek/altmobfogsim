@@ -28,6 +28,8 @@ abstract class ModulePlacementProblem<T: Variable>(
         }
     }
 
+    open fun injectedSolutions(populationSize: Int): List<Solution> = emptyList()
+
     override fun newSolution(): Solution {
         val solution = Solution(getNumberOfVariables(), getNumberOfObjectives())
         repeat(getNumberOfVariables()) {

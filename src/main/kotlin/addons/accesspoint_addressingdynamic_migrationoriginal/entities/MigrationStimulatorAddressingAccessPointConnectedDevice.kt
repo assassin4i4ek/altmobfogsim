@@ -1,0 +1,7 @@
+package addons.accesspoint_addressingdynamic_migrationoriginal.entities
+
+import api.accesspoint.migration.entities.MigrationStimulatorAccessPointConnectedDevice
+import api.addressing.fixed.entities.AddressingDevice
+import api.notification.producer.entities.NotificationProducerDevice
+
+interface MigrationStimulatorAddressingAccessPointConnectedDevice: MigrationStimulatorAccessPointConnectedDevice, AddressingDevice, NotificationProducerDevice
