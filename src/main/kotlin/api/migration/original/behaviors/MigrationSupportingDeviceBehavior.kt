@@ -17,7 +17,8 @@ import org.fog.utils.Logger
 
 interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDeviceBehavior, MigrationSupportingDevice> {
     override fun onStart() {
-        device.migrationModel.device = device
+//        device.migrationModel.device = device
+        device.migrationModel.init(device)
         device.mSendEvent(device.mId, device.migrationModel.updateTimeProgression.nextTime(),
                 Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_DECISION.tag, null)
     }

@@ -11,7 +11,8 @@ import org.moeaframework.core.Solution
 import org.moeaframework.core.Variable
 import org.moeaframework.problem.AbstractProblem
 
-abstract class ModulePlacementProblem<T: Variable>(
+abstract class
+ModulePlacementProblem<T: Variable>(
     numberOfVariables: Int,
     protected val objectives: List<Objective>,
     protected val controller: Controller

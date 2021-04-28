@@ -10,6 +10,7 @@ import api.common.utils.TupleRecipientPair
 import api.network.fixed.entities.NetworkDevice
 import org.cloudbus.cloudsim.core.SimEvent
 import org.cloudbus.cloudsim.core.predicates.PredicateType
+import org.fog.application.AppModule
 import org.fog.entities.Tuple
 import java.lang.Exception
 
@@ -121,7 +122,18 @@ interface AddressingDeviceBehavior<T: BaseBehavior<T, out NetworkDevice>>
                 modulePlacement.deviceToModuleMap[deviceId]!!.find { module ->
                     module.name == tuple.destModuleName
                 }!!.id == specificModuleId
-            }!!
+            } ?: run {
+                val specificDeviceId = devicesWithModule.find { deviceId ->
+                    modulePlacement.deviceToModuleMap[deviceId]!!.find { module ->
+                        module.name == tuple.destModuleName
+                    } != null
+                }!!
+                tuple.moduleCopyMap[tuple.destModuleName] = modulePlacement.deviceToModuleMap[specificDeviceId]!!.find { module ->
+                    module.name == tuple.destModuleName
+                }!!.id
+                specificDeviceId
+            }
+
             Pair(listOf(specificDeviceId), AddressingModel.Quantifier.SINGLE)
         } else {
             when (tuple.direction) {

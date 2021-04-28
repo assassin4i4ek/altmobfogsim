@@ -30,6 +30,7 @@ class ExtendedNSGAIIFactory(private val injectedSolutions: List<Solution>): Algo
             TournamentSelection(2, ChainedComparator(ParetoDominanceComparator(), CrowdingComparator()))
         } else null
         val variation: Variation = OperatorFactory.getInstance().getVariation(null as String?, properties, problem)
+
         return NSGAII(problem, population, null, selection, variation, initialization)
 
 //        val properties = TypedProperties(untypedProperties)

@@ -53,7 +53,7 @@ interface ClosestToEdgeModulesMapping {
             }
         }
 
-        return migrationSupportingDevices.associateWith { migrationSupportingDevice ->
+        val result = migrationSupportingDevices.associateWith { migrationSupportingDevice ->
             if (modulesMapping.containsKey(migrationSupportingDevice)) {
                 modulesMapping[migrationSupportingDevice]!!
             }
@@ -61,5 +61,7 @@ interface ClosestToEdgeModulesMapping {
                 modulesToMigrate.map { it to false }
             }
         }
+
+        return result
     }
 }

@@ -12,22 +12,25 @@ import api.migration.models.timeprogression.TimeProgression
 import org.fog.utils.Logger
 import org.moeaframework.Executor
 import org.moeaframework.core.PRNG
-import kotlin.math.log
 import kotlin.math.pow
 
-class CentralizedMapoModel(
-        private val isCentral: Boolean,
+open class CentralizedMapoModel(
+        protected val isCentral: Boolean,
         override val updateTimeProgression: TimeProgression = FixedTimeProgression(Double.MAX_VALUE),
-        private val objectives: List<Objective> = emptyList(),
-        private val modulePlacementProblemFactory: ModulePlacementProblemFactory? = null,
-        private val maxEvaluations: Int? = null,
-        private val populationSize: Int = 100,
-        private val normalizer: Normalizer? = null,
-        private val seed: Long? = null,
-        private val logProgress: Boolean = false
+        protected val objectives: List<Objective> = emptyList(),
+        protected val modulePlacementProblemFactory: ModulePlacementProblemFactory? = null,
+        protected var maxIterations: Int? = null,
+        protected var populationSize: Int = 100,
+        protected val normalizer: Normalizer? = null,
+        protected val seed: Long? = null,
+        protected val logProgress: Boolean = false
 ) : MigrationModel {
-    override lateinit var device: MigrationSupportingDevice
-    private val allowedMigrationModules: MutableSet<String> = mutableSetOf()
+    protected lateinit var device: MigrationSupportingDevice
+    protected val allowedMigrationModules: MutableSet<String> = mutableSetOf()
+
+    override fun init(device: MigrationSupportingDevice) {
+        this.device = device
+    }
 
     override fun decide(): List<MigrationRequest> {
         if (isCentral) {
@@ -50,7 +53,7 @@ class CentralizedMapoModel(
                         .withProperty("populationSize", populationSize)
                         .withAlgorithm("")
                         .usingAlgorithmFactory(ExtendedNSGAIIFactory(problem.injectedSolutions(populationSize)))
-                        .withMaxEvaluations(maxEvaluations!!)
+                        .withMaxEvaluations(maxIterations!! * populationSize)
                         .run {
                             if (logProgress) {
                                 withProgressListener {

@@ -5,6 +5,7 @@ import org.cloudbus.cloudsim.core.CloudSim
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.log
 
 object MigrationLogger {
     data class LogEntry(
@@ -30,7 +31,12 @@ object MigrationLogger {
         val logEntry = LogEntry(CloudSim.clock(), decisionMakerName, migrationRequest)
         _migrations.add(logEntry)
         if (enabled) {
-            println(logEntry)
+            val logEntryAsString = logEntryAsString(logEntry)
+            if (logEntryAsString != null) {
+                println(logEntryAsString)
+            }
         }
     }
+
+    var logEntryAsString: (LogEntry) -> String? = LogEntry::toString
 }

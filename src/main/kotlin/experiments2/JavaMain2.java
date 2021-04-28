@@ -1,7 +1,7 @@
 package experiments2;
 
-public class JavaMain {
+public class JavaMain2 {
     public static void main(String[] args) {
-        MainKt.main();
+        Main2Kt.main();
     }
 }

@@ -6,9 +6,11 @@ import api.migration.models.mapo.objectives.Objective
 import api.migration.original.entites.MigrationSupportingDevice
 import org.fog.application.AppModule
 import org.fog.placement.Controller
+import org.moeaframework.core.PRNG
 import org.moeaframework.core.Solution
 import org.moeaframework.core.variable.EncodingUtils
 import java.lang.Exception
+import kotlin.math.min
 
 class SingleInstanceIdealInjectingModulePlacementProblem(
         private val idealEnvironments: List<IdealEnvironmentBuilder>,
@@ -16,7 +18,8 @@ class SingleInstanceIdealInjectingModulePlacementProblem(
         devices: List<MigrationSupportingDevice>,
         modules: List<AppModule>,
         controller: Controller,
-        private val numOfInjectedSolutions: Int = 1
+        private val numOfInjectedSolutions: Int = 1,
+        private val confidenceLevel: Double = 0.66,
         ): SingleInstanceModulePlacementProblem(objectives, devices, modules, controller) {
     class Factory(
             private val idealEnvironments: List<IdealEnvironmentBuilder>,
@@ -51,10 +54,55 @@ class SingleInstanceIdealInjectingModulePlacementProblem(
 //          else null
             else throw Exception("Ideal solution is invalid") //
         }
+
         val injectedSolutions = mutableListOf<Solution>()
-        repeat(numOfInjectedSolutions) { i ->
-            injectedSolutions.add(proposedSolutions[i % proposedSolutions.size])
+        val randomSolution = newSolution().apply {
+            repeat(numberOfVariables) {
+                getVariable(it).randomize()
+            }
         }
+
+        repeat(numOfInjectedSolutions) { i ->
+            injectedSolutions.add(when {
+                i < confidenceLevel * numOfInjectedSolutions -> proposedSolutions[i % proposedSolutions.size]
+                else -> newSolution().apply {
+                    repeat(numberOfVariables) { j ->
+                        val index = PRNG.nextInt(proposedSolutions.size + 1)
+                        setVariable(j, proposedSolutions.getOrElse(index) { randomSolution }.getVariable(j).copy())
+                    }
+                }
+            })
+        }
+//                injectedSolutions.size < proposedSolutions.size -> injectedSolutions.add(proposedSolutions[i].copy())
+//                injectedSolutions.size == 1 -> injectedSolutions.add(
+//                        newSolution().apply {
+//                            repeat(numberOfVariables) { j ->
+//                                getVariable(j).randomize()
+//                            }
+//                        }
+//                )
+//                else -> injectedSolutions.add(newSolution().apply {
+//                    repeat(numberOfVariables) { j ->
+//                        setVariable(j, injectedSolutions.random().getVariable(j).copy())
+//                    }
+//                })
+//            }
+//        }
+
+//        while (injectedSolutions.size < numOfInjectedSolutions) {
+//            if (injectedSolutions.size < proposedSolutions.size) {
+//
+//            }
+//        }
+//        repeat(min(numOfInjectedSolutions, proposedSolutions.size)) { i ->
+//            injectedSolutions.add(proposedSolutions[i].copy())
+//        }
+//        repeat(numOfInjectedSolutions - injectedSolutions.size) { i ->
+//
+//        }
+//        repeat(numOfInjectedSolutions) { i ->
+//            injectedSolutions.add(proposedSolutions[i % proposedSolutions.size].copy())
+//        }
         return injectedSolutions
     }
 }

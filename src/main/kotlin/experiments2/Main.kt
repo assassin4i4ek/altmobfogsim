@@ -12,11 +12,9 @@ import api.common.positioning.Coordinates
 import api.common.positioning.Position
 import api.common.positioning.RadialZone
 import api.migration.models.mapo.CentralizedMapoModel
-import api.migration.models.mapo.ideals.ClosestToEdgeEndEnvironmentBuilder
 import api.migration.models.mapo.ideals.ClosestToEdgeStartEnvironmentBuilder
 import api.migration.models.mapo.normalizers.MinMaxNormalizer
 import api.migration.models.mapo.objectives.MinNetworkAndProcessingTimeObjective
-import api.migration.models.mapo.objectives.MinProcessingTimeObjective
 import api.migration.models.mapo.problems.SingleInstanceIdealInjectingModulePlacementProblem
 import api.migration.models.timeprogression.FixedWithOffsetTimeProgression
 import api.migration.utils.MigrationLogger
@@ -55,15 +53,15 @@ import kotlin.math.min
 import kotlin.system.measureTimeMillis
 
 
-fun main(args: Array<String>) {
+fun main() {
 //    experiment1(20, 30, 2000, 0.6)
 //    globalExperiment1(args)
 //    globalExperiment1Parallel(args)
-//    experiment1(30, 1500, 20000, 0.6)
-    globalExperiment1ParallelService(args)
+//    experiment1(10, 10, 100, 0.0)
+    globalExperiment1ParallelService()
 }
 
-fun globalExperiment1ParallelService(args: Array<String>) {
+fun globalExperiment1ParallelService() {
     val commandScanner = Scanner(System.`in`)
     while (commandScanner.hasNextLine()) {
         val command = commandScanner.nextLine()
@@ -76,15 +74,15 @@ fun globalExperiment1ParallelService(args: Array<String>) {
 fun globalExperiment1Parallel(args: Array<String>) {
     val numMobiles = args[2].toInt()
     val populationSize = args[3].toInt()
-    val mapoModelMaxEvaluations = args[4].toInt()
+    val mapoModelMaxIterations = args[4].toInt()
     val injectedSolutionsFraction = args[5].toDouble()
 
     val elapsedTime = measureTimeMillis {
-        experiment1(numMobiles, populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction)
+        experiment1(numMobiles, populationSize, mapoModelMaxIterations, injectedSolutionsFraction)
     }
     val delays = TimeKeeper.getInstance().loopIdToCurrentAverage.values.toDoubleArray()
     val (config, avgStd, elapsedSeconds) = Triple(
-            listOf(numMobiles, populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction),
+            listOf(numMobiles, populationSize, mapoModelMaxIterations, injectedSolutionsFraction),
             Mean().evaluate(delays) to StandardDeviation().evaluate(delays),
             elapsedTime.toDouble() / 1000
     )
@@ -100,7 +98,7 @@ fun globalExperiment1Parallel(args: Array<String>) {
     }
     println("Results so far")
     println("numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)")
-    val resultAsString = "${config[0]}: ${config[1]}, ${config[2]}, ${"%.0f".format((config[3] as Double) * 100)}% = " +
+    val resultAsString = "${config[0]}: ${config[1]}, ${config[2]}, ${"%.0f".format((config[3].toDouble()) * 100)}% = " +
             "${"%.3f".format(avgStd.first)} +- ${"%.2f".format(avgStd.second)} " +
             "(${"%.2f".format(100 * avgStd.second / avgStd.first)} %) " +
             "(${"%.3f".format(elapsedSeconds)})"
@@ -113,7 +111,7 @@ fun globalExperiment1Parallel(args: Array<String>) {
     val resultsCsvFile = PrintWriter(FileWriter(File(args[1]), true), true)
 //    resultsCsvFile.println("numMobiles\tpopulationSize\tmapoModelMaxEvaluations\tinjectedSolutionsFraction\tavg_delay\tstd_delay\tstd_delay_percent")
     resultsCsvFile.println(
-            "${config[0]}\t${config[1]}\t${config[2]}\t${"%.0f".format((config[3] as Double) * 100)}\t" +
+            "${config[0]}\t${config[1]}\t${config[2]}\t${"%.0f".format((config[3].toDouble()) * 100)}\t" +
                     "${"%.3f".format(avgStd.first)}\t${"%.2f".format(avgStd.second)}\t" +
                     "${"%.2f".format(100 * avgStd.second / avgStd.first)}\t" +
                     "%.3f".format(elapsedSeconds)
@@ -177,14 +175,14 @@ fun globalExperiment1(args: Array<String>) {
     }
 }
 
-fun experiment1(numMobiles: Int, populationSize: Int, mapoModelMaxEvaluations: Int, injectedSolutionsFraction: Double) {
+fun experiment1(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: Int, injectedSolutionsFraction: Double) {
     val randSeed = 12345L
     setMathRandSeed(randSeed)
     val modelTimeUnitsPerSec = 1000.0 // one CloudSim tick == 1 ms
     CloudSim.init(1, Calendar.getInstance(), false)
     Log.disable()
-//    Logger.ENABLED = true
-    Logger.ENABLED = false
+    Logger.ENABLED = true
+//    Logger.ENABLED = false
 
 //    val numMobiles = 10
 //    val populationSize = 50//1500
@@ -221,7 +219,7 @@ fun experiment1(numMobiles: Int, populationSize: Int, mapoModelMaxEvaluations: I
                                 ClosestToEdgeStartEnvironmentBuilder(),
 //                                ClosestToEdgeEndEnvironmentBuilder(),
                         ), numOfInjectedSolutions),
-                        mapoModelMaxEvaluations, populationSize,
+                        mapoModelMaxIterations, populationSize,
                         MinMaxNormalizer(), randSeed
                 )
         )

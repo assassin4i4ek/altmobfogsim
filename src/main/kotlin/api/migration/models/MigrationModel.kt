@@ -6,7 +6,8 @@ import api.migration.models.timeprogression.TimeProgression
 
 interface MigrationModel {
     val updateTimeProgression: TimeProgression
-    var device: MigrationSupportingDevice
+//    var device: MigrationSupportingDevice
+    fun init(device: MigrationSupportingDevice)
 
     fun decide(): List<MigrationRequest>
     fun canMigrate(request: MigrationRequest): Boolean

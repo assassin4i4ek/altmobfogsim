@@ -9,7 +9,11 @@ import org.cloudbus.cloudsim.core.CloudSim
 class MigrationModelImpl(
         override val updateTimeProgression: TimeProgression
 ) : MigrationModel {
-    override lateinit var device: MigrationSupportingDevice
+    private lateinit var device: MigrationSupportingDevice
+
+    override fun init(device: MigrationSupportingDevice) {
+        this.device = device
+    }
 
     override fun decide(): List<MigrationRequest> {
         //{appName: { appModuleName: {downAppModuleName: [downModuleId]}}}
