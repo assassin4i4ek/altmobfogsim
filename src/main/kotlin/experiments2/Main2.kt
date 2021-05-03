@@ -13,10 +13,12 @@ import api.common.positioning.Position
 import api.common.positioning.RadialZone
 import api.migration.models.mapo.CentralizedMapoModel
 import api.migration.models.mapo.OnlyTriggeredCentralizedMapoModel
+import api.migration.models.mapo.PrioritizedCentralizedMapoModel
 import api.migration.models.mapo.ideals.ClosestToEdgeStartEnvironmentBuilder
 import api.migration.models.mapo.normalizers.MinMaxNormalizer
 import api.migration.models.mapo.objectives.MinNetworkAndProcessingTimeObjective
 import api.migration.models.mapo.problems.SingleInstanceIdealInjectingModulePlacementProblem
+import api.migration.models.timeprogression.FixedTimeProgression
 import api.migration.models.timeprogression.FixedWithOffsetTimeProgression
 import api.migration.utils.MigrationLogger
 import api.migration.utils.MigrationRequest
@@ -129,16 +131,9 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
         else null
     }
 
-//    val numMobiles = 10
-//    val populationSize = 50//1500
-//    val mapoModelMaxEvaluations = 30000//populationSize * 55
-
     val migrationModel = run {
         val objectives = listOf(MinNetworkAndProcessingTimeObjective())
-        val timeProgression =  FixedWithOffsetTimeProgression(
-                36001.0 * modelTimeUnitsPerSec,
-                36001.0 * modelTimeUnitsPerSec
-        )
+        val timeProgression =  FixedTimeProgression(36001.0 * modelTimeUnitsPerSec)
         val numOfInjectedSolutions = max(1, min((populationSize * injectedSolutionsFraction).toInt(), populationSize - 1))
         val modulePlacementProblemFactory = SingleInstanceIdealInjectingModulePlacementProblem.Factory(
                 listOf(ClosestToEdgeStartEnvironmentBuilder()), numOfInjectedSolutions
@@ -151,7 +146,23 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
                     mapoModelMaxIterations, populationSize, normalizer, randSeed, logProgress
             )
             2 -> OnlyTriggeredCentralizedMapoModel(
-                    true, { populationSize }, { mapoModelMaxIterations }, false, timeProgression,
+                    true, { populationSize }, { mapoModelMaxIterations }, timeProgression,
+                    objectives, modulePlacementProblemFactory, normalizer, randSeed, logProgress
+            )
+            3 -> PrioritizedCentralizedMapoModel(
+                    true,
+                    // every 5 minutes module shoud be rewised
+                    {elapsedTime, prevPriority -> prevPriority + (elapsedTime / modelTimeUnitsPerSec) / (5 * 60) },
+                    // every minute
+                    0.5, { populationSize }, { mapoModelMaxIterations },
+                    FixedTimeProgression(1.0 * 60 * modelTimeUnitsPerSec),
+                    objectives, modulePlacementProblemFactory, normalizer, randSeed, logProgress
+            )
+            4 -> PrioritizedCentralizedMapoModel(
+                    true,
+                    {elapsedTime, prevPriority -> prevPriority + (elapsedTime / modelTimeUnitsPerSec) / (5 * 60) },
+                    0.5, { populationSize }, { mapoModelMaxIterations },
+                    FixedTimeProgression(36001 * modelTimeUnitsPerSec),
                     objectives, modulePlacementProblemFactory, normalizer, randSeed, logProgress
             )
             else -> throw Exception("Unknown migration model type")
@@ -165,12 +176,6 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
             189.0 /*Watts 100% load for Intel Core i7-5960x 8 cores 16 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec,
             69.0 /*Watts idle for Intel Core i7-5960x 8 cores 16 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec
     ).let {
-        /*val ratePerMips = 168050 /* USD/year per equivalent application in AWS */ /
-                35720e3 /* USD/year in mainframe */ *
-                (1.0 - (3678.0 - 2700.0) / (3 * 3678.0)) /* annual decrease in USD/MIPS ( calculated for 3 year period) */
-                        .pow(6) /* 2017, 2018, 2019, 2020, 2021, 2022 = 6 years */ /
-                (365 * 24 * 3600) /*days/hour/sec*/ *
-                100.0 /*USD to cents*/*/
         DynamicAddressingMigrationSupportingDeviceImpl("cloud", it.first, it.second, emptyList(), 10.0,
                 2.5e9 /* 2.5 Gbps link*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
                 2.5e9 /* 2.5 Gbps link*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
@@ -199,8 +204,8 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
 //                    )
                     else -> throw Exception("Unknown Base station type ${connectionZoneWithType.third}")
                 }
-                val apRatePerMips = cloudRatePerMips * 2
-                val apNumPes = 3//max(cloudNumPes / 8, 1)
+                val apRatePerMips = cloudRatePerMips * 1.1
+                val apNumPes = 8//max(cloudNumPes / 8, 1)
                 val ap = createCharacteristicsAndAllocationPolicy(
                         300000.0 /*Intel Core i7-5960x 3.5GHz 2014y*/ / 16 /*threads*/ / modelTimeUnitsPerSec,
                         apNumPes,
@@ -218,7 +223,7 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
         DynamicAddressingNotificationConsumerDeviceImpl("ISP_Gateway", it.first, it.second, emptyList(), 10.0,
                 39.81e9 /*39.81 Gbps STM-256 bandwidth*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
                 accessPoints.map { ap -> ap.uplinkBandwidth }.sum(),
-                200e-3/*25e-3*/ /* 50 ms delay between AWS EC2 DC and ISP*/ * modelTimeUnitsPerSec,
+                75e-3/*25e-3*/ /* 50 ms delay between AWS EC2 DC and ISP*/ * modelTimeUnitsPerSec,
                 0.0, AddressingDevice.AddressingType.HIERARCHICAL
         )
     }
@@ -226,7 +231,7 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
     accessPoints.forEach { ap ->
         ap.parentId = ispGateway.id
     }
-    val mobiles = CsvInputMobilityModelFactory.fromDirectory("input/gps_data"/*"E:\\monaco_sumo\\scenario\\gps_data_new"*/, modelTimeUnitsPerSec, numMobiles).map { (name, mobilityModel) ->
+    val mobiles = CsvInputMobilityModelFactory.fromDirectory("input/gps_data"/*"E:\\monaco_sumo\\scenario\\gps_data_new"*/, modelTimeUnitsPerSec, numMobiles, 3600.0).map { (name, mobilityModel) ->
         createCharacteristicsAndAllocationPolicy(
                 2.65 /*Cortex-A55 DMIPS per MHz*/ * 2000.0 /*MHz*/ / modelTimeUnitsPerSec, 1,
                 0.85 /* Watts in idle mode */ * 0.85 /* A55 vs A53 efficiency*/ / modelTimeUnitsPerSec,
@@ -313,7 +318,7 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
     UtilizationHistoryCleaner(1800 * modelTimeUnitsPerSec, controller)
     Config.RESOURCE_MGMT_INTERVAL = (0.1 * modelTimeUnitsPerSec)
     Config.MAX_SIMULATION_TIME = (
-            7200
+            3600
 //    50
                     * modelTimeUnitsPerSec).toInt()
     try {

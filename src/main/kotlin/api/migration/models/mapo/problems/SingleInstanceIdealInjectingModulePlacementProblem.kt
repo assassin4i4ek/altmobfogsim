@@ -1,6 +1,5 @@
 package api.migration.models.mapo.problems
 
-import api.migration.models.mapo.environment.EnvironmentModelImpl
 import api.migration.models.mapo.ideals.IdealEnvironmentBuilder
 import api.migration.models.mapo.objectives.Objective
 import api.migration.original.entites.MigrationSupportingDevice
@@ -8,9 +7,13 @@ import org.fog.application.AppModule
 import org.fog.placement.Controller
 import org.moeaframework.core.PRNG
 import org.moeaframework.core.Solution
+import org.moeaframework.core.operator.UniformCrossover
+import org.moeaframework.core.operator.real.SBX
+import org.moeaframework.core.operator.real.UNDX
 import org.moeaframework.core.variable.EncodingUtils
 import java.lang.Exception
-import kotlin.math.min
+import kotlin.random.Random
+import kotlin.random.asKotlinRandom
 
 class SingleInstanceIdealInjectingModulePlacementProblem(
         private val idealEnvironments: List<IdealEnvironmentBuilder>,
@@ -61,48 +64,19 @@ class SingleInstanceIdealInjectingModulePlacementProblem(
                 getVariable(it).randomize()
             }
         }
+        val extendedProposedSolutions = listOf(*proposedSolutions.toTypedArray(), randomSolution)
+        val random = PRNG.getRandom().asKotlinRandom()
 
         repeat(numOfInjectedSolutions) { i ->
             injectedSolutions.add(when {
-                i < confidenceLevel * numOfInjectedSolutions -> proposedSolutions[i % proposedSolutions.size]
+                i < confidenceLevel * numOfInjectedSolutions -> proposedSolutions[i % proposedSolutions.size].copy()
                 else -> newSolution().apply {
                     repeat(numberOfVariables) { j ->
-                        val index = PRNG.nextInt(proposedSolutions.size + 1)
-                        setVariable(j, proposedSolutions.getOrElse(index) { randomSolution }.getVariable(j).copy())
+                        setVariable(j, extendedProposedSolutions.random(random).getVariable(j).copy())
                     }
                 }
             })
         }
-//                injectedSolutions.size < proposedSolutions.size -> injectedSolutions.add(proposedSolutions[i].copy())
-//                injectedSolutions.size == 1 -> injectedSolutions.add(
-//                        newSolution().apply {
-//                            repeat(numberOfVariables) { j ->
-//                                getVariable(j).randomize()
-//                            }
-//                        }
-//                )
-//                else -> injectedSolutions.add(newSolution().apply {
-//                    repeat(numberOfVariables) { j ->
-//                        setVariable(j, injectedSolutions.random().getVariable(j).copy())
-//                    }
-//                })
-//            }
-//        }
-
-//        while (injectedSolutions.size < numOfInjectedSolutions) {
-//            if (injectedSolutions.size < proposedSolutions.size) {
-//
-//            }
-//        }
-//        repeat(min(numOfInjectedSolutions, proposedSolutions.size)) { i ->
-//            injectedSolutions.add(proposedSolutions[i].copy())
-//        }
-//        repeat(numOfInjectedSolutions - injectedSolutions.size) { i ->
-//
-//        }
-//        repeat(numOfInjectedSolutions) { i ->
-//            injectedSolutions.add(proposedSolutions[i % proposedSolutions.size].copy())
-//        }
         return injectedSolutions
     }
 }

@@ -1,7 +1,6 @@
 package api.migration.models.mapo
 
 import api.accesspoint.migration.entities.MigrationStimulatorAccessPointConnectedDevice
-import api.migration.models.mapo.environment.EnvironmentModelImpl
 import api.migration.models.mapo.normalizers.Normalizer
 import api.migration.models.mapo.objectives.Objective
 import api.migration.models.mapo.problems.ModulePlacementProblemFactory
@@ -9,15 +8,11 @@ import api.migration.models.timeprogression.FixedTimeProgression
 import api.migration.models.timeprogression.TimeProgression
 import api.migration.original.entites.MigrationSupportingDevice
 import api.migration.utils.MigrationRequest
-import org.fog.application.AppModule
-import org.fog.entities.FogDevice
-import kotlin.math.roundToInt
 
 open class OnlyTriggeredCentralizedMapoModel(
         isCentral: Boolean,
         private val calculatePopulationSize: ((numVariables: Int) -> Int)? = null,
         private val calculateMaxIterations: ((numVariables: Int) -> Int)? = null,
-        private val areCoefficientsRelative: Boolean? = null,
         updateTimeProgression: TimeProgression = FixedTimeProgression(Double.MAX_VALUE),
         objectives: List<Objective> = emptyList(),
         modulePlacementProblemFactory: ModulePlacementProblemFactory? = null,

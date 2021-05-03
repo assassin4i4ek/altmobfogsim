@@ -8,26 +8,27 @@ import org.fog.placement.Controller
 import org.moeaframework.core.Solution
 import org.moeaframework.core.variable.BinaryIntegerVariable
 import org.moeaframework.core.variable.EncodingUtils
+import org.moeaframework.core.variable.RealVariable
 
 open class SingleInstanceModulePlacementProblem(
         objectives: List<Objective>,
         protected val devices: List<MigrationSupportingDevice>,
         protected val modules: List<AppModule>,
         controller: Controller
-): ModulePlacementProblem<BinaryIntegerVariable>(modules.size, objectives, controller) {
+): ModulePlacementProblem<RealVariable>(modules.size, objectives, controller) {
     class Factory: ModulePlacementProblemFactory {
         override fun newProblem(objectives: List<Objective>, devices: List<MigrationSupportingDevice>, modules: List<AppModule>, controller: Controller): ModulePlacementProblem<*> {
             return SingleInstanceModulePlacementProblem(objectives, devices, modules, controller)
         }
     }
 
-    override fun newSolutionVariable(): BinaryIntegerVariable = EncodingUtils.newBinaryInt(0, devices.size - 1)
+    override fun newSolutionVariable(): RealVariable = EncodingUtils.newInt(0, devices.size - 1)
 
-    override fun areVariablesEqual(var1: BinaryIntegerVariable, var2: BinaryIntegerVariable): Boolean {
+    override fun areVariablesEqual(var1: RealVariable, var2: RealVariable): Boolean {
         if (var1.lowerBound != var2.lowerBound || var2.upperBound != var2.upperBound) {
             return false
         }
-        return var1.value == var2.value
+        return EncodingUtils.getInt(var1) == EncodingUtils.getInt(var2)
     }
 
     override fun initEnvironmentModelForSolution(envModel: MutableEnvironmentModel, solution: Solution) {

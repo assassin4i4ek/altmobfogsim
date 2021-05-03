@@ -181,8 +181,8 @@ fun experiment1(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
     val modelTimeUnitsPerSec = 1000.0 // one CloudSim tick == 1 ms
     CloudSim.init(1, Calendar.getInstance(), false)
     Log.disable()
-    Logger.ENABLED = true
-//    Logger.ENABLED = false
+//    Logger.ENABLED = true
+    Logger.ENABLED = false
 
 //    val numMobiles = 10
 //    val populationSize = 50//1500
@@ -195,12 +195,6 @@ fun experiment1(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
             189.0 /*Watts 100% load for Intel Core i7-5960x 8 cores 16 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec,
             69.0 /*Watts idle for Intel Core i7-5960x 8 cores 16 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec
     ).let {
-        /*val ratePerMips = 168050 /* USD/year per equivalent application in AWS */ /
-                35720e3 /* USD/year in mainframe */ *
-                (1.0 - (3678.0 - 2700.0) / (3 * 3678.0)) /* annual decrease in USD/MIPS ( calculated for 3 year period) */
-                        .pow(6) /* 2017, 2018, 2019, 2020, 2021, 2022 = 6 years */ /
-                (365 * 24 * 3600) /*days/hour/sec*/ *
-                100.0 /*USD to cents*/*/
         DynamicAddressingMigrationSupportingDeviceImpl("cloud", it.first, it.second, emptyList(), 10.0,
                 2.5e9 /* 2.5 Gbps link*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
                 2.5e9 /* 2.5 Gbps link*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
@@ -245,13 +239,13 @@ fun experiment1(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
 //                    )
                     else -> throw Exception("Unknown Base station type ${connectionZoneWithType.third}")
                 }
-                val apRatePerMips = cloudRatePerMips * 2
+                val apRatePerMips = cloudRatePerMips * 1.1
                 val apNumPes = 3//max(cloudNumPes / 8, 1)
                 val ap = createCharacteristicsAndAllocationPolicy(
                         300000.0 /*Intel Core i7-5960x 3.5GHz 2014y*/ / 16 /*threads*/ / modelTimeUnitsPerSec,
                         apNumPes,
                         189.0 /*Watts 100% load for Intel Core i7-5960x 8 cores 16 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec,
-                        69.0 /*Watts idle for Intel Core i7-5960x 8 cores 16 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec
+                        69.0 /*Watts idle for Intel Core i7-5960x 8 cores 166 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec
                 ).let {
                     MigrationSupportingAddressingAccessPointImpl(connectionZoneWithType.first, it.first, it.second, emptyList(), 10.0,
                             apUplinkBandwidth, apDownlinkBandwidth, apUplinkLatency, apRatePerMips,

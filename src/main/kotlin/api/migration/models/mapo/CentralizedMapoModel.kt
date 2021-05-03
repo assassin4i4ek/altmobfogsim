@@ -9,9 +9,11 @@ import api.migration.models.timeprogression.FixedTimeProgression
 import api.migration.original.entites.MigrationSupportingDevice
 import api.migration.utils.MigrationRequest
 import api.migration.models.timeprogression.TimeProgression
+import org.cloudbus.cloudsim.core.CloudSim
 import org.fog.utils.Logger
 import org.moeaframework.Executor
 import org.moeaframework.core.PRNG
+import java.text.SimpleDateFormat
 import kotlin.math.pow
 
 open class CentralizedMapoModel(
@@ -47,11 +49,12 @@ open class CentralizedMapoModel(
                 val problem = modulePlacementProblemFactory!!.newProblem(objectives, migrationSupportingDevices, modulesToMigrate, device.controller)
                         //ModulePlacementProblem(objectives, migrationSupportingDevices, modulesToMigrate, device.controller)
                 Logger.debug(device.mName, "Starting Optimization process")
-                print("$0% (inf seconds left)")
+                print("${SimpleDateFormat("HH:mm:ss").format(CloudSim.clock().toLong())} $0% (inf seconds left)")
                 val executor = Executor()
                         .withProblem(problem)
-                        .withProperty("populationSize", populationSize)
                         .withAlgorithm("")
+                        .withProperty("populationSize", populationSize)
+                        .withProperty("operator", "ux+um")
                         .usingAlgorithmFactory(ExtendedNSGAIIFactory(problem.injectedSolutions(populationSize)))
                         .withMaxEvaluations(maxIterations!! * populationSize)
                         .run {

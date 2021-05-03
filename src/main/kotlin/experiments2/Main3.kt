@@ -146,8 +146,8 @@ fun experiment3(numMobiles: Int, populationSize: Int, mapoModelMaxEvaluations: I
                 69.0 /*Watts idle for Intel Core i7-5960x 8 cores 16 threads*/ / 16 /*threads*/ / modelTimeUnitsPerSec
         ).let {
             DynamicAddressingNotificationConsumerDeviceImpl("Hospital", it.first, it.second, emptyList(), 10.0,
-                    100.0e6 /*100 Mbps STM-256 bandwidth*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
-                    100.0e6 /*100 Mbps STM-256 bandwidth*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
+                    1.0e9 /*100 Mbps STM-256 bandwidth*/ * 0.94 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
+                    1.0e9 /*100 Mbps STM-256 bandwidth*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
                     5e-3 /* 5 ms delay between AWS EC2 DC and ISP*/ * modelTimeUnitsPerSec,
                     0.0, AddressingDevice.AddressingType.HIERARCHICAL
             )

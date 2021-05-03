@@ -9,7 +9,6 @@ import api.migration.utils.MigrationRequest
 import org.cloudbus.cloudsim.core.CloudSim
 import org.cloudbus.cloudsim.core.CloudSimTags
 import org.cloudbus.cloudsim.core.SimEvent
-import org.cloudbus.cloudsim.core.predicates.Predicate
 import org.cloudbus.cloudsim.core.predicates.PredicateType
 import org.fog.application.AppModule
 import org.fog.utils.FogEvents
@@ -20,12 +19,13 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
 //        device.migrationModel.device = device
         device.migrationModel.init(device)
         device.mSendEvent(device.mId, device.migrationModel.updateTimeProgression.nextTime(),
-                Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_DECISION.tag, null)
+                Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_PERIODIC_DECISION.tag, null)
     }
 
     override fun processEvent(ev: SimEvent): Boolean {
         return when (ev.tag) {
-            Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_DECISION.tag -> onMigrationDecision()
+            Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_PERIODIC_DECISION.tag -> onMigrationPeriodicDecision()
+            Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_STIMULATE_DECISION.tag -> onMigrationStimulateDecision()
             Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_PREPARE.tag -> onMigrationPrepare(ev)
             Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_START.tag -> onMigrationStart(ev)
             Events.MIGRATION_SUPPORTING_DEVICE_MODULE_DEPARTED.tag -> onModuleDeparted(ev)
@@ -36,13 +36,7 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
         }
     }
 
-    private fun onMigrationDecision(): Boolean {
-        while (true) {
-            val a = CloudSim.select(device.mId, PredicateType(Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_DECISION.tag))
-            if (a == null || a.destination != device.mId) {
-                break
-            }
-        }
+    private fun onMigrationDecision() {
         val migrationRequests = device.migrationModel.decide()
         if (migrationRequests.isNotEmpty()) {
             migrationRequests.forEach { migrationRequest ->
@@ -61,8 +55,23 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
                 }
             }
         }
+    }
+
+    private fun onMigrationPeriodicDecision(): Boolean {
+        onMigrationDecision()
         device.mSendEvent(device.mId, device.migrationModel.updateTimeProgression.nextTime(),
-                Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_DECISION.tag, null)
+                Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_PERIODIC_DECISION.tag, null)
+        return false
+    }
+
+    private fun onMigrationStimulateDecision(): Boolean {
+        while (true) {
+            val a = CloudSim.select(device.mId, PredicateType(Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_STIMULATE_DECISION.tag))
+            if (a == null || a.destination != device.mId) {
+                break
+            }
+        }
+        onMigrationDecision()
         return false
     }
 

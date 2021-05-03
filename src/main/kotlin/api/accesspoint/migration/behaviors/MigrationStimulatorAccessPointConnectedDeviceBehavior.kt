@@ -32,7 +32,7 @@ interface MigrationStimulatorAccessPointConnectedDeviceBehavior<
         if (newAccessPoint != null) {
             if (prevAccessPoint != newAccessPoint) {
                 device.mSendEvent(device.migrationDecisionMakingDeviceId, CloudSim.getMinTimeBetweenEvents(),
-                        Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_DECISION.tag, null)
+                        Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_STIMULATE_DECISION.tag, null)
             }
         }
         return res

@@ -14,13 +14,12 @@ import kotlin.math.roundToInt
 
 class PrioritizedCentralizedMapoModel(
         isCentral: Boolean,
-        private val priorityThreshold: Double = 1.0,
         private val updatePriority: (elapsedTime: Double, prevPriority: Double) -> Double = { _, prevPriority ->
             prevPriority
         },
-        isRandomizedPriority: Boolean = false,
-        private val populationSizeCoefficient: Double? = null,
-        private val maxEvaluationsCoefficient: Double? = null,
+        private val randomPriorityThreshold: Double = 0.0,
+        private val calculatePopulationSize: ((numVariables: Int) -> Int)? = null,
+        private val calculateMaxIterations: ((numVariables: Int) -> Int)? = null,
         updateTimeProgression: TimeProgression = FixedTimeProgression(Double.MAX_VALUE),
         objectives: List<Objective> = emptyList(),
         modulePlacementProblemFactory: ModulePlacementProblemFactory? = null,
@@ -33,12 +32,11 @@ class PrioritizedCentralizedMapoModel(
     private val allAllowedMigrationModules: MutableSet<String> = mutableSetOf()
     private val allowedMigrationModulesPriority: MutableMap<String, Double> = mutableMapOf()
     private var lastPriorityUpdateTime: Double = 0.0
-    val random: Random? = if (isRandomizedPriority) {if (seed != null) Random(seed) else Random()
-    } else null
+    val random: Random = if (seed != null) Random(seed) else Random()
 
     override fun allowMigrationForModule(moduleName: String) {
         allAllowedMigrationModules.add(moduleName)
-        allowedMigrationModulesPriority[moduleName] = random?.nextDouble()?.div(priorityThreshold) ?: 0.0
+        allowedMigrationModulesPriority[moduleName] = random.nextDouble() * randomPriorityThreshold
     }
 
     override fun init(device: MigrationSupportingDevice) {
@@ -54,6 +52,13 @@ class PrioritizedCentralizedMapoModel(
 
     override fun decide(): List<MigrationRequest> {
         if (isCentral) {
+            // update priority
+            val currentTime = CloudSim.clock()
+            allowedMigrationModulesPriority.mapValues { (moduleName, prevPriority) ->
+                allowedMigrationModulesPriority[moduleName] = updatePriority(currentTime - lastPriorityUpdateTime, prevPriority)
+            }
+            lastPriorityUpdateTime = currentTime
+
             device.controller.fogDevices
                     .filter { it is MigrationStimulatorAccessPointConnectedDevice }
                     .mapNotNull { triggeringDevice ->
@@ -73,25 +78,20 @@ class PrioritizedCentralizedMapoModel(
                         }
                         else null
                     }
-            // update priority
-            val currentTime = CloudSim.clock()
-            allowedMigrationModulesPriority.mapValues { (moduleName, prevPriority) ->
-                allowedMigrationModulesPriority[moduleName] = updatePriority(currentTime - lastPriorityUpdateTime, prevPriority)
-            }
-            lastPriorityUpdateTime = currentTime
+
             // allow migration of modules which have high priority
             allowedMigrationModules.addAll(
                     allowedMigrationModulesPriority.mapNotNull { (moduleName, priority) ->
-                        if (priority >= priorityThreshold) moduleName else null
+                        if (priority >= 1.0) moduleName else null
                     }
             )
-            populationSize = (populationSizeCoefficient!! * allowedMigrationModules.size).roundToInt()
-            maxIterations = (maxEvaluationsCoefficient!! * allAllowedMigrationModules.size * allAllowedMigrationModules.size).roundToInt()
+            populationSize = calculatePopulationSize!!(allowedMigrationModules.size)
+            maxIterations = calculateMaxIterations!!(allowedMigrationModules.size)
         }
         val result = super.decide()
         if (isCentral) {
             allowedMigrationModules.forEach { processedModule ->
-                allowedMigrationModulesPriority[processedModule] = random?.nextDouble()?.div(priorityThreshold) ?: 0.0
+                allowedMigrationModulesPriority[processedModule] = random.nextDouble() * randomPriorityThreshold
             }
             allowedMigrationModules.clear()
         }
