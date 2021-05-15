@@ -142,9 +142,13 @@ fun experiment3(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
                     ), 1), normalizer, randSeed, logProgress
             )
             // min cost, delay = multiobjective
-            3 -> PartitionedCentralizedMapoModel(
+            3, 4 -> PartitionedCentralizedMapoModel(
                     true,30,
-                    FixedWithOffsetTimeProgression(CloudSim.getMinTimeBetweenEvents(), 5.0 * 60 * modelTimeUnitsPerSec),
+                    FixedWithOffsetTimeProgression(CloudSim.getMinTimeBetweenEvents(), when (strategyType) {
+                        3 -> 5.0
+                        4 -> 1.0
+                        else -> 0.0
+                    } * 60 * modelTimeUnitsPerSec),
                     listOf(
                             MinCostObjective(),
                             MinProcessingDelayObjective()
