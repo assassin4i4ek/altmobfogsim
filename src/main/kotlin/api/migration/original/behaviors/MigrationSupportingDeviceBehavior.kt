@@ -16,7 +16,6 @@ import org.fog.utils.Logger
 
 interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDeviceBehavior, MigrationSupportingDevice> {
     override fun onStart() {
-//        device.migrationModel.device = device
         device.migrationModel.init(device)
         device.mSendEvent(device.mId, device.migrationModel.updateTimeProgression.nextTime(),
                 Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_PERIODIC_DECISION.tag, null)
@@ -36,8 +35,8 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
         }
     }
 
-    private fun onMigrationDecision() {
-        val migrationRequests = device.migrationModel.decide()
+    private fun onMigrationDecision(isPeriodic: Boolean) {
+        val migrationRequests = device.migrationModel.decide(isPeriodic)
         if (migrationRequests.isNotEmpty()) {
             migrationRequests.forEach { migrationRequest ->
                 MigrationLogger.logMigrationDecision(device.mName, migrationRequest)
@@ -58,7 +57,7 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
     }
 
     private fun onMigrationPeriodicDecision(): Boolean {
-        onMigrationDecision()
+        onMigrationDecision(true)
         device.mSendEvent(device.mId, device.migrationModel.updateTimeProgression.nextTime(),
                 Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_PERIODIC_DECISION.tag, null)
         return false
@@ -71,7 +70,7 @@ interface MigrationSupportingDeviceBehavior: BaseBehavior<MigrationSupportingDev
                 break
             }
         }
-        onMigrationDecision()
+        onMigrationDecision(false)
         return false
     }
 

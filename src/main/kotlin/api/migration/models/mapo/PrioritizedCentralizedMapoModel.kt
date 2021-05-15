@@ -10,7 +10,6 @@ import api.migration.original.entites.MigrationSupportingDevice
 import api.migration.utils.MigrationRequest
 import org.cloudbus.cloudsim.core.CloudSim
 import java.util.*
-import kotlin.math.roundToInt
 
 class PrioritizedCentralizedMapoModel(
         isCentral: Boolean,
@@ -50,7 +49,7 @@ class PrioritizedCentralizedMapoModel(
         }
     }
 
-    override fun decide(): List<MigrationRequest> {
+    override fun decide(isPeriodic: Boolean): List<MigrationRequest> {
         if (isCentral) {
             // update priority
             val currentTime = CloudSim.clock()
@@ -88,7 +87,7 @@ class PrioritizedCentralizedMapoModel(
             populationSize = calculatePopulationSize!!(allowedMigrationModules.size)
             maxIterations = calculateMaxIterations!!(allowedMigrationModules.size)
         }
-        val result = super.decide()
+        val result = super.decide(isPeriodic)
         if (isCentral) {
             allowedMigrationModules.forEach { processedModule ->
                 allowedMigrationModulesPriority[processedModule] = random.nextDouble() * randomPriorityThreshold

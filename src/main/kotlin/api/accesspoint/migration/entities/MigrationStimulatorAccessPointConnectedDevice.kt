@@ -4,5 +4,5 @@ import addons.accesspoint_addressingdynamic.entities.AddressingAccessPointConnec
 import api.accesspoint.original.entities.AccessPointConnectedDevice
 
 interface MigrationStimulatorAccessPointConnectedDevice: AccessPointConnectedDevice {
-    val migrationDecisionMakingDeviceId: Int
+    val migrationDecisionMakingDeviceId: Int?
 }

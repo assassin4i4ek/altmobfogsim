@@ -1,0 +1,2 @@
+numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)
+25: 10, 500, 0% = 767,271 +- 0,49 (0,06 %) (21,863)

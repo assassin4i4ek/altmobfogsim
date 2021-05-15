@@ -34,7 +34,7 @@ open class CentralizedMapoModel(
         this.device = device
     }
 
-    override fun decide(): List<MigrationRequest> {
+    override fun decide(isPeriodic: Boolean): List<MigrationRequest> {
         if (isCentral) {
             if (seed != null) {
                 PRNG.setSeed(seed)

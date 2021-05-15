@@ -39,7 +39,7 @@ open class OnlyTriggeredCentralizedMapoModel(
         }
     }
 
-    override fun decide(): List<MigrationRequest> {
+    override fun decide(isPeriodic: Boolean): List<MigrationRequest> {
         if (isCentral) {
             device.controller.fogDevices
                     .filter { it is MigrationStimulatorAccessPointConnectedDevice }
@@ -61,7 +61,7 @@ open class OnlyTriggeredCentralizedMapoModel(
             populationSize = calculatePopulationSize!!(allowedMigrationModules.size)
             maxIterations = calculateMaxIterations!!(allowedMigrationModules.size)
         }
-        val result = super.decide()
+        val result = super.decide(isPeriodic)
         if (isCentral) {
             allowedMigrationModules.clear()
         }

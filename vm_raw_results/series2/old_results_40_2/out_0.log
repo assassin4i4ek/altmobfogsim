@@ -1,0 +1,3372 @@
+Initialising...
+Creating patient_state_analyzer0 on device cloud
+Creating heart_attack_determiner0 on device cloud
+Creating patient_disease_history0 on device cloud
+Creating client0 on device pedestrian_1-1-pt_0
+Creating patient_state_analyzer1 on device cloud
+Creating heart_attack_determiner1 on device cloud
+Creating patient_disease_history1 on device cloud
+Creating client1 on device pedestrian_1-1-pt_1006
+Creating patient_state_analyzer2 on device cloud
+Creating heart_attack_determiner2 on device cloud
+Creating patient_disease_history2 on device cloud
+Creating client2 on device pedestrian_1-1-pt_1011
+Creating patient_state_analyzer3 on device cloud
+Creating heart_attack_determiner3 on device cloud
+Creating patient_disease_history3 on device cloud
+Creating client3 on device pedestrian_1-1-pt_1017
+Creating client4 on device pedestrian_1-1-pt_1020
+Creating patient_state_analyzer4 on device cloud
+Creating heart_attack_determiner4 on device cloud
+Creating patient_disease_history4 on device cloud
+Creating patient_state_analyzer5 on device cloud
+Creating heart_attack_determiner5 on device cloud
+Creating patient_disease_history5 on device cloud
+Creating client5 on device pedestrian_1-1-pt_1022
+Creating patient_state_analyzer6 on device cloud
+Creating heart_attack_determiner6 on device cloud
+Creating patient_disease_history6 on device cloud
+Creating client6 on device pedestrian_1-1-pt_1026
+Creating patient_state_analyzer7 on device cloud
+Creating heart_attack_determiner7 on device cloud
+Creating patient_disease_history7 on device cloud
+Creating client7 on device pedestrian_1-1-pt_1033
+Creating patient_state_analyzer8 on device cloud
+Creating heart_attack_determiner8 on device cloud
+Creating patient_disease_history8 on device cloud
+Creating client8 on device pedestrian_1-1-pt_1037
+Creating patient_state_analyzer9 on device cloud
+Creating heart_attack_determiner9 on device cloud
+Creating patient_disease_history9 on device cloud
+Creating client9 on device pedestrian_1-1-pt_1039
+Creating patient_state_analyzer10 on device cloud
+Creating heart_attack_determiner10 on device cloud
+Creating patient_disease_history10 on device cloud
+Creating client10 on device pedestrian_1-1-pt_1040
+Creating client11 on device pedestrian_1-1-pt_1064
+Creating patient_state_analyzer11 on device cloud
+Creating heart_attack_determiner11 on device cloud
+Creating patient_disease_history11 on device cloud
+Creating patient_state_analyzer12 on device cloud
+Creating heart_attack_determiner12 on device cloud
+Creating patient_disease_history12 on device cloud
+Creating client12 on device pedestrian_1-1-pt_1071
+Creating patient_state_analyzer13 on device cloud
+Creating heart_attack_determiner13 on device cloud
+Creating patient_disease_history13 on device cloud
+Creating client13 on device pedestrian_1-1-pt_1073
+Creating patient_state_analyzer14 on device cloud
+Creating heart_attack_determiner14 on device cloud
+Creating patient_disease_history14 on device cloud
+Creating client14 on device pedestrian_1-1-pt_1078
+Creating patient_state_analyzer15 on device cloud
+Creating heart_attack_determiner15 on device cloud
+Creating patient_disease_history15 on device cloud
+Creating client15 on device pedestrian_1-1-pt_109
+Creating patient_state_analyzer16 on device cloud
+Creating heart_attack_determiner16 on device cloud
+Creating patient_disease_history16 on device cloud
+Creating client16 on device pedestrian_1-1-pt_11
+Creating patient_state_analyzer17 on device cloud
+Creating heart_attack_determiner17 on device cloud
+Creating patient_disease_history17 on device cloud
+Creating client17 on device pedestrian_1-1-pt_1108
+Creating patient_state_analyzer18 on device cloud
+Creating heart_attack_determiner18 on device cloud
+Creating patient_disease_history18 on device cloud
+Creating client18 on device pedestrian_1-1-pt_1109
+Creating patient_state_analyzer19 on device cloud
+Creating heart_attack_determiner19 on device cloud
+Creating patient_disease_history19 on device cloud
+Creating client19 on device pedestrian_1-1-pt_111
+Creating patient_state_analyzer20 on device cloud
+Creating heart_attack_determiner20 on device cloud
+Creating patient_disease_history20 on device cloud
+Creating client20 on device pedestrian_1-1-pt_1121
+Creating patient_state_analyzer21 on device cloud
+Creating heart_attack_determiner21 on device cloud
+Creating patient_disease_history21 on device cloud
+Creating client21 on device pedestrian_1-1-pt_1134
+Creating patient_state_analyzer22 on device cloud
+Creating heart_attack_determiner22 on device cloud
+Creating patient_disease_history22 on device cloud
+Creating client22 on device pedestrian_1-1-pt_1138
+Creating patient_state_analyzer23 on device cloud
+Creating heart_attack_determiner23 on device cloud
+Creating patient_disease_history23 on device cloud
+Creating client23 on device pedestrian_1-1-pt_1142
+Creating patient_state_analyzer24 on device cloud
+Creating heart_attack_determiner24 on device cloud
+Creating patient_disease_history24 on device cloud
+Creating client24 on device pedestrian_1-1-pt_1167
+Creating patient_state_analyzer25 on device cloud
+Creating heart_attack_determiner25 on device cloud
+Creating patient_disease_history25 on device cloud
+Creating client25 on device pedestrian_1-1-pt_1169
+Creating patient_state_analyzer26 on device cloud
+Creating heart_attack_determiner26 on device cloud
+Creating patient_disease_history26 on device cloud
+Creating client26 on device pedestrian_1-1-pt_1173
+Creating patient_state_analyzer27 on device cloud
+Creating heart_attack_determiner27 on device cloud
+Creating patient_disease_history27 on device cloud
+Creating client27 on device pedestrian_1-1-pt_1181
+Creating patient_state_analyzer28 on device cloud
+Creating heart_attack_determiner28 on device cloud
+Creating patient_disease_history28 on device cloud
+Creating client28 on device pedestrian_1-1-pt_1195
+Creating patient_state_analyzer29 on device cloud
+Creating heart_attack_determiner29 on device cloud
+Creating patient_disease_history29 on device cloud
+Creating client29 on device pedestrian_1-1-pt_1215
+Creating patient_state_analyzer30 on device cloud
+Creating heart_attack_determiner30 on device cloud
+Creating patient_disease_history30 on device cloud
+Creating client30 on device pedestrian_1-1-pt_1223
+Creating patient_state_analyzer31 on device cloud
+Creating heart_attack_determiner31 on device cloud
+Creating patient_disease_history31 on device cloud
+Creating client31 on device pedestrian_1-1-pt_1226
+Creating patient_state_analyzer32 on device cloud
+Creating heart_attack_determiner32 on device cloud
+Creating patient_disease_history32 on device cloud
+Creating client32 on device pedestrian_1-1-pt_1227
+Creating patient_state_analyzer33 on device cloud
+Creating heart_attack_determiner33 on device cloud
+Creating patient_disease_history33 on device cloud
+Creating client33 on device pedestrian_1-1-pt_1232
+Creating patient_state_analyzer34 on device cloud
+Creating heart_attack_determiner34 on device cloud
+Creating patient_disease_history34 on device cloud
+Creating client34 on device pedestrian_1-1-pt_1238
+Creating patient_state_analyzer35 on device cloud
+Creating heart_attack_determiner35 on device cloud
+Creating patient_disease_history35 on device cloud
+Creating client35 on device pedestrian_1-1-pt_1253
+Creating patient_state_analyzer36 on device cloud
+Creating heart_attack_determiner36 on device cloud
+Creating patient_disease_history36 on device cloud
+Creating client36 on device pedestrian_1-1-pt_1259
+Creating patient_state_analyzer37 on device cloud
+Creating heart_attack_determiner37 on device cloud
+Creating patient_disease_history37 on device cloud
+Creating client37 on device pedestrian_1-1-pt_1261
+Creating patient_state_analyzer38 on device cloud
+Creating heart_attack_determiner38 on device cloud
+Creating patient_disease_history38 on device cloud
+Creating client38 on device pedestrian_1-1-pt_1270
+Creating patient_state_analyzer39 on device cloud
+Creating heart_attack_determiner39 on device cloud
+Creating patient_disease_history39 on device cloud
+Creating client39 on device pedestrian_1-1-pt_1272
+0.0 Submitted application HeartDiseaseMonitoringApplication30
+0.0 Submitted application HeartDiseaseMonitoringApplication19
+0.0 Submitted application HeartDiseaseMonitoringApplication17
+0.0 Submitted application HeartDiseaseMonitoringApplication39
+0.0 Submitted application HeartDiseaseMonitoringApplication18
+0.0 Submitted application HeartDiseaseMonitoringApplication11
+0.0 Submitted application HeartDiseaseMonitoringApplication33
+0.0 Submitted application HeartDiseaseMonitoringApplication12
+0.0 Submitted application HeartDiseaseMonitoringApplication34
+0.0 Submitted application HeartDiseaseMonitoringApplication31
+0.0 Submitted application HeartDiseaseMonitoringApplication10
+0.0 Submitted application HeartDiseaseMonitoringApplication32
+0.0 Submitted application HeartDiseaseMonitoringApplication1
+0.0 Submitted application HeartDiseaseMonitoringApplication15
+0.0 Submitted application HeartDiseaseMonitoringApplication37
+0.0 Submitted application HeartDiseaseMonitoringApplication0
+0.0 Submitted application HeartDiseaseMonitoringApplication16
+0.0 Submitted application HeartDiseaseMonitoringApplication38
+0.0 Submitted application HeartDiseaseMonitoringApplication13
+0.0 Submitted application HeartDiseaseMonitoringApplication35
+0.0 Submitted application HeartDiseaseMonitoringApplication14
+0.0 Submitted application HeartDiseaseMonitoringApplication36
+0.0 Submitted application HeartDiseaseMonitoringApplication5
+0.0 Submitted application HeartDiseaseMonitoringApplication4
+0.0 Submitted application HeartDiseaseMonitoringApplication3
+0.0 Submitted application HeartDiseaseMonitoringApplication2
+0.0 Submitted application HeartDiseaseMonitoringApplication9
+0.0 Submitted application HeartDiseaseMonitoringApplication8
+0.0 Submitted application HeartDiseaseMonitoringApplication7
+0.0 Submitted application HeartDiseaseMonitoringApplication6
+0.0 Submitted application HeartDiseaseMonitoringApplication28
+0.0 Submitted application HeartDiseaseMonitoringApplication29
+0.0 Submitted application HeartDiseaseMonitoringApplication22
+0.0 Submitted application HeartDiseaseMonitoringApplication23
+0.0 Submitted application HeartDiseaseMonitoringApplication20
+0.0 Submitted application HeartDiseaseMonitoringApplication21
+0.0 Submitted application HeartDiseaseMonitoringApplication26
+0.0 Submitted application HeartDiseaseMonitoringApplication27
+0.0 Submitted application HeartDiseaseMonitoringApplication24
+0.0 Submitted application HeartDiseaseMonitoringApplication25
+$0% (inf seconds left)=========================================
+============== RESULTS ==================
+=========================================
+EXECUTION TIME : 1618561807538
+=========================================
+APPLICATION LOOP DELAYS
+=========================================
+[client0, patient_state_analyzer0, heart_attack_determiner0, client0] ---> 759.8370478424209
+[client1, patient_state_analyzer1, heart_attack_determiner1, client1] ---> 759.8354829706637
+[client2, patient_state_analyzer2, heart_attack_determiner2, client2] ---> 759.8386127141779
+[client3, patient_state_analyzer3, heart_attack_determiner3, client3] ---> 759.8378302782994
+[client4, patient_state_analyzer4, heart_attack_determiner4, client4] ---> 771.1147005347844
+[client5, patient_state_analyzer5, heart_attack_determiner5, client5] ---> 770.7947005347846
+[client6, patient_state_analyzer6, heart_attack_determiner6, client6] ---> 759.8401775859351
+[client7, patient_state_analyzer7, heart_attack_determiner7, client7] ---> 771.4347005347842
+[client8, patient_state_analyzer8, heart_attack_determiner8, client8] ---> 759.8393951500565
+[client9, patient_state_analyzer9, heart_attack_determiner9, client9] ---> 769.8472195088415
+[client10, patient_state_analyzer10, heart_attack_determiner10, client10] ---> 770.1547005347852
+[client11, patient_state_analyzer11, heart_attack_determiner11, client11] ---> 769.8354829706637
+[client12, patient_state_analyzer12, heart_attack_determiner12, client12] ---> 769.8362654065426
+[client13, patient_state_analyzer13, heart_attack_determiner13, client13] ---> 770.4747005347849
+[client14, patient_state_analyzer14, heart_attack_determiner14, client14] ---> 770.1554829706635
+[client15, patient_state_analyzer15, heart_attack_determiner15, client15] ---> 759.8362654065426
+[client16, patient_state_analyzer16, heart_attack_determiner16, client16] ---> 770.1539180989066
+[client17, patient_state_analyzer17, heart_attack_determiner17, client17] ---> 769.8339180989069
+[client18, patient_state_analyzer18, heart_attack_determiner18, client18] ---> 759.8339180989069
+[client19, patient_state_analyzer19, heart_attack_determiner19, client19] ---> 759.8331356630284
+[client20, patient_state_analyzer20, heart_attack_determiner20, client20] ---> 771.7562654065409
+[client21, patient_state_analyzer21, heart_attack_determiner21, client21] ---> 772.0762654065406
+[client22, patient_state_analyzer22, heart_attack_determiner22, client22] ---> 770.7939180989061
+[client23, patient_state_analyzer23, heart_attack_determiner23, client23] ---> 771.4362654065412
+[client24, patient_state_analyzer24, heart_attack_determiner24, client24] ---> 759.841742457692
+[client25, patient_state_analyzer25, heart_attack_determiner25, client25] ---> 769.854261431748
+[client26, patient_state_analyzer26, heart_attack_determiner26, client26] ---> 770.4731356630278
+[client27, patient_state_analyzer27, heart_attack_determiner27, client27] ---> 759.8409600218134
+[client28, patient_state_analyzer28, heart_attack_determiner28, client28] ---> 771.7547005347839
+[client29, patient_state_analyzer29, heart_attack_determiner29, client29] ---> 772.0747005347836
+[client30, patient_state_analyzer30, heart_attack_determiner30, client30] ---> 769.8331356630284
+[client31, patient_state_analyzer31, heart_attack_determiner31, client31] ---> 770.476265406542
+[client32, patient_state_analyzer32, heart_attack_determiner32, client32] ---> 770.7962654065417
+[client33, patient_state_analyzer33, heart_attack_determiner33, client33] ---> 759.8347005347855
+[client34, patient_state_analyzer34, heart_attack_determiner34, client34] ---> 770.1562654065423
+[client35, patient_state_analyzer35, heart_attack_determiner35, client35] ---> 770.1531356630281
+[client36, patient_state_analyzer36, heart_attack_determiner36, client36] ---> 769.8448722012059
+[client37, patient_state_analyzer37, heart_attack_determiner37, client37] ---> 771.1162654065414
+[client38, patient_state_analyzer38, heart_attack_determiner38, client38] ---> 770.4739180989064
+[client39, patient_state_analyzer39, heart_attack_determiner39, client39] ---> 769.8347005347855
+=========================================
+TUPLE CPU EXECUTION DELAY
+=========================================
+PATIENT_HISTORY_RECORD_RESPONSE19 ---> 60.099999999998545
+PATIENT_SENSOR8 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_RESPONSE18 ---> 60.099999999998545
+PATIENT_SENSOR9 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_RESPONSE17 ---> 60.099999999998545
+PATIENT_SENSOR6 ---> 94.43962330436058
+PATIENT_SENSOR7 ---> 94.43962330436058
+PATIENT_SENSOR4 ---> 94.43962330436058
+PATIENT_SENSOR5 ---> 94.43962330436058
+PATIENT_STATE4 ---> 116.42862144579698
+PATIENT_STATE3 ---> 107.23003290145414
+PATIENT_HISTORY_RECORD_REQUEST19 ---> 270.09999999999854
+PATIENT_STATE6 ---> 107.22925201577878
+PATIENT_HISTORY_RECORD_REQUEST18 ---> 270.09999999999854
+PATIENT_STATE5 ---> 115.52642910446592
+PATIENT_HISTORY_RECORD_REQUEST17 ---> 270.09999999999854
+PATIENT_STATE0 ---> 107.23393732983091
+PATIENT_HISTORY_RECORD_REQUEST16 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST15 ---> 270.09999999999854
+PATIENT_STATE2 ---> 107.22847113010343
+PATIENT_HISTORY_RECORD_REQUEST14 ---> 270.09999999999854
+PATIENT_STATE1 ---> 107.23159467280485
+PATIENT_HISTORY_RECORD_REQUEST13 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST12 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE12 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST11 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE11 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST10 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE10 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE16 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE15 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE14 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE13 ---> 60.099999999998545
+PATIENT_SENSOR2 ---> 94.43962330436058
+PATIENT_SENSOR3 ---> 94.43962330436058
+PATIENT_SENSOR0 ---> 94.43962330436058
+PATIENT_SENSOR1 ---> 94.43962330436058
+HEART_ATTACK_DETERMINATION13 ---> 60.0
+HEART_ATTACK_DETERMINATION12 ---> 60.0
+HEART_ATTACK_DETERMINATION11 ---> 60.0
+HEART_ATTACK_DETERMINATION10 ---> 60.0
+HEART_ATTACK_DETERMINATION19 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION18 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION17 ---> 60.0
+HEART_ATTACK_DETERMINATION16 ---> 60.0
+HEART_ATTACK_DETERMINATION15 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION14 ---> 60.0
+PATIENT_STATE22 ---> 114.62267499178415
+PATIENT_STATE21 ---> 114.6234558774595
+PATIENT_STATE20 ---> 115.52799087581663
+PATIENT_STATE29 ---> 111.00453499835567
+PATIENT_STATE28 ---> 111.90906999671279
+PATIENT_STATE27 ---> 107.23627998685697
+PATIENT_STATE26 ---> 116.42705967444627
+PATIENT_STATE25 ---> 116.4317449884984
+PATIENT_STATE24 ---> 107.23549910118162
+PATIENT_STATE23 ---> 113.71892087910238
+PATIENT_STATE33 ---> 107.23471821550626
+PATIENT_STATE32 ---> 111.90985088238814
+PATIENT_STATE31 ---> 112.81438588074526
+PATIENT_STATE30 ---> 115.52486733311521
+PATIENT_STATE39 ---> 110.09999999999854
+PATIENT_STATE38 ---> 113.71813999342703
+PATIENT_STATE37 ---> 110.1007808856739
+PATIENT_STATE36 ---> 116.43096410282304
+PATIENT_STATE35 ---> 114.62111322043344
+PATIENT_STATE34 ---> 111.00531588403102
+HEART_ATTACK_DETERMINATION35 ---> 60.0
+HEART_ATTACK_DETERMINATION34 ---> 60.0
+HEART_ATTACK_DETERMINATION33 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION32 ---> 60.0
+HEART_ATTACK_DETERMINATION31 ---> 60.0
+HEART_ATTACK_DETERMINATION30 ---> 60.0
+HEART_ATTACK_DETERMINATION39 ---> 60.0
+HEART_ATTACK_DETERMINATION38 ---> 60.0
+HEART_ATTACK_DETERMINATION37 ---> 60.0
+HEART_ATTACK_DETERMINATION36 ---> 60.0
+HEART_ATTACK_DETERMINATION24 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION23 ---> 60.0
+HEART_ATTACK_DETERMINATION22 ---> 60.0
+HEART_ATTACK_DETERMINATION21 ---> 60.0
+HEART_ATTACK_DETERMINATION20 ---> 60.0
+HEART_ATTACK_DETERMINATION29 ---> 60.0
+HEART_ATTACK_DETERMINATION28 ---> 60.0
+HEART_ATTACK_DETERMINATION27 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION26 ---> 60.0
+HEART_ATTACK_DETERMINATION25 ---> 60.0
+HEART_ATTACK_PATIENT_ALARM12 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM13 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM10 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM11 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM16 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM17 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM14 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM15 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_RESPONSE8 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE9 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE6 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE7 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE4 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE5 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE2 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE3 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE0 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE1 ---> 60.099999999998545
+PATIENT_STATE8 ---> 107.2323755584802
+PATIENT_STATE7 ---> 114.6218941061088
+PATIENT_STATE9 ---> 116.43252587417375
+HEART_ATTACK_PATIENT_ALARM34 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM35 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM32 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM33 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST7 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM38 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST6 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM39 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST9 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM36 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST8 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM37 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM30 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM31 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST3 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST2 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST5 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM29 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST4 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST1 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST0 ---> 270.09999999999854
+PATIENT_SENSOR19 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM23 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM24 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM21 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM22 ---> 47.26981132075162
+PATIENT_SENSOR15 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM27 ---> 47.26981132075162
+PATIENT_SENSOR16 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM28 ---> 47.26981132075162
+PATIENT_SENSOR17 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM25 ---> 47.26981132075162
+PATIENT_SENSOR18 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM26 ---> 47.26981132075162
+PATIENT_SENSOR11 ---> 94.43962330436058
+PATIENT_SENSOR12 ---> 94.43962330436058
+PATIENT_SENSOR13 ---> 94.43962330436058
+PATIENT_SENSOR14 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM20 ---> 47.26981132075162
+PATIENT_SENSOR10 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM18 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM19 ---> 47.26981132075162
+HEART_ATTACK_DETERMINATION9 ---> 60.0
+HEART_ATTACK_DETERMINATION8 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION7 ---> 60.0
+HEART_ATTACK_DETERMINATION6 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION5 ---> 60.0
+HEART_ATTACK_PATIENT_ALARM9 ---> 47.26981132075162
+HEART_ATTACK_DETERMINATION4 ---> 60.0
+HEART_ATTACK_DETERMINATION3 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION2 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION1 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION0 ---> 60.099999999998545
+PATIENT_STATE11 ---> 116.42784056012162
+PATIENT_STATE10 ---> 113.71735910775168
+PATIENT_STATE19 ---> 107.23706087253233
+PATIENT_STATE18 ---> 107.23315644415555
+PATIENT_STATE17 ---> 115.52720999014127
+PATIENT_STATE16 ---> 116.42940233147233
+PATIENT_STATE15 ---> 107.23081378712949
+PATIENT_STATE14 ---> 115.52564821879056
+PATIENT_STATE13 ---> 112.81360499506991
+PATIENT_STATE12 ---> 116.43018321714769
+PATIENT_HISTORY_RECORD_RESPONSE39 ---> 60.099999999998545
+PATIENT_SENSOR26 ---> 94.43962330436058
+PATIENT_SENSOR27 ---> 94.43962330436058
+PATIENT_SENSOR28 ---> 94.43962330436058
+PATIENT_SENSOR29 ---> 94.43962330436058
+PATIENT_SENSOR22 ---> 94.43962330436058
+PATIENT_SENSOR23 ---> 94.43962330436058
+PATIENT_SENSOR24 ---> 94.43962330436058
+PATIENT_SENSOR25 ---> 94.43962330436058
+PATIENT_SENSOR20 ---> 94.43962330436058
+PATIENT_SENSOR21 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_REQUEST39 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST38 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE30 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST37 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST36 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST35 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST34 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE34 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST33 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE33 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST32 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE32 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST31 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE31 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST30 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE38 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE37 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE36 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE35 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE29 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE28 ---> 60.099999999998545
+PATIENT_SENSOR37 ---> 94.43962330436058
+PATIENT_SENSOR38 ---> 94.43962330436058
+PATIENT_SENSOR39 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM0 ---> 47.26981132075162
+PATIENT_SENSOR33 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM1 ---> 47.26981132075162
+PATIENT_SENSOR34 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM2 ---> 47.26981132075162
+PATIENT_SENSOR35 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM3 ---> 47.26981132075162
+PATIENT_SENSOR36 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM4 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM5 ---> 47.26981132075162
+PATIENT_SENSOR30 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM6 ---> 47.26981132075162
+PATIENT_SENSOR31 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM7 ---> 47.26981132075162
+PATIENT_SENSOR32 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM8 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST29 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST28 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST27 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST26 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST25 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST24 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST23 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE23 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST22 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE22 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST21 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE21 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST20 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE20 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE27 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE26 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE25 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE24 ---> 60.099999999998545
+=========================================
+cloud : Energy Consumed = 114017.34566065914
+ISP_Gateway : Energy Consumed = NaN
+3gBaseStation_1_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_1_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_1_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_4 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_5 : Energy Consumed = 646.8750000000016
+3gBaseStation_5_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_4 : Energy Consumed = 646.8750000000016
+4gBaseStation_1_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_1_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_2_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_2_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_3_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_3_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_5_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_5_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_4 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_4 : Energy Consumed = 646.8750000000016
+pedestrian_1-1-pt_0 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1006 : Energy Consumed = 3.2999403952829875
+pedestrian_1-1-pt_1011 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1017 : Energy Consumed = 3.299940395282985
+pedestrian_1-1-pt_1020 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1022 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1026 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1033 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1037 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1039 : Energy Consumed = 3.299940395282984
+pedestrian_1-1-pt_1040 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1064 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1071 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1073 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1078 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_109 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_11 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1108 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1109 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_111 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1121 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1134 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1138 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1142 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1167 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1169 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1173 : Energy Consumed = 3.2999403952829827
+pedestrian_1-1-pt_1181 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1195 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1215 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1223 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1226 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1227 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1232 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1238 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1253 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1259 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1261 : Energy Consumed = 3.2999403952829875
+pedestrian_1-1-pt_1270 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1272 : Energy Consumed = 3.29994039528298
+Cost of execution in cloud = 3.1704312566836617
+Total network usage = 65337.6
+
+Base station: number of connected clients
+3gBaseStation_1_3: 2
+4gBaseStation_1_1: 2
+4gBaseStation_1_2: 2
+4gBaseStation_2_1: 9
+4gBaseStation_2_2: 5
+4gBaseStation_3_1: 9
+4gBaseStation_3_2: 3
+4gBaseStation_4_2: 1
+4gBaseStation_4_3: 1
+4gBaseStation_5_1: 1
+4gBaseStation_5_2: 4
+4gBaseStation_6_2: 1
+
+Base station events
+03:00:00: pedestrian_1-1-pt_0 (39) connected from null to 3gBaseStation_1_3 (5)
+03:00:00: pedestrian_1-1-pt_1006 (40) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_1011 (41) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1017 (42) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1020 (43) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1022 (44) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1026 (45) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1033 (46) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1037 (47) connected from null to 4gBaseStation_1_2 (20)
+03:00:00: pedestrian_1-1-pt_1039 (48) connected from null to 3gBaseStation_1_3 (5)
+03:00:00: pedestrian_1-1-pt_1040 (49) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1064 (50) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_1071 (51) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1073 (52) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1078 (53) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_109 (54) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_11 (55) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1108 (56) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1109 (57) connected from null to 4gBaseStation_1_1 (19)
+03:00:00: pedestrian_1-1-pt_111 (58) connected from null to 4gBaseStation_4_2 (26)
+03:00:00: pedestrian_1-1-pt_1121 (59) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1134 (60) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1138 (61) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1142 (62) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1167 (63) connected from null to 4gBaseStation_5_1 (28)
+03:00:00: pedestrian_1-1-pt_1169 (64) connected from null to 4gBaseStation_1_1 (19)
+03:00:00: pedestrian_1-1-pt_1173 (65) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1181 (66) connected from null to 4gBaseStation_4_3 (27)
+03:00:00: pedestrian_1-1-pt_1195 (67) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1215 (68) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1223 (69) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1226 (70) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1227 (71) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1232 (72) connected from null to 4gBaseStation_6_2 (31)
+03:00:00: pedestrian_1-1-pt_1238 (73) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1253 (74) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1259 (75) connected from null to 4gBaseStation_1_2 (20)
+03:00:00: pedestrian_1-1-pt_1261 (76) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1270 (77) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1272 (78) connected from null to 4gBaseStation_3_1 (23)
+Migrations
+
+Avg delay for loops: 767,365 (std 5,03)
+Results so far
+numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)
+40: 10, 20000, 0% = 767,365 +- 5,03 (0,66 %) (850,077)
+
+Initialising...
+Creating patient_state_analyzer0 on device cloud
+Creating heart_attack_determiner0 on device cloud
+Creating patient_disease_history0 on device cloud
+Creating client0 on device pedestrian_1-1-pt_0
+Creating patient_state_analyzer1 on device cloud
+Creating heart_attack_determiner1 on device cloud
+Creating patient_disease_history1 on device cloud
+Creating client1 on device pedestrian_1-1-pt_1006
+Creating patient_state_analyzer2 on device cloud
+Creating heart_attack_determiner2 on device cloud
+Creating patient_disease_history2 on device cloud
+Creating client2 on device pedestrian_1-1-pt_1011
+Creating patient_state_analyzer3 on device cloud
+Creating heart_attack_determiner3 on device cloud
+Creating patient_disease_history3 on device cloud
+Creating client3 on device pedestrian_1-1-pt_1017
+Creating client4 on device pedestrian_1-1-pt_1020
+Creating patient_state_analyzer4 on device cloud
+Creating heart_attack_determiner4 on device cloud
+Creating patient_disease_history4 on device cloud
+Creating patient_state_analyzer5 on device cloud
+Creating heart_attack_determiner5 on device cloud
+Creating patient_disease_history5 on device cloud
+Creating client5 on device pedestrian_1-1-pt_1022
+Creating patient_state_analyzer6 on device cloud
+Creating heart_attack_determiner6 on device cloud
+Creating patient_disease_history6 on device cloud
+Creating client6 on device pedestrian_1-1-pt_1026
+Creating patient_state_analyzer7 on device cloud
+Creating heart_attack_determiner7 on device cloud
+Creating patient_disease_history7 on device cloud
+Creating client7 on device pedestrian_1-1-pt_1033
+Creating patient_state_analyzer8 on device cloud
+Creating heart_attack_determiner8 on device cloud
+Creating patient_disease_history8 on device cloud
+Creating client8 on device pedestrian_1-1-pt_1037
+Creating patient_state_analyzer9 on device cloud
+Creating heart_attack_determiner9 on device cloud
+Creating patient_disease_history9 on device cloud
+Creating client9 on device pedestrian_1-1-pt_1039
+Creating patient_state_analyzer10 on device cloud
+Creating heart_attack_determiner10 on device cloud
+Creating patient_disease_history10 on device cloud
+Creating client10 on device pedestrian_1-1-pt_1040
+Creating client11 on device pedestrian_1-1-pt_1064
+Creating patient_state_analyzer11 on device cloud
+Creating heart_attack_determiner11 on device cloud
+Creating patient_disease_history11 on device cloud
+Creating patient_state_analyzer12 on device cloud
+Creating heart_attack_determiner12 on device cloud
+Creating patient_disease_history12 on device cloud
+Creating client12 on device pedestrian_1-1-pt_1071
+Creating patient_state_analyzer13 on device cloud
+Creating heart_attack_determiner13 on device cloud
+Creating patient_disease_history13 on device cloud
+Creating client13 on device pedestrian_1-1-pt_1073
+Creating patient_state_analyzer14 on device cloud
+Creating heart_attack_determiner14 on device cloud
+Creating patient_disease_history14 on device cloud
+Creating client14 on device pedestrian_1-1-pt_1078
+Creating patient_state_analyzer15 on device cloud
+Creating heart_attack_determiner15 on device cloud
+Creating patient_disease_history15 on device cloud
+Creating client15 on device pedestrian_1-1-pt_109
+Creating patient_state_analyzer16 on device cloud
+Creating heart_attack_determiner16 on device cloud
+Creating patient_disease_history16 on device cloud
+Creating client16 on device pedestrian_1-1-pt_11
+Creating patient_state_analyzer17 on device cloud
+Creating heart_attack_determiner17 on device cloud
+Creating patient_disease_history17 on device cloud
+Creating client17 on device pedestrian_1-1-pt_1108
+Creating patient_state_analyzer18 on device cloud
+Creating heart_attack_determiner18 on device cloud
+Creating patient_disease_history18 on device cloud
+Creating client18 on device pedestrian_1-1-pt_1109
+Creating patient_state_analyzer19 on device cloud
+Creating heart_attack_determiner19 on device cloud
+Creating patient_disease_history19 on device cloud
+Creating client19 on device pedestrian_1-1-pt_111
+Creating patient_state_analyzer20 on device cloud
+Creating heart_attack_determiner20 on device cloud
+Creating patient_disease_history20 on device cloud
+Creating client20 on device pedestrian_1-1-pt_1121
+Creating patient_state_analyzer21 on device cloud
+Creating heart_attack_determiner21 on device cloud
+Creating patient_disease_history21 on device cloud
+Creating client21 on device pedestrian_1-1-pt_1134
+Creating patient_state_analyzer22 on device cloud
+Creating heart_attack_determiner22 on device cloud
+Creating patient_disease_history22 on device cloud
+Creating client22 on device pedestrian_1-1-pt_1138
+Creating patient_state_analyzer23 on device cloud
+Creating heart_attack_determiner23 on device cloud
+Creating patient_disease_history23 on device cloud
+Creating client23 on device pedestrian_1-1-pt_1142
+Creating patient_state_analyzer24 on device cloud
+Creating heart_attack_determiner24 on device cloud
+Creating patient_disease_history24 on device cloud
+Creating client24 on device pedestrian_1-1-pt_1167
+Creating patient_state_analyzer25 on device cloud
+Creating heart_attack_determiner25 on device cloud
+Creating patient_disease_history25 on device cloud
+Creating client25 on device pedestrian_1-1-pt_1169
+Creating patient_state_analyzer26 on device cloud
+Creating heart_attack_determiner26 on device cloud
+Creating patient_disease_history26 on device cloud
+Creating client26 on device pedestrian_1-1-pt_1173
+Creating patient_state_analyzer27 on device cloud
+Creating heart_attack_determiner27 on device cloud
+Creating patient_disease_history27 on device cloud
+Creating client27 on device pedestrian_1-1-pt_1181
+Creating patient_state_analyzer28 on device cloud
+Creating heart_attack_determiner28 on device cloud
+Creating patient_disease_history28 on device cloud
+Creating client28 on device pedestrian_1-1-pt_1195
+Creating patient_state_analyzer29 on device cloud
+Creating heart_attack_determiner29 on device cloud
+Creating patient_disease_history29 on device cloud
+Creating client29 on device pedestrian_1-1-pt_1215
+Creating patient_state_analyzer30 on device cloud
+Creating heart_attack_determiner30 on device cloud
+Creating patient_disease_history30 on device cloud
+Creating client30 on device pedestrian_1-1-pt_1223
+Creating patient_state_analyzer31 on device cloud
+Creating heart_attack_determiner31 on device cloud
+Creating patient_disease_history31 on device cloud
+Creating client31 on device pedestrian_1-1-pt_1226
+Creating patient_state_analyzer32 on device cloud
+Creating heart_attack_determiner32 on device cloud
+Creating patient_disease_history32 on device cloud
+Creating client32 on device pedestrian_1-1-pt_1227
+Creating patient_state_analyzer33 on device cloud
+Creating heart_attack_determiner33 on device cloud
+Creating patient_disease_history33 on device cloud
+Creating client33 on device pedestrian_1-1-pt_1232
+Creating patient_state_analyzer34 on device cloud
+Creating heart_attack_determiner34 on device cloud
+Creating patient_disease_history34 on device cloud
+Creating client34 on device pedestrian_1-1-pt_1238
+Creating patient_state_analyzer35 on device cloud
+Creating heart_attack_determiner35 on device cloud
+Creating patient_disease_history35 on device cloud
+Creating client35 on device pedestrian_1-1-pt_1253
+Creating patient_state_analyzer36 on device cloud
+Creating heart_attack_determiner36 on device cloud
+Creating patient_disease_history36 on device cloud
+Creating client36 on device pedestrian_1-1-pt_1259
+Creating patient_state_analyzer37 on device cloud
+Creating heart_attack_determiner37 on device cloud
+Creating patient_disease_history37 on device cloud
+Creating client37 on device pedestrian_1-1-pt_1261
+Creating patient_state_analyzer38 on device cloud
+Creating heart_attack_determiner38 on device cloud
+Creating patient_disease_history38 on device cloud
+Creating client38 on device pedestrian_1-1-pt_1270
+Creating patient_state_analyzer39 on device cloud
+Creating heart_attack_determiner39 on device cloud
+Creating patient_disease_history39 on device cloud
+Creating client39 on device pedestrian_1-1-pt_1272
+0.0 Submitted application HeartDiseaseMonitoringApplication30
+0.0 Submitted application HeartDiseaseMonitoringApplication19
+0.0 Submitted application HeartDiseaseMonitoringApplication17
+0.0 Submitted application HeartDiseaseMonitoringApplication39
+0.0 Submitted application HeartDiseaseMonitoringApplication18
+0.0 Submitted application HeartDiseaseMonitoringApplication11
+0.0 Submitted application HeartDiseaseMonitoringApplication33
+0.0 Submitted application HeartDiseaseMonitoringApplication12
+0.0 Submitted application HeartDiseaseMonitoringApplication34
+0.0 Submitted application HeartDiseaseMonitoringApplication31
+0.0 Submitted application HeartDiseaseMonitoringApplication10
+0.0 Submitted application HeartDiseaseMonitoringApplication32
+0.0 Submitted application HeartDiseaseMonitoringApplication1
+0.0 Submitted application HeartDiseaseMonitoringApplication15
+0.0 Submitted application HeartDiseaseMonitoringApplication37
+0.0 Submitted application HeartDiseaseMonitoringApplication0
+0.0 Submitted application HeartDiseaseMonitoringApplication16
+0.0 Submitted application HeartDiseaseMonitoringApplication38
+0.0 Submitted application HeartDiseaseMonitoringApplication13
+0.0 Submitted application HeartDiseaseMonitoringApplication35
+0.0 Submitted application HeartDiseaseMonitoringApplication14
+0.0 Submitted application HeartDiseaseMonitoringApplication36
+0.0 Submitted application HeartDiseaseMonitoringApplication5
+0.0 Submitted application HeartDiseaseMonitoringApplication4
+0.0 Submitted application HeartDiseaseMonitoringApplication3
+0.0 Submitted application HeartDiseaseMonitoringApplication2
+0.0 Submitted application HeartDiseaseMonitoringApplication9
+0.0 Submitted application HeartDiseaseMonitoringApplication8
+0.0 Submitted application HeartDiseaseMonitoringApplication7
+0.0 Submitted application HeartDiseaseMonitoringApplication6
+0.0 Submitted application HeartDiseaseMonitoringApplication28
+0.0 Submitted application HeartDiseaseMonitoringApplication29
+0.0 Submitted application HeartDiseaseMonitoringApplication22
+0.0 Submitted application HeartDiseaseMonitoringApplication23
+0.0 Submitted application HeartDiseaseMonitoringApplication20
+0.0 Submitted application HeartDiseaseMonitoringApplication21
+0.0 Submitted application HeartDiseaseMonitoringApplication26
+0.0 Submitted application HeartDiseaseMonitoringApplication27
+0.0 Submitted application HeartDiseaseMonitoringApplication24
+0.0 Submitted application HeartDiseaseMonitoringApplication25
+$0% (inf seconds left)=========================================
+============== RESULTS ==================
+=========================================
+EXECUTION TIME : 1618562690914
+=========================================
+APPLICATION LOOP DELAYS
+=========================================
+[client0, patient_state_analyzer0, heart_attack_determiner0, client0] ---> 759.8370478424209
+[client1, patient_state_analyzer1, heart_attack_determiner1, client1] ---> 759.8354829706637
+[client2, patient_state_analyzer2, heart_attack_determiner2, client2] ---> 759.8386127141779
+[client3, patient_state_analyzer3, heart_attack_determiner3, client3] ---> 759.8378302782994
+[client4, patient_state_analyzer4, heart_attack_determiner4, client4] ---> 771.1147005347844
+[client5, patient_state_analyzer5, heart_attack_determiner5, client5] ---> 770.7947005347846
+[client6, patient_state_analyzer6, heart_attack_determiner6, client6] ---> 759.8401775859351
+[client7, patient_state_analyzer7, heart_attack_determiner7, client7] ---> 771.4347005347842
+[client8, patient_state_analyzer8, heart_attack_determiner8, client8] ---> 759.8393951500565
+[client9, patient_state_analyzer9, heart_attack_determiner9, client9] ---> 769.8472195088415
+[client10, patient_state_analyzer10, heart_attack_determiner10, client10] ---> 770.1547005347852
+[client11, patient_state_analyzer11, heart_attack_determiner11, client11] ---> 769.8354829706637
+[client12, patient_state_analyzer12, heart_attack_determiner12, client12] ---> 769.8362654065426
+[client13, patient_state_analyzer13, heart_attack_determiner13, client13] ---> 770.4747005347849
+[client14, patient_state_analyzer14, heart_attack_determiner14, client14] ---> 770.1554829706635
+[client15, patient_state_analyzer15, heart_attack_determiner15, client15] ---> 759.8362654065426
+[client16, patient_state_analyzer16, heart_attack_determiner16, client16] ---> 770.1539180989066
+[client17, patient_state_analyzer17, heart_attack_determiner17, client17] ---> 769.8339180989069
+[client18, patient_state_analyzer18, heart_attack_determiner18, client18] ---> 759.8339180989069
+[client19, patient_state_analyzer19, heart_attack_determiner19, client19] ---> 759.8331356630284
+[client20, patient_state_analyzer20, heart_attack_determiner20, client20] ---> 771.7562654065409
+[client21, patient_state_analyzer21, heart_attack_determiner21, client21] ---> 772.0762654065406
+[client22, patient_state_analyzer22, heart_attack_determiner22, client22] ---> 770.7939180989061
+[client23, patient_state_analyzer23, heart_attack_determiner23, client23] ---> 771.4362654065412
+[client24, patient_state_analyzer24, heart_attack_determiner24, client24] ---> 759.841742457692
+[client25, patient_state_analyzer25, heart_attack_determiner25, client25] ---> 769.854261431748
+[client26, patient_state_analyzer26, heart_attack_determiner26, client26] ---> 770.4731356630278
+[client27, patient_state_analyzer27, heart_attack_determiner27, client27] ---> 759.8409600218134
+[client28, patient_state_analyzer28, heart_attack_determiner28, client28] ---> 771.7547005347839
+[client29, patient_state_analyzer29, heart_attack_determiner29, client29] ---> 772.0747005347836
+[client30, patient_state_analyzer30, heart_attack_determiner30, client30] ---> 769.8331356630284
+[client31, patient_state_analyzer31, heart_attack_determiner31, client31] ---> 770.476265406542
+[client32, patient_state_analyzer32, heart_attack_determiner32, client32] ---> 770.7962654065417
+[client33, patient_state_analyzer33, heart_attack_determiner33, client33] ---> 759.8347005347855
+[client34, patient_state_analyzer34, heart_attack_determiner34, client34] ---> 770.1562654065423
+[client35, patient_state_analyzer35, heart_attack_determiner35, client35] ---> 770.1531356630281
+[client36, patient_state_analyzer36, heart_attack_determiner36, client36] ---> 769.8448722012059
+[client37, patient_state_analyzer37, heart_attack_determiner37, client37] ---> 771.1162654065414
+[client38, patient_state_analyzer38, heart_attack_determiner38, client38] ---> 770.4739180989064
+[client39, patient_state_analyzer39, heart_attack_determiner39, client39] ---> 769.8347005347855
+=========================================
+TUPLE CPU EXECUTION DELAY
+=========================================
+PATIENT_HISTORY_RECORD_RESPONSE19 ---> 60.099999999998545
+PATIENT_SENSOR8 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_RESPONSE18 ---> 60.099999999998545
+PATIENT_SENSOR9 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_RESPONSE17 ---> 60.099999999998545
+PATIENT_SENSOR6 ---> 94.43962330436058
+PATIENT_SENSOR7 ---> 94.43962330436058
+PATIENT_SENSOR4 ---> 94.43962330436058
+PATIENT_SENSOR5 ---> 94.43962330436058
+PATIENT_STATE4 ---> 116.42862144579698
+PATIENT_STATE3 ---> 107.23003290145414
+PATIENT_HISTORY_RECORD_REQUEST19 ---> 270.09999999999854
+PATIENT_STATE6 ---> 107.22925201577878
+PATIENT_HISTORY_RECORD_REQUEST18 ---> 270.09999999999854
+PATIENT_STATE5 ---> 115.52642910446592
+PATIENT_HISTORY_RECORD_REQUEST17 ---> 270.09999999999854
+PATIENT_STATE0 ---> 107.23393732983091
+PATIENT_HISTORY_RECORD_REQUEST16 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST15 ---> 270.09999999999854
+PATIENT_STATE2 ---> 107.22847113010343
+PATIENT_HISTORY_RECORD_REQUEST14 ---> 270.09999999999854
+PATIENT_STATE1 ---> 107.23159467280485
+PATIENT_HISTORY_RECORD_REQUEST13 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST12 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE12 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST11 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE11 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST10 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE10 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE16 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE15 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE14 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE13 ---> 60.099999999998545
+PATIENT_SENSOR2 ---> 94.43962330436058
+PATIENT_SENSOR3 ---> 94.43962330436058
+PATIENT_SENSOR0 ---> 94.43962330436058
+PATIENT_SENSOR1 ---> 94.43962330436058
+HEART_ATTACK_DETERMINATION13 ---> 60.0
+HEART_ATTACK_DETERMINATION12 ---> 60.0
+HEART_ATTACK_DETERMINATION11 ---> 60.0
+HEART_ATTACK_DETERMINATION10 ---> 60.0
+HEART_ATTACK_DETERMINATION19 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION18 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION17 ---> 60.0
+HEART_ATTACK_DETERMINATION16 ---> 60.0
+HEART_ATTACK_DETERMINATION15 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION14 ---> 60.0
+PATIENT_STATE22 ---> 114.62267499178415
+PATIENT_STATE21 ---> 114.6234558774595
+PATIENT_STATE20 ---> 115.52799087581663
+PATIENT_STATE29 ---> 111.00453499835567
+PATIENT_STATE28 ---> 111.90906999671279
+PATIENT_STATE27 ---> 107.23627998685697
+PATIENT_STATE26 ---> 116.42705967444627
+PATIENT_STATE25 ---> 116.4317449884984
+PATIENT_STATE24 ---> 107.23549910118162
+PATIENT_STATE23 ---> 113.71892087910238
+PATIENT_STATE33 ---> 107.23471821550626
+PATIENT_STATE32 ---> 111.90985088238814
+PATIENT_STATE31 ---> 112.81438588074526
+PATIENT_STATE30 ---> 115.52486733311521
+PATIENT_STATE39 ---> 110.09999999999854
+PATIENT_STATE38 ---> 113.71813999342703
+PATIENT_STATE37 ---> 110.1007808856739
+PATIENT_STATE36 ---> 116.43096410282304
+PATIENT_STATE35 ---> 114.62111322043344
+PATIENT_STATE34 ---> 111.00531588403102
+HEART_ATTACK_DETERMINATION35 ---> 60.0
+HEART_ATTACK_DETERMINATION34 ---> 60.0
+HEART_ATTACK_DETERMINATION33 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION32 ---> 60.0
+HEART_ATTACK_DETERMINATION31 ---> 60.0
+HEART_ATTACK_DETERMINATION30 ---> 60.0
+HEART_ATTACK_DETERMINATION39 ---> 60.0
+HEART_ATTACK_DETERMINATION38 ---> 60.0
+HEART_ATTACK_DETERMINATION37 ---> 60.0
+HEART_ATTACK_DETERMINATION36 ---> 60.0
+HEART_ATTACK_DETERMINATION24 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION23 ---> 60.0
+HEART_ATTACK_DETERMINATION22 ---> 60.0
+HEART_ATTACK_DETERMINATION21 ---> 60.0
+HEART_ATTACK_DETERMINATION20 ---> 60.0
+HEART_ATTACK_DETERMINATION29 ---> 60.0
+HEART_ATTACK_DETERMINATION28 ---> 60.0
+HEART_ATTACK_DETERMINATION27 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION26 ---> 60.0
+HEART_ATTACK_DETERMINATION25 ---> 60.0
+HEART_ATTACK_PATIENT_ALARM12 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM13 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM10 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM11 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM16 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM17 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM14 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM15 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_RESPONSE8 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE9 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE6 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE7 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE4 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE5 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE2 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE3 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE0 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE1 ---> 60.099999999998545
+PATIENT_STATE8 ---> 107.2323755584802
+PATIENT_STATE7 ---> 114.6218941061088
+PATIENT_STATE9 ---> 116.43252587417375
+HEART_ATTACK_PATIENT_ALARM34 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM35 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM32 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM33 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST7 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM38 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST6 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM39 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST9 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM36 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST8 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM37 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM30 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM31 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST3 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST2 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST5 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM29 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST4 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST1 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST0 ---> 270.09999999999854
+PATIENT_SENSOR19 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM23 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM24 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM21 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM22 ---> 47.26981132075162
+PATIENT_SENSOR15 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM27 ---> 47.26981132075162
+PATIENT_SENSOR16 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM28 ---> 47.26981132075162
+PATIENT_SENSOR17 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM25 ---> 47.26981132075162
+PATIENT_SENSOR18 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM26 ---> 47.26981132075162
+PATIENT_SENSOR11 ---> 94.43962330436058
+PATIENT_SENSOR12 ---> 94.43962330436058
+PATIENT_SENSOR13 ---> 94.43962330436058
+PATIENT_SENSOR14 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM20 ---> 47.26981132075162
+PATIENT_SENSOR10 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM18 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM19 ---> 47.26981132075162
+HEART_ATTACK_DETERMINATION9 ---> 60.0
+HEART_ATTACK_DETERMINATION8 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION7 ---> 60.0
+HEART_ATTACK_DETERMINATION6 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION5 ---> 60.0
+HEART_ATTACK_PATIENT_ALARM9 ---> 47.26981132075162
+HEART_ATTACK_DETERMINATION4 ---> 60.0
+HEART_ATTACK_DETERMINATION3 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION2 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION1 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION0 ---> 60.099999999998545
+PATIENT_STATE11 ---> 116.42784056012162
+PATIENT_STATE10 ---> 113.71735910775168
+PATIENT_STATE19 ---> 107.23706087253233
+PATIENT_STATE18 ---> 107.23315644415555
+PATIENT_STATE17 ---> 115.52720999014127
+PATIENT_STATE16 ---> 116.42940233147233
+PATIENT_STATE15 ---> 107.23081378712949
+PATIENT_STATE14 ---> 115.52564821879056
+PATIENT_STATE13 ---> 112.81360499506991
+PATIENT_STATE12 ---> 116.43018321714769
+PATIENT_HISTORY_RECORD_RESPONSE39 ---> 60.099999999998545
+PATIENT_SENSOR26 ---> 94.43962330436058
+PATIENT_SENSOR27 ---> 94.43962330436058
+PATIENT_SENSOR28 ---> 94.43962330436058
+PATIENT_SENSOR29 ---> 94.43962330436058
+PATIENT_SENSOR22 ---> 94.43962330436058
+PATIENT_SENSOR23 ---> 94.43962330436058
+PATIENT_SENSOR24 ---> 94.43962330436058
+PATIENT_SENSOR25 ---> 94.43962330436058
+PATIENT_SENSOR20 ---> 94.43962330436058
+PATIENT_SENSOR21 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_REQUEST39 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST38 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE30 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST37 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST36 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST35 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST34 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE34 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST33 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE33 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST32 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE32 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST31 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE31 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST30 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE38 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE37 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE36 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE35 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE29 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE28 ---> 60.099999999998545
+PATIENT_SENSOR37 ---> 94.43962330436058
+PATIENT_SENSOR38 ---> 94.43962330436058
+PATIENT_SENSOR39 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM0 ---> 47.26981132075162
+PATIENT_SENSOR33 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM1 ---> 47.26981132075162
+PATIENT_SENSOR34 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM2 ---> 47.26981132075162
+PATIENT_SENSOR35 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM3 ---> 47.26981132075162
+PATIENT_SENSOR36 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM4 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM5 ---> 47.26981132075162
+PATIENT_SENSOR30 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM6 ---> 47.26981132075162
+PATIENT_SENSOR31 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM7 ---> 47.26981132075162
+PATIENT_SENSOR32 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM8 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST29 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST28 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST27 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST26 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST25 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST24 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST23 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE23 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST22 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE22 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST21 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE21 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST20 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE20 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE27 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE26 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE25 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE24 ---> 60.099999999998545
+=========================================
+cloud : Energy Consumed = 114017.34566065914
+ISP_Gateway : Energy Consumed = NaN
+3gBaseStation_1_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_1_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_1_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_4 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_5 : Energy Consumed = 646.8750000000016
+3gBaseStation_5_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_4 : Energy Consumed = 646.8750000000016
+4gBaseStation_1_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_1_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_2_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_2_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_3_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_3_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_5_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_5_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_4 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_4 : Energy Consumed = 646.8750000000016
+pedestrian_1-1-pt_0 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1006 : Energy Consumed = 3.2999403952829875
+pedestrian_1-1-pt_1011 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1017 : Energy Consumed = 3.299940395282985
+pedestrian_1-1-pt_1020 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1022 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1026 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1033 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1037 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1039 : Energy Consumed = 3.299940395282984
+pedestrian_1-1-pt_1040 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1064 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1071 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1073 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1078 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_109 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_11 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1108 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1109 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_111 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1121 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1134 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1138 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1142 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1167 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1169 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1173 : Energy Consumed = 3.2999403952829827
+pedestrian_1-1-pt_1181 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1195 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1215 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1223 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1226 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1227 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1232 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1238 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1253 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1259 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1261 : Energy Consumed = 3.2999403952829875
+pedestrian_1-1-pt_1270 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1272 : Energy Consumed = 3.29994039528298
+Cost of execution in cloud = 3.1704312566836617
+Total network usage = 65337.6
+
+Base station: number of connected clients
+3gBaseStation_1_3: 2
+4gBaseStation_1_1: 2
+4gBaseStation_1_2: 2
+4gBaseStation_2_1: 9
+4gBaseStation_2_2: 5
+4gBaseStation_3_1: 9
+4gBaseStation_3_2: 3
+4gBaseStation_4_2: 1
+4gBaseStation_4_3: 1
+4gBaseStation_5_1: 1
+4gBaseStation_5_2: 4
+4gBaseStation_6_2: 1
+
+Base station events
+03:00:00: pedestrian_1-1-pt_0 (39) connected from null to 3gBaseStation_1_3 (5)
+03:00:00: pedestrian_1-1-pt_1006 (40) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_1011 (41) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1017 (42) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1020 (43) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1022 (44) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1026 (45) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1033 (46) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1037 (47) connected from null to 4gBaseStation_1_2 (20)
+03:00:00: pedestrian_1-1-pt_1039 (48) connected from null to 3gBaseStation_1_3 (5)
+03:00:00: pedestrian_1-1-pt_1040 (49) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1064 (50) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_1071 (51) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1073 (52) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1078 (53) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_109 (54) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_11 (55) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1108 (56) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1109 (57) connected from null to 4gBaseStation_1_1 (19)
+03:00:00: pedestrian_1-1-pt_111 (58) connected from null to 4gBaseStation_4_2 (26)
+03:00:00: pedestrian_1-1-pt_1121 (59) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1134 (60) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1138 (61) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1142 (62) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1167 (63) connected from null to 4gBaseStation_5_1 (28)
+03:00:00: pedestrian_1-1-pt_1169 (64) connected from null to 4gBaseStation_1_1 (19)
+03:00:00: pedestrian_1-1-pt_1173 (65) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1181 (66) connected from null to 4gBaseStation_4_3 (27)
+03:00:00: pedestrian_1-1-pt_1195 (67) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1215 (68) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1223 (69) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1226 (70) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1227 (71) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1232 (72) connected from null to 4gBaseStation_6_2 (31)
+03:00:00: pedestrian_1-1-pt_1238 (73) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1253 (74) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1259 (75) connected from null to 4gBaseStation_1_2 (20)
+03:00:00: pedestrian_1-1-pt_1261 (76) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1270 (77) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1272 (78) connected from null to 4gBaseStation_3_1 (23)
+Migrations
+
+Avg delay for loops: 767,365 (std 5,03)
+Results so far
+numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)
+40: 25, 20000, 80% = 767,365 +- 5,03 (0,66 %) (880,996)
+
+Initialising...
+Creating patient_state_analyzer0 on device cloud
+Creating heart_attack_determiner0 on device cloud
+Creating patient_disease_history0 on device cloud
+Creating client0 on device pedestrian_1-1-pt_0
+Creating patient_state_analyzer1 on device cloud
+Creating heart_attack_determiner1 on device cloud
+Creating patient_disease_history1 on device cloud
+Creating client1 on device pedestrian_1-1-pt_1006
+Creating patient_state_analyzer2 on device cloud
+Creating heart_attack_determiner2 on device cloud
+Creating patient_disease_history2 on device cloud
+Creating client2 on device pedestrian_1-1-pt_1011
+Creating patient_state_analyzer3 on device cloud
+Creating heart_attack_determiner3 on device cloud
+Creating patient_disease_history3 on device cloud
+Creating client3 on device pedestrian_1-1-pt_1017
+Creating client4 on device pedestrian_1-1-pt_1020
+Creating patient_state_analyzer4 on device cloud
+Creating heart_attack_determiner4 on device cloud
+Creating patient_disease_history4 on device cloud
+Creating patient_state_analyzer5 on device cloud
+Creating heart_attack_determiner5 on device cloud
+Creating patient_disease_history5 on device cloud
+Creating client5 on device pedestrian_1-1-pt_1022
+Creating patient_state_analyzer6 on device cloud
+Creating heart_attack_determiner6 on device cloud
+Creating patient_disease_history6 on device cloud
+Creating client6 on device pedestrian_1-1-pt_1026
+Creating patient_state_analyzer7 on device cloud
+Creating heart_attack_determiner7 on device cloud
+Creating patient_disease_history7 on device cloud
+Creating client7 on device pedestrian_1-1-pt_1033
+Creating patient_state_analyzer8 on device cloud
+Creating heart_attack_determiner8 on device cloud
+Creating patient_disease_history8 on device cloud
+Creating client8 on device pedestrian_1-1-pt_1037
+Creating patient_state_analyzer9 on device cloud
+Creating heart_attack_determiner9 on device cloud
+Creating patient_disease_history9 on device cloud
+Creating client9 on device pedestrian_1-1-pt_1039
+Creating patient_state_analyzer10 on device cloud
+Creating heart_attack_determiner10 on device cloud
+Creating patient_disease_history10 on device cloud
+Creating client10 on device pedestrian_1-1-pt_1040
+Creating client11 on device pedestrian_1-1-pt_1064
+Creating patient_state_analyzer11 on device cloud
+Creating heart_attack_determiner11 on device cloud
+Creating patient_disease_history11 on device cloud
+Creating patient_state_analyzer12 on device cloud
+Creating heart_attack_determiner12 on device cloud
+Creating patient_disease_history12 on device cloud
+Creating client12 on device pedestrian_1-1-pt_1071
+Creating patient_state_analyzer13 on device cloud
+Creating heart_attack_determiner13 on device cloud
+Creating patient_disease_history13 on device cloud
+Creating client13 on device pedestrian_1-1-pt_1073
+Creating patient_state_analyzer14 on device cloud
+Creating heart_attack_determiner14 on device cloud
+Creating patient_disease_history14 on device cloud
+Creating client14 on device pedestrian_1-1-pt_1078
+Creating patient_state_analyzer15 on device cloud
+Creating heart_attack_determiner15 on device cloud
+Creating patient_disease_history15 on device cloud
+Creating client15 on device pedestrian_1-1-pt_109
+Creating patient_state_analyzer16 on device cloud
+Creating heart_attack_determiner16 on device cloud
+Creating patient_disease_history16 on device cloud
+Creating client16 on device pedestrian_1-1-pt_11
+Creating patient_state_analyzer17 on device cloud
+Creating heart_attack_determiner17 on device cloud
+Creating patient_disease_history17 on device cloud
+Creating client17 on device pedestrian_1-1-pt_1108
+Creating patient_state_analyzer18 on device cloud
+Creating heart_attack_determiner18 on device cloud
+Creating patient_disease_history18 on device cloud
+Creating client18 on device pedestrian_1-1-pt_1109
+Creating patient_state_analyzer19 on device cloud
+Creating heart_attack_determiner19 on device cloud
+Creating patient_disease_history19 on device cloud
+Creating client19 on device pedestrian_1-1-pt_111
+Creating patient_state_analyzer20 on device cloud
+Creating heart_attack_determiner20 on device cloud
+Creating patient_disease_history20 on device cloud
+Creating client20 on device pedestrian_1-1-pt_1121
+Creating patient_state_analyzer21 on device cloud
+Creating heart_attack_determiner21 on device cloud
+Creating patient_disease_history21 on device cloud
+Creating client21 on device pedestrian_1-1-pt_1134
+Creating patient_state_analyzer22 on device cloud
+Creating heart_attack_determiner22 on device cloud
+Creating patient_disease_history22 on device cloud
+Creating client22 on device pedestrian_1-1-pt_1138
+Creating patient_state_analyzer23 on device cloud
+Creating heart_attack_determiner23 on device cloud
+Creating patient_disease_history23 on device cloud
+Creating client23 on device pedestrian_1-1-pt_1142
+Creating patient_state_analyzer24 on device cloud
+Creating heart_attack_determiner24 on device cloud
+Creating patient_disease_history24 on device cloud
+Creating client24 on device pedestrian_1-1-pt_1167
+Creating patient_state_analyzer25 on device cloud
+Creating heart_attack_determiner25 on device cloud
+Creating patient_disease_history25 on device cloud
+Creating client25 on device pedestrian_1-1-pt_1169
+Creating patient_state_analyzer26 on device cloud
+Creating heart_attack_determiner26 on device cloud
+Creating patient_disease_history26 on device cloud
+Creating client26 on device pedestrian_1-1-pt_1173
+Creating patient_state_analyzer27 on device cloud
+Creating heart_attack_determiner27 on device cloud
+Creating patient_disease_history27 on device cloud
+Creating client27 on device pedestrian_1-1-pt_1181
+Creating patient_state_analyzer28 on device cloud
+Creating heart_attack_determiner28 on device cloud
+Creating patient_disease_history28 on device cloud
+Creating client28 on device pedestrian_1-1-pt_1195
+Creating patient_state_analyzer29 on device cloud
+Creating heart_attack_determiner29 on device cloud
+Creating patient_disease_history29 on device cloud
+Creating client29 on device pedestrian_1-1-pt_1215
+Creating patient_state_analyzer30 on device cloud
+Creating heart_attack_determiner30 on device cloud
+Creating patient_disease_history30 on device cloud
+Creating client30 on device pedestrian_1-1-pt_1223
+Creating patient_state_analyzer31 on device cloud
+Creating heart_attack_determiner31 on device cloud
+Creating patient_disease_history31 on device cloud
+Creating client31 on device pedestrian_1-1-pt_1226
+Creating patient_state_analyzer32 on device cloud
+Creating heart_attack_determiner32 on device cloud
+Creating patient_disease_history32 on device cloud
+Creating client32 on device pedestrian_1-1-pt_1227
+Creating patient_state_analyzer33 on device cloud
+Creating heart_attack_determiner33 on device cloud
+Creating patient_disease_history33 on device cloud
+Creating client33 on device pedestrian_1-1-pt_1232
+Creating patient_state_analyzer34 on device cloud
+Creating heart_attack_determiner34 on device cloud
+Creating patient_disease_history34 on device cloud
+Creating client34 on device pedestrian_1-1-pt_1238
+Creating patient_state_analyzer35 on device cloud
+Creating heart_attack_determiner35 on device cloud
+Creating patient_disease_history35 on device cloud
+Creating client35 on device pedestrian_1-1-pt_1253
+Creating patient_state_analyzer36 on device cloud
+Creating heart_attack_determiner36 on device cloud
+Creating patient_disease_history36 on device cloud
+Creating client36 on device pedestrian_1-1-pt_1259
+Creating patient_state_analyzer37 on device cloud
+Creating heart_attack_determiner37 on device cloud
+Creating patient_disease_history37 on device cloud
+Creating client37 on device pedestrian_1-1-pt_1261
+Creating patient_state_analyzer38 on device cloud
+Creating heart_attack_determiner38 on device cloud
+Creating patient_disease_history38 on device cloud
+Creating client38 on device pedestrian_1-1-pt_1270
+Creating patient_state_analyzer39 on device cloud
+Creating heart_attack_determiner39 on device cloud
+Creating patient_disease_history39 on device cloud
+Creating client39 on device pedestrian_1-1-pt_1272
+0.0 Submitted application HeartDiseaseMonitoringApplication30
+0.0 Submitted application HeartDiseaseMonitoringApplication19
+0.0 Submitted application HeartDiseaseMonitoringApplication17
+0.0 Submitted application HeartDiseaseMonitoringApplication39
+0.0 Submitted application HeartDiseaseMonitoringApplication18
+0.0 Submitted application HeartDiseaseMonitoringApplication11
+0.0 Submitted application HeartDiseaseMonitoringApplication33
+0.0 Submitted application HeartDiseaseMonitoringApplication12
+0.0 Submitted application HeartDiseaseMonitoringApplication34
+0.0 Submitted application HeartDiseaseMonitoringApplication31
+0.0 Submitted application HeartDiseaseMonitoringApplication10
+0.0 Submitted application HeartDiseaseMonitoringApplication32
+0.0 Submitted application HeartDiseaseMonitoringApplication1
+0.0 Submitted application HeartDiseaseMonitoringApplication15
+0.0 Submitted application HeartDiseaseMonitoringApplication37
+0.0 Submitted application HeartDiseaseMonitoringApplication0
+0.0 Submitted application HeartDiseaseMonitoringApplication16
+0.0 Submitted application HeartDiseaseMonitoringApplication38
+0.0 Submitted application HeartDiseaseMonitoringApplication13
+0.0 Submitted application HeartDiseaseMonitoringApplication35
+0.0 Submitted application HeartDiseaseMonitoringApplication14
+0.0 Submitted application HeartDiseaseMonitoringApplication36
+0.0 Submitted application HeartDiseaseMonitoringApplication5
+0.0 Submitted application HeartDiseaseMonitoringApplication4
+0.0 Submitted application HeartDiseaseMonitoringApplication3
+0.0 Submitted application HeartDiseaseMonitoringApplication2
+0.0 Submitted application HeartDiseaseMonitoringApplication9
+0.0 Submitted application HeartDiseaseMonitoringApplication8
+0.0 Submitted application HeartDiseaseMonitoringApplication7
+0.0 Submitted application HeartDiseaseMonitoringApplication6
+0.0 Submitted application HeartDiseaseMonitoringApplication28
+0.0 Submitted application HeartDiseaseMonitoringApplication29
+0.0 Submitted application HeartDiseaseMonitoringApplication22
+0.0 Submitted application HeartDiseaseMonitoringApplication23
+0.0 Submitted application HeartDiseaseMonitoringApplication20
+0.0 Submitted application HeartDiseaseMonitoringApplication21
+0.0 Submitted application HeartDiseaseMonitoringApplication26
+0.0 Submitted application HeartDiseaseMonitoringApplication27
+0.0 Submitted application HeartDiseaseMonitoringApplication24
+0.0 Submitted application HeartDiseaseMonitoringApplication25
+$0% (inf seconds left)=========================================
+============== RESULTS ==================
+=========================================
+EXECUTION TIME : 1618563607936
+=========================================
+APPLICATION LOOP DELAYS
+=========================================
+[client0, patient_state_analyzer0, heart_attack_determiner0, client0] ---> 759.8370478424209
+[client1, patient_state_analyzer1, heart_attack_determiner1, client1] ---> 759.8354829706637
+[client2, patient_state_analyzer2, heart_attack_determiner2, client2] ---> 759.8386127141779
+[client3, patient_state_analyzer3, heart_attack_determiner3, client3] ---> 759.8378302782994
+[client4, patient_state_analyzer4, heart_attack_determiner4, client4] ---> 771.1147005347844
+[client5, patient_state_analyzer5, heart_attack_determiner5, client5] ---> 770.7947005347846
+[client6, patient_state_analyzer6, heart_attack_determiner6, client6] ---> 759.8401775859351
+[client7, patient_state_analyzer7, heart_attack_determiner7, client7] ---> 771.4347005347842
+[client8, patient_state_analyzer8, heart_attack_determiner8, client8] ---> 759.8393951500565
+[client9, patient_state_analyzer9, heart_attack_determiner9, client9] ---> 769.8472195088415
+[client10, patient_state_analyzer10, heart_attack_determiner10, client10] ---> 770.1547005347852
+[client11, patient_state_analyzer11, heart_attack_determiner11, client11] ---> 769.8354829706637
+[client12, patient_state_analyzer12, heart_attack_determiner12, client12] ---> 769.8362654065426
+[client13, patient_state_analyzer13, heart_attack_determiner13, client13] ---> 770.4747005347849
+[client14, patient_state_analyzer14, heart_attack_determiner14, client14] ---> 770.1554829706635
+[client15, patient_state_analyzer15, heart_attack_determiner15, client15] ---> 759.8362654065426
+[client16, patient_state_analyzer16, heart_attack_determiner16, client16] ---> 770.1539180989066
+[client17, patient_state_analyzer17, heart_attack_determiner17, client17] ---> 769.8339180989069
+[client18, patient_state_analyzer18, heart_attack_determiner18, client18] ---> 759.8339180989069
+[client19, patient_state_analyzer19, heart_attack_determiner19, client19] ---> 759.8331356630284
+[client20, patient_state_analyzer20, heart_attack_determiner20, client20] ---> 771.7562654065409
+[client21, patient_state_analyzer21, heart_attack_determiner21, client21] ---> 772.0762654065406
+[client22, patient_state_analyzer22, heart_attack_determiner22, client22] ---> 770.7939180989061
+[client23, patient_state_analyzer23, heart_attack_determiner23, client23] ---> 771.4362654065412
+[client24, patient_state_analyzer24, heart_attack_determiner24, client24] ---> 759.841742457692
+[client25, patient_state_analyzer25, heart_attack_determiner25, client25] ---> 769.854261431748
+[client26, patient_state_analyzer26, heart_attack_determiner26, client26] ---> 770.4731356630278
+[client27, patient_state_analyzer27, heart_attack_determiner27, client27] ---> 759.8409600218134
+[client28, patient_state_analyzer28, heart_attack_determiner28, client28] ---> 771.7547005347839
+[client29, patient_state_analyzer29, heart_attack_determiner29, client29] ---> 772.0747005347836
+[client30, patient_state_analyzer30, heart_attack_determiner30, client30] ---> 769.8331356630284
+[client31, patient_state_analyzer31, heart_attack_determiner31, client31] ---> 770.476265406542
+[client32, patient_state_analyzer32, heart_attack_determiner32, client32] ---> 770.7962654065417
+[client33, patient_state_analyzer33, heart_attack_determiner33, client33] ---> 759.8347005347855
+[client34, patient_state_analyzer34, heart_attack_determiner34, client34] ---> 770.1562654065423
+[client35, patient_state_analyzer35, heart_attack_determiner35, client35] ---> 770.1531356630281
+[client36, patient_state_analyzer36, heart_attack_determiner36, client36] ---> 769.8448722012059
+[client37, patient_state_analyzer37, heart_attack_determiner37, client37] ---> 771.1162654065414
+[client38, patient_state_analyzer38, heart_attack_determiner38, client38] ---> 770.4739180989064
+[client39, patient_state_analyzer39, heart_attack_determiner39, client39] ---> 769.8347005347855
+=========================================
+TUPLE CPU EXECUTION DELAY
+=========================================
+PATIENT_HISTORY_RECORD_RESPONSE19 ---> 60.099999999998545
+PATIENT_SENSOR8 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_RESPONSE18 ---> 60.099999999998545
+PATIENT_SENSOR9 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_RESPONSE17 ---> 60.099999999998545
+PATIENT_SENSOR6 ---> 94.43962330436058
+PATIENT_SENSOR7 ---> 94.43962330436058
+PATIENT_SENSOR4 ---> 94.43962330436058
+PATIENT_SENSOR5 ---> 94.43962330436058
+PATIENT_STATE4 ---> 116.42862144579698
+PATIENT_STATE3 ---> 107.23003290145414
+PATIENT_HISTORY_RECORD_REQUEST19 ---> 270.09999999999854
+PATIENT_STATE6 ---> 107.22925201577878
+PATIENT_HISTORY_RECORD_REQUEST18 ---> 270.09999999999854
+PATIENT_STATE5 ---> 115.52642910446592
+PATIENT_HISTORY_RECORD_REQUEST17 ---> 270.09999999999854
+PATIENT_STATE0 ---> 107.23393732983091
+PATIENT_HISTORY_RECORD_REQUEST16 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST15 ---> 270.09999999999854
+PATIENT_STATE2 ---> 107.22847113010343
+PATIENT_HISTORY_RECORD_REQUEST14 ---> 270.09999999999854
+PATIENT_STATE1 ---> 107.23159467280485
+PATIENT_HISTORY_RECORD_REQUEST13 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST12 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE12 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST11 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE11 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST10 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE10 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE16 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE15 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE14 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE13 ---> 60.099999999998545
+PATIENT_SENSOR2 ---> 94.43962330436058
+PATIENT_SENSOR3 ---> 94.43962330436058
+PATIENT_SENSOR0 ---> 94.43962330436058
+PATIENT_SENSOR1 ---> 94.43962330436058
+HEART_ATTACK_DETERMINATION13 ---> 60.0
+HEART_ATTACK_DETERMINATION12 ---> 60.0
+HEART_ATTACK_DETERMINATION11 ---> 60.0
+HEART_ATTACK_DETERMINATION10 ---> 60.0
+HEART_ATTACK_DETERMINATION19 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION18 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION17 ---> 60.0
+HEART_ATTACK_DETERMINATION16 ---> 60.0
+HEART_ATTACK_DETERMINATION15 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION14 ---> 60.0
+PATIENT_STATE22 ---> 114.62267499178415
+PATIENT_STATE21 ---> 114.6234558774595
+PATIENT_STATE20 ---> 115.52799087581663
+PATIENT_STATE29 ---> 111.00453499835567
+PATIENT_STATE28 ---> 111.90906999671279
+PATIENT_STATE27 ---> 107.23627998685697
+PATIENT_STATE26 ---> 116.42705967444627
+PATIENT_STATE25 ---> 116.4317449884984
+PATIENT_STATE24 ---> 107.23549910118162
+PATIENT_STATE23 ---> 113.71892087910238
+PATIENT_STATE33 ---> 107.23471821550626
+PATIENT_STATE32 ---> 111.90985088238814
+PATIENT_STATE31 ---> 112.81438588074526
+PATIENT_STATE30 ---> 115.52486733311521
+PATIENT_STATE39 ---> 110.09999999999854
+PATIENT_STATE38 ---> 113.71813999342703
+PATIENT_STATE37 ---> 110.1007808856739
+PATIENT_STATE36 ---> 116.43096410282304
+PATIENT_STATE35 ---> 114.62111322043344
+PATIENT_STATE34 ---> 111.00531588403102
+HEART_ATTACK_DETERMINATION35 ---> 60.0
+HEART_ATTACK_DETERMINATION34 ---> 60.0
+HEART_ATTACK_DETERMINATION33 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION32 ---> 60.0
+HEART_ATTACK_DETERMINATION31 ---> 60.0
+HEART_ATTACK_DETERMINATION30 ---> 60.0
+HEART_ATTACK_DETERMINATION39 ---> 60.0
+HEART_ATTACK_DETERMINATION38 ---> 60.0
+HEART_ATTACK_DETERMINATION37 ---> 60.0
+HEART_ATTACK_DETERMINATION36 ---> 60.0
+HEART_ATTACK_DETERMINATION24 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION23 ---> 60.0
+HEART_ATTACK_DETERMINATION22 ---> 60.0
+HEART_ATTACK_DETERMINATION21 ---> 60.0
+HEART_ATTACK_DETERMINATION20 ---> 60.0
+HEART_ATTACK_DETERMINATION29 ---> 60.0
+HEART_ATTACK_DETERMINATION28 ---> 60.0
+HEART_ATTACK_DETERMINATION27 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION26 ---> 60.0
+HEART_ATTACK_DETERMINATION25 ---> 60.0
+HEART_ATTACK_PATIENT_ALARM12 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM13 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM10 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM11 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM16 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM17 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM14 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM15 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_RESPONSE8 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE9 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE6 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE7 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE4 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE5 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE2 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE3 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE0 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE1 ---> 60.099999999998545
+PATIENT_STATE8 ---> 107.2323755584802
+PATIENT_STATE7 ---> 114.6218941061088
+PATIENT_STATE9 ---> 116.43252587417375
+HEART_ATTACK_PATIENT_ALARM34 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM35 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM32 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM33 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST7 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM38 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST6 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM39 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST9 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM36 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST8 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM37 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM30 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM31 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST3 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST2 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST5 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM29 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST4 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST1 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST0 ---> 270.09999999999854
+PATIENT_SENSOR19 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM23 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM24 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM21 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM22 ---> 47.26981132075162
+PATIENT_SENSOR15 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM27 ---> 47.26981132075162
+PATIENT_SENSOR16 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM28 ---> 47.26981132075162
+PATIENT_SENSOR17 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM25 ---> 47.26981132075162
+PATIENT_SENSOR18 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM26 ---> 47.26981132075162
+PATIENT_SENSOR11 ---> 94.43962330436058
+PATIENT_SENSOR12 ---> 94.43962330436058
+PATIENT_SENSOR13 ---> 94.43962330436058
+PATIENT_SENSOR14 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM20 ---> 47.26981132075162
+PATIENT_SENSOR10 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM18 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM19 ---> 47.26981132075162
+HEART_ATTACK_DETERMINATION9 ---> 60.0
+HEART_ATTACK_DETERMINATION8 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION7 ---> 60.0
+HEART_ATTACK_DETERMINATION6 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION5 ---> 60.0
+HEART_ATTACK_PATIENT_ALARM9 ---> 47.26981132075162
+HEART_ATTACK_DETERMINATION4 ---> 60.0
+HEART_ATTACK_DETERMINATION3 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION2 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION1 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION0 ---> 60.099999999998545
+PATIENT_STATE11 ---> 116.42784056012162
+PATIENT_STATE10 ---> 113.71735910775168
+PATIENT_STATE19 ---> 107.23706087253233
+PATIENT_STATE18 ---> 107.23315644415555
+PATIENT_STATE17 ---> 115.52720999014127
+PATIENT_STATE16 ---> 116.42940233147233
+PATIENT_STATE15 ---> 107.23081378712949
+PATIENT_STATE14 ---> 115.52564821879056
+PATIENT_STATE13 ---> 112.81360499506991
+PATIENT_STATE12 ---> 116.43018321714769
+PATIENT_HISTORY_RECORD_RESPONSE39 ---> 60.099999999998545
+PATIENT_SENSOR26 ---> 94.43962330436058
+PATIENT_SENSOR27 ---> 94.43962330436058
+PATIENT_SENSOR28 ---> 94.43962330436058
+PATIENT_SENSOR29 ---> 94.43962330436058
+PATIENT_SENSOR22 ---> 94.43962330436058
+PATIENT_SENSOR23 ---> 94.43962330436058
+PATIENT_SENSOR24 ---> 94.43962330436058
+PATIENT_SENSOR25 ---> 94.43962330436058
+PATIENT_SENSOR20 ---> 94.43962330436058
+PATIENT_SENSOR21 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_REQUEST39 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST38 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE30 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST37 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST36 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST35 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST34 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE34 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST33 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE33 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST32 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE32 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST31 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE31 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST30 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE38 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE37 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE36 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE35 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE29 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE28 ---> 60.099999999998545
+PATIENT_SENSOR37 ---> 94.43962330436058
+PATIENT_SENSOR38 ---> 94.43962330436058
+PATIENT_SENSOR39 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM0 ---> 47.26981132075162
+PATIENT_SENSOR33 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM1 ---> 47.26981132075162
+PATIENT_SENSOR34 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM2 ---> 47.26981132075162
+PATIENT_SENSOR35 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM3 ---> 47.26981132075162
+PATIENT_SENSOR36 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM4 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM5 ---> 47.26981132075162
+PATIENT_SENSOR30 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM6 ---> 47.26981132075162
+PATIENT_SENSOR31 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM7 ---> 47.26981132075162
+PATIENT_SENSOR32 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM8 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST29 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST28 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST27 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST26 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST25 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST24 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST23 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE23 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST22 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE22 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST21 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE21 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST20 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE20 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE27 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE26 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE25 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE24 ---> 60.099999999998545
+=========================================
+cloud : Energy Consumed = 114017.34566065914
+ISP_Gateway : Energy Consumed = NaN
+3gBaseStation_1_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_1_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_1_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_4 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_5 : Energy Consumed = 646.8750000000016
+3gBaseStation_5_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_4 : Energy Consumed = 646.8750000000016
+4gBaseStation_1_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_1_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_2_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_2_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_3_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_3_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_5_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_5_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_4 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_4 : Energy Consumed = 646.8750000000016
+pedestrian_1-1-pt_0 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1006 : Energy Consumed = 3.2999403952829875
+pedestrian_1-1-pt_1011 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1017 : Energy Consumed = 3.299940395282985
+pedestrian_1-1-pt_1020 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1022 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1026 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1033 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1037 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1039 : Energy Consumed = 3.299940395282984
+pedestrian_1-1-pt_1040 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1064 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1071 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1073 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1078 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_109 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_11 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1108 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1109 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_111 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1121 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1134 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1138 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1142 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1167 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1169 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1173 : Energy Consumed = 3.2999403952829827
+pedestrian_1-1-pt_1181 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1195 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1215 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1223 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1226 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1227 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1232 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1238 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1253 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1259 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1261 : Energy Consumed = 3.2999403952829875
+pedestrian_1-1-pt_1270 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1272 : Energy Consumed = 3.29994039528298
+Cost of execution in cloud = 3.1704312566836617
+Total network usage = 65337.6
+
+Base station: number of connected clients
+3gBaseStation_1_3: 2
+4gBaseStation_1_1: 2
+4gBaseStation_1_2: 2
+4gBaseStation_2_1: 9
+4gBaseStation_2_2: 5
+4gBaseStation_3_1: 9
+4gBaseStation_3_2: 3
+4gBaseStation_4_2: 1
+4gBaseStation_4_3: 1
+4gBaseStation_5_1: 1
+4gBaseStation_5_2: 4
+4gBaseStation_6_2: 1
+
+Base station events
+03:00:00: pedestrian_1-1-pt_0 (39) connected from null to 3gBaseStation_1_3 (5)
+03:00:00: pedestrian_1-1-pt_1006 (40) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_1011 (41) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1017 (42) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1020 (43) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1022 (44) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1026 (45) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1033 (46) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1037 (47) connected from null to 4gBaseStation_1_2 (20)
+03:00:00: pedestrian_1-1-pt_1039 (48) connected from null to 3gBaseStation_1_3 (5)
+03:00:00: pedestrian_1-1-pt_1040 (49) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1064 (50) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_1071 (51) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1073 (52) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1078 (53) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_109 (54) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_11 (55) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1108 (56) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1109 (57) connected from null to 4gBaseStation_1_1 (19)
+03:00:00: pedestrian_1-1-pt_111 (58) connected from null to 4gBaseStation_4_2 (26)
+03:00:00: pedestrian_1-1-pt_1121 (59) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1134 (60) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1138 (61) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1142 (62) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1167 (63) connected from null to 4gBaseStation_5_1 (28)
+03:00:00: pedestrian_1-1-pt_1169 (64) connected from null to 4gBaseStation_1_1 (19)
+03:00:00: pedestrian_1-1-pt_1173 (65) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1181 (66) connected from null to 4gBaseStation_4_3 (27)
+03:00:00: pedestrian_1-1-pt_1195 (67) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1215 (68) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1223 (69) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1226 (70) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1227 (71) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1232 (72) connected from null to 4gBaseStation_6_2 (31)
+03:00:00: pedestrian_1-1-pt_1238 (73) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1253 (74) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1259 (75) connected from null to 4gBaseStation_1_2 (20)
+03:00:00: pedestrian_1-1-pt_1261 (76) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1270 (77) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1272 (78) connected from null to 4gBaseStation_3_1 (23)
+Migrations
+
+Avg delay for loops: 767,365 (std 5,03)
+Results so far
+numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)
+40: 75, 20000, 10% = 767,365 +- 5,03 (0,66 %) (915,959)
+
+Initialising...
+Creating patient_state_analyzer0 on device cloud
+Creating heart_attack_determiner0 on device cloud
+Creating patient_disease_history0 on device cloud
+Creating client0 on device pedestrian_1-1-pt_0
+Creating patient_state_analyzer1 on device cloud
+Creating heart_attack_determiner1 on device cloud
+Creating patient_disease_history1 on device cloud
+Creating client1 on device pedestrian_1-1-pt_1006
+Creating patient_state_analyzer2 on device cloud
+Creating heart_attack_determiner2 on device cloud
+Creating patient_disease_history2 on device cloud
+Creating client2 on device pedestrian_1-1-pt_1011
+Creating patient_state_analyzer3 on device cloud
+Creating heart_attack_determiner3 on device cloud
+Creating patient_disease_history3 on device cloud
+Creating client3 on device pedestrian_1-1-pt_1017
+Creating client4 on device pedestrian_1-1-pt_1020
+Creating patient_state_analyzer4 on device cloud
+Creating heart_attack_determiner4 on device cloud
+Creating patient_disease_history4 on device cloud
+Creating patient_state_analyzer5 on device cloud
+Creating heart_attack_determiner5 on device cloud
+Creating patient_disease_history5 on device cloud
+Creating client5 on device pedestrian_1-1-pt_1022
+Creating patient_state_analyzer6 on device cloud
+Creating heart_attack_determiner6 on device cloud
+Creating patient_disease_history6 on device cloud
+Creating client6 on device pedestrian_1-1-pt_1026
+Creating patient_state_analyzer7 on device cloud
+Creating heart_attack_determiner7 on device cloud
+Creating patient_disease_history7 on device cloud
+Creating client7 on device pedestrian_1-1-pt_1033
+Creating patient_state_analyzer8 on device cloud
+Creating heart_attack_determiner8 on device cloud
+Creating patient_disease_history8 on device cloud
+Creating client8 on device pedestrian_1-1-pt_1037
+Creating patient_state_analyzer9 on device cloud
+Creating heart_attack_determiner9 on device cloud
+Creating patient_disease_history9 on device cloud
+Creating client9 on device pedestrian_1-1-pt_1039
+Creating patient_state_analyzer10 on device cloud
+Creating heart_attack_determiner10 on device cloud
+Creating patient_disease_history10 on device cloud
+Creating client10 on device pedestrian_1-1-pt_1040
+Creating client11 on device pedestrian_1-1-pt_1064
+Creating patient_state_analyzer11 on device cloud
+Creating heart_attack_determiner11 on device cloud
+Creating patient_disease_history11 on device cloud
+Creating patient_state_analyzer12 on device cloud
+Creating heart_attack_determiner12 on device cloud
+Creating patient_disease_history12 on device cloud
+Creating client12 on device pedestrian_1-1-pt_1071
+Creating patient_state_analyzer13 on device cloud
+Creating heart_attack_determiner13 on device cloud
+Creating patient_disease_history13 on device cloud
+Creating client13 on device pedestrian_1-1-pt_1073
+Creating patient_state_analyzer14 on device cloud
+Creating heart_attack_determiner14 on device cloud
+Creating patient_disease_history14 on device cloud
+Creating client14 on device pedestrian_1-1-pt_1078
+Creating patient_state_analyzer15 on device cloud
+Creating heart_attack_determiner15 on device cloud
+Creating patient_disease_history15 on device cloud
+Creating client15 on device pedestrian_1-1-pt_109
+Creating patient_state_analyzer16 on device cloud
+Creating heart_attack_determiner16 on device cloud
+Creating patient_disease_history16 on device cloud
+Creating client16 on device pedestrian_1-1-pt_11
+Creating patient_state_analyzer17 on device cloud
+Creating heart_attack_determiner17 on device cloud
+Creating patient_disease_history17 on device cloud
+Creating client17 on device pedestrian_1-1-pt_1108
+Creating patient_state_analyzer18 on device cloud
+Creating heart_attack_determiner18 on device cloud
+Creating patient_disease_history18 on device cloud
+Creating client18 on device pedestrian_1-1-pt_1109
+Creating patient_state_analyzer19 on device cloud
+Creating heart_attack_determiner19 on device cloud
+Creating patient_disease_history19 on device cloud
+Creating client19 on device pedestrian_1-1-pt_111
+Creating patient_state_analyzer20 on device cloud
+Creating heart_attack_determiner20 on device cloud
+Creating patient_disease_history20 on device cloud
+Creating client20 on device pedestrian_1-1-pt_1121
+Creating patient_state_analyzer21 on device cloud
+Creating heart_attack_determiner21 on device cloud
+Creating patient_disease_history21 on device cloud
+Creating client21 on device pedestrian_1-1-pt_1134
+Creating patient_state_analyzer22 on device cloud
+Creating heart_attack_determiner22 on device cloud
+Creating patient_disease_history22 on device cloud
+Creating client22 on device pedestrian_1-1-pt_1138
+Creating patient_state_analyzer23 on device cloud
+Creating heart_attack_determiner23 on device cloud
+Creating patient_disease_history23 on device cloud
+Creating client23 on device pedestrian_1-1-pt_1142
+Creating patient_state_analyzer24 on device cloud
+Creating heart_attack_determiner24 on device cloud
+Creating patient_disease_history24 on device cloud
+Creating client24 on device pedestrian_1-1-pt_1167
+Creating patient_state_analyzer25 on device cloud
+Creating heart_attack_determiner25 on device cloud
+Creating patient_disease_history25 on device cloud
+Creating client25 on device pedestrian_1-1-pt_1169
+Creating patient_state_analyzer26 on device cloud
+Creating heart_attack_determiner26 on device cloud
+Creating patient_disease_history26 on device cloud
+Creating client26 on device pedestrian_1-1-pt_1173
+Creating patient_state_analyzer27 on device cloud
+Creating heart_attack_determiner27 on device cloud
+Creating patient_disease_history27 on device cloud
+Creating client27 on device pedestrian_1-1-pt_1181
+Creating patient_state_analyzer28 on device cloud
+Creating heart_attack_determiner28 on device cloud
+Creating patient_disease_history28 on device cloud
+Creating client28 on device pedestrian_1-1-pt_1195
+Creating patient_state_analyzer29 on device cloud
+Creating heart_attack_determiner29 on device cloud
+Creating patient_disease_history29 on device cloud
+Creating client29 on device pedestrian_1-1-pt_1215
+Creating patient_state_analyzer30 on device cloud
+Creating heart_attack_determiner30 on device cloud
+Creating patient_disease_history30 on device cloud
+Creating client30 on device pedestrian_1-1-pt_1223
+Creating patient_state_analyzer31 on device cloud
+Creating heart_attack_determiner31 on device cloud
+Creating patient_disease_history31 on device cloud
+Creating client31 on device pedestrian_1-1-pt_1226
+Creating patient_state_analyzer32 on device cloud
+Creating heart_attack_determiner32 on device cloud
+Creating patient_disease_history32 on device cloud
+Creating client32 on device pedestrian_1-1-pt_1227
+Creating patient_state_analyzer33 on device cloud
+Creating heart_attack_determiner33 on device cloud
+Creating patient_disease_history33 on device cloud
+Creating client33 on device pedestrian_1-1-pt_1232
+Creating patient_state_analyzer34 on device cloud
+Creating heart_attack_determiner34 on device cloud
+Creating patient_disease_history34 on device cloud
+Creating client34 on device pedestrian_1-1-pt_1238
+Creating patient_state_analyzer35 on device cloud
+Creating heart_attack_determiner35 on device cloud
+Creating patient_disease_history35 on device cloud
+Creating client35 on device pedestrian_1-1-pt_1253
+Creating patient_state_analyzer36 on device cloud
+Creating heart_attack_determiner36 on device cloud
+Creating patient_disease_history36 on device cloud
+Creating client36 on device pedestrian_1-1-pt_1259
+Creating patient_state_analyzer37 on device cloud
+Creating heart_attack_determiner37 on device cloud
+Creating patient_disease_history37 on device cloud
+Creating client37 on device pedestrian_1-1-pt_1261
+Creating patient_state_analyzer38 on device cloud
+Creating heart_attack_determiner38 on device cloud
+Creating patient_disease_history38 on device cloud
+Creating client38 on device pedestrian_1-1-pt_1270
+Creating patient_state_analyzer39 on device cloud
+Creating heart_attack_determiner39 on device cloud
+Creating patient_disease_history39 on device cloud
+Creating client39 on device pedestrian_1-1-pt_1272
+0.0 Submitted application HeartDiseaseMonitoringApplication30
+0.0 Submitted application HeartDiseaseMonitoringApplication19
+0.0 Submitted application HeartDiseaseMonitoringApplication17
+0.0 Submitted application HeartDiseaseMonitoringApplication39
+0.0 Submitted application HeartDiseaseMonitoringApplication18
+0.0 Submitted application HeartDiseaseMonitoringApplication11
+0.0 Submitted application HeartDiseaseMonitoringApplication33
+0.0 Submitted application HeartDiseaseMonitoringApplication12
+0.0 Submitted application HeartDiseaseMonitoringApplication34
+0.0 Submitted application HeartDiseaseMonitoringApplication31
+0.0 Submitted application HeartDiseaseMonitoringApplication10
+0.0 Submitted application HeartDiseaseMonitoringApplication32
+0.0 Submitted application HeartDiseaseMonitoringApplication1
+0.0 Submitted application HeartDiseaseMonitoringApplication15
+0.0 Submitted application HeartDiseaseMonitoringApplication37
+0.0 Submitted application HeartDiseaseMonitoringApplication0
+0.0 Submitted application HeartDiseaseMonitoringApplication16
+0.0 Submitted application HeartDiseaseMonitoringApplication38
+0.0 Submitted application HeartDiseaseMonitoringApplication13
+0.0 Submitted application HeartDiseaseMonitoringApplication35
+0.0 Submitted application HeartDiseaseMonitoringApplication14
+0.0 Submitted application HeartDiseaseMonitoringApplication36
+0.0 Submitted application HeartDiseaseMonitoringApplication5
+0.0 Submitted application HeartDiseaseMonitoringApplication4
+0.0 Submitted application HeartDiseaseMonitoringApplication3
+0.0 Submitted application HeartDiseaseMonitoringApplication2
+0.0 Submitted application HeartDiseaseMonitoringApplication9
+0.0 Submitted application HeartDiseaseMonitoringApplication8
+0.0 Submitted application HeartDiseaseMonitoringApplication7
+0.0 Submitted application HeartDiseaseMonitoringApplication6
+0.0 Submitted application HeartDiseaseMonitoringApplication28
+0.0 Submitted application HeartDiseaseMonitoringApplication29
+0.0 Submitted application HeartDiseaseMonitoringApplication22
+0.0 Submitted application HeartDiseaseMonitoringApplication23
+0.0 Submitted application HeartDiseaseMonitoringApplication20
+0.0 Submitted application HeartDiseaseMonitoringApplication21
+0.0 Submitted application HeartDiseaseMonitoringApplication26
+0.0 Submitted application HeartDiseaseMonitoringApplication27
+0.0 Submitted application HeartDiseaseMonitoringApplication24
+0.0 Submitted application HeartDiseaseMonitoringApplication25
+$0% (inf seconds left)=========================================
+============== RESULTS ==================
+=========================================
+EXECUTION TIME : 1618564558924
+=========================================
+APPLICATION LOOP DELAYS
+=========================================
+[client0, patient_state_analyzer0, heart_attack_determiner0, client0] ---> 759.8370478424209
+[client1, patient_state_analyzer1, heart_attack_determiner1, client1] ---> 759.8354829706637
+[client2, patient_state_analyzer2, heart_attack_determiner2, client2] ---> 759.8386127141779
+[client3, patient_state_analyzer3, heart_attack_determiner3, client3] ---> 759.8378302782994
+[client4, patient_state_analyzer4, heart_attack_determiner4, client4] ---> 771.1147005347844
+[client5, patient_state_analyzer5, heart_attack_determiner5, client5] ---> 770.7947005347846
+[client6, patient_state_analyzer6, heart_attack_determiner6, client6] ---> 759.8401775859351
+[client7, patient_state_analyzer7, heart_attack_determiner7, client7] ---> 771.4347005347842
+[client8, patient_state_analyzer8, heart_attack_determiner8, client8] ---> 759.8393951500565
+[client9, patient_state_analyzer9, heart_attack_determiner9, client9] ---> 769.8472195088415
+[client10, patient_state_analyzer10, heart_attack_determiner10, client10] ---> 770.1547005347852
+[client11, patient_state_analyzer11, heart_attack_determiner11, client11] ---> 769.8354829706637
+[client12, patient_state_analyzer12, heart_attack_determiner12, client12] ---> 769.8362654065426
+[client13, patient_state_analyzer13, heart_attack_determiner13, client13] ---> 770.4747005347849
+[client14, patient_state_analyzer14, heart_attack_determiner14, client14] ---> 770.1554829706635
+[client15, patient_state_analyzer15, heart_attack_determiner15, client15] ---> 759.8362654065426
+[client16, patient_state_analyzer16, heart_attack_determiner16, client16] ---> 770.1539180989066
+[client17, patient_state_analyzer17, heart_attack_determiner17, client17] ---> 769.8339180989069
+[client18, patient_state_analyzer18, heart_attack_determiner18, client18] ---> 759.8339180989069
+[client19, patient_state_analyzer19, heart_attack_determiner19, client19] ---> 759.8331356630284
+[client20, patient_state_analyzer20, heart_attack_determiner20, client20] ---> 771.7562654065409
+[client21, patient_state_analyzer21, heart_attack_determiner21, client21] ---> 772.0762654065406
+[client22, patient_state_analyzer22, heart_attack_determiner22, client22] ---> 770.7939180989061
+[client23, patient_state_analyzer23, heart_attack_determiner23, client23] ---> 771.4362654065412
+[client24, patient_state_analyzer24, heart_attack_determiner24, client24] ---> 759.841742457692
+[client25, patient_state_analyzer25, heart_attack_determiner25, client25] ---> 769.854261431748
+[client26, patient_state_analyzer26, heart_attack_determiner26, client26] ---> 770.4731356630278
+[client27, patient_state_analyzer27, heart_attack_determiner27, client27] ---> 759.8409600218134
+[client28, patient_state_analyzer28, heart_attack_determiner28, client28] ---> 771.7547005347839
+[client29, patient_state_analyzer29, heart_attack_determiner29, client29] ---> 772.0747005347836
+[client30, patient_state_analyzer30, heart_attack_determiner30, client30] ---> 769.8331356630284
+[client31, patient_state_analyzer31, heart_attack_determiner31, client31] ---> 770.476265406542
+[client32, patient_state_analyzer32, heart_attack_determiner32, client32] ---> 770.7962654065417
+[client33, patient_state_analyzer33, heart_attack_determiner33, client33] ---> 759.8347005347855
+[client34, patient_state_analyzer34, heart_attack_determiner34, client34] ---> 770.1562654065423
+[client35, patient_state_analyzer35, heart_attack_determiner35, client35] ---> 770.1531356630281
+[client36, patient_state_analyzer36, heart_attack_determiner36, client36] ---> 769.8448722012059
+[client37, patient_state_analyzer37, heart_attack_determiner37, client37] ---> 771.1162654065414
+[client38, patient_state_analyzer38, heart_attack_determiner38, client38] ---> 770.4739180989064
+[client39, patient_state_analyzer39, heart_attack_determiner39, client39] ---> 769.8347005347855
+=========================================
+TUPLE CPU EXECUTION DELAY
+=========================================
+PATIENT_HISTORY_RECORD_RESPONSE19 ---> 60.099999999998545
+PATIENT_SENSOR8 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_RESPONSE18 ---> 60.099999999998545
+PATIENT_SENSOR9 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_RESPONSE17 ---> 60.099999999998545
+PATIENT_SENSOR6 ---> 94.43962330436058
+PATIENT_SENSOR7 ---> 94.43962330436058
+PATIENT_SENSOR4 ---> 94.43962330436058
+PATIENT_SENSOR5 ---> 94.43962330436058
+PATIENT_STATE4 ---> 116.42862144579698
+PATIENT_STATE3 ---> 107.23003290145414
+PATIENT_HISTORY_RECORD_REQUEST19 ---> 270.09999999999854
+PATIENT_STATE6 ---> 107.22925201577878
+PATIENT_HISTORY_RECORD_REQUEST18 ---> 270.09999999999854
+PATIENT_STATE5 ---> 115.52642910446592
+PATIENT_HISTORY_RECORD_REQUEST17 ---> 270.09999999999854
+PATIENT_STATE0 ---> 107.23393732983091
+PATIENT_HISTORY_RECORD_REQUEST16 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST15 ---> 270.09999999999854
+PATIENT_STATE2 ---> 107.22847113010343
+PATIENT_HISTORY_RECORD_REQUEST14 ---> 270.09999999999854
+PATIENT_STATE1 ---> 107.23159467280485
+PATIENT_HISTORY_RECORD_REQUEST13 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST12 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE12 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST11 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE11 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST10 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE10 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE16 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE15 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE14 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE13 ---> 60.099999999998545
+PATIENT_SENSOR2 ---> 94.43962330436058
+PATIENT_SENSOR3 ---> 94.43962330436058
+PATIENT_SENSOR0 ---> 94.43962330436058
+PATIENT_SENSOR1 ---> 94.43962330436058
+HEART_ATTACK_DETERMINATION13 ---> 60.0
+HEART_ATTACK_DETERMINATION12 ---> 60.0
+HEART_ATTACK_DETERMINATION11 ---> 60.0
+HEART_ATTACK_DETERMINATION10 ---> 60.0
+HEART_ATTACK_DETERMINATION19 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION18 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION17 ---> 60.0
+HEART_ATTACK_DETERMINATION16 ---> 60.0
+HEART_ATTACK_DETERMINATION15 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION14 ---> 60.0
+PATIENT_STATE22 ---> 114.62267499178415
+PATIENT_STATE21 ---> 114.6234558774595
+PATIENT_STATE20 ---> 115.52799087581663
+PATIENT_STATE29 ---> 111.00453499835567
+PATIENT_STATE28 ---> 111.90906999671279
+PATIENT_STATE27 ---> 107.23627998685697
+PATIENT_STATE26 ---> 116.42705967444627
+PATIENT_STATE25 ---> 116.4317449884984
+PATIENT_STATE24 ---> 107.23549910118162
+PATIENT_STATE23 ---> 113.71892087910238
+PATIENT_STATE33 ---> 107.23471821550626
+PATIENT_STATE32 ---> 111.90985088238814
+PATIENT_STATE31 ---> 112.81438588074526
+PATIENT_STATE30 ---> 115.52486733311521
+PATIENT_STATE39 ---> 110.09999999999854
+PATIENT_STATE38 ---> 113.71813999342703
+PATIENT_STATE37 ---> 110.1007808856739
+PATIENT_STATE36 ---> 116.43096410282304
+PATIENT_STATE35 ---> 114.62111322043344
+PATIENT_STATE34 ---> 111.00531588403102
+HEART_ATTACK_DETERMINATION35 ---> 60.0
+HEART_ATTACK_DETERMINATION34 ---> 60.0
+HEART_ATTACK_DETERMINATION33 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION32 ---> 60.0
+HEART_ATTACK_DETERMINATION31 ---> 60.0
+HEART_ATTACK_DETERMINATION30 ---> 60.0
+HEART_ATTACK_DETERMINATION39 ---> 60.0
+HEART_ATTACK_DETERMINATION38 ---> 60.0
+HEART_ATTACK_DETERMINATION37 ---> 60.0
+HEART_ATTACK_DETERMINATION36 ---> 60.0
+HEART_ATTACK_DETERMINATION24 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION23 ---> 60.0
+HEART_ATTACK_DETERMINATION22 ---> 60.0
+HEART_ATTACK_DETERMINATION21 ---> 60.0
+HEART_ATTACK_DETERMINATION20 ---> 60.0
+HEART_ATTACK_DETERMINATION29 ---> 60.0
+HEART_ATTACK_DETERMINATION28 ---> 60.0
+HEART_ATTACK_DETERMINATION27 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION26 ---> 60.0
+HEART_ATTACK_DETERMINATION25 ---> 60.0
+HEART_ATTACK_PATIENT_ALARM12 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM13 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM10 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM11 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM16 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM17 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM14 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM15 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_RESPONSE8 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE9 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE6 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE7 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE4 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE5 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE2 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE3 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE0 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE1 ---> 60.099999999998545
+PATIENT_STATE8 ---> 107.2323755584802
+PATIENT_STATE7 ---> 114.6218941061088
+PATIENT_STATE9 ---> 116.43252587417375
+HEART_ATTACK_PATIENT_ALARM34 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM35 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM32 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM33 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST7 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM38 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST6 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM39 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST9 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM36 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST8 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM37 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM30 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM31 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST3 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST2 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST5 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM29 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST4 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST1 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST0 ---> 270.09999999999854
+PATIENT_SENSOR19 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM23 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM24 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM21 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM22 ---> 47.26981132075162
+PATIENT_SENSOR15 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM27 ---> 47.26981132075162
+PATIENT_SENSOR16 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM28 ---> 47.26981132075162
+PATIENT_SENSOR17 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM25 ---> 47.26981132075162
+PATIENT_SENSOR18 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM26 ---> 47.26981132075162
+PATIENT_SENSOR11 ---> 94.43962330436058
+PATIENT_SENSOR12 ---> 94.43962330436058
+PATIENT_SENSOR13 ---> 94.43962330436058
+PATIENT_SENSOR14 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM20 ---> 47.26981132075162
+PATIENT_SENSOR10 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM18 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM19 ---> 47.26981132075162
+HEART_ATTACK_DETERMINATION9 ---> 60.0
+HEART_ATTACK_DETERMINATION8 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION7 ---> 60.0
+HEART_ATTACK_DETERMINATION6 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION5 ---> 60.0
+HEART_ATTACK_PATIENT_ALARM9 ---> 47.26981132075162
+HEART_ATTACK_DETERMINATION4 ---> 60.0
+HEART_ATTACK_DETERMINATION3 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION2 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION1 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION0 ---> 60.099999999998545
+PATIENT_STATE11 ---> 116.42784056012162
+PATIENT_STATE10 ---> 113.71735910775168
+PATIENT_STATE19 ---> 107.23706087253233
+PATIENT_STATE18 ---> 107.23315644415555
+PATIENT_STATE17 ---> 115.52720999014127
+PATIENT_STATE16 ---> 116.42940233147233
+PATIENT_STATE15 ---> 107.23081378712949
+PATIENT_STATE14 ---> 115.52564821879056
+PATIENT_STATE13 ---> 112.81360499506991
+PATIENT_STATE12 ---> 116.43018321714769
+PATIENT_HISTORY_RECORD_RESPONSE39 ---> 60.099999999998545
+PATIENT_SENSOR26 ---> 94.43962330436058
+PATIENT_SENSOR27 ---> 94.43962330436058
+PATIENT_SENSOR28 ---> 94.43962330436058
+PATIENT_SENSOR29 ---> 94.43962330436058
+PATIENT_SENSOR22 ---> 94.43962330436058
+PATIENT_SENSOR23 ---> 94.43962330436058
+PATIENT_SENSOR24 ---> 94.43962330436058
+PATIENT_SENSOR25 ---> 94.43962330436058
+PATIENT_SENSOR20 ---> 94.43962330436058
+PATIENT_SENSOR21 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_REQUEST39 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST38 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE30 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST37 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST36 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST35 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST34 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE34 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST33 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE33 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST32 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE32 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST31 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE31 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST30 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE38 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE37 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE36 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE35 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE29 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE28 ---> 60.099999999998545
+PATIENT_SENSOR37 ---> 94.43962330436058
+PATIENT_SENSOR38 ---> 94.43962330436058
+PATIENT_SENSOR39 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM0 ---> 47.26981132075162
+PATIENT_SENSOR33 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM1 ---> 47.26981132075162
+PATIENT_SENSOR34 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM2 ---> 47.26981132075162
+PATIENT_SENSOR35 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM3 ---> 47.26981132075162
+PATIENT_SENSOR36 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM4 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM5 ---> 47.26981132075162
+PATIENT_SENSOR30 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM6 ---> 47.26981132075162
+PATIENT_SENSOR31 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM7 ---> 47.26981132075162
+PATIENT_SENSOR32 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM8 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST29 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST28 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST27 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST26 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST25 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST24 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST23 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE23 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST22 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE22 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST21 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE21 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST20 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE20 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE27 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE26 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE25 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE24 ---> 60.099999999998545
+=========================================
+cloud : Energy Consumed = 114017.34566065914
+ISP_Gateway : Energy Consumed = NaN
+3gBaseStation_1_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_1_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_1_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_4 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_5 : Energy Consumed = 646.8750000000016
+3gBaseStation_5_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_4 : Energy Consumed = 646.8750000000016
+4gBaseStation_1_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_1_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_2_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_2_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_3_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_3_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_5_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_5_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_4 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_4 : Energy Consumed = 646.8750000000016
+pedestrian_1-1-pt_0 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1006 : Energy Consumed = 3.2999403952829875
+pedestrian_1-1-pt_1011 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1017 : Energy Consumed = 3.299940395282985
+pedestrian_1-1-pt_1020 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1022 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1026 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1033 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1037 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1039 : Energy Consumed = 3.299940395282984
+pedestrian_1-1-pt_1040 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1064 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1071 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1073 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1078 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_109 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_11 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1108 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1109 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_111 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1121 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1134 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1138 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1142 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1167 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1169 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1173 : Energy Consumed = 3.2999403952829827
+pedestrian_1-1-pt_1181 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1195 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1215 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1223 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1226 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1227 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1232 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1238 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1253 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1259 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1261 : Energy Consumed = 3.2999403952829875
+pedestrian_1-1-pt_1270 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1272 : Energy Consumed = 3.29994039528298
+Cost of execution in cloud = 3.1704312566836617
+Total network usage = 65337.6
+
+Base station: number of connected clients
+3gBaseStation_1_3: 2
+4gBaseStation_1_1: 2
+4gBaseStation_1_2: 2
+4gBaseStation_2_1: 9
+4gBaseStation_2_2: 5
+4gBaseStation_3_1: 9
+4gBaseStation_3_2: 3
+4gBaseStation_4_2: 1
+4gBaseStation_4_3: 1
+4gBaseStation_5_1: 1
+4gBaseStation_5_2: 4
+4gBaseStation_6_2: 1
+
+Base station events
+03:00:00: pedestrian_1-1-pt_0 (39) connected from null to 3gBaseStation_1_3 (5)
+03:00:00: pedestrian_1-1-pt_1006 (40) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_1011 (41) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1017 (42) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1020 (43) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1022 (44) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1026 (45) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1033 (46) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1037 (47) connected from null to 4gBaseStation_1_2 (20)
+03:00:00: pedestrian_1-1-pt_1039 (48) connected from null to 3gBaseStation_1_3 (5)
+03:00:00: pedestrian_1-1-pt_1040 (49) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1064 (50) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_1071 (51) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1073 (52) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1078 (53) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_109 (54) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_11 (55) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1108 (56) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1109 (57) connected from null to 4gBaseStation_1_1 (19)
+03:00:00: pedestrian_1-1-pt_111 (58) connected from null to 4gBaseStation_4_2 (26)
+03:00:00: pedestrian_1-1-pt_1121 (59) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1134 (60) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1138 (61) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1142 (62) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1167 (63) connected from null to 4gBaseStation_5_1 (28)
+03:00:00: pedestrian_1-1-pt_1169 (64) connected from null to 4gBaseStation_1_1 (19)
+03:00:00: pedestrian_1-1-pt_1173 (65) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1181 (66) connected from null to 4gBaseStation_4_3 (27)
+03:00:00: pedestrian_1-1-pt_1195 (67) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1215 (68) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1223 (69) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1226 (70) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1227 (71) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1232 (72) connected from null to 4gBaseStation_6_2 (31)
+03:00:00: pedestrian_1-1-pt_1238 (73) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1253 (74) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1259 (75) connected from null to 4gBaseStation_1_2 (20)
+03:00:00: pedestrian_1-1-pt_1261 (76) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1270 (77) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1272 (78) connected from null to 4gBaseStation_3_1 (23)
+Migrations
+
+Avg delay for loops: 767,365 (std 5,03)
+Results so far
+numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)
+40: 125, 20000, 0% = 767,365 +- 5,03 (0,66 %) (949,426)
+
+Initialising...
+Creating patient_state_analyzer0 on device cloud
+Creating heart_attack_determiner0 on device cloud
+Creating patient_disease_history0 on device cloud
+Creating client0 on device pedestrian_1-1-pt_0
+Creating patient_state_analyzer1 on device cloud
+Creating heart_attack_determiner1 on device cloud
+Creating patient_disease_history1 on device cloud
+Creating client1 on device pedestrian_1-1-pt_1006
+Creating patient_state_analyzer2 on device cloud
+Creating heart_attack_determiner2 on device cloud
+Creating patient_disease_history2 on device cloud
+Creating client2 on device pedestrian_1-1-pt_1011
+Creating patient_state_analyzer3 on device cloud
+Creating heart_attack_determiner3 on device cloud
+Creating patient_disease_history3 on device cloud
+Creating client3 on device pedestrian_1-1-pt_1017
+Creating client4 on device pedestrian_1-1-pt_1020
+Creating patient_state_analyzer4 on device cloud
+Creating heart_attack_determiner4 on device cloud
+Creating patient_disease_history4 on device cloud
+Creating patient_state_analyzer5 on device cloud
+Creating heart_attack_determiner5 on device cloud
+Creating patient_disease_history5 on device cloud
+Creating client5 on device pedestrian_1-1-pt_1022
+Creating patient_state_analyzer6 on device cloud
+Creating heart_attack_determiner6 on device cloud
+Creating patient_disease_history6 on device cloud
+Creating client6 on device pedestrian_1-1-pt_1026
+Creating patient_state_analyzer7 on device cloud
+Creating heart_attack_determiner7 on device cloud
+Creating patient_disease_history7 on device cloud
+Creating client7 on device pedestrian_1-1-pt_1033
+Creating patient_state_analyzer8 on device cloud
+Creating heart_attack_determiner8 on device cloud
+Creating patient_disease_history8 on device cloud
+Creating client8 on device pedestrian_1-1-pt_1037
+Creating patient_state_analyzer9 on device cloud
+Creating heart_attack_determiner9 on device cloud
+Creating patient_disease_history9 on device cloud
+Creating client9 on device pedestrian_1-1-pt_1039
+Creating patient_state_analyzer10 on device cloud
+Creating heart_attack_determiner10 on device cloud
+Creating patient_disease_history10 on device cloud
+Creating client10 on device pedestrian_1-1-pt_1040
+Creating client11 on device pedestrian_1-1-pt_1064
+Creating patient_state_analyzer11 on device cloud
+Creating heart_attack_determiner11 on device cloud
+Creating patient_disease_history11 on device cloud
+Creating patient_state_analyzer12 on device cloud
+Creating heart_attack_determiner12 on device cloud
+Creating patient_disease_history12 on device cloud
+Creating client12 on device pedestrian_1-1-pt_1071
+Creating patient_state_analyzer13 on device cloud
+Creating heart_attack_determiner13 on device cloud
+Creating patient_disease_history13 on device cloud
+Creating client13 on device pedestrian_1-1-pt_1073
+Creating patient_state_analyzer14 on device cloud
+Creating heart_attack_determiner14 on device cloud
+Creating patient_disease_history14 on device cloud
+Creating client14 on device pedestrian_1-1-pt_1078
+Creating patient_state_analyzer15 on device cloud
+Creating heart_attack_determiner15 on device cloud
+Creating patient_disease_history15 on device cloud
+Creating client15 on device pedestrian_1-1-pt_109
+Creating patient_state_analyzer16 on device cloud
+Creating heart_attack_determiner16 on device cloud
+Creating patient_disease_history16 on device cloud
+Creating client16 on device pedestrian_1-1-pt_11
+Creating patient_state_analyzer17 on device cloud
+Creating heart_attack_determiner17 on device cloud
+Creating patient_disease_history17 on device cloud
+Creating client17 on device pedestrian_1-1-pt_1108
+Creating patient_state_analyzer18 on device cloud
+Creating heart_attack_determiner18 on device cloud
+Creating patient_disease_history18 on device cloud
+Creating client18 on device pedestrian_1-1-pt_1109
+Creating patient_state_analyzer19 on device cloud
+Creating heart_attack_determiner19 on device cloud
+Creating patient_disease_history19 on device cloud
+Creating client19 on device pedestrian_1-1-pt_111
+Creating patient_state_analyzer20 on device cloud
+Creating heart_attack_determiner20 on device cloud
+Creating patient_disease_history20 on device cloud
+Creating client20 on device pedestrian_1-1-pt_1121
+Creating patient_state_analyzer21 on device cloud
+Creating heart_attack_determiner21 on device cloud
+Creating patient_disease_history21 on device cloud
+Creating client21 on device pedestrian_1-1-pt_1134
+Creating patient_state_analyzer22 on device cloud
+Creating heart_attack_determiner22 on device cloud
+Creating patient_disease_history22 on device cloud
+Creating client22 on device pedestrian_1-1-pt_1138
+Creating patient_state_analyzer23 on device cloud
+Creating heart_attack_determiner23 on device cloud
+Creating patient_disease_history23 on device cloud
+Creating client23 on device pedestrian_1-1-pt_1142
+Creating patient_state_analyzer24 on device cloud
+Creating heart_attack_determiner24 on device cloud
+Creating patient_disease_history24 on device cloud
+Creating client24 on device pedestrian_1-1-pt_1167
+Creating patient_state_analyzer25 on device cloud
+Creating heart_attack_determiner25 on device cloud
+Creating patient_disease_history25 on device cloud
+Creating client25 on device pedestrian_1-1-pt_1169
+Creating patient_state_analyzer26 on device cloud
+Creating heart_attack_determiner26 on device cloud
+Creating patient_disease_history26 on device cloud
+Creating client26 on device pedestrian_1-1-pt_1173
+Creating patient_state_analyzer27 on device cloud
+Creating heart_attack_determiner27 on device cloud
+Creating patient_disease_history27 on device cloud
+Creating client27 on device pedestrian_1-1-pt_1181
+Creating patient_state_analyzer28 on device cloud
+Creating heart_attack_determiner28 on device cloud
+Creating patient_disease_history28 on device cloud
+Creating client28 on device pedestrian_1-1-pt_1195
+Creating patient_state_analyzer29 on device cloud
+Creating heart_attack_determiner29 on device cloud
+Creating patient_disease_history29 on device cloud
+Creating client29 on device pedestrian_1-1-pt_1215
+Creating patient_state_analyzer30 on device cloud
+Creating heart_attack_determiner30 on device cloud
+Creating patient_disease_history30 on device cloud
+Creating client30 on device pedestrian_1-1-pt_1223
+Creating patient_state_analyzer31 on device cloud
+Creating heart_attack_determiner31 on device cloud
+Creating patient_disease_history31 on device cloud
+Creating client31 on device pedestrian_1-1-pt_1226
+Creating patient_state_analyzer32 on device cloud
+Creating heart_attack_determiner32 on device cloud
+Creating patient_disease_history32 on device cloud
+Creating client32 on device pedestrian_1-1-pt_1227
+Creating patient_state_analyzer33 on device cloud
+Creating heart_attack_determiner33 on device cloud
+Creating patient_disease_history33 on device cloud
+Creating client33 on device pedestrian_1-1-pt_1232
+Creating patient_state_analyzer34 on device cloud
+Creating heart_attack_determiner34 on device cloud
+Creating patient_disease_history34 on device cloud
+Creating client34 on device pedestrian_1-1-pt_1238
+Creating patient_state_analyzer35 on device cloud
+Creating heart_attack_determiner35 on device cloud
+Creating patient_disease_history35 on device cloud
+Creating client35 on device pedestrian_1-1-pt_1253
+Creating patient_state_analyzer36 on device cloud
+Creating heart_attack_determiner36 on device cloud
+Creating patient_disease_history36 on device cloud
+Creating client36 on device pedestrian_1-1-pt_1259
+Creating patient_state_analyzer37 on device cloud
+Creating heart_attack_determiner37 on device cloud
+Creating patient_disease_history37 on device cloud
+Creating client37 on device pedestrian_1-1-pt_1261
+Creating patient_state_analyzer38 on device cloud
+Creating heart_attack_determiner38 on device cloud
+Creating patient_disease_history38 on device cloud
+Creating client38 on device pedestrian_1-1-pt_1270
+Creating patient_state_analyzer39 on device cloud
+Creating heart_attack_determiner39 on device cloud
+Creating patient_disease_history39 on device cloud
+Creating client39 on device pedestrian_1-1-pt_1272
+0.0 Submitted application HeartDiseaseMonitoringApplication30
+0.0 Submitted application HeartDiseaseMonitoringApplication19
+0.0 Submitted application HeartDiseaseMonitoringApplication17
+0.0 Submitted application HeartDiseaseMonitoringApplication39
+0.0 Submitted application HeartDiseaseMonitoringApplication18
+0.0 Submitted application HeartDiseaseMonitoringApplication11
+0.0 Submitted application HeartDiseaseMonitoringApplication33
+0.0 Submitted application HeartDiseaseMonitoringApplication12
+0.0 Submitted application HeartDiseaseMonitoringApplication34
+0.0 Submitted application HeartDiseaseMonitoringApplication31
+0.0 Submitted application HeartDiseaseMonitoringApplication10
+0.0 Submitted application HeartDiseaseMonitoringApplication32
+0.0 Submitted application HeartDiseaseMonitoringApplication1
+0.0 Submitted application HeartDiseaseMonitoringApplication15
+0.0 Submitted application HeartDiseaseMonitoringApplication37
+0.0 Submitted application HeartDiseaseMonitoringApplication0
+0.0 Submitted application HeartDiseaseMonitoringApplication16
+0.0 Submitted application HeartDiseaseMonitoringApplication38
+0.0 Submitted application HeartDiseaseMonitoringApplication13
+0.0 Submitted application HeartDiseaseMonitoringApplication35
+0.0 Submitted application HeartDiseaseMonitoringApplication14
+0.0 Submitted application HeartDiseaseMonitoringApplication36
+0.0 Submitted application HeartDiseaseMonitoringApplication5
+0.0 Submitted application HeartDiseaseMonitoringApplication4
+0.0 Submitted application HeartDiseaseMonitoringApplication3
+0.0 Submitted application HeartDiseaseMonitoringApplication2
+0.0 Submitted application HeartDiseaseMonitoringApplication9
+0.0 Submitted application HeartDiseaseMonitoringApplication8
+0.0 Submitted application HeartDiseaseMonitoringApplication7
+0.0 Submitted application HeartDiseaseMonitoringApplication6
+0.0 Submitted application HeartDiseaseMonitoringApplication28
+0.0 Submitted application HeartDiseaseMonitoringApplication29
+0.0 Submitted application HeartDiseaseMonitoringApplication22
+0.0 Submitted application HeartDiseaseMonitoringApplication23
+0.0 Submitted application HeartDiseaseMonitoringApplication20
+0.0 Submitted application HeartDiseaseMonitoringApplication21
+0.0 Submitted application HeartDiseaseMonitoringApplication26
+0.0 Submitted application HeartDiseaseMonitoringApplication27
+0.0 Submitted application HeartDiseaseMonitoringApplication24
+0.0 Submitted application HeartDiseaseMonitoringApplication25
+$0% (inf seconds left)=========================================
+============== RESULTS ==================
+=========================================
+EXECUTION TIME : 1618565497846
+=========================================
+APPLICATION LOOP DELAYS
+=========================================
+[client0, patient_state_analyzer0, heart_attack_determiner0, client0] ---> 759.8370478424209
+[client1, patient_state_analyzer1, heart_attack_determiner1, client1] ---> 759.8354829706637
+[client2, patient_state_analyzer2, heart_attack_determiner2, client2] ---> 759.8386127141779
+[client3, patient_state_analyzer3, heart_attack_determiner3, client3] ---> 759.8378302782994
+[client4, patient_state_analyzer4, heart_attack_determiner4, client4] ---> 771.1147005347844
+[client5, patient_state_analyzer5, heart_attack_determiner5, client5] ---> 770.7947005347846
+[client6, patient_state_analyzer6, heart_attack_determiner6, client6] ---> 759.8401775859351
+[client7, patient_state_analyzer7, heart_attack_determiner7, client7] ---> 771.4347005347842
+[client8, patient_state_analyzer8, heart_attack_determiner8, client8] ---> 759.8393951500565
+[client9, patient_state_analyzer9, heart_attack_determiner9, client9] ---> 769.8472195088415
+[client10, patient_state_analyzer10, heart_attack_determiner10, client10] ---> 770.1547005347852
+[client11, patient_state_analyzer11, heart_attack_determiner11, client11] ---> 769.8354829706637
+[client12, patient_state_analyzer12, heart_attack_determiner12, client12] ---> 769.8362654065426
+[client13, patient_state_analyzer13, heart_attack_determiner13, client13] ---> 770.4747005347849
+[client14, patient_state_analyzer14, heart_attack_determiner14, client14] ---> 770.1554829706635
+[client15, patient_state_analyzer15, heart_attack_determiner15, client15] ---> 759.8362654065426
+[client16, patient_state_analyzer16, heart_attack_determiner16, client16] ---> 770.1539180989066
+[client17, patient_state_analyzer17, heart_attack_determiner17, client17] ---> 769.8339180989069
+[client18, patient_state_analyzer18, heart_attack_determiner18, client18] ---> 759.8339180989069
+[client19, patient_state_analyzer19, heart_attack_determiner19, client19] ---> 759.8331356630284
+[client20, patient_state_analyzer20, heart_attack_determiner20, client20] ---> 771.7562654065409
+[client21, patient_state_analyzer21, heart_attack_determiner21, client21] ---> 772.0762654065406
+[client22, patient_state_analyzer22, heart_attack_determiner22, client22] ---> 770.7939180989061
+[client23, patient_state_analyzer23, heart_attack_determiner23, client23] ---> 771.4362654065412
+[client24, patient_state_analyzer24, heart_attack_determiner24, client24] ---> 759.841742457692
+[client25, patient_state_analyzer25, heart_attack_determiner25, client25] ---> 769.854261431748
+[client26, patient_state_analyzer26, heart_attack_determiner26, client26] ---> 770.4731356630278
+[client27, patient_state_analyzer27, heart_attack_determiner27, client27] ---> 759.8409600218134
+[client28, patient_state_analyzer28, heart_attack_determiner28, client28] ---> 771.7547005347839
+[client29, patient_state_analyzer29, heart_attack_determiner29, client29] ---> 772.0747005347836
+[client30, patient_state_analyzer30, heart_attack_determiner30, client30] ---> 769.8331356630284
+[client31, patient_state_analyzer31, heart_attack_determiner31, client31] ---> 770.476265406542
+[client32, patient_state_analyzer32, heart_attack_determiner32, client32] ---> 770.7962654065417
+[client33, patient_state_analyzer33, heart_attack_determiner33, client33] ---> 759.8347005347855
+[client34, patient_state_analyzer34, heart_attack_determiner34, client34] ---> 770.1562654065423
+[client35, patient_state_analyzer35, heart_attack_determiner35, client35] ---> 770.1531356630281
+[client36, patient_state_analyzer36, heart_attack_determiner36, client36] ---> 769.8448722012059
+[client37, patient_state_analyzer37, heart_attack_determiner37, client37] ---> 771.1162654065414
+[client38, patient_state_analyzer38, heart_attack_determiner38, client38] ---> 770.4739180989064
+[client39, patient_state_analyzer39, heart_attack_determiner39, client39] ---> 769.8347005347855
+=========================================
+TUPLE CPU EXECUTION DELAY
+=========================================
+PATIENT_HISTORY_RECORD_RESPONSE19 ---> 60.099999999998545
+PATIENT_SENSOR8 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_RESPONSE18 ---> 60.099999999998545
+PATIENT_SENSOR9 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_RESPONSE17 ---> 60.099999999998545
+PATIENT_SENSOR6 ---> 94.43962330436058
+PATIENT_SENSOR7 ---> 94.43962330436058
+PATIENT_SENSOR4 ---> 94.43962330436058
+PATIENT_SENSOR5 ---> 94.43962330436058
+PATIENT_STATE4 ---> 116.42862144579698
+PATIENT_STATE3 ---> 107.23003290145414
+PATIENT_HISTORY_RECORD_REQUEST19 ---> 270.09999999999854
+PATIENT_STATE6 ---> 107.22925201577878
+PATIENT_HISTORY_RECORD_REQUEST18 ---> 270.09999999999854
+PATIENT_STATE5 ---> 115.52642910446592
+PATIENT_HISTORY_RECORD_REQUEST17 ---> 270.09999999999854
+PATIENT_STATE0 ---> 107.23393732983091
+PATIENT_HISTORY_RECORD_REQUEST16 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST15 ---> 270.09999999999854
+PATIENT_STATE2 ---> 107.22847113010343
+PATIENT_HISTORY_RECORD_REQUEST14 ---> 270.09999999999854
+PATIENT_STATE1 ---> 107.23159467280485
+PATIENT_HISTORY_RECORD_REQUEST13 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST12 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE12 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST11 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE11 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST10 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE10 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE16 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE15 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE14 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE13 ---> 60.099999999998545
+PATIENT_SENSOR2 ---> 94.43962330436058
+PATIENT_SENSOR3 ---> 94.43962330436058
+PATIENT_SENSOR0 ---> 94.43962330436058
+PATIENT_SENSOR1 ---> 94.43962330436058
+HEART_ATTACK_DETERMINATION13 ---> 60.0
+HEART_ATTACK_DETERMINATION12 ---> 60.0
+HEART_ATTACK_DETERMINATION11 ---> 60.0
+HEART_ATTACK_DETERMINATION10 ---> 60.0
+HEART_ATTACK_DETERMINATION19 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION18 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION17 ---> 60.0
+HEART_ATTACK_DETERMINATION16 ---> 60.0
+HEART_ATTACK_DETERMINATION15 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION14 ---> 60.0
+PATIENT_STATE22 ---> 114.62267499178415
+PATIENT_STATE21 ---> 114.6234558774595
+PATIENT_STATE20 ---> 115.52799087581663
+PATIENT_STATE29 ---> 111.00453499835567
+PATIENT_STATE28 ---> 111.90906999671279
+PATIENT_STATE27 ---> 107.23627998685697
+PATIENT_STATE26 ---> 116.42705967444627
+PATIENT_STATE25 ---> 116.4317449884984
+PATIENT_STATE24 ---> 107.23549910118162
+PATIENT_STATE23 ---> 113.71892087910238
+PATIENT_STATE33 ---> 107.23471821550626
+PATIENT_STATE32 ---> 111.90985088238814
+PATIENT_STATE31 ---> 112.81438588074526
+PATIENT_STATE30 ---> 115.52486733311521
+PATIENT_STATE39 ---> 110.09999999999854
+PATIENT_STATE38 ---> 113.71813999342703
+PATIENT_STATE37 ---> 110.1007808856739
+PATIENT_STATE36 ---> 116.43096410282304
+PATIENT_STATE35 ---> 114.62111322043344
+PATIENT_STATE34 ---> 111.00531588403102
+HEART_ATTACK_DETERMINATION35 ---> 60.0
+HEART_ATTACK_DETERMINATION34 ---> 60.0
+HEART_ATTACK_DETERMINATION33 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION32 ---> 60.0
+HEART_ATTACK_DETERMINATION31 ---> 60.0
+HEART_ATTACK_DETERMINATION30 ---> 60.0
+HEART_ATTACK_DETERMINATION39 ---> 60.0
+HEART_ATTACK_DETERMINATION38 ---> 60.0
+HEART_ATTACK_DETERMINATION37 ---> 60.0
+HEART_ATTACK_DETERMINATION36 ---> 60.0
+HEART_ATTACK_DETERMINATION24 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION23 ---> 60.0
+HEART_ATTACK_DETERMINATION22 ---> 60.0
+HEART_ATTACK_DETERMINATION21 ---> 60.0
+HEART_ATTACK_DETERMINATION20 ---> 60.0
+HEART_ATTACK_DETERMINATION29 ---> 60.0
+HEART_ATTACK_DETERMINATION28 ---> 60.0
+HEART_ATTACK_DETERMINATION27 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION26 ---> 60.0
+HEART_ATTACK_DETERMINATION25 ---> 60.0
+HEART_ATTACK_PATIENT_ALARM12 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM13 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM10 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM11 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM16 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM17 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM14 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM15 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_RESPONSE8 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE9 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE6 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE7 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE4 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE5 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE2 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE3 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE0 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE1 ---> 60.099999999998545
+PATIENT_STATE8 ---> 107.2323755584802
+PATIENT_STATE7 ---> 114.6218941061088
+PATIENT_STATE9 ---> 116.43252587417375
+HEART_ATTACK_PATIENT_ALARM34 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM35 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM32 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM33 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST7 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM38 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST6 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM39 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST9 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM36 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST8 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM37 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM30 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM31 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST3 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST2 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST5 ---> 270.09999999999854
+HEART_ATTACK_PATIENT_ALARM29 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST4 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST1 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST0 ---> 270.09999999999854
+PATIENT_SENSOR19 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM23 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM24 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM21 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM22 ---> 47.26981132075162
+PATIENT_SENSOR15 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM27 ---> 47.26981132075162
+PATIENT_SENSOR16 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM28 ---> 47.26981132075162
+PATIENT_SENSOR17 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM25 ---> 47.26981132075162
+PATIENT_SENSOR18 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM26 ---> 47.26981132075162
+PATIENT_SENSOR11 ---> 94.43962330436058
+PATIENT_SENSOR12 ---> 94.43962330436058
+PATIENT_SENSOR13 ---> 94.43962330436058
+PATIENT_SENSOR14 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM20 ---> 47.26981132075162
+PATIENT_SENSOR10 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM18 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM19 ---> 47.26981132075162
+HEART_ATTACK_DETERMINATION9 ---> 60.0
+HEART_ATTACK_DETERMINATION8 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION7 ---> 60.0
+HEART_ATTACK_DETERMINATION6 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION5 ---> 60.0
+HEART_ATTACK_PATIENT_ALARM9 ---> 47.26981132075162
+HEART_ATTACK_DETERMINATION4 ---> 60.0
+HEART_ATTACK_DETERMINATION3 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION2 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION1 ---> 60.099999999998545
+HEART_ATTACK_DETERMINATION0 ---> 60.099999999998545
+PATIENT_STATE11 ---> 116.42784056012162
+PATIENT_STATE10 ---> 113.71735910775168
+PATIENT_STATE19 ---> 107.23706087253233
+PATIENT_STATE18 ---> 107.23315644415555
+PATIENT_STATE17 ---> 115.52720999014127
+PATIENT_STATE16 ---> 116.42940233147233
+PATIENT_STATE15 ---> 107.23081378712949
+PATIENT_STATE14 ---> 115.52564821879056
+PATIENT_STATE13 ---> 112.81360499506991
+PATIENT_STATE12 ---> 116.43018321714769
+PATIENT_HISTORY_RECORD_RESPONSE39 ---> 60.099999999998545
+PATIENT_SENSOR26 ---> 94.43962330436058
+PATIENT_SENSOR27 ---> 94.43962330436058
+PATIENT_SENSOR28 ---> 94.43962330436058
+PATIENT_SENSOR29 ---> 94.43962330436058
+PATIENT_SENSOR22 ---> 94.43962330436058
+PATIENT_SENSOR23 ---> 94.43962330436058
+PATIENT_SENSOR24 ---> 94.43962330436058
+PATIENT_SENSOR25 ---> 94.43962330436058
+PATIENT_SENSOR20 ---> 94.43962330436058
+PATIENT_SENSOR21 ---> 94.43962330436058
+PATIENT_HISTORY_RECORD_REQUEST39 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST38 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE30 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST37 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST36 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST35 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST34 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE34 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST33 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE33 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST32 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE32 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST31 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE31 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST30 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE38 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE37 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE36 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE35 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE29 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE28 ---> 60.099999999998545
+PATIENT_SENSOR37 ---> 94.43962330436058
+PATIENT_SENSOR38 ---> 94.43962330436058
+PATIENT_SENSOR39 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM0 ---> 47.26981132075162
+PATIENT_SENSOR33 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM1 ---> 47.26981132075162
+PATIENT_SENSOR34 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM2 ---> 47.26981132075162
+PATIENT_SENSOR35 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM3 ---> 47.26981132075162
+PATIENT_SENSOR36 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM4 ---> 47.26981132075162
+HEART_ATTACK_PATIENT_ALARM5 ---> 47.26981132075162
+PATIENT_SENSOR30 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM6 ---> 47.26981132075162
+PATIENT_SENSOR31 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM7 ---> 47.26981132075162
+PATIENT_SENSOR32 ---> 94.43962330436058
+HEART_ATTACK_PATIENT_ALARM8 ---> 47.26981132075162
+PATIENT_HISTORY_RECORD_REQUEST29 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST28 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST27 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST26 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST25 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST24 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_REQUEST23 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE23 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST22 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE22 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST21 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE21 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_REQUEST20 ---> 270.09999999999854
+PATIENT_HISTORY_RECORD_RESPONSE20 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE27 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE26 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE25 ---> 60.099999999998545
+PATIENT_HISTORY_RECORD_RESPONSE24 ---> 60.099999999998545
+=========================================
+cloud : Energy Consumed = 114017.34566065914
+ISP_Gateway : Energy Consumed = NaN
+3gBaseStation_1_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_1_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_1_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_2_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_2 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_3 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_4 : Energy Consumed = 646.8750000000016
+3gBaseStation_4_5 : Energy Consumed = 646.8750000000016
+3gBaseStation_5_1 : Energy Consumed = 646.8750000000016
+3gBaseStation_3_4 : Energy Consumed = 646.8750000000016
+4gBaseStation_1_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_1_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_2_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_2_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_3_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_3_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_4_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_5_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_5_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_6_4 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_1 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_2 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_3 : Energy Consumed = 646.8750000000016
+4gBaseStation_7_4 : Energy Consumed = 646.8750000000016
+pedestrian_1-1-pt_0 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1006 : Energy Consumed = 3.2999403952829875
+pedestrian_1-1-pt_1011 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1017 : Energy Consumed = 3.299940395282985
+pedestrian_1-1-pt_1020 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1022 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1026 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1033 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1037 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1039 : Energy Consumed = 3.299940395282984
+pedestrian_1-1-pt_1040 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1064 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1071 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1073 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1078 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_109 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_11 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1108 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1109 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_111 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1121 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1134 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1138 : Energy Consumed = 3.29994039528298
+pedestrian_1-1-pt_1142 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1167 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1169 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1173 : Energy Consumed = 3.2999403952829827
+pedestrian_1-1-pt_1181 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1195 : Energy Consumed = 3.2999403952829844
+pedestrian_1-1-pt_1215 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1223 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1226 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1227 : Energy Consumed = 3.299940395282981
+pedestrian_1-1-pt_1232 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1238 : Energy Consumed = 3.299940395282983
+pedestrian_1-1-pt_1253 : Energy Consumed = 3.2999403952829804
+pedestrian_1-1-pt_1259 : Energy Consumed = 3.299940395282987
+pedestrian_1-1-pt_1261 : Energy Consumed = 3.2999403952829875
+pedestrian_1-1-pt_1270 : Energy Consumed = 3.2999403952829836
+pedestrian_1-1-pt_1272 : Energy Consumed = 3.29994039528298
+Cost of execution in cloud = 3.1704312566836617
+Total network usage = 65337.6
+
+Base station: number of connected clients
+3gBaseStation_1_3: 2
+4gBaseStation_1_1: 2
+4gBaseStation_1_2: 2
+4gBaseStation_2_1: 9
+4gBaseStation_2_2: 5
+4gBaseStation_3_1: 9
+4gBaseStation_3_2: 3
+4gBaseStation_4_2: 1
+4gBaseStation_4_3: 1
+4gBaseStation_5_1: 1
+4gBaseStation_5_2: 4
+4gBaseStation_6_2: 1
+
+Base station events
+03:00:00: pedestrian_1-1-pt_0 (39) connected from null to 3gBaseStation_1_3 (5)
+03:00:00: pedestrian_1-1-pt_1006 (40) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_1011 (41) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1017 (42) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1020 (43) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1022 (44) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1026 (45) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1033 (46) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1037 (47) connected from null to 4gBaseStation_1_2 (20)
+03:00:00: pedestrian_1-1-pt_1039 (48) connected from null to 3gBaseStation_1_3 (5)
+03:00:00: pedestrian_1-1-pt_1040 (49) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1064 (50) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_1071 (51) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1073 (52) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1078 (53) connected from null to 4gBaseStation_3_2 (24)
+03:00:00: pedestrian_1-1-pt_109 (54) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_11 (55) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1108 (56) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1109 (57) connected from null to 4gBaseStation_1_1 (19)
+03:00:00: pedestrian_1-1-pt_111 (58) connected from null to 4gBaseStation_4_2 (26)
+03:00:00: pedestrian_1-1-pt_1121 (59) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1134 (60) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1138 (61) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1142 (62) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1167 (63) connected from null to 4gBaseStation_5_1 (28)
+03:00:00: pedestrian_1-1-pt_1169 (64) connected from null to 4gBaseStation_1_1 (19)
+03:00:00: pedestrian_1-1-pt_1173 (65) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1181 (66) connected from null to 4gBaseStation_4_3 (27)
+03:00:00: pedestrian_1-1-pt_1195 (67) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1215 (68) connected from null to 4gBaseStation_3_1 (23)
+03:00:00: pedestrian_1-1-pt_1223 (69) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1226 (70) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1227 (71) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1232 (72) connected from null to 4gBaseStation_6_2 (31)
+03:00:00: pedestrian_1-1-pt_1238 (73) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1253 (74) connected from null to 4gBaseStation_5_2 (29)
+03:00:00: pedestrian_1-1-pt_1259 (75) connected from null to 4gBaseStation_1_2 (20)
+03:00:00: pedestrian_1-1-pt_1261 (76) connected from null to 4gBaseStation_2_1 (21)
+03:00:00: pedestrian_1-1-pt_1270 (77) connected from null to 4gBaseStation_2_2 (22)
+03:00:00: pedestrian_1-1-pt_1272 (78) connected from null to 4gBaseStation_3_1 (23)
+Migrations
+
+Avg delay for loops: 767,365 (std 5,03)
+Results so far
+numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)
+40: 150, 20000, 80% = 767,365 +- 5,03 (0,66 %) (937,674)
+
+Initialising...
+Creating patient_state_analyzer0 on device cloud
+Creating heart_attack_determiner0 on device cloud
+Creating patient_disease_history0 on device cloud
+Creating client0 on device pedestrian_1-1-pt_0
+Creating patient_state_analyzer1 on device cloud
+Creating heart_attack_determiner1 on device cloud
+Creating patient_disease_history1 on device cloud
+Creating client1 on device pedestrian_1-1-pt_1006
+Creating patient_state_analyzer2 on device cloud
+Creating heart_attack_determiner2 on device cloud
+Creating patient_disease_history2 on device cloud
+Creating client2 on device pedestrian_1-1-pt_1011
+Creating patient_state_analyzer3 on device cloud
+Creating heart_attack_determiner3 on device cloud
+Creating patient_disease_history3 on device cloud
+Creating client3 on device pedestrian_1-1-pt_1017
+Creating client4 on device pedestrian_1-1-pt_1020
+Creating patient_state_analyzer4 on device cloud
+Creating heart_attack_determiner4 on device cloud
+Creating patient_disease_history4 on device cloud
+Creating patient_state_analyzer5 on device cloud
+Creating heart_attack_determiner5 on device cloud
+Creating patient_disease_history5 on device cloud
+Creating client5 on device pedestrian_1-1-pt_1022
+Creating patient_state_analyzer6 on device cloud
+Creating heart_attack_determiner6 on device cloud
+Creating patient_disease_history6 on device cloud
+Creating client6 on device pedestrian_1-1-pt_1026
+Creating patient_state_analyzer7 on device cloud
+Creating heart_attack_determiner7 on device cloud
+Creating patient_disease_history7 on device cloud
+Creating client7 on device pedestrian_1-1-pt_1033
+Creating patient_state_analyzer8 on device cloud
+Creating heart_attack_determiner8 on device cloud
+Creating patient_disease_history8 on device cloud
+Creating client8 on device pedestrian_1-1-pt_1037
+Creating patient_state_analyzer9 on device cloud
+Creating heart_attack_determiner9 on device cloud
+Creating patient_disease_history9 on device cloud
+Creating client9 on device pedestrian_1-1-pt_1039
+Creating patient_state_analyzer10 on device cloud
+Creating heart_attack_determiner10 on device cloud
+Creating patient_disease_history10 on device cloud
+Creating client10 on device pedestrian_1-1-pt_1040
+Creating client11 on device pedestrian_1-1-pt_1064
+Creating patient_state_analyzer11 on device cloud
+Creating heart_attack_determiner11 on device cloud
+Creating patient_disease_history11 on device cloud
+Creating patient_state_analyzer12 on device cloud
+Creating heart_attack_determiner12 on device cloud
+Creating patient_disease_history12 on device cloud
+Creating client12 on device pedestrian_1-1-pt_1071
+Creating patient_state_analyzer13 on device cloud
+Creating heart_attack_determiner13 on device cloud
+Creating patient_disease_history13 on device cloud
+Creating client13 on device pedestrian_1-1-pt_1073
+Creating patient_state_analyzer14 on device cloud
+Creating heart_attack_determiner14 on device cloud
+Creating patient_disease_history14 on device cloud
+Creating client14 on device pedestrian_1-1-pt_1078
+Creating patient_state_analyzer15 on device cloud
+Creating heart_attack_determiner15 on device cloud
+Creating patient_disease_history15 on device cloud
+Creating client15 on device pedestrian_1-1-pt_109
+Creating patient_state_analyzer16 on device cloud
+Creating heart_attack_determiner16 on device cloud
+Creating patient_disease_history16 on device cloud
+Creating client16 on device pedestrian_1-1-pt_11
+Creating patient_state_analyzer17 on device cloud
+Creating heart_attack_determiner17 on device cloud
+Creating patient_disease_history17 on device cloud
+Creating client17 on device pedestrian_1-1-pt_1108
+Creating patient_state_analyzer18 on device cloud
+Creating heart_attack_determiner18 on device cloud
+Creating patient_disease_history18 on device cloud
+Creating client18 on device pedestrian_1-1-pt_1109
+Creating patient_state_analyzer19 on device cloud
+Creating heart_attack_determiner19 on device cloud
+Creating patient_disease_history19 on device cloud
+Creating client19 on device pedestrian_1-1-pt_111
+Creating patient_state_analyzer20 on device cloud
+Creating heart_attack_determiner20 on device cloud
+Creating patient_disease_history20 on device cloud
+Creating client20 on device pedestrian_1-1-pt_1121
+Creating patient_state_analyzer21 on device cloud
+Creating heart_attack_determiner21 on device cloud
+Creating patient_disease_history21 on device cloud
+Creating client21 on device pedestrian_1-1-pt_1134
+Creating patient_state_analyzer22 on device cloud
+Creating heart_attack_determiner22 on device cloud
+Creating patient_disease_history22 on device cloud
+Creating client22 on device pedestrian_1-1-pt_1138
+Creating patient_state_analyzer23 on device cloud
+Creating heart_attack_determiner23 on device cloud
+Creating patient_disease_history23 on device cloud
+Creating client23 on device pedestrian_1-1-pt_1142
+Creating patient_state_analyzer24 on device cloud
+Creating heart_attack_determiner24 on device cloud
+Creating patient_disease_history24 on device cloud
+Creating client24 on device pedestrian_1-1-pt_1167
+Creating patient_state_analyzer25 on device cloud
+Creating heart_attack_determiner25 on device cloud
+Creating patient_disease_history25 on device cloud
+Creating client25 on device pedestrian_1-1-pt_1169
+Creating patient_state_analyzer26 on device cloud
+Creating heart_attack_determiner26 on device cloud
+Creating patient_disease_history26 on device cloud
+Creating client26 on device pedestrian_1-1-pt_1173
+Creating patient_state_analyzer27 on device cloud
+Creating heart_attack_determiner27 on device cloud
+Creating patient_disease_history27 on device cloud
+Creating client27 on device pedestrian_1-1-pt_1181
+Creating patient_state_analyzer28 on device cloud
+Creating heart_attack_determiner28 on device cloud
+Creating patient_disease_history28 on device cloud
+Creating client28 on device pedestrian_1-1-pt_1195
+Creating patient_state_analyzer29 on device cloud
+Creating heart_attack_determiner29 on device cloud
+Creating patient_disease_history29 on device cloud
+Creating client29 on device pedestrian_1-1-pt_1215
+Creating patient_state_analyzer30 on device cloud
+Creating heart_attack_determiner30 on device cloud
+Creating patient_disease_history30 on device cloud
+Creating client30 on device pedestrian_1-1-pt_1223
+Creating patient_state_analyzer31 on device cloud
+Creating heart_attack_determiner31 on device cloud
+Creating patient_disease_history31 on device cloud
+Creating client31 on device pedestrian_1-1-pt_1226
+Creating patient_state_analyzer32 on device cloud
+Creating heart_attack_determiner32 on device cloud
+Creating patient_disease_history32 on device cloud
+Creating client32 on device pedestrian_1-1-pt_1227
+Creating patient_state_analyzer33 on device cloud
+Creating heart_attack_determiner33 on device cloud
+Creating patient_disease_history33 on device cloud
+Creating client33 on device pedestrian_1-1-pt_1232
+Creating patient_state_analyzer34 on device cloud
+Creating heart_attack_determiner34 on device cloud
+Creating patient_disease_history34 on device cloud
+Creating client34 on device pedestrian_1-1-pt_1238
+Creating patient_state_analyzer35 on device cloud
+Creating heart_attack_determiner35 on device cloud
+Creating patient_disease_history35 on device cloud
+Creating client35 on device pedestrian_1-1-pt_1253
+Creating patient_state_analyzer36 on device cloud
+Creating heart_attack_determiner36 on device cloud
+Creating patient_disease_history36 on device cloud
+Creating client36 on device pedestrian_1-1-pt_1259
+Creating patient_state_analyzer37 on device cloud
+Creating heart_attack_determiner37 on device cloud
+Creating patient_disease_history37 on device cloud
+Creating client37 on device pedestrian_1-1-pt_1261
+Creating patient_state_analyzer38 on device cloud
+Creating heart_attack_determiner38 on device cloud
+Creating patient_disease_history38 on device cloud
+Creating client38 on device pedestrian_1-1-pt_1270
+Creating patient_state_analyzer39 on device cloud
+Creating heart_attack_determiner39 on device cloud
+Creating patient_disease_history39 on device cloud
+Creating client39 on device pedestrian_1-1-pt_1272
+0.0 Submitted application HeartDiseaseMonitoringApplication30
+0.0 Submitted application HeartDiseaseMonitoringApplication19
+0.0 Submitted application HeartDiseaseMonitoringApplication17
+0.0 Submitted application HeartDiseaseMonitoringApplication39
+0.0 Submitted application HeartDiseaseMonitoringApplication18
+0.0 Submitted application HeartDiseaseMonitoringApplication11
+0.0 Submitted application HeartDiseaseMonitoringApplication33
+0.0 Submitted application HeartDiseaseMonitoringApplication12
+0.0 Submitted application HeartDiseaseMonitoringApplication34
+0.0 Submitted application HeartDiseaseMonitoringApplication31
+0.0 Submitted application HeartDiseaseMonitoringApplication10
+0.0 Submitted application HeartDiseaseMonitoringApplication32
+0.0 Submitted application HeartDiseaseMonitoringApplication1
+0.0 Submitted application HeartDiseaseMonitoringApplication15
+0.0 Submitted application HeartDiseaseMonitoringApplication37
+0.0 Submitted application HeartDiseaseMonitoringApplication0
+0.0 Submitted application HeartDiseaseMonitoringApplication16
+0.0 Submitted application HeartDiseaseMonitoringApplication38
+0.0 Submitted application HeartDiseaseMonitoringApplication13
+0.0 Submitted application HeartDiseaseMonitoringApplication35
+0.0 Submitted application HeartDiseaseMonitoringApplication14
+0.0 Submitted application HeartDiseaseMonitoringApplication36
+0.0 Submitted application HeartDiseaseMonitoringApplication5
+0.0 Submitted application HeartDiseaseMonitoringApplication4
+0.0 Submitted application HeartDiseaseMonitoringApplication3
+0.0 Submitted application HeartDiseaseMonitoringApplication2
+0.0 Submitted application HeartDiseaseMonitoringApplication9
+0.0 Submitted application HeartDiseaseMonitoringApplication8
+0.0 Submitted application HeartDiseaseMonitoringApplication7
+0.0 Submitted application HeartDiseaseMonitoringApplication6
+0.0 Submitted application HeartDiseaseMonitoringApplication28
+0.0 Submitted application HeartDiseaseMonitoringApplication29
+0.0 Submitted application HeartDiseaseMonitoringApplication22
+0.0 Submitted application HeartDiseaseMonitoringApplication23
+0.0 Submitted application HeartDiseaseMonitoringApplication20
+0.0 Submitted application HeartDiseaseMonitoringApplication21
+0.0 Submitted application HeartDiseaseMonitoringApplication26
+0.0 Submitted application HeartDiseaseMonitoringApplication27
+0.0 Submitted application HeartDiseaseMonitoringApplication24
+0.0 Submitted application HeartDiseaseMonitoringApplication25
+$0% (inf seconds left)

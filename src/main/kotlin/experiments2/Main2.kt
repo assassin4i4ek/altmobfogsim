@@ -11,12 +11,11 @@ import api.addressing.fixed.entities.AddressingDevice
 import api.common.positioning.Coordinates
 import api.common.positioning.Position
 import api.common.positioning.RadialZone
-import api.migration.models.mapo.CentralizedMapoModel
+import api.migration.models.mapo.*
 import api.migration.models.mapo.OnlyTriggeredCentralizedMapoModel
-import api.migration.models.mapo.PrioritizedCentralizedMapoModel
 import api.migration.models.mapo.ideals.ClosestToEdgeStartEnvironmentBuilder
 import api.migration.models.mapo.normalizers.MinMaxNormalizer
-import api.migration.models.mapo.objectives.MinNetworkAndProcessingTimeObjective
+import api.migration.models.mapo.objectives.MinProcessingDelayObjective
 import api.migration.models.mapo.problems.SingleInstanceIdealInjectingModulePlacementProblem
 import api.migration.models.timeprogression.FixedTimeProgression
 import api.migration.models.timeprogression.FixedWithOffsetTimeProgression
@@ -38,6 +37,10 @@ import org.fog.utils.Config
 import org.fog.utils.Logger
 import org.fog.utils.TimeKeeper
 import org.fog.utils.distribution.DeterministicDistribution
+import utils.BaseStationSpecification
+import utils.MyTestController
+import utils.SimulationTimeTracker
+import utils.TimeKeeperCleaner
 import java.io.File
 import java.io.FileWriter
 import java.io.PrintWriter
@@ -48,11 +51,6 @@ import kotlin.system.measureTimeMillis
 
 fun main() {
     globalExperiment2ParallelService()
-//    val numMobiles = 10
-//    val populationSize = 10
-//    val maxEvals = 1000
-//    val inject = 0.54
-//    experiment2(numMobiles, populationSize, maxEvals, inject)
 }
 
 fun globalExperiment2ParallelService() {
@@ -100,11 +98,9 @@ fun globalExperiment2Parallel(args: Array<String>) {
     println(resultAsString)
     println()
     val resultsTxtFile = PrintWriter(FileWriter(File(args[0]), true), true)
-//    resultsTxtFile.println("numMobiles: populationSize, mapoModelMaxEvaluations, injectedSolutionsFraction % = avg +- std (std %) (time seconds)")
     resultsTxtFile.println(resultAsString)
     resultsTxtFile.close()
     val resultsCsvFile = PrintWriter(FileWriter(File(args[1]), true), true)
-//    resultsCsvFile.println("numMobiles\tpopulationSize\tmapoModelMaxEvaluations\tinjectedSolutionsFraction\tavg_delay\tstd_delay\tstd_delay_percent")
     resultsCsvFile.println(
             "${config[0]}\t${config[1]}\t${config[2]}\t${"%.0f".format((config[3].toDouble()) * 100)}\t" +
                     "${"%.3f".format(avgStd.first)}\t${"%.2f".format(avgStd.second)}\t" +
@@ -132,8 +128,8 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
     }
 
     val migrationModel = run {
-        val objectives = listOf(MinNetworkAndProcessingTimeObjective())
-        val timeProgression =  FixedTimeProgression(36001.0 * modelTimeUnitsPerSec)
+        val objectives = listOf(MinProcessingDelayObjective())
+        val ignoredTimeProgression =  FixedTimeProgression(Double.MAX_VALUE)
         val numOfInjectedSolutions = max(1, min((populationSize * injectedSolutionsFraction).toInt(), populationSize - 1))
         val modulePlacementProblemFactory = SingleInstanceIdealInjectingModulePlacementProblem.Factory(
                 listOf(ClosestToEdgeStartEnvironmentBuilder()), numOfInjectedSolutions
@@ -142,29 +138,36 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
         val logProgress = false
         when (migrationModelType) {
             1 -> CentralizedMapoModel(
-                    true, timeProgression, objectives, modulePlacementProblemFactory,
+                    true, ignoredTimeProgression, objectives, modulePlacementProblemFactory,
                     mapoModelMaxIterations, populationSize, normalizer, randSeed, logProgress
             )
             2 -> OnlyTriggeredCentralizedMapoModel(
-                    true, { populationSize }, { mapoModelMaxIterations }, timeProgression,
+                    true, { populationSize }, { mapoModelMaxIterations }, ignoredTimeProgression,
                     objectives, modulePlacementProblemFactory, normalizer, randSeed, logProgress
             )
-            3 -> PrioritizedCentralizedMapoModel(
-                    true,
-                    // every 5 minutes module shoud be rewised
-                    {elapsedTime, prevPriority -> prevPriority + (elapsedTime / modelTimeUnitsPerSec) / (5 * 60) },
-                    // every minute
-                    0.5, { populationSize }, { mapoModelMaxIterations },
-                    FixedTimeProgression(1.0 * 60 * modelTimeUnitsPerSec),
-                    objectives, modulePlacementProblemFactory, normalizer, randSeed, logProgress
+            3 -> PartitionedCentralizedMapoModel(true,
+                    30, FixedWithOffsetTimeProgression(CloudSim.getMinTimeBetweenEvents(), 1.0 * 60 * modelTimeUnitsPerSec), objectives,
+                    modulePlacementProblemFactory, mapoModelMaxIterations, populationSize, normalizer, randSeed, logProgress
             )
-            4 -> PrioritizedCentralizedMapoModel(
-                    true,
-                    {elapsedTime, prevPriority -> prevPriority + (elapsedTime / modelTimeUnitsPerSec) / (5 * 60) },
-                    0.5, { populationSize }, { mapoModelMaxIterations },
-                    FixedTimeProgression(36001 * modelTimeUnitsPerSec),
-                    objectives, modulePlacementProblemFactory, normalizer, randSeed, logProgress
+            4 -> PartitionedCentralizedMapoModel(true,
+                    30, ignoredTimeProgression, objectives,
+                    modulePlacementProblemFactory, mapoModelMaxIterations, populationSize, normalizer, randSeed, logProgress
             )
+            5 -> PartitionedCentralizedMapoModel(true,
+                    30, FixedTimeProgression(1.0 * 60 * modelTimeUnitsPerSec), objectives,
+                    modulePlacementProblemFactory, mapoModelMaxIterations, populationSize, normalizer, randSeed, logProgress
+            )
+            6 -> CompoundMigrationModel(mapOf(
+                    "partition_model" to PartitionedCentralizedMapoModel(true,
+                            30, ignoredTimeProgression, objectives,
+                            modulePlacementProblemFactory, mapoModelMaxIterations, populationSize, normalizer, randSeed, logProgress
+                    ),
+                    "only_triggered" to OnlyTriggeredCentralizedMapoModel(true, { 40 }, { 10 },
+                            ignoredTimeProgression, objectives, modulePlacementProblemFactory, normalizer, randSeed, logProgress)
+            ), { _, isPeriodic ->
+                if (isPeriodic) "partition_model"
+                else "only_triggered"
+            }, FixedTimeProgression(1.0 * 60 * modelTimeUnitsPerSec))
             else -> throw Exception("Unknown migration model type")
         }
     }
@@ -179,9 +182,12 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
         DynamicAddressingMigrationSupportingDeviceImpl("cloud", it.first, it.second, emptyList(), 10.0,
                 2.5e9 /* 2.5 Gbps link*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
                 2.5e9 /* 2.5 Gbps link*/ * 0.85 /*85% efficiency for throughput*/ / modelTimeUnitsPerSec,
-                0.0, cloudRatePerMips, AddressingDevice.AddressingType.HIERARCHICAL,
-                migrationModel
+                0.0, cloudRatePerMips, AddressingDevice.AddressingType.HIERARCHICAL, migrationModel
         )
+    }
+    val migrationDecisionMakingDevice = when(migrationModelType) {
+        5,7 -> null
+        else -> cloud
     }
 
     val apm = AccessPointsMap()
@@ -236,11 +242,11 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
                 2.65 /*Cortex-A55 DMIPS per MHz*/ * 2000.0 /*MHz*/ / modelTimeUnitsPerSec, 1,
                 0.85 /* Watts in idle mode */ * 0.85 /* A55 vs A53 efficiency*/ / modelTimeUnitsPerSec,
                 0.02 /* Watts in idle mode */ * 0.9 /* A55 vs A53 efficiency*/ / modelTimeUnitsPerSec).let {
-            MigrationStimulatorAddressingAccessPointConnectedDeviceImpl(name, it.first, it.second, emptyList(), 10.0,
-                    1000.0, 0.0, 10.0 * modelTimeUnitsPerSec, 0.0,
-                    Position(Coordinates(-1000.0, -1000.0), 0.0, 0.0),
-                    mobilityModel, apm, cloud.id
-            )
+               MigrationStimulatorAddressingAccessPointConnectedDeviceImpl(name, it.first, it.second, emptyList(), 10.0,
+                        1000.0, 0.0, 10.0 * modelTimeUnitsPerSec, 0.0,
+                        Position(Coordinates(-1000.0, -1000.0), 0.0, 0.0),
+                        mobilityModel, apm, migrationDecisionMakingDevice?.id
+               )
         }
     }
 
@@ -264,9 +270,9 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
         moduleMapping.addModuleToDevice("patient_state_analyzer$i", cloud.mName)
         moduleMapping.addModuleToDevice("heart_attack_determiner$i", cloud.mName)
         moduleMapping.addModuleToDevice("patient_disease_history$i", cloud.mName)
-        cloud.migrationModel.allowMigrationForModule("patient_state_analyzer$i")
-        cloud.migrationModel.allowMigrationForModule("heart_attack_determiner$i")
-        cloud.migrationModel.allowMigrationForModule("patient_disease_history$i")
+        migrationModel.allowMigrationForModule("patient_state_analyzer$i")
+        migrationModel.allowMigrationForModule("heart_attack_determiner$i")
+        migrationModel.allowMigrationForModule("patient_disease_history$i")
 
         brokers.add(broker)
         applications.add(app)
@@ -314,18 +320,15 @@ fun experiment2(numMobiles: Int, populationSize: Int, mapoModelMaxIterations: In
         controller.submitApplication(app, ModulePlacementMapping(fogDevices, app, mappings[app.appId]))
     }
 
-    SimulationTimeTracker(300 * modelTimeUnitsPerSec)
-    UtilizationHistoryCleaner(1800 * modelTimeUnitsPerSec, controller)
+    SimulationTimeTracker(300 * modelTimeUnitsPerSec, controller)
+    TimeKeeperCleaner(1800 * modelTimeUnitsPerSec, controller)
     Config.RESOURCE_MGMT_INTERVAL = (0.1 * modelTimeUnitsPerSec)
-    Config.MAX_SIMULATION_TIME = (
-            3600
-//    50
-                    * modelTimeUnitsPerSec).toInt()
+    Config.MAX_SIMULATION_TIME = (3600 * modelTimeUnitsPerSec).toInt()
     try {
         CloudSim.startSimulation()
     }
     catch (e: Exception) {
-        controller.onStopSimulation()
+        controller.onStopSimulation(controller)
         throw e
     }
 }

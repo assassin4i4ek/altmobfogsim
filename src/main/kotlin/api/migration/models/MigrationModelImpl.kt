@@ -15,7 +15,7 @@ class MigrationModelImpl(
         this.device = device
     }
 
-    override fun decide(): List<MigrationRequest> {
+    override fun decide(isPeriodic: Boolean): List<MigrationRequest> {
         //{appName: { appModuleName: {downAppModuleName: [downModuleId]}}}
         val unhandledDownModules = mutableMapOf<String, MutableMap<String, MutableMap<String, MutableList<Int>>>>()
         val childrenDevices = device.mChildrenModuleLaunchingDevices

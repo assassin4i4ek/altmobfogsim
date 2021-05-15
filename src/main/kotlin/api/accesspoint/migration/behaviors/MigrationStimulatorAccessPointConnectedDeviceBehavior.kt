@@ -30,8 +30,8 @@ interface MigrationStimulatorAccessPointConnectedDeviceBehavior<
         val res = superAccessPointConnectedDeviceBehavior.processEvent(ev)
         val newAccessPoint = device.accessPoint
         if (newAccessPoint != null) {
-            if (prevAccessPoint != newAccessPoint) {
-                device.mSendEvent(device.migrationDecisionMakingDeviceId, CloudSim.getMinTimeBetweenEvents(),
+            if (prevAccessPoint != newAccessPoint && device.migrationDecisionMakingDeviceId != null) {
+                device.mSendEvent(device.migrationDecisionMakingDeviceId!!, CloudSim.getMinTimeBetweenEvents(),
                         Events.MIGRATION_SUPPORTING_DEVICE_MIGRATION_STIMULATE_DECISION.tag, null)
             }
         }

@@ -1,0 +1,15 @@
+{
+  "numMobiles": [60],
+  "mapoModelMaxIterations": [
+    10, 30, 60
+  ],
+  "populationSize": [
+	10, 40, 102
+  ],
+  "injectedSolutionsFraction": [
+    1.0
+  ],
+  "migrationTypes": [
+	1, 2, 3, 4, 5, 6
+  ]
+}

@@ -1,2 +1,4 @@
 out
-input/gps_data
+
+jupyter.bat
+.ipynb_checkpoints

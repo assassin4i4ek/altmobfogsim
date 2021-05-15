@@ -8,7 +8,7 @@ interface MigrationModel {
     val updateTimeProgression: TimeProgression
     fun init(device: MigrationSupportingDevice)
 
-    fun decide(): List<MigrationRequest>
+    fun decide(isPeriodic: Boolean): List<MigrationRequest>
     fun canMigrate(request: MigrationRequest): Boolean
 
     fun allowMigrationForModule(moduleName: String)

@@ -1,6 +1,5 @@
 package utils
 
-import experiments.TestController
 import org.cloudbus.cloudsim.Log
 import org.cloudbus.cloudsim.core.CloudSim
 import org.fog.application.AppEdge
@@ -10,7 +9,6 @@ import org.fog.application.selectivity.FractionalSelectivity
 import org.fog.entities.*
 import org.fog.placement.ModulePlacement
 import org.fog.utils.Logger
-import org.fog.utils.TimeKeeper
 import java.util.*
 
 abstract class BaseExperimentTest {

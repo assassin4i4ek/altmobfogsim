@@ -43,7 +43,7 @@ class MigrationStimulatorAddressingAccessPointConnectedDeviceImpl(
         override var position: Position,
         override val mobilityModel: MobilityModel,
         override val accessPointsMap: AccessPointsMap,
-        override val migrationDecisionMakingDeviceId: Int
+        override val migrationDecisionMakingDeviceId: Int?
 ): FogDevice(
         name, characteristics, vmAllocationPolicy, storageList, schedulingInterval, uplinkBandwidth, downlinkBandwidth,
         uplinkLatency, ratePerMips),

@@ -1,0 +1,15 @@
+{
+  "numMobiles": [100],
+  "mapoModelMaxIterations": [
+    60
+  ],
+  "populationSize": [
+	102
+  ],
+  "injectedSolutionsFraction": [
+    1.0
+  ],
+  "strategyTypes": [
+	1, 2, 3, 4
+  ]
+}
