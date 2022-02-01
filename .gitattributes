@@ -1,2 +1,3 @@
 experiment1/** linguist-vendored
 experiment2/** linguist-vendored
+experiment2/*.py linguist-vendored=False
